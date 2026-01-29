@@ -1,6 +1,6 @@
 /**
  * PREHISTORIC DOMAIN - TIME TRAVEL GLOBE
- * Gestion du globe 3D avec Three.js
+ * 3D Globe management with Three.js
  */
 
 class GlobeManager {
@@ -15,7 +15,7 @@ class GlobeManager {
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
     this.coastlines = null;
-    this.continents = null; // Polygones des continents
+    this.continents = null; // Continent polygons
 
     this.init();
   }
@@ -36,7 +36,7 @@ class GlobeManager {
     // Créer le renderer
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
-      alpha: true,
+      alpha: false,
     });
     this.renderer.setSize(
       this.container.clientWidth,
@@ -45,36 +45,112 @@ class GlobeManager {
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.container.appendChild(this.renderer.domElement);
 
+    // Ajouter le fond étoilé
+    this.addStarfield();
+
     // Ajouter les lumières
     this.addLights();
 
     // Créer le globe
     this.createGlobe();
 
-    // Ajouter les contrôles
+    // Add controls
     this.addControls();
 
-    // Gérer le redimensionnement
+    // Handle resize
     window.addEventListener("resize", () => this.onWindowResize());
 
-    // Gérer les clics
+    // Handle clicks
     this.container.addEventListener("click", (e) => this.onMouseClick(e));
 
-    // Démarrer l'animation
+    // Start animation
     this.animate();
   }
 
+  addStarfield() {
+    // Create realistic starfield with size and color variations
+    const starsGeometry = new THREE.BufferGeometry();
+    const starPositions = [];
+    const starColors = [];
+    const starSizes = [];
+
+    // Generate 5000 stars with realistic distribution
+    for (let i = 0; i < 5000; i++) {
+      // Random position on distant sphere
+      const radius = 500;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(Math.random() * 2 - 1);
+
+      const x = radius * Math.sin(phi) * Math.cos(theta);
+      const y = radius * Math.sin(phi) * Math.sin(theta);
+      const z = radius * Math.cos(phi);
+
+      starPositions.push(x, y, z);
+
+      // Realistic star colors: white, blue-white, yellow-white
+      const starType = Math.random();
+      let r, g, b;
+      
+      if (starType < 0.7) {
+        // Most stars: white to blue-white
+        const brightness = 0.8 + Math.random() * 0.2;
+        r = brightness;
+        g = brightness;
+        b = Math.min(1, brightness + Math.random() * 0.2);
+      } else if (starType < 0.9) {
+        // Some stars: yellow-white
+        r = 1;
+        g = 0.95 + Math.random() * 0.05;
+        b = 0.7 + Math.random() * 0.2;
+      } else {
+        // Few stars: pure white (bright)
+        r = g = b = 1;
+      }
+      
+      starColors.push(r, g, b);
+      
+      // Varied sizes (most small, few large)
+      const sizeRandom = Math.random();
+      const size = sizeRandom < 0.9 ? 0.5 + Math.random() * 1 : 1.5 + Math.random() * 2;
+      starSizes.push(size);
+    }
+
+    starsGeometry.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(starPositions, 3),
+    );
+    starsGeometry.setAttribute(
+      "color",
+      new THREE.Float32BufferAttribute(starColors, 3),
+    );
+    starsGeometry.setAttribute(
+      "size",
+      new THREE.Float32BufferAttribute(starSizes, 1),
+    );
+
+    const starsMaterial = new THREE.PointsMaterial({
+      size: 1.5,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.95,
+      sizeAttenuation: true,
+    });
+
+    const stars = new THREE.Points(starsGeometry, starsMaterial);
+    this.scene.add(stars);
+  }
+
   addLights() {
-    // Lumière ambiante - plus forte pour bien voir le globe
+    // Ambient light - stronger to see the globe better
     const ambientLight = new THREE.AmbientLight(0xe6dac7, 0.8);
     this.scene.add(ambientLight);
 
-    // Lumière directionnelle principale
+    // Main directional light
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
     directionalLight.position.set(5, 3, 5);
     this.scene.add(directionalLight);
 
-    // Lumière arrière pour mieux voir les côtes
+    // Back light to see coastlines better
     const backLight = new THREE.DirectionalLight(0xe6dac7, 0.4);
     backLight.position.set(-5, -3, -5);
     this.scene.add(backLight);
@@ -83,9 +159,9 @@ class GlobeManager {
   createGlobe() {
     const geometry = new THREE.SphereGeometry(2, 128, 128);
 
-    // Matériau de base pour le globe - couleur bleu océan très foncé
+    // Base material for globe - very dark ocean blue
     const material = new THREE.MeshPhongMaterial({
-      color: 0x0a1929, // Bleu océan très foncé
+      color: 0x0a1929, // Very dark ocean blue
       emissive: 0x050d15,
       shininess: 30,
       transparent: false,
@@ -95,24 +171,36 @@ class GlobeManager {
     this.globe = new THREE.Mesh(geometry, material);
     this.scene.add(this.globe);
 
-    // Ajouter une atmosphère
+    // Add atmosphere
     this.addAtmosphere();
   }
 
   addAtmosphere() {
-    const atmosphereGeometry = new THREE.SphereGeometry(2.1, 64, 64);
+    // Subtle blue atmosphere halo
+    const atmosphereGeometry = new THREE.SphereGeometry(2.08, 64, 64);
     const atmosphereMaterial = new THREE.MeshBasicMaterial({
-      color: 0x6699cc,
+      color: 0x88ccff,
       transparent: true,
-      opacity: 0.2,
+      opacity: 0.05,
       side: THREE.BackSide,
     });
     const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
     this.scene.add(atmosphere);
+
+    // Very subtle outer glow
+    const glowGeometry = new THREE.SphereGeometry(2.12, 64, 64);
+    const glowMaterial = new THREE.MeshBasicMaterial({
+      color: 0x6699ff,
+      transparent: true,
+      opacity: 0.03,
+      side: THREE.BackSide,
+    });
+    const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+    this.scene.add(glow);
   }
 
   addControls() {
-    // Contrôles manuels simples (rotation avec la souris)
+    // Simple manual controls (rotation with mouse)
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
 
@@ -139,7 +227,7 @@ class GlobeManager {
       isDragging = false;
     });
 
-    // Zoom avec la molette
+    // Zoom with mouse wheel
     this.container.addEventListener("wheel", (e) => {
       e.preventDefault();
       const delta = e.deltaY * 0.001;
@@ -152,11 +240,11 @@ class GlobeManager {
   }
 
   async loadCoastlines(time) {
-    // L'API GPlates ne nécessite pas de clé API
-    // Utilisation du modèle muller2019 (recommandé)
+    // GPlates API doesn't require an API key
+    // Using muller2019 model (recommended)
     const url = `https://gws.gplates.org/reconstruct/coastlines/?time=${time}&model=muller2019`;
 
-    console.log(`🌍 Chargement des côtes pour ${time} Ma...`);
+    console.log(`🌍 Loading coastlines for ${time} Ma...`);
 
     try {
       const response = await fetch(url);
@@ -166,30 +254,30 @@ class GlobeManager {
       }
 
       const data = await response.json();
-      console.log(`✅ Côtes chargées: ${data.features?.length || 0} features`);
+      console.log(`✅ Coastlines loaded: ${data.features?.length || 0} features`);
 
-      // Supprimer les anciennes côtes
+      // Remove old coastlines
       if (this.coastlines) {
         this.globe.remove(this.coastlines);
       }
 
-      // Créer les nouvelles côtes
+      // Create new coastlines
       this.coastlines = this.createCoastlinesFromData(data);
       this.globe.add(this.coastlines);
 
       return true;
     } catch (error) {
-      console.error("❌ Erreur lors du chargement des côtes:", error);
-      console.warn("⚠️  Le globe sera affiché sans les côtes préhistoriques");
+      console.error("❌ Error loading coastlines:", error);
+      console.warn("⚠️  Globe will be displayed without prehistoric coastlines");
       return false;
     }
   }
 
   async loadContinents(time) {
-    // Charger les côtes (coastlines_low) avec avoid_map_boundary
+    // Load coastlines (coastlines_low) with avoid_map_boundary
     const url = `https://gws.gplates.org/reconstruct/coastlines_low/?time=${time}&avoid_map_boundary`;
 
-    console.log(`🗺️  Chargement des continents pour ${time} Ma...`);
+    console.log(`🗺️  Loading continents for ${time} Ma...`);
     console.log(`URL: ${url}`);
 
     try {
@@ -200,24 +288,24 @@ class GlobeManager {
       }
 
       const data = await response.json();
-      console.log(`✅ Données reçues: ${data.features?.length || 0} features`);
+      console.log(`✅ Data received: ${data.features?.length || 0} features`);
 
-      // Générer une texture avec les continents
+      // Generate texture with continents
       const texture = this.generateContinentTexture(data);
 
-      // Appliquer la texture sur le globe
+      // Apply texture to globe
       this.applyTextureToGlobe(texture);
 
       return true;
     } catch (error) {
-      console.error("❌ Erreur lors du chargement des continents:", error);
-      console.warn("⚠️  Le globe sera affiché sans les continents");
+      console.error("❌ Error loading continents:", error);
+      console.warn("⚠️  Globe will be displayed without continents");
       return false;
     }
   }
 
   generateContinentTexture(data) {
-    // Créer un canvas pour dessiner la texture équirectangulaire
+    // Create canvas to draw equirectangular texture
     const width = 4096;
     const height = 2048;
     const canvas = document.createElement("canvas");
@@ -225,7 +313,7 @@ class GlobeManager {
     canvas.height = height;
     const ctx = canvas.getContext("2d");
 
-    // Fond océan bleu foncé
+    // Dark blue ocean background
     ctx.fillStyle = "#0a1929";
     ctx.fillRect(0, 0, width, height);
 
@@ -246,9 +334,9 @@ class GlobeManager {
       });
     }
 
-    console.log("✅ Texture des continents générée");
+    console.log("✅ Continent texture generated");
 
-    // Créer la texture Three.js
+    // Create Three.js texture
     const texture = new THREE.CanvasTexture(canvas);
     texture.needsUpdate = true;
     return texture;
@@ -260,7 +348,7 @@ class GlobeManager {
     ctx.beginPath();
 
     coordinates.forEach(([lon, lat], index) => {
-      // Convertir lon/lat en coordonnées canvas
+      // Convert lon/lat to canvas coordinates
       const x = ((lon + 180) / 360) * width;
       const y = ((90 - lat) / 180) * height;
 
@@ -273,34 +361,34 @@ class GlobeManager {
 
     ctx.closePath();
 
-    // Remplir en blanc
+    // Fill in pure white
     ctx.fillStyle = "#ffffff";
     ctx.fill();
 
-    // Ajouter un contour sombre pour mieux délimiter
+    // Add dark outline for better definition
     ctx.strokeStyle = "#1a2838";
     ctx.lineWidth = 2;
     ctx.stroke();
   }
 
   applyTextureToGlobe(texture) {
-    // Mettre à jour le matériau du globe avec la texture
+    // Update globe material with texture - Phong for realistic reflections
     const material = new THREE.MeshPhongMaterial({
-      color: 0xffffff, // Blanc pour ne pas altérer les couleurs de la texture
+      color: 0xffffff, // White to not alter texture colors
       emissive: 0x000000,
       shininess: 10,
-      map: texture, // Appliquer la texture des continents
+      map: texture, // Apply continent texture
       transparent: false,
     });
 
     this.globe.material = material;
     this.globe.material.needsUpdate = true;
 
-    console.log("✅ Texture appliquée au globe");
+    console.log("✅ Texture applied to globe");
   }
 
   simplifyCoordinates(coordinates, tolerance = 5) {
-    // Simplification : garder 1 point sur N
+    // Simplification: keep 1 point every N
     if (!coordinates || coordinates.length < 3) return coordinates;
 
     const simplified = [];
@@ -308,7 +396,7 @@ class GlobeManager {
       simplified.push(coordinates[i]);
     }
 
-    // Toujours inclure le dernier point pour fermer le polygone
+    // Always include last point to close polygon
     if (
       simplified[simplified.length - 1] !== coordinates[coordinates.length - 1]
     ) {
@@ -353,7 +441,7 @@ class GlobeManager {
 
     const geometry = new THREE.BufferGeometry().setFromPoints(points);
     const material = new THREE.LineBasicMaterial({
-      color: 0x6b8e23, // Couleur verdatre pour les côtes
+      color: 0x6b8e23, // Greenish color for coastlines
       opacity: 0.7,
       transparent: true,
       linewidth: 1,
@@ -376,7 +464,7 @@ class GlobeManager {
   addPoint(lat, lon, data) {
     const position = this.latLonToVector3(lat, lon, 2.05);
 
-    // Créer un point lumineux
+    // Create glowing point
     const geometry = new THREE.SphereGeometry(0.03, 16, 16);
     const material = new THREE.MeshBasicMaterial({
       color: 0xd4af37,
@@ -402,7 +490,7 @@ class GlobeManager {
   }
 
   onMouseClick(event) {
-    // Calculer la position de la souris en coordonnées normalisées
+    // Calculate mouse position in normalized coordinates
     const rect = this.container.getBoundingClientRect();
     this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
@@ -418,7 +506,7 @@ class GlobeManager {
   }
 
   onPointClick(data) {
-    // Cette méthode sera appelée depuis app.js
+    // This method will be called from app.js
     if (window.appController) {
       window.appController.showContentPopup(data);
     }
@@ -437,10 +525,10 @@ class GlobeManager {
   animate() {
     requestAnimationFrame(() => this.animate());
 
-    // Rotation automatique lente
+    // Slow automatic rotation
     this.globe.rotation.y += 0.001;
 
-    // Animation des points
+    // Animate points
     this.points.forEach((point, index) => {
       const scale = 1 + Math.sin(Date.now() * 0.003 + index) * 0.2;
       point.scale.set(scale, scale, scale);

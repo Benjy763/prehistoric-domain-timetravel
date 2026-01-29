@@ -1,48 +1,72 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prehistoric Domain - Time Travel Globe</title>
-  <meta name="description" content="Explorez la vie préhistorique à travers les âges sur un globe 3D interactif">
+  <meta name="description" content="Explore prehistoric life through the ages on an interactive 3D globe">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
-  <!-- Header avec sélecteur de périodes -->
+  <!-- Header with period selector -->
   <header class="period-selector">
     <nav class="periods">
+      <button class="period-btn" data-period="quaternary" data-time="2">
+        <span class="period-name">QUATERNARY</span>
+        <span class="period-time">- 2 Ma</span>
+      </button>
+      <button class="period-btn" data-period="neogene" data-time="15">
+        <span class="period-name">NEOGENE</span>
+        <span class="period-time">- 15 Ma</span>
+      </button>
+      <button class="period-btn" data-period="paleogene" data-time="50">
+        <span class="period-name">PALEOGENE</span>
+        <span class="period-time">- 50 Ma</span>
+      </button>
+      <button class="period-btn" data-period="cretaceous" data-time="100">
+        <span class="period-name">CRETACEOUS</span>
+        <span class="period-time">- 100 Ma</span>
+      </button>
       <button class="period-btn active" data-period="jurassic" data-time="160">
-        <span class="period-name">JURASSIQUE</span>
+        <span class="period-name">JURASSIC</span>
         <span class="period-time">- 160 Ma</span>
       </button>
       <button class="period-btn" data-period="triassic" data-time="220">
-        <span class="period-name">TRIAS</span>
+        <span class="period-name">TRIASSIC</span>
         <span class="period-time">- 220 Ma</span>
       </button>
       <button class="period-btn" data-period="permian" data-time="280">
-        <span class="period-name">PERMIEN</span>
+        <span class="period-name">PERMIAN</span>
         <span class="period-time">- 280 Ma</span>
       </button>
-      <button class="period-btn" data-period="cretaceous" data-time="100">
-        <span class="period-name">CRÉTACÉ</span>
-        <span class="period-time">- 100 Ma</span>
+      <button class="period-btn" data-period="carboniferous" data-time="320">
+        <span class="period-name">CARBONIFEROUS</span>
+        <span class="period-time">- 320 Ma</span>
+      </button>
+      <button class="period-btn" data-period="devonian" data-time="380">
+        <span class="period-name">DEVONIAN</span>
+        <span class="period-time">- 380 Ma</span>
+      </button>
+      <button class="period-btn" data-period="silurian" data-time="410">
+        <span class="period-name">SILURIAN</span>
+        <span class="period-time">- 410 Ma</span>
       </button>
     </nav>
     <div class="header-info">
-      <span class="current-period">Active: JURASSIQUE - 160 Ma</span>
+      <span class="current-period">Active: JURASSIC - 160 Ma</span>
       <span class="current-date">2026-01-28 20:46:46 CET</span>
     </div>
   </header>
 
-  <!-- Sidebar avec filtres -->
+  <!-- Sidebar with filters -->
   <aside class="filters-sidebar">
     <h2 class="filters-title">DATA FILTERS</h2>
     <div class="filter-list">
       <div class="filter-item active" data-filter="videos">
         <span class="filter-icon">▶</span>
-        <span class="filter-name">Vidéos</span>
+        <span class="filter-name">Videos</span>
         <span class="filter-badge">●</span>
       </div>
       <div class="filter-item active" data-filter="images">
@@ -57,29 +81,29 @@
       </div>
       <div class="filter-item active" data-filter="texts">
         <span class="filter-icon">📄</span>
-        <span class="filter-name">Textes</span>
+        <span class="filter-name">Texts</span>
         <span class="filter-badge">●</span>
       </div>
     </div>
   </aside>
 
-  <!-- Zone principale du globe -->
+  <!-- Main globe area -->
   <main class="globe-container">
     <div id="globe-canvas"></div>
 
     <!-- Loading indicator -->
     <div class="loading-overlay" id="loadingOverlay">
       <div class="loading-spinner"></div>
-      <p class="loading-text">Chargement de la Terre préhistorique...</p>
+      <p class="loading-text">Loading prehistoric Earth...</p>
     </div>
 
     <!-- Instructions -->
     <div class="controls-hint">
-      <p>🖱️ Glisser pour tourner • Molette pour zoomer • Cliquer sur un point pour voir le contenu</p>
+      <p>🖱️ Drag to rotate • Scroll to zoom • Click on a point to view content</p>
     </div>
   </main>
 
-  <!-- Popup d'aperçu de contenu -->
+  <!-- Content preview popup -->
   <div class="content-popup" id="contentPopup">
     <button class="popup-close" id="popupClose">×</button>
     <div class="popup-content">
@@ -90,21 +114,21 @@
       <div class="popup-info">
         <h3 class="popup-title" id="popupTitle">T-REX HUNT - Gobi Desert</h3>
         <p class="popup-description" id="popupDescription">
-          Découverte d'un T-Rex dans le désert de Gobi...
+          Discovery of a T-Rex in the Gobi Desert...
         </p>
         <div class="popup-meta">
           <span class="popup-artist" id="popupArtist">
-            <strong>Artiste:</strong> John Doe
+            <strong>Artist:</strong> John Doe
           </span>
           <span class="popup-period" id="popupPeriod">
-            <strong>Période:</strong> Jurassique
+            <strong>Period:</strong> Jurassic
           </span>
           <span class="popup-type" id="popupType">
-            <strong>Type:</strong> Vidéo
+            <strong>Type:</strong> Video
           </span>
         </div>
         <a href="#" class="popup-link" id="popupLink" target="_blank">
-          VOIR PLUS
+          VIEW MORE
         </a>
       </div>
     </div>
