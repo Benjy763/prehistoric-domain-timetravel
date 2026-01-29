@@ -40,6 +40,11 @@ class AppController {
       this.globeManager = new GlobeManager("globe-canvas");
       this.setupEventListeners();
       this.updateGlobe();
+
+      // Start preloading other periods in background after initial load
+      setTimeout(() => {
+        this.globeManager.preloadAllPeriods();
+      }, 2000); // Wait 2s after initial load
     }, 100);
   }
 

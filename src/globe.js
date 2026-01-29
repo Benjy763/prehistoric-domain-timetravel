@@ -17,6 +17,10 @@ class GlobeManager {
     this.coastlines = null;
     this.continents = null; // Continent polygons
 
+    // Texture cache for periods
+    this.textureCache = new Map();
+    this.isPreloading = false;
+
     this.init();
   }
 
@@ -279,11 +283,17 @@ class GlobeManager {
   }
 
   async loadContinents(time) {
-    // Load coastlines (coastlines_low) with avoid_map_boundary
-    const url = `https://gws.gplates.org/reconstruct/coastlines_low/?time=${time}&avoid_map_boundary`;
+    // Check cache first
+    if (this.textureCache.has(time)) {
+      console.log(`📦 Using cached texture for ${time} Ma`);
+      this.applyTextureToGlobe(this.textureCache.get(time));
+      return true;
+    }
 
-    console.log(`🗺️  Loading continents for ${time} Ma...`);
-    console.log(`URL: ${url}`);
+    // Load from local GeoJSON files instead of API
+    const url = `assets/geojson/${time}Ma.json`;
+
+    console.log(`🗺️  Loading continents for ${time} Ma from local file...`);
 
     try {
       const response = await fetch(url);
@@ -293,10 +303,13 @@ class GlobeManager {
       }
 
       const data = await response.json();
-      console.log(`✅ Data received: ${data.features?.length || 0} features`);
+      console.log(`✅ Data loaded: ${data.features?.length || 0} features`);
 
       // Generate texture with continents
       const texture = this.generateContinentTexture(data);
+
+      // Cache the texture
+      this.textureCache.set(time, texture);
 
       // Apply texture to globe
       this.applyTextureToGlobe(texture);
@@ -307,6 +320,24 @@ class GlobeManager {
       console.warn("⚠️  Globe will be displayed without continents");
       return false;
     }
+  }
+
+  generateEmptyTexture() {
+    // Create canvas with just ocean color
+    const width = 2048;
+    const height = 1024;
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+
+    // Dark blue ocean background
+    ctx.fillStyle = "#0a1929";
+    ctx.fillRect(0, 0, width, height);
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.needsUpdate = true;
+    return texture;
   }
 
   generateContinentTexture(data) {
@@ -469,16 +500,71 @@ class GlobeManager {
   addPoint(lat, lon, data) {
     const position = this.latLonToVector3(lat, lon, 2.05);
 
-    // Create glowing point
-    const geometry = new THREE.SphereGeometry(0.03, 16, 16);
+    // Create icon based on content type
+    let iconShape;
+    const iconColor = 0xf9f9f9;
+
+    switch (data.type) {
+      case "video":
+        // Triangle (play icon)
+        iconShape = new THREE.Shape();
+        iconShape.moveTo(0, 0.04);
+        iconShape.lineTo(0.035, 0);
+        iconShape.lineTo(0, -0.04);
+        iconShape.lineTo(0, 0.04);
+        break;
+      case "image":
+        // Square (image icon)
+        iconShape = new THREE.Shape();
+        iconShape.moveTo(-0.03, -0.03);
+        iconShape.lineTo(0.03, -0.03);
+        iconShape.lineTo(0.03, 0.03);
+        iconShape.lineTo(-0.03, 0.03);
+        iconShape.lineTo(-0.03, -0.03);
+        break;
+      case "3d":
+        // Diamond (3D icon)
+        iconShape = new THREE.Shape();
+        iconShape.moveTo(0, 0.04);
+        iconShape.lineTo(0.03, 0);
+        iconShape.lineTo(0, -0.04);
+        iconShape.lineTo(-0.03, 0);
+        iconShape.lineTo(0, 0.04);
+        break;
+      default:
+        // Star (new icon)
+        iconShape = new THREE.Shape();
+        const outerRadius = 0.04;
+        const innerRadius = 0.015;
+        for (let i = 0; i < 5; i++) {
+          const angle = (i * 4 * Math.PI) / 5 - Math.PI / 2;
+          const x = Math.cos(angle) * outerRadius;
+          const y = Math.sin(angle) * outerRadius;
+          if (i === 0) iconShape.moveTo(x, y);
+          else iconShape.lineTo(x, y);
+
+          const innerAngle = ((i * 4 + 2) * Math.PI) / 5 - Math.PI / 2;
+          const ix = Math.cos(innerAngle) * innerRadius;
+          const iy = Math.sin(innerAngle) * innerRadius;
+          iconShape.lineTo(ix, iy);
+        }
+        break;
+    }
+
+    const geometry = new THREE.ShapeGeometry(iconShape);
     const material = new THREE.MeshBasicMaterial({
-      color: 0xd4af37,
-      emissive: 0xd4af37,
-      emissiveIntensity: 0.5,
+      color: iconColor,
+      side: THREE.DoubleSide,
+      emissive: iconColor,
+      emissiveIntensity: 0.8,
     });
 
     const point = new THREE.Mesh(geometry, material);
     point.position.copy(position);
+
+    // Make icon face camera
+    point.lookAt(this.camera.position);
+
     point.userData = data;
 
     this.globe.add(point);
@@ -525,6 +611,50 @@ class GlobeManager {
       this.container.clientWidth,
       this.container.clientHeight,
     );
+  }
+
+  async preloadAllPeriods() {
+    if (this.isPreloading) return;
+    this.isPreloading = true;
+
+    // All period times to preload
+    const times = [0, 2, 15, 50, 100, 160, 220, 280, 320, 380, 410];
+
+    console.log("🔄 Starting background preload of all periods...");
+
+    // Preload one at a time with delay to not block the UI
+    for (const time of times) {
+      // Skip if already cached
+      if (this.textureCache.has(time)) continue;
+
+      // Use requestIdleCallback if available, otherwise setTimeout
+      await new Promise((resolve) => {
+        const preload = async () => {
+          try {
+            const url = `https://gws.gplates.org/reconstruct/coastlines_low/?time=${time}&avoid_map_boundary`;
+            const response = await fetch(url);
+            if (response.ok) {
+              const data = await response.json();
+              const texture = this.generateContinentTexture(data);
+              this.textureCache.set(time, texture);
+              console.log(`✅ Preloaded ${time} Ma`);
+            }
+          } catch (error) {
+            console.warn(`⚠️  Failed to preload ${time} Ma:`, error);
+          }
+          resolve();
+        };
+
+        if (window.requestIdleCallback) {
+          requestIdleCallback(preload);
+        } else {
+          setTimeout(preload, 100);
+        }
+      });
+    }
+
+    console.log("✅ All periods preloaded!");
+    this.isPreloading = false;
   }
 
   animate() {
