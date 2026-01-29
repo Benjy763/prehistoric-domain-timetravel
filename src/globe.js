@@ -500,71 +500,38 @@ class GlobeManager {
   addPoint(lat, lon, data) {
     const position = this.latLonToVector3(lat, lon, 2.05);
 
-    // Create icon based on content type
-    let iconShape;
-    const iconColor = 0xf9f9f9;
-
+    // Couleur selon le type de contenu
+    let pointColor;
     switch (data.type) {
+      case "videos":
       case "video":
-        // Triangle (play icon)
-        iconShape = new THREE.Shape();
-        iconShape.moveTo(0, 0.04);
-        iconShape.lineTo(0.035, 0);
-        iconShape.lineTo(0, -0.04);
-        iconShape.lineTo(0, 0.04);
+        pointColor = 0x6c5ce7; // Violet pour vidéos
         break;
+      case "images":
       case "image":
-        // Square (image icon)
-        iconShape = new THREE.Shape();
-        iconShape.moveTo(-0.03, -0.03);
-        iconShape.lineTo(0.03, -0.03);
-        iconShape.lineTo(0.03, 0.03);
-        iconShape.lineTo(-0.03, 0.03);
-        iconShape.lineTo(-0.03, -0.03);
+        pointColor = 0xfd79a8; // Rose pour images
         break;
       case "3d":
-        // Diamond (3D icon)
-        iconShape = new THREE.Shape();
-        iconShape.moveTo(0, 0.04);
-        iconShape.lineTo(0.03, 0);
-        iconShape.lineTo(0, -0.04);
-        iconShape.lineTo(-0.03, 0);
-        iconShape.lineTo(0, 0.04);
+        pointColor = 0xfdcb6e; // Jaune pour 3D
+        break;
+      case "new":
+        pointColor = 0x00b894; // Vert turquoise pour nouveautés
         break;
       default:
-        // Star (new icon)
-        iconShape = new THREE.Shape();
-        const outerRadius = 0.04;
-        const innerRadius = 0.015;
-        for (let i = 0; i < 5; i++) {
-          const angle = (i * 4 * Math.PI) / 5 - Math.PI / 2;
-          const x = Math.cos(angle) * outerRadius;
-          const y = Math.sin(angle) * outerRadius;
-          if (i === 0) iconShape.moveTo(x, y);
-          else iconShape.lineTo(x, y);
-
-          const innerAngle = ((i * 4 + 2) * Math.PI) / 5 - Math.PI / 2;
-          const ix = Math.cos(innerAngle) * innerRadius;
-          const iy = Math.sin(innerAngle) * innerRadius;
-          iconShape.lineTo(ix, iy);
-        }
+        pointColor = 0xf9f9f9; // Blanc par défaut
         break;
     }
 
-    const geometry = new THREE.ShapeGeometry(iconShape);
+    // Create glowing point
+    const geometry = new THREE.SphereGeometry(0.03, 16, 16);
     const material = new THREE.MeshBasicMaterial({
-      color: iconColor,
-      side: THREE.DoubleSide,
-      emissive: iconColor,
+      color: pointColor,
+      emissive: pointColor,
       emissiveIntensity: 0.8,
     });
 
     const point = new THREE.Mesh(geometry, material);
     point.position.copy(position);
-
-    // Make icon face camera
-    point.lookAt(this.camera.position);
-
     point.userData = data;
 
     this.globe.add(point);

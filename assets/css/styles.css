@@ -265,7 +265,23 @@ body {
 
 .filter-badge {
   font-size: 10px;
-  color: #f9f9f9;
+}
+
+/* Couleurs spécifiques par type de filtre */
+.filter-item[data-filter="videos"] .filter-badge {
+  color: #6c5ce7 !important;
+}
+
+.filter-item[data-filter="images"] .filter-badge {
+  color: #fd79a8 !important;
+}
+
+.filter-item[data-filter="3d"] .filter-badge {
+  color: #fdcb6e !important;
+}
+
+.filter-item[data-filter="new"] .filter-badge {
+  color: #00b894 !important;
 }
 
 .filter-item:not(.active) .filter-badge {
