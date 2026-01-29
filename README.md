@@ -70,10 +70,12 @@ prehistoric-domain-timetravel/
 ## 🔑 Configuration API
 
 ### Webflow CMS API
+
 - Obtenir une clé API depuis le dashboard Webflow
 - Configurer dans `src/webflow-api.js`
 
 ### GPlates API
+
 - Utiliser l'endpoint : `https://gws.gplates.org/reconstruct/coastlines_low/`
 - Clé API fournie : `mchin-e494599c-c81b-4972-acbb-c167728c9fb2`
 

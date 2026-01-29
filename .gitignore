@@ -30,3 +30,7 @@ Thumbs.db
 
 # API keys (to be replaced before deployment)
 config/api-keys.js
+config.js
+
+# Keep config.js template
+!config.js.example
