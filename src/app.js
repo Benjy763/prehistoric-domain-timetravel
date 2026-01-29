@@ -74,12 +74,6 @@ class AppController {
     this.currentPeriod = button.dataset.period;
     this.currentTime = parseInt(button.dataset.time);
 
-    // Mettre à jour l'affichage de la période courante
-    const periodName = button.querySelector(".period-name").textContent;
-    const periodTime = button.querySelector(".period-time").textContent;
-    document.querySelector(".current-period").textContent =
-      `Active: ${periodName} ${periodTime}`;
-
     // Mettre à jour le globe
     await this.updateGlobe();
   }

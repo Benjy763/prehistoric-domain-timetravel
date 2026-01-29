@@ -52,56 +52,106 @@ body {
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-color);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 0 30px;
+  padding: 0;
   z-index: 100;
+  overflow: hidden;
 }
 
 .periods {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 0;
+  padding: 0 40px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.periods::-webkit-scrollbar {
+  display: none;
+}
+
+.periods::before,
+.periods::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.periods::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(13, 17, 23, 0.95), transparent);
+}
+
+.periods::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(13, 17, 23, 0.95), transparent);
 }
 
 .period-btn {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  color: rgba(230, 218, 199, 0.5);
   padding: 10px 20px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 13px;
-  letter-spacing: 0.5px;
-  border-radius: 6px;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  font-weight: 500;
+  gap: 6px;
+  position: relative;
+  white-space: nowrap;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.period-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #f9f9f9;
+  transition: width 0.3s ease;
 }
 
 .period-btn:hover {
-  background: var(--hover-bg);
-  border-color: var(--accent-primary);
-  transform: translateY(-1px);
+  color: rgba(230, 218, 199, 0.9);
+}
+
+.period-btn:hover::after {
+  width: 60%;
 }
 
 .period-btn.active {
-  background: var(--accent-primary);
-  color: #ffffff;
-  border-color: var(--accent-primary);
-  font-weight: 600;
-  box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
+  color: var(--text-color);
+}
+
+.period-btn.active::after {
+  width: 80%;
 }
 
 .period-name {
-  font-weight: 600;
-  font-size: 13px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .period-time {
-  font-size: 11px;
-  opacity: 0.8;
+  font-size: 9px;
+  opacity: 0.6;
+  font-weight: 300;
 }
 
 .header-info {
@@ -109,17 +159,21 @@ body {
   flex-direction: column;
   align-items: flex-end;
   gap: 4px;
-  font-size: 12px;
+  font-size: 10px;
+  padding-right: 30px;
+  flex-shrink: 0;
 }
 
 .current-period {
-  color: var(--accent-primary);
+  color: var(--text-color);
   font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .current-date {
-  opacity: 0.6;
-  font-size: 11px;
+  color: var(--text-color);
+  opacity: 0.4;
+  font-size: 9px;
 }
 
 /* ========================================
@@ -137,6 +191,8 @@ body {
   border-right: 1px solid var(--border-color);
   padding: 24px 16px;
   z-index: 90;
+  display: flex;
+  flex-direction: column;
 }
 
 .filters-title {
@@ -179,6 +235,7 @@ body {
 
 .filter-icon {
   font-size: 18px;
+  color: #f9f9f9;
 }
 
 .filter-name {
@@ -189,11 +246,36 @@ body {
 
 .filter-badge {
   font-size: 10px;
-  color: var(--accent-primary);
+  color: #f9f9f9;
 }
 
 .filter-item:not(.active) .filter-badge {
   opacity: 0;
+}
+
+/* Sidebar warning */
+.sidebar-warning {
+  margin-top: auto;
+  padding: 12px;
+  background: rgba(230, 218, 199, 0.05);
+  border-left: 2px solid rgba(230, 218, 199, 0.3);
+  border-radius: 2px;
+  font-size: 10px;
+  line-height: 1.6;
+  color: rgba(230, 218, 199, 0.6);
+}
+
+.warning-icon {
+  font-size: 14px;
+  margin-bottom: 6px;
+  opacity: 0.5;
+}
+
+.sidebar-warning strong {
+  color: rgba(230, 218, 199, 0.8);
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
 }
 
 /* ========================================
@@ -460,6 +542,10 @@ body {
   .filters-title,
   .filter-name,
   .filter-badge {
+    display: none;
+  }
+
+  .sidebar-warning {
     display: none;
   }
 

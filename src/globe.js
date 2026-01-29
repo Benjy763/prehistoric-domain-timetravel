@@ -90,7 +90,7 @@ class GlobeManager {
       // Realistic star colors: white, blue-white, yellow-white
       const starType = Math.random();
       let r, g, b;
-      
+
       if (starType < 0.7) {
         // Most stars: white to blue-white
         const brightness = 0.8 + Math.random() * 0.2;
@@ -106,12 +106,13 @@ class GlobeManager {
         // Few stars: pure white (bright)
         r = g = b = 1;
       }
-      
+
       starColors.push(r, g, b);
-      
+
       // Varied sizes (most small, few large)
       const sizeRandom = Math.random();
-      const size = sizeRandom < 0.9 ? 0.5 + Math.random() * 1 : 1.5 + Math.random() * 2;
+      const size =
+        sizeRandom < 0.9 ? 0.5 + Math.random() * 1 : 1.5 + Math.random() * 2;
       starSizes.push(size);
     }
 
@@ -254,7 +255,9 @@ class GlobeManager {
       }
 
       const data = await response.json();
-      console.log(`✅ Coastlines loaded: ${data.features?.length || 0} features`);
+      console.log(
+        `✅ Coastlines loaded: ${data.features?.length || 0} features`,
+      );
 
       // Remove old coastlines
       if (this.coastlines) {
@@ -268,7 +271,9 @@ class GlobeManager {
       return true;
     } catch (error) {
       console.error("❌ Error loading coastlines:", error);
-      console.warn("⚠️  Globe will be displayed without prehistoric coastlines");
+      console.warn(
+        "⚠️  Globe will be displayed without prehistoric coastlines",
+      );
       return false;
     }
   }
@@ -361,8 +366,8 @@ class GlobeManager {
 
     ctx.closePath();
 
-    // Fill in pure white
-    ctx.fillStyle = "#ffffff";
+    // Fill in white
+    ctx.fillStyle = "#f9f9f9";
     ctx.fill();
 
     // Add dark outline for better definition
@@ -374,7 +379,7 @@ class GlobeManager {
   applyTextureToGlobe(texture) {
     // Update globe material with texture - Phong for realistic reflections
     const material = new THREE.MeshPhongMaterial({
-      color: 0xffffff, // White to not alter texture colors
+      color: 0xf9f9f9, // Off-white to not alter texture colors
       emissive: 0x000000,
       shininess: 10,
       map: texture, // Apply continent texture

@@ -13,56 +13,56 @@
   <!-- Header with period selector -->
   <header class="period-selector">
     <nav class="periods">
-      <button class="period-btn" data-period="quaternary" data-time="2">
-        <span class="period-name">QUATERNARY</span>
-        <span class="period-time">- 2 Ma</span>
-      </button>
-      <button class="period-btn" data-period="neogene" data-time="15">
-        <span class="period-name">NEOGENE</span>
-        <span class="period-time">- 15 Ma</span>
-      </button>
-      <button class="period-btn" data-period="paleogene" data-time="50">
-        <span class="period-name">PALEOGENE</span>
-        <span class="period-time">- 50 Ma</span>
-      </button>
-      <button class="period-btn" data-period="cretaceous" data-time="100">
-        <span class="period-name">CRETACEOUS</span>
-        <span class="period-time">- 100 Ma</span>
-      </button>
-      <button class="period-btn active" data-period="jurassic" data-time="160">
-        <span class="period-name">JURASSIC</span>
-        <span class="period-time">- 160 Ma</span>
-      </button>
-      <button class="period-btn" data-period="triassic" data-time="220">
-        <span class="period-name">TRIASSIC</span>
-        <span class="period-time">- 220 Ma</span>
-      </button>
-      <button class="period-btn" data-period="permian" data-time="280">
-        <span class="period-name">PERMIAN</span>
-        <span class="period-time">- 280 Ma</span>
-      </button>
-      <button class="period-btn" data-period="carboniferous" data-time="320">
-        <span class="period-name">CARBONIFEROUS</span>
-        <span class="period-time">- 320 Ma</span>
+      <button class="period-btn" data-period="silurian" data-time="410">
+        <span class="period-name">SILURIAN</span>
+        <span class="period-time">- 410 Ma</span>
       </button>
       <button class="period-btn" data-period="devonian" data-time="380">
         <span class="period-name">DEVONIAN</span>
         <span class="period-time">- 380 Ma</span>
       </button>
-      <button class="period-btn" data-period="silurian" data-time="410">
-        <span class="period-name">SILURIAN</span>
-        <span class="period-time">- 410 Ma</span>
+      <button class="period-btn" data-period="carboniferous" data-time="320">
+        <span class="period-name">CARBONIFEROUS</span>
+        <span class="period-time">- 320 Ma</span>
+      </button>
+      <button class="period-btn" data-period="permian" data-time="280">
+        <span class="period-name">PERMIAN</span>
+        <span class="period-time">- 280 Ma</span>
+      </button>
+      <button class="period-btn" data-period="triassic" data-time="220">
+        <span class="period-name">TRIASSIC</span>
+        <span class="period-time">- 220 Ma</span>
+      </button>
+      <button class="period-btn active" data-period="jurassic" data-time="160">
+        <span class="period-name">JURASSIC</span>
+        <span class="period-time">- 160 Ma</span>
+      </button>
+      <button class="period-btn" data-period="cretaceous" data-time="100">
+        <span class="period-name">CRETACEOUS</span>
+        <span class="period-time">- 100 Ma</span>
+      </button>
+      <button class="period-btn" data-period="paleogene" data-time="50">
+        <span class="period-name">PALEOGENE</span>
+        <span class="period-time">- 50 Ma</span>
+      </button>
+      <button class="period-btn" data-period="neogene" data-time="15">
+        <span class="period-name">NEOGENE</span>
+        <span class="period-time">- 15 Ma</span>
+      </button>
+      <button class="period-btn" data-period="quaternary" data-time="2">
+        <span class="period-name">QUATERNARY</span>
+        <span class="period-time">- 2 Ma</span>
+      </button>
+      <button class="period-btn" data-period="today" data-time="0">
+        <span class="period-name">TODAY</span>
+        <span class="period-time">- 0 Ma</span>
       </button>
     </nav>
-    <div class="header-info">
-      <span class="current-period">Active: JURASSIC - 160 Ma</span>
-      <span class="current-date">2026-01-28 20:46:46 CET</span>
-    </div>
   </header>
 
   <!-- Sidebar with filters -->
   <aside class="filters-sidebar">
-    <h2 class="filters-title">DATA FILTERS</h2>
+    <h2 class="filters-title">Content Filters</h2>
     <div class="filter-list">
       <div class="filter-item active" data-filter="videos">
         <span class="filter-icon">▶</span>
@@ -70,19 +70,21 @@
         <span class="filter-badge">●</span>
       </div>
       <div class="filter-item active" data-filter="images">
-        <span class="filter-icon">📷</span>
+        <span class="filter-icon">■</span>
         <span class="filter-name">Images</span>
         <span class="filter-badge">●</span>
       </div>
       <div class="filter-item active" data-filter="3d">
-        <span class="filter-icon">🔲</span>
+        <span class="filter-icon">◆</span>
         <span class="filter-name">3D</span>
         <span class="filter-badge">●</span>
       </div>
-      <div class="filter-item active" data-filter="texts">
-        <span class="filter-icon">📄</span>
-        <span class="filter-name">Texts</span>
-        <span class="filter-badge">●</span>
+    </div>
+
+    <div class="sidebar-warning">
+      <div class="warning-text">
+        <strong>Note:</strong> Continental shapes show present-day coastlines repositioned to their ancient locations,
+        not exact paleographic conditions. Dates represent the approximate middle of each geological period.
       </div>
     </div>
   </aside>
