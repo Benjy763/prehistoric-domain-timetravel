@@ -1,0 +1,470 @@
+/* ========================================
+   PREHISTORIC DOMAIN - TIME TRAVEL GLOBE
+   Styles principaux
+   ======================================== */
+
+/* Reset et variables */
+:root {
+    --bg-primary: #171c25;
+    --text-primary: #e6dac7;
+    --accent-gold: #d4af37;
+    --border-color: rgba(230, 218, 199, 0.2);
+    --hover-bg: rgba(230, 218, 199, 0.1);
+    --popup-bg: #1e2530;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* ========================================
+   HEADER - SÉLECTEUR DE PÉRIODES
+   ======================================== */
+
+.period-selector {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(180deg, rgba(23, 28, 37, 0.95) 0%, rgba(23, 28, 37, 0.8) 100%);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 100;
+}
+
+.periods {
+    display: flex;
+    gap: 20px;
+}
+
+.period-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.period-btn:hover {
+    background: var(--hover-bg);
+    border-color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.period-btn.active {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    border-color: var(--accent-gold);
+    font-weight: 600;
+}
+
+.period-name {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.period-time {
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+.header-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    font-size: 12px;
+}
+
+.current-period {
+    color: var(--accent-gold);
+    font-weight: 500;
+}
+
+.current-date {
+    opacity: 0.6;
+    font-size: 11px;
+}
+
+/* ========================================
+   SIDEBAR - FILTRES
+   ======================================== */
+
+.filters-sidebar {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 220px;
+    height: calc(100vh - 80px);
+    background: linear-gradient(90deg, rgba(23, 28, 37, 0.95) 0%, rgba(23, 28, 37, 0.8) 100%);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid var(--border-color);
+    padding: 30px 20px;
+    z-index: 90;
+}
+
+.filters-title {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: var(--accent-gold);
+}
+
+.filter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.filter-item:hover {
+    background: var(--hover-bg);
+    border-color: var(--text-primary);
+}
+
+.filter-item.active {
+    opacity: 1;
+    background: var(--hover-bg);
+    border-color: var(--accent-gold);
+}
+
+.filter-icon {
+    font-size: 18px;
+}
+
+.filter-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.filter-badge {
+    font-size: 12px;
+    color: var(--accent-gold);
+}
+
+.filter-item:not(.active) .filter-badge {
+    opacity: 0;
+}
+
+/* ========================================
+   GLOBE CONTAINER
+   ======================================== */
+
+.globe-container {
+    position: fixed;
+    top: 80px;
+    left: 220px;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(23, 28, 37, 0.8) 0%, #0a0d12 100%);
+}
+
+#globe-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* Loading overlay */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(23, 28, 37, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    transition: opacity 0.5s ease;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--border-color);
+    border-top: 3px solid var(--accent-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--text-primary);
+    opacity: 0.8;
+}
+
+/* Controls hint */
+.controls-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(23, 28, 37, 0.9);
+    padding: 12px 24px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    font-size: 12px;
+    opacity: 0.8;
+    backdrop-filter: blur(10px);
+}
+
+/* ========================================
+   POPUP DE CONTENU
+   ======================================== */
+
+.content-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 500px;
+    max-width: 90vw;
+    background: var(--popup-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.content-popup.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    background: rgba(230, 218, 199, 0.1);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--text-primary);
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.popup-close:hover {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    transform: rotate(90deg);
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-preview {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    background: #000;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+}
+
+.popup-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.popup-video-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(230, 218, 199, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--bg-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.popup-video-overlay.visible {
+    opacity: 1;
+}
+
+.popup-info {
+    padding: 24px;
+}
+
+.popup-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--accent-gold);
+}
+
+.popup-description {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    opacity: 0.9;
+}
+
+.popup-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    padding: 16px;
+    background: rgba(230, 218, 199, 0.05);
+    border-radius: 4px;
+}
+
+.popup-meta span {
+    display: block;
+}
+
+.popup-link {
+    display: inline-block;
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    padding: 12px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.popup-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 1024px) {
+    .filters-sidebar {
+        width: 180px;
+    }
+    
+    .globe-container {
+        left: 180px;
+    }
+    
+    .period-selector {
+        padding: 0 20px;
+    }
+    
+    .periods {
+        gap: 10px;
+    }
+    
+    .period-btn {
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .filters-sidebar {
+        width: 60px;
+        padding: 20px 10px;
+    }
+    
+    .filters-title,
+    .filter-name,
+    .filter-badge {
+        display: none;
+    }
+    
+    .filter-item {
+        justify-content: center;
+        padding: 12px 8px;
+    }
+    
+    .globe-container {
+        left: 60px;
+    }
+    
+    .period-selector {
+        height: 60px;
+        padding: 0 10px;
+    }
+    
+    .globe-container {
+        top: 60px;
+    }
+    
+    .header-info {
+        display: none;
+    }
+    
+    .content-popup {
+        width: 95vw;
+    }
+}

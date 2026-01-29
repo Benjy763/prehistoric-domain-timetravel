@@ -1,0 +1,22 @@
+{
+  "name": "prehistoric-domain-timetravel",
+  "version": "1.0.0",
+  "description": "Globe 3D interactif pour explorer les contenus préhistoriques",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "build": "echo 'Build completed - ready for deployment'",
+    "deploy": "echo 'Upload files to Hostinger server'"
+  },
+  "keywords": [
+    "prehistoric",
+    "globe",
+    "3d",
+    "webflow",
+    "threejs"
+  ],
+  "author": "PrehistoricDomain.com",
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "devDependencies": {}
+}
