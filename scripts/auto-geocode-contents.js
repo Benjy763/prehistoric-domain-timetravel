@@ -12,9 +12,47 @@
 // CONFIGURATION
 // ============================================
 
+const fs = require("fs");
+const path = require("path");
+
 const SITE_ID = "609e6b701730a329c6f67850";
 const COLLECTION_ID = "679d148479ad083f33c518a1";
-const WEBFLOW_TOKEN = process.env.WEBFLOW_TOKEN;
+
+function readToken() {
+  if (process.env.WEBFLOW_TOKEN) return process.env.WEBFLOW_TOKEN;
+
+  const mcpPath = path.resolve(__dirname, "../.vscode/mcp.json");
+  if (!fs.existsSync(mcpPath)) return null;
+
+  const raw = fs.readFileSync(mcpPath, "utf8");
+  const match = raw.match(/"WEBFLOW_TOKEN"\s*:\s*"([^"]+)"/);
+  return match ? match[1] : null;
+}
+
+const WEBFLOW_TOKEN = readToken();
+
+const CATEGORY_MAP = {
+  "417c5eb49ea7a0509255526b460af1e6": "videos",
+  "3a0cdd4419856a1d01b35ff4681be638": "3d",
+  "224a8ccce14158309d6df3052fa7f1e1": "images",
+  "5b90531d7e27d60e0d1f4e226449b55e": "texts",
+};
+
+const GEOLOGICAL_PERIOD_MAP = {
+  "9f54dda51296c0490e039fe1533eca66": "today",
+  "5394446518cb0974d384bfe2ab73fb16": "quaternary",
+  "62e83820d1690b06d3be9667ade04a78": "neogene",
+  "507bbf4ed541009921b33a95bb2cfb69": "paleogene",
+  "4e39033d83b30b505bb4c90e342dd596": "cretaceous",
+  "690d38c55e87859a90059f87e5803c9e": "jurassic",
+  "3e8d8939bfd52f7fa3ce13bb6fcbffb3": "triassic",
+  f3e16047f64a12d4824314badfc168a2: "permian",
+  "533e85b7f1b3b58d6ebfff5540af3f2c": "carboniferous",
+  "1f640518ea2f2905ae9e818010b9c3f6": "devonian",
+  "927ffc97d1dec789edc8062baa88b5a1": "silurian",
+  "7935a60cb719155a2d225b59569b5699": "ordovician",
+  f44a29ca025a2b23e3c47810ec7621a1: "cambrian",
+};
 
 const MIN_DISTANCE_DEGREES = 2.5; // Distance minimale entre 2 points
 const MAX_OFFSET = 15.0; // Offset maximum en cas de collision (priorité visuelle)
@@ -458,6 +496,54 @@ function geocodeItems(allItems, { log = true } = {}) {
   for (const item of allItems) {
     const freeTags = item.fieldData["free-tags"];
     const name = item.fieldData.name;
+    const slug = item.fieldData.slug;
+    const description = item.fieldData.description;
+    const creditsLine = item.fieldData["credits-line"];
+    const creatorLink = item.fieldData["creator-link"];
+    const topCategory = item.fieldData["top-category"];
+    const category = CATEGORY_MAP[topCategory] || null;
+    const isNew = !!item.fieldData.new;
+    const displayOnAppField = item.fieldData["display-on-app"];
+    const displayOnApp =
+      typeof displayOnAppField === "boolean"
+        ? displayOnAppField
+        : Boolean((freeTags || "").trim());
+    const geologicalPeriodRaw = item.fieldData["geological-period"];
+    let geologicalPeriod =
+      GEOLOGICAL_PERIOD_MAP[geologicalPeriodRaw] || geologicalPeriodRaw || null;
+
+    // If no geological period set, infer from free-tags (period keywords)
+    if (!geologicalPeriod && freeTags) {
+      const periodMap = {
+        "quaternary|holocene|pleistocene": "quaternary",
+        "neogene|miocene|pliocene": "neogene",
+        "paleogene|eocene|oligocene|paleocene": "paleogene",
+        cretaceous: "cretaceous",
+        jurassic: "jurassic",
+        triassic: "triassic",
+        permian: "permian",
+        carboniferous: "carboniferous",
+        devonian: "devonian",
+        silurian: "silurian",
+        ordovician: "ordovician",
+        cambrian: "cambrian",
+      };
+
+      const tagLower = freeTags.toLowerCase();
+      for (const [keywords, period] of Object.entries(periodMap)) {
+        const keywordList = keywords.split("|");
+        if (keywordList.some((kw) => tagLower.includes(kw))) {
+          geologicalPeriod = period;
+          break;
+        }
+      }
+    }
+
+    const contentLink = item.fieldData["content-link"];
+    const youtubeId = item.fieldData["youtube-video-id"];
+    const backgroundImage = item.fieldData.background?.url || null;
+    const galleryImage =
+      item.fieldData["gallery-low-quality-image"]?.url || null;
 
     if (!freeTags) {
       if (log) {
@@ -507,6 +593,18 @@ function geocodeItems(allItems, { log = true } = {}) {
       results.push({
         id: item.id,
         name,
+        slug,
+        description,
+        creditsLine,
+        creatorLink,
+        category,
+        isNew,
+        displayOnApp,
+        geologicalPeriod,
+        contentLink,
+        youtubeId,
+        backgroundImage,
+        galleryImage,
         freeTags,
         latitude: coords.lat,
         longitude: coords.lon,

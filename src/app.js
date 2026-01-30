@@ -245,7 +245,16 @@ class AppController {
 
     // Ajouter les points au globe
     filteredContents.forEach((content) => {
-      this.globeManager.addPoint(content.latitude, content.longitude, content);
+      const periodCoords =
+        content.periods?.[this.currentTime] ||
+        content.periods?.[String(this.currentTime)];
+
+      const lat = periodCoords?.lat ?? content.latitude;
+      const lon = periodCoords?.lon ?? content.longitude;
+
+      if (lat == null || lon == null) return;
+
+      this.globeManager.addPoint(lat, lon, content);
     });
   }
 

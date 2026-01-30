@@ -18,12 +18,14 @@ class WebflowAPI {
     // Essayer de charger depuis le fichier JSON local d'abord
     try {
       console.log(
-        "📦 Chargement des données depuis assets/data/contents.json...",
+        "📦 Chargement des données depuis assets/data/content-data.json...",
       );
-      const response = await fetch("assets/data/contents.json");
+      const response = await fetch("assets/data/content-data.json");
 
       if (response.ok) {
-        this.contents = await response.json();
+        const data = await response.json();
+        const items = data.items || [];
+        this.contents = items.map((item) => this.normalizeItem(item));
         console.log(
           `✅ ${this.contents.length} contenus chargés depuis le fichier local`,
         );
@@ -41,6 +43,27 @@ class WebflowAPI {
     this.contents = this.getMockData();
 
     return this.contents;
+  }
+
+  normalizeItem(item) {
+    return {
+      id: item.id,
+      title: item.name || item.title,
+      description: item.description,
+      artist: item.creditsLine || item.artist || null,
+      period: item.geologicalPeriod || item.period,
+      type: item.type || item.category,
+      isNew: !!item.isNew,
+      latitude: item.modernLat,
+      longitude: item.modernLon,
+      periods: item.periods || {},
+      preview:
+        item.preview || item.backgroundImage || item.galleryImage || null,
+      youtubeUrl: item.youtubeUrl || null,
+      pageUrl: item.pageUrl || item.contentLink || null,
+      slug: item.slug,
+      displayOnApp: !!item.displayOnApp,
+    };
   }
 
   getMockData() {

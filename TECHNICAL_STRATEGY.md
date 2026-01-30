@@ -178,7 +178,7 @@ assets/cao-paleogeography/{time}Ma-land.json
                           ↓
 ┌─────────────────────────────────────────────────────────┐
 │ 4. STOCKAGE STATIQUE                                    │
-│    Fichier : assets/data/paleogeographic-coordinates.json │
+│    Fichier : assets/data/content-data.json              │
 │    13 périodes × N points pré-calculés                  │
 └─────────────────────────────────────────────────────────┘
 ```
@@ -205,7 +205,7 @@ const url = `${GPLATES_API}?points=${lon},${lat}&time=${time}&model=${MODEL}`;
 cd scripts
 node reconstruct-paleogeography.js
 
-# Output : assets/data/paleogeographic-coordinates.json
+# Output : assets/data/content-data.json
 # Temps : ~5-10 minutes pour ~200 points
 ```
 
@@ -227,7 +227,7 @@ assets/
 │   └── ...
 │
 └── data/
-    └── paleogeographic-coordinates.json  # Points fossiles pré-calculés
+    └── content-data.json  # Points + métadonnées CMS pré-calculés
 ```
 
 ### APIs externes (Fallback)
@@ -327,10 +327,10 @@ node auto-geocode-contents.js
 node reconstruct-paleogeography.js
 
 # 4. Vérifier le résultat
-cat ../assets/data/paleogeographic-coordinates.json | jq '.items[-1]'
+cat ../assets/data/content-data.json | jq '.items[-1]'
 
 # 5. Commit + deploy
-git add assets/data/paleogeographic-coordinates.json
+git add assets/data/content-data.json
 git commit -m "feat: add new fossil point"
 git push
 ```
@@ -358,7 +358,7 @@ node scripts/reconstruct-paleogeography.js
 # ⚠️  Temps : ~1 heure pour 200 points
 
 # 1. Nettoyer
-rm assets/data/paleogeographic-coordinates.json
+rm assets/data/content-data.json
 
 # 2. Reconstruction depuis Webflow (inclut géocodage + reconstruction)
 export WEBFLOW_TOKEN="your_token_here"
@@ -439,7 +439,7 @@ scripts/
 # 1. Reconstruire TOUTES les coordonnées historiques (récupère depuis Webflow)
 export WEBFLOW_TOKEN="your_token_here"
 node scripts/reconstruct-paleogeography.js
-# → Génère assets/data/paleogeographic-coordinates.json
+# → Génère assets/data/content-data.json
 
 # 2. Télécharger nouvelles coastlines Merdith (si nouvelles périodes)
 python3 scripts/fetch-merdith2021.py
@@ -530,7 +530,7 @@ https://threejs.org (r128)
 ### Checklist déploiement
 
 - [x] Fichiers GeoJSON présents dans `assets/`
-- [x] `paleogeographic-coordinates.json` à jour
+- [x] `content-data.json` à jour
 - [x] Modèle Merdith 2021 configuré dans globe.js
 - [x] Script de reconstruction utilise MERDITH2021
 - [x] Documentation COORDINATES_RULES.md synchronisée

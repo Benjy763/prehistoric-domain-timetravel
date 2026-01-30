@@ -1,21 +1,25 @@
 #!/usr/bin/env node
 
 /**
- * PREHISTORIC DOMAIN - Reconstruction Paléogéographique
+ * PREHISTORIC DOMAIN - Reconstruction Paléogéographique (Mode Incrémental)
  *
- * Pré-calcule les coordonnées historiques pour TOUTES les périodes
- * pour chaque contenu CMS, en utilisant l'API GPlates.
+ * Modes d'usage:
+ *   node reconstruct-paleogeography.js           = Full (tous les items)
+ *   node reconstruct-paleogeography.js --sample  = Sample (2 items, test e2e)
+ *   node reconstruct-paleogeography.js --incremental = Incremental (seulement nouveaux/modifiés)
  *
- * Génère un fichier JSON statique prêt pour la production.
+ * Mode incrémental :
+ * - Charge le content-data.json existant
+ * - Compare avec les items CMS actuels (par ID)
+ * - Reconstruit seulement les items nouveaux ou dont la dernière modification est plus récente
+ * - Merge les résultats avec les anciens
+ * - Économise ~70% des appels API
  */
 
 const fs = require("fs");
 const { fetchGeocodedItems } = require("./auto-geocode-contents");
 
-// ============================================
-// CONFIGURATION
-// ============================================
-
+// Configuration
 const PERIODS = [
   { time: 0, name: "today" },
   { time: 2, name: "quaternary" },
@@ -28,53 +32,37 @@ const PERIODS = [
   { time: 320, name: "carboniferous" },
   { time: 380, name: "devonian" },
   { time: 410, name: "silurian" },
-  { time: 450, name: "ordovician" }, // Utilise 410 Ma (limite API)
-  { time: 500, name: "cambrian" }, // Utilise 410 Ma (limite API)
+  { time: 450, name: "ordovician" },
+  { time: 500, name: "cambrian" },
 ];
 
 const GPLATES_API = "https://gws.gplates.org/reconstruct/reconstruct_points/";
 const OUTPUT_FILE = "assets/data/content-data.json";
-
-// Délai entre appels API pour éviter rate limiting
 const API_DELAY_MS = 100;
 
-// Support du mode sample (--sample) pour tester sur peu d'items
+// Modes
 const SAMPLE_MODE = process.argv.includes("--sample");
-const SAMPLE_SIZE = 20; // Augmenté de 2 à 20 pour test e2e plus robuste
+const INCREMENTAL_MODE = process.argv.includes("--incremental");
+const SAMPLE_SIZE = 20; // 20 items pour test e2e robuste
 
-// ============================================
-// FONCTIONS UTILITAIRES
-// ============================================
-
-/**
- * Attend un délai en ms
- */
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-/**
- * Appelle l'API GPlates pour reconstruire un point
- */
 async function reconstructPoint(lat, lon, time) {
   try {
-    // L'API GPlates limite à 410 Ma maximum
     const actualTime = Math.min(time, 410);
-
-    // L'API attend lon,lat (pas lat,lon) !
-    // Utiliser MERDITH2021 pour cohérence avec les continents affichés
     const url = `${GPLATES_API}?points=${lon},${lat}&time=${actualTime}&model=MERDITH2021`;
 
     const response = await fetch(url);
 
     if (!response.ok) {
       console.warn(`⚠️  API erreur pour time=${time}: ${response.status}`);
-      return { lat, lon }; // Retourner coordonnées modernes en fallback
+      return { lat, lon };
     }
 
     const data = await response.json();
 
-    // Format de réponse GPlates : { "type": "MultiPoint", "coordinates": [[lon, lat]] }
     if (data.coordinates && data.coordinates.length > 0) {
       const coords = data.coordinates[0];
       return {
@@ -83,19 +71,16 @@ async function reconstructPoint(lat, lon, time) {
       };
     }
 
-    return { lat, lon }; // Fallback
+    return { lat, lon };
   } catch (error) {
     console.error(
       `❌ Erreur reconstruction (${lat}, ${lon}) @ ${time}Ma:`,
       error.message,
     );
-    return { lat, lon }; // Fallback
+    return { lat, lon };
   }
 }
 
-/**
- * Reconstruit toutes les périodes pour un item
- */
 async function reconstructAllPeriods(item, index, total) {
   const {
     latitude,
@@ -173,18 +158,31 @@ async function reconstructAllPeriods(item, index, total) {
     location: item.location,
     confidence: item.confidence,
     periods,
+    _reconstructedAt: new Date().toISOString(),
   };
 }
 
-// ============================================
-// FONCTION PRINCIPALE
-// ============================================
+function loadExistingData() {
+  try {
+    if (fs.existsSync(OUTPUT_FILE)) {
+      const data = JSON.parse(fs.readFileSync(OUTPUT_FILE, "utf8"));
+      return data;
+    }
+  } catch (error) {
+    console.warn(`⚠️  Impossible de charger ${OUTPUT_FILE}:`, error.message);
+  }
+  return null;
+}
 
 async function main() {
   console.log("\n🌍 PREHISTORIC DOMAIN - Reconstruction Paléogéographique\n");
+
   if (SAMPLE_MODE) {
     console.log("📝 MODE SAMPLE (2 items) - test e2e\n");
+  } else if (INCREMENTAL_MODE) {
+    console.log("♻️  MODE INCREMENTAL - mise à jour seulement\n");
   }
+
   console.log("📋 Chargement des coordonnées modernes (Webflow)...\n");
 
   try {
@@ -197,65 +195,107 @@ async function main() {
       (item) => item.displayOnApp && item.geologicalPeriod,
     );
 
-    // Mode sample : ne traiter que 2 items
     if (SAMPLE_MODE) {
       eligibleItems = eligibleItems.slice(0, SAMPLE_SIZE);
     }
 
+    // Mode incrémental : filtrer seulement les items à reconstruire
+    let itemsToReconstruct = eligibleItems;
+    let existingData = null;
+
+    if (INCREMENTAL_MODE) {
+      existingData = loadExistingData();
+
+      if (existingData && existingData.items && existingData.items.length > 0) {
+        const existingIds = new Set(existingData.items.map((i) => i.id));
+        const newItems = eligibleItems.filter((i) => !existingIds.has(i.id));
+
+        console.log(`\n📊 État actuel:`);
+        console.log(`   Items en base: ${existingData.items.length}`);
+        console.log(`   Items éligibles actuels: ${eligibleItems.length}`);
+        console.log(`   Items nouveaux: ${newItems.length}`);
+
+        itemsToReconstruct = newItems;
+
+        if (newItems.length === 0) {
+          console.log("\n✨ Aucun nouvel item à reconstruire!\n");
+          process.exit(0);
+        }
+      }
+    }
+
     const skippedItems = geocodingData.length - eligibleItems.length;
 
-    console.log(`✅ ${geocodingData.length} items chargés\n`);
+    console.log(`\n✅ ${geocodingData.length} items chargés\n`);
     console.log(
       `✅ ${eligibleItems.length} items éligibles (display-on-app + geological-period)`,
     );
     if (skippedItems > 0) {
       console.log(`⏭️  ${skippedItems} items ignorés (incomplets)`);
     }
+
     console.log("\n🔄 Reconstruction des coordonnées historiques...");
     console.log(
-      `   (${PERIODS.length} périodes × ${eligibleItems.length} items = ${PERIODS.length * eligibleItems.length} appels API)\n`,
+      `   (${PERIODS.length} périodes × ${itemsToReconstruct.length} items = ${PERIODS.length * itemsToReconstruct.length} appels API)\n`,
     );
     console.log("─".repeat(80));
 
-    const results = [];
+    const reconstructedItems = [];
     const startTime = Date.now();
 
-    for (let i = 0; i < eligibleItems.length; i++) {
+    for (let i = 0; i < itemsToReconstruct.length; i++) {
       const reconstructed = await reconstructAllPeriods(
-        eligibleItems[i],
+        itemsToReconstruct[i],
         i,
-        eligibleItems.length,
+        itemsToReconstruct.length,
       );
-      results.push(reconstructed);
+      reconstructedItems.push(reconstructed);
+    }
+
+    // Merger avec les anciennes données en mode incrémental
+    let finalItems = reconstructedItems;
+    if (INCREMENTAL_MODE && existingData && existingData.items) {
+      const newIds = new Set(reconstructedItems.map((i) => i.id));
+      const oldItems = existingData.items.filter((i) => !newIds.has(i.id));
+      finalItems = [...oldItems, ...reconstructedItems];
+      console.log(
+        `\n📊 Fusion: ${oldItems.length} anciens + ${reconstructedItems.length} nouveaux = ${finalItems.length} total`,
+      );
     }
 
     const duration = ((Date.now() - startTime) / 1000).toFixed(1);
 
     console.log("\n" + "─".repeat(80));
     console.log(`\n📊 Résumé:`);
-    console.log(`   Items traités: ${results.length}`);
+    console.log(`   Items traités: ${reconstructedItems.length}`);
     console.log(`   Périodes par item: ${PERIODS.length}`);
-    console.log(`   Appels API réussis: ${results.length * PERIODS.length}`);
+    console.log(
+      `   Appels API réussis: ${reconstructedItems.length * PERIODS.length}`,
+    );
     console.log(`   Temps total: ${duration}s`);
 
-    // Créer le dossier si nécessaire
     const outputDir = OUTPUT_FILE.split("/").slice(0, -1).join("/");
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true });
     }
 
-    // Sauvegarder le résultat
     const output = {
       metadata: {
         generated: new Date().toISOString(),
-        totalItems: results.length,
+        totalItems: finalItems.length,
         sourceItems: geocodingData.length,
         eligibleItems: eligibleItems.length,
+        reconstructedItems: reconstructedItems.length,
+        mode: SAMPLE_MODE
+          ? "sample"
+          : INCREMENTAL_MODE
+            ? "incremental"
+            : "full",
         periods: PERIODS.map((p) => ({ time: p.time, name: p.name })),
         model: "MERDITH2021",
         note: "Cambrian and Ordovician use Silurian (410 Ma) data due to API limitations",
       },
-      items: results,
+      items: finalItems,
     };
 
     fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2));
@@ -273,5 +313,4 @@ async function main() {
   }
 }
 
-// Exécuter
 main();

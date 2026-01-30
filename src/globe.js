@@ -1034,21 +1034,40 @@ class GlobeManager {
         break;
     }
 
-    // Créer texture circulaire
+    // Créer texture pinpoint
     const canvas = document.createElement("canvas");
     canvas.width = 64;
     canvas.height = 64;
     const ctx = canvas.getContext("2d");
 
-    // Dégradé radial pour forme circulaire lisse
-    const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    // Dessiner un pinpoint (épingle) avec la couleur selon le type
+    const centerX = 32;
+    const centerY = 24; // Un peu plus haut pour la forme de l'épingle
+
+    // Cercle principal du pinpoint
+    const gradient = ctx.createRadialGradient(
+      centerX,
+      centerY,
+      0,
+      centerX,
+      centerY,
+      20,
+    );
     const hexColor = "#" + pointColor.toString(16).padStart(6, "0");
     gradient.addColorStop(0, hexColor);
-    gradient.addColorStop(0.7, hexColor);
-    gradient.addColorStop(1, hexColor + "00"); // Transparent aux bords
+    gradient.addColorStop(0.8, hexColor);
+    gradient.addColorStop(1, hexColor + "00");
 
     ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 64, 64);
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 20, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Point blanc au centre pour effet de relief
+    ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+    ctx.beginPath();
+    ctx.arc(centerX - 5, centerY - 5, 6, 0, Math.PI * 2);
+    ctx.fill();
 
     const texture = new THREE.CanvasTexture(canvas);
 
