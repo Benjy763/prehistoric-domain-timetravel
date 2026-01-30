@@ -6,6 +6,7 @@
 class PopupManager {
   constructor() {
     this.popup = document.getElementById("contentPopup");
+    this.backdrop = document.getElementById("popupBackdrop");
     this.closeBtn = document.getElementById("popupClose");
     this.elements = {
       image: document.getElementById("popupImage"),
@@ -24,11 +25,19 @@ class PopupManager {
   init() {
     this.closeBtn.addEventListener("click", () => this.hide());
 
-    // Fermer en cliquant à l'extérieur (optionnel)
-    this.popup.addEventListener("click", (e) => {
-      if (e.target === this.popup) {
+    // Fermer en cliquant sur le backdrop
+    if (this.backdrop) {
+      this.backdrop.addEventListener("click", () => {
+        console.log("Backdrop clicked!");
         this.hide();
-      }
+      });
+    } else {
+      console.error("Backdrop element not found!");
+    }
+
+    // Empêcher la propagation du clic sur la popup elle-même
+    this.popup.addEventListener("click", (e) => {
+      e.stopPropagation();
     });
 
     // Fermer avec la touche Escape
@@ -85,10 +94,12 @@ class PopupManager {
 
     // Afficher la popup
     this.popup.classList.add("active");
+    this.backdrop.classList.add("active");
   }
 
   hide() {
     this.popup.classList.remove("active");
+    this.backdrop.classList.remove("active");
   }
 
   extractYouTubeId(url) {

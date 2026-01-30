@@ -1,0 +1,68 @@
+{
+  "today": {
+    "project_age": 0,
+    "cao_age": 6,
+    "cao_file": "6Ma-land.json",
+    "difference": 6
+  },
+  "quaternary": {
+    "project_age": 2,
+    "cao_age": 6,
+    "cao_file": "6Ma-land.json",
+    "difference": 4
+  },
+  "neogene": {
+    "project_age": 15,
+    "cao_age": 14,
+    "cao_file": "14Ma-land.json",
+    "difference": 1
+  },
+  "paleogene": {
+    "project_age": 50,
+    "cao_age": 53,
+    "cao_file": "53Ma-land.json",
+    "difference": 3
+  },
+  "cretaceous": {
+    "project_age": 100,
+    "cao_age": 105,
+    "cao_file": "105Ma-land.json",
+    "difference": 5
+  },
+  "jurassic": {
+    "project_age": 160,
+    "cao_age": 152,
+    "cao_file": "152Ma-land.json",
+    "difference": 8
+  },
+  "triassic": {
+    "project_age": 220,
+    "cao_age": 218,
+    "cao_file": "218Ma-land.json",
+    "difference": 2
+  },
+  "permian": {
+    "project_age": 280,
+    "cao_age": 277,
+    "cao_file": "277Ma-land.json",
+    "difference": 3
+  },
+  "carboniferous": {
+    "project_age": 320,
+    "cao_age": 328,
+    "cao_file": "328Ma-land.json",
+    "difference": 8
+  },
+  "devonian": {
+    "project_age": 380,
+    "cao_age": 368,
+    "cao_file": "368Ma-land.json",
+    "difference": 12
+  },
+  "silurian": {
+    "project_age": 410,
+    "cao_age": 396,
+    "cao_file": "396Ma-land.json",
+    "difference": 14
+  }
+}

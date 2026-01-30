@@ -16,10 +16,18 @@ class GlobeManager {
     this.mouse = new THREE.Vector2();
     this.coastlines = null;
     this.continents = null; // Continent polygons
+    this.caoLands = null; // Cao emerged lands overlay
 
     // Texture cache for periods
     this.textureCache = new Map();
+    this.textureCache_muller = new Map();
     this.isPreloading = false;
+
+    // Cao period mapping (loaded from period-mapping.json)
+    this.caoMapping = null;
+
+    // Current layer: 'cao2017' or 'muller2022'
+    this.currentLayer = "cao2017";
 
     this.init();
   }
@@ -246,8 +254,8 @@ class GlobeManager {
 
   async loadCoastlines(time) {
     // GPlates API doesn't require an API key
-    // Using muller2019 model (recommended)
-    const url = `https://gws.gplates.org/reconstruct/coastlines/?time=${time}&model=muller2019`;
+    // Using MATTHEWS2016 model (same base as Cao 2017)
+    const url = `https://gws.gplates.org/reconstruct/coastlines/?time=${time}&model=MATTHEWS2016`;
 
     console.log(`🌍 Loading coastlines for ${time} Ma...`);
 
@@ -278,6 +286,65 @@ class GlobeManager {
       console.warn(
         "⚠️  Globe will be displayed without prehistoric coastlines",
       );
+      return false;
+    }
+  }
+
+  async loadCaoLands(projectTime) {
+    // Load period mapping if not already loaded
+    if (!this.caoMapping) {
+      try {
+        const mappingResponse = await fetch(
+          "assets/cao-paleogeography/period-mapping.json",
+        );
+        this.caoMapping = await mappingResponse.json();
+      } catch (error) {
+        console.error("❌ Error loading Cao period mapping:", error);
+        return false;
+      }
+    }
+
+    // Find corresponding Cao file for this project time
+    const periodKey = Object.keys(this.caoMapping).find(
+      (key) => this.caoMapping[key].project_age === projectTime,
+    );
+
+    if (!periodKey) {
+      console.warn(`⚠️  No Cao data for ${projectTime} Ma`);
+      return false;
+    }
+
+    const caoFile = this.caoMapping[periodKey].cao_file;
+    const url = `assets/cao-paleogeography/${caoFile}`;
+
+    console.log(
+      `🌱 Loading Cao emerged lands for ${projectTime} Ma (using ${caoFile})...`,
+    );
+
+    try {
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log(
+        `✅ Cao lands loaded: ${data.features?.length || 0} polygons, ${data.metadata?.land_percent || "?"}% land`,
+      );
+
+      // Generate Cao texture overlay
+      const caoTexture = this.generateCaoTexture(data);
+
+      // Apply as overlay on globe material
+      if (this.globe.material.map) {
+        // Combine base texture with Cao overlay
+        this.applyCaoOverlay(caoTexture);
+      }
+
+      return true;
+    } catch (error) {
+      console.error("❌ Error loading Cao lands:", error);
       return false;
     }
   }
@@ -322,6 +389,62 @@ class GlobeManager {
     }
   }
 
+  async loadContinentsOnly(time) {
+    // Couche Merdith 2021 : charger depuis fichiers locaux
+    // Trouver le fichier le plus proche disponible
+    const availableTimes = [
+      2, 6, 14, 22, 33, 45, 53, 76, 90, 100, 105, 126, 140, 152, 160, 169, 195,
+      218, 220, 232, 255, 277, 280, 287, 302, 320, 328, 348, 368, 380, 396, 410,
+      450, 500,
+    ];
+
+    // Trouver le temps le plus proche
+    let closestTime = availableTimes.reduce((prev, curr) =>
+      Math.abs(curr - time) < Math.abs(prev - time) ? curr : prev,
+    );
+
+    console.log(
+      `🔍 Requested ${time} Ma, using closest available: ${closestTime} Ma`,
+    );
+
+    if (this.textureCache_muller.has(closestTime)) {
+      console.log(`📦 Using cached Merdith texture for ${closestTime} Ma`);
+      this.applyTextureToGlobe(this.textureCache_muller.get(closestTime));
+      return true;
+    }
+
+    const url = `assets/merdith2021-coastlines/${closestTime}Ma.json`;
+    console.log(
+      `🗺️  Loading Merdith 2021 coastlines for ${closestTime} Ma from local file...`,
+    );
+
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log(
+        `✅ Merdith coastlines loaded: ${data.features?.length || 0} features`,
+      );
+
+      // Generate texture avec coastlines blanches pleines
+      const texture = this.generateMullerTexture(data);
+
+      // Cache
+      this.textureCache_muller.set(closestTime, texture);
+
+      // Apply
+      this.applyTextureToGlobe(texture);
+
+      return true;
+    } catch (error) {
+      console.error("❌ Error loading Merdith coastlines:", error);
+      return false;
+    }
+  }
+
   generateEmptyTexture() {
     // Create canvas with just ocean color
     const width = 2048;
@@ -341,6 +464,12 @@ class GlobeManager {
   }
 
   generateContinentTexture(data) {
+    // Si on a les données Cao, extraire coastlines depuis Cao directement
+    if (this.caoImageData) {
+      return this.generateCoastlinesFromCao(this.caoImageData);
+    }
+
+    // Sinon utiliser les données GPlates (mode fallback)
     // Create canvas to draw equirectangular texture
     const width = 4096;
     const height = 2048;
@@ -349,9 +478,13 @@ class GlobeManager {
     canvas.height = height;
     const ctx = canvas.getContext("2d");
 
-    // Dark blue ocean background
-    ctx.fillStyle = "#0a1929";
-    ctx.fillRect(0, 0, width, height);
+    // Fond TRANSPARENT pour que les terres Cao soient visibles en dessous
+    ctx.clearRect(0, 0, width, height);
+
+    // Dessiner coastlines en blanc temporairement pour la dilatation
+    ctx.fillStyle = "#FFFFFF";
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.lineWidth = 2; // Trait fin pour précision
 
     if (data.features) {
       data.features.forEach((feature) => {
@@ -360,17 +493,45 @@ class GlobeManager {
           const type = feature.geometry.type;
 
           if (type === "Polygon") {
-            this.drawPolygonOnCanvas(ctx, coords[0], width, height);
+            // Dessiner avec trait fin
+            this.drawPolygonOnCanvas(ctx, coords[0], width, height, false);
           } else if (type === "MultiPolygon") {
             coords.forEach((polygonRings) => {
-              this.drawPolygonOnCanvas(ctx, polygonRings[0], width, height);
+              this.drawPolygonOnCanvas(
+                ctx,
+                polygonRings[0],
+                width,
+                height,
+                false,
+              );
+            });
+          } else if (type === "LineString") {
+            // Convertir lignes en zones pour fusion
+            this.drawThickLineOnCanvas(ctx, coords, width, height);
+          } else if (type === "MultiLineString") {
+            coords.forEach((lineCoords) => {
+              this.drawThickLineOnCanvas(ctx, lineCoords, width, height);
             });
           }
         }
       });
     }
 
-    console.log("✅ Continent texture generated");
+    // Appliquer dilatation MINIMALE pour fusionner zones très proches sans dégrader précision (rayon 2)
+    const imageData = ctx.getImageData(0, 0, width, height);
+    const dilated = this.morphologicalDilation(imageData, 2);
+    ctx.putImageData(dilated, 0, 0);
+
+    // Maintenant dessiner uniquement les contours en orange
+    ctx.clearRect(0, 0, width, height);
+    ctx.putImageData(dilated, 0, 0);
+
+    // Extraire et dessiner contours uniquement
+    const contourData = this.extractContours(dilated, width, height);
+    ctx.clearRect(0, 0, width, height);
+    ctx.putImageData(contourData, 0, 0);
+
+    console.log("✅ Continent texture with merged coastlines");
 
     // Create Three.js texture
     const texture = new THREE.CanvasTexture(canvas);
@@ -378,7 +539,276 @@ class GlobeManager {
     return texture;
   }
 
-  drawPolygonOnCanvas(ctx, coordinates, width, height) {
+  generateMullerTexture(data) {
+    // Générer texture avec coastlines Muller 2022 en blanc plein
+    const width = 4096;
+    const height = 2048;
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+
+    // Fond océan bleu foncé
+    ctx.fillStyle = "#0a1929";
+    ctx.fillRect(0, 0, width, height);
+
+    // Dessiner coastlines en blanc plein
+    ctx.fillStyle = "#FFFFFF";
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.lineWidth = 4;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+
+    if (data.features) {
+      data.features.forEach((feature) => {
+        if (feature.geometry && feature.geometry.coordinates) {
+          const coords = feature.geometry.coordinates;
+          const type = feature.geometry.type;
+
+          if (type === "Polygon") {
+            this.drawPolygonOnCanvas(ctx, coords[0], width, height, true);
+          } else if (type === "MultiPolygon") {
+            coords.forEach((polygonRings) => {
+              this.drawPolygonOnCanvas(
+                ctx,
+                polygonRings[0],
+                width,
+                height,
+                true,
+              );
+            });
+          }
+        }
+      });
+    }
+
+    console.log("✅ Muller 2022 texture avec coastlines blanches");
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.needsUpdate = true;
+    return texture;
+  }
+
+  generateCaoTexture(data) {
+    const width = 4096;
+    const height = 2048;
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+
+    // Désactiver antialiasing pour contours nets
+    ctx.imageSmoothingEnabled = false;
+
+    // Transparent background
+    ctx.clearRect(0, 0, width, height);
+
+    // Dessiner terres émergées en blanc avec léger débordement pour fusion
+    ctx.fillStyle = "#FFFFFF";
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.lineWidth = 6; // Débordement pour fusionner zones proches
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+
+    if (data.features) {
+      data.features.forEach((feature) => {
+        if (feature.geometry && feature.geometry.type === "Polygon") {
+          const coords = feature.geometry.coordinates[0];
+          this.drawPolygonWithStroke(ctx, coords, width, height);
+        }
+      });
+    }
+
+    // Binariser pour éliminer semi-transparence
+    const imageData = ctx.getImageData(0, 0, width, height);
+    for (let i = 0; i < imageData.data.length; i += 4) {
+      if (imageData.data[i + 3] > 0) {
+        imageData.data[i] = 255;
+        imageData.data[i + 1] = 255;
+        imageData.data[i + 2] = 255;
+        imageData.data[i + 3] = 255;
+      }
+    }
+    ctx.putImageData(imageData, 0, 0);
+
+    console.log("✅ Cao texture with merged zones and sharp contours");
+
+    // Stocker pour extraction coastlines
+    this.caoImageData = imageData;
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.needsUpdate = true;
+    return texture;
+  }
+
+  drawPolygonWithStroke(ctx, coordinates, width, height) {
+    if (!coordinates || coordinates.length < 3) return;
+
+    ctx.beginPath();
+    coordinates.forEach(([lon, lat], index) => {
+      const x = ((lon + 180) / 360) * width;
+      const y = ((90 - lat) / 180) * height;
+
+      if (index === 0) {
+        ctx.moveTo(x, y);
+      } else {
+        ctx.lineTo(x, y);
+      }
+    });
+    ctx.closePath();
+
+    // Remplir ET tracer le contour pour fusion
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  applyCaoOverlay(caoTexture) {
+    // Combiner texture coastlines + terres Cao
+    const baseTexture = this.globe.material.map;
+
+    if (!baseTexture) {
+      console.warn("⚠️ Pas de texture coastlines, utilisation Cao seul");
+      // Juste Cao avec fond océan
+      const canvas = document.createElement("canvas");
+      canvas.width = 4096;
+      canvas.height = 2048;
+      const ctx = canvas.getContext("2d");
+
+      ctx.fillStyle = "#0a1929";
+      ctx.fillRect(0, 0, 4096, 2048);
+      ctx.drawImage(caoTexture.image, 0, 0);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      this.globe.material.map = texture;
+      this.globe.material.needsUpdate = true;
+      return;
+    }
+
+    // Créer canvas combiné
+    const canvas = document.createElement("canvas");
+    canvas.width = 4096;
+    canvas.height = 2048;
+    const ctx = canvas.getContext("2d");
+
+    // 1. Fond océan bleu
+    ctx.fillStyle = "#0a1929";
+    ctx.fillRect(0, 0, 4096, 2048);
+
+    // 2. Terres Cao en blanc
+    ctx.drawImage(caoTexture.image, 0, 0);
+
+    // Appliquer texture combinée
+    const combinedTexture = new THREE.CanvasTexture(canvas);
+    this.globe.material.map = combinedTexture;
+    this.globe.material.needsUpdate = true;
+
+    console.log("✅ Terres Cao affichées en blanc");
+  }
+
+  drawLineOnCanvas(ctx, coordinates, width, height) {
+    if (!coordinates || coordinates.length < 2) return;
+
+    ctx.beginPath();
+
+    coordinates.forEach(([lon, lat], index) => {
+      const x = ((lon + 180) / 360) * width;
+      const y = ((90 - lat) / 180) * height;
+
+      if (index === 0) {
+        ctx.moveTo(x, y);
+      } else {
+        ctx.lineTo(x, y);
+      }
+    });
+
+    ctx.strokeStyle = "#FF6B35";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  drawThickLineOnCanvas(ctx, coordinates, width, height) {
+    // Dessiner ligne épaisse pour permettre fusion
+    if (!coordinates || coordinates.length < 2) return;
+
+    ctx.beginPath();
+
+    coordinates.forEach(([lon, lat], index) => {
+      const x = ((lon + 180) / 360) * width;
+      const y = ((90 - lat) / 180) * height;
+
+      if (index === 0) {
+        ctx.moveTo(x, y);
+      } else {
+        ctx.lineTo(x, y);
+      }
+    });
+
+    ctx.lineWidth = 6; // Épaisse pour fusion
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.stroke();
+  }
+
+  extractContours(imageData, width, height) {
+    // Extraire contours (pixels adjacents à transparent)
+    const { data } = imageData;
+    const output = new ImageData(width, height);
+
+    for (let y = 1; y < height - 1; y++) {
+      for (let x = 1; x < width - 1; x++) {
+        const idx = (y * width + x) * 4;
+        const alpha = data[idx + 3];
+
+        if (alpha > 0) {
+          // Vérifier si pixel de contour (au moins 1 voisin transparent)
+          let isEdge = false;
+          for (let dy = -1; dy <= 1; dy++) {
+            for (let dx = -1; dx <= 1; dx++) {
+              if (dx === 0 && dy === 0) continue;
+              const nidx = ((y + dy) * width + (x + dx)) * 4;
+              if (data[nidx + 3] === 0) {
+                isEdge = true;
+                break;
+              }
+            }
+            if (isEdge) break;
+          }
+
+          if (isEdge) {
+            output.data[idx] = 255; // R - Orange
+            output.data[idx + 1] = 107; // G
+            output.data[idx + 2] = 53; // B
+            output.data[idx + 3] = 255; // A
+          }
+        }
+      }
+    }
+
+    return output;
+  }
+
+  generateCoastlinesFromCao(caoImageData) {
+    // Générer coastlines directement depuis terres Cao pour alignement parfait
+    const width = 4096;
+    const height = 2048;
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+
+    ctx.clearRect(0, 0, width, height);
+
+    // Extraire contours des terres Cao
+    const contours = this.extractContours(caoImageData, width, height);
+    ctx.putImageData(contours, 0, 0);
+
+    console.log("✅ Coastlines extracted from Cao data (perfect alignment)");
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.needsUpdate = true;
+    return texture;
+  }
+
+  drawPolygonOnCanvas(ctx, coordinates, width, height, fillOnly = false) {
     if (!coordinates || coordinates.length < 3) return;
 
     ctx.beginPath();
@@ -397,14 +827,14 @@ class GlobeManager {
 
     ctx.closePath();
 
-    // Fill in white
-    ctx.fillStyle = "#f9f9f9";
-    ctx.fill();
-
-    // Add dark outline for better definition
-    ctx.strokeStyle = "#1a2838";
-    ctx.lineWidth = 2;
-    ctx.stroke();
+    if (fillOnly) {
+      // Remplissage plein uniquement (pour Cao)
+      ctx.fill();
+    } else {
+      // Remplissage ET contour épais pour compenser décalage modèles
+      ctx.fill();
+      ctx.stroke();
+    }
   }
 
   applyTextureToGlobe(texture) {
@@ -484,6 +914,88 @@ class GlobeManager {
     });
 
     return new THREE.Line(geometry, material);
+  }
+
+  morphologicalDilation(imageData, radius) {
+    const { width, height, data } = imageData;
+    const output = new ImageData(width, height);
+
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        let maxAlpha = 0;
+
+        // Vérifier voisinage circulaire
+        for (let dy = -radius; dy <= radius; dy++) {
+          for (let dx = -radius; dx <= radius; dx++) {
+            // Vérifier si dans le cercle
+            if (dx * dx + dy * dy <= radius * radius) {
+              const nx = x + dx;
+              const ny = y + dy;
+
+              if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
+                const idx = (ny * width + nx) * 4;
+                const alpha = data[idx + 3];
+                if (alpha > maxAlpha) maxAlpha = alpha;
+              }
+            }
+          }
+        }
+
+        const idx = (y * width + x) * 4;
+        output.data[idx] = 255; // R
+        output.data[idx + 1] = 255; // G
+        output.data[idx + 2] = 255; // B
+        output.data[idx + 3] = maxAlpha; // A
+      }
+    }
+
+    return output;
+  }
+
+  morphologicalErosion(imageData, radius) {
+    const { width, height, data } = imageData;
+    const output = new ImageData(width, height);
+
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        let minAlpha = 255;
+
+        // Vérifier voisinage circulaire
+        for (let dy = -radius; dy <= radius; dy++) {
+          for (let dx = -radius; dx <= radius; dx++) {
+            // Vérifier si dans le cercle
+            if (dx * dx + dy * dy <= radius * radius) {
+              const nx = x + dx;
+              const ny = y + dy;
+
+              if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
+                const idx = (ny * width + nx) * 4;
+                const alpha = data[idx + 3];
+                if (alpha < minAlpha) minAlpha = alpha;
+              } else {
+                minAlpha = 0; // Bord = transparent
+              }
+            }
+          }
+        }
+
+        const idx = (y * width + x) * 4;
+        output.data[idx] = 255; // R
+        output.data[idx + 1] = 255; // G
+        output.data[idx + 2] = 255; // B
+        output.data[idx + 3] = minAlpha; // A
+      }
+    }
+
+    return output;
+  }
+
+  morphologicalClosing(imageData, radius) {
+    // Fermeture = dilatation puis érosion
+    // Fusionne zones proches sans dégrader contours extérieurs
+    const dilated = this.morphologicalDilation(imageData, radius);
+    const closed = this.morphologicalErosion(dilated, radius);
+    return closed;
   }
 
   latLonToVector3(lat, lon, radius) {
