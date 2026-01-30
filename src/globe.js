@@ -1034,22 +1034,40 @@ class GlobeManager {
         break;
     }
 
-    // Create glowing point
-    const geometry = new THREE.SphereGeometry(0.03, 16, 16);
-    const material = new THREE.MeshBasicMaterial({
-      color: pointColor,
-      emissive: pointColor,
-      emissiveIntensity: 0.8,
+    // Créer texture circulaire
+    const canvas = document.createElement("canvas");
+    canvas.width = 64;
+    canvas.height = 64;
+    const ctx = canvas.getContext("2d");
+
+    // Dégradé radial pour forme circulaire lisse
+    const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    const hexColor = "#" + pointColor.toString(16).padStart(6, "0");
+    gradient.addColorStop(0, hexColor);
+    gradient.addColorStop(0.7, hexColor);
+    gradient.addColorStop(1, hexColor + "00"); // Transparent aux bords
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 64, 64);
+
+    const texture = new THREE.CanvasTexture(canvas);
+
+    // Sprite - facilement cliquable et toujours face caméra
+    const spriteMaterial = new THREE.SpriteMaterial({
+      map: texture,
+      transparent: true,
+      depthWrite: false,
     });
 
-    const point = new THREE.Mesh(geometry, material);
-    point.position.copy(position);
-    point.userData = data;
+    const sprite = new THREE.Sprite(spriteMaterial);
+    sprite.position.copy(position);
+    sprite.scale.set(0.15, 0.15, 1); // Taille fixe
+    sprite.userData = data;
 
-    this.globe.add(point);
-    this.points.push(point);
+    this.globe.add(sprite);
+    this.points.push(sprite);
 
-    return point;
+    return sprite;
   }
 
   clearPoints() {
@@ -1065,13 +1083,12 @@ class GlobeManager {
     this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-    // Raycasting
+    // Raycasting simple sur les sprites - fonctionne nativement
     this.raycaster.setFromCamera(this.mouse, this.camera);
     const intersects = this.raycaster.intersectObjects(this.points);
 
     if (intersects.length > 0) {
-      const clickedPoint = intersects[0].object;
-      this.onPointClick(clickedPoint.userData);
+      this.onPointClick(intersects[0].object.userData);
     }
   }
 
@@ -1093,47 +1110,10 @@ class GlobeManager {
   }
 
   async preloadAllPeriods() {
-    if (this.isPreloading) return;
-    this.isPreloading = true;
-
-    // All period times to preload
-    const times = [0, 2, 15, 50, 100, 160, 220, 280, 320, 380, 410];
-
-    console.log("🔄 Starting background preload of all periods...");
-
-    // Preload one at a time with delay to not block the UI
-    for (const time of times) {
-      // Skip if already cached
-      if (this.textureCache.has(time)) continue;
-
-      // Use requestIdleCallback if available, otherwise setTimeout
-      await new Promise((resolve) => {
-        const preload = async () => {
-          try {
-            const url = `https://gws.gplates.org/reconstruct/coastlines_low/?time=${time}&avoid_map_boundary`;
-            const response = await fetch(url);
-            if (response.ok) {
-              const data = await response.json();
-              const texture = this.generateContinentTexture(data);
-              this.textureCache.set(time, texture);
-              console.log(`✅ Preloaded ${time} Ma`);
-            }
-          } catch (error) {
-            console.warn(`⚠️  Failed to preload ${time} Ma:`, error);
-          }
-          resolve();
-        };
-
-        if (window.requestIdleCallback) {
-          requestIdleCallback(preload);
-        } else {
-          setTimeout(preload, 100);
-        }
-      });
-    }
-
-    console.log("✅ All periods preloaded!");
-    this.isPreloading = false;
+    // DISABLED: Coastlines are loaded from local assets, no API calls needed
+    // This function previously made unnecessary requests to gws.gplates.org
+    console.log("ℹ️ Preload skipped - using local coastline data");
+    return;
   }
 
   animate() {
@@ -1142,10 +1122,15 @@ class GlobeManager {
     // Slow automatic rotation
     this.globe.rotation.y += 0.001;
 
-    // Animate points
-    this.points.forEach((point, index) => {
-      const scale = 1 + Math.sin(Date.now() * 0.003 + index) * 0.2;
-      point.scale.set(scale, scale, scale);
+    // Rescale sprites pour garder taille constante malgré perspective/zoom
+    this.points.forEach((sprite, index) => {
+      // Distance entre caméra et sprite
+      const distance = this.camera.position.distanceTo(sprite.position);
+      // Facteur de scale réduit pour points plus petits et mieux compensés
+      const scale = distance * 0.015; // Réduit de 0.04 à 0.015
+      // Animation pulse plus subtile
+      const pulse = 1 + Math.sin(Date.now() * 0.003 + index) * 0.1;
+      sprite.scale.set(scale * pulse, scale * pulse, 1);
     });
 
     this.renderer.render(this.scene, this.camera);
