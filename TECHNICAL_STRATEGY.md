@@ -458,6 +458,7 @@ node scripts/auto-geocode-contents.js
 ```
 
 **⚠️ Important :**
+
 - Le script `reconstruct-paleogeography.js` appelle **directement l'API Webflow**
 - Plus besoin de générer `geocoding-results.json` manuellement
 - Le fichier `geocoding-results.json` à la racine peut être **supprimé** (obsolète)

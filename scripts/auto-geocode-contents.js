@@ -2,7 +2,7 @@
 
 /**
  * PREHISTORIC DOMAIN - Auto Geocoding Script
- * 
+ *
  * Ce script analyse tous les items CMS et génère automatiquement
  * des coordonnées lat/lon basées sur les free-tags, en suivant
  * les règles documentées dans COORDINATES_RULES.md
@@ -12,8 +12,8 @@
 // CONFIGURATION
 // ============================================
 
-const SITE_ID = '609e6b701730a329c6f67850';
-const COLLECTION_ID = '679d148479ad083f33c518a1';
+const SITE_ID = "609e6b701730a329c6f67850";
+const COLLECTION_ID = "679d148479ad083f33c518a1";
 const WEBFLOW_TOKEN = process.env.WEBFLOW_TOKEN;
 
 const MIN_DISTANCE_DEGREES = 2.5; // Distance minimale entre 2 points
@@ -27,47 +27,95 @@ const MAX_ATTEMPTS = 100; // Tentatives maximales anti-collision
 
 const FAMOUS_FORMATIONS = {
   // NORTH AMERICA
-  't-rex': { lat: 47.5, lon: -105.5, name: 'Hell Creek Formation, Montana' },
-  'tyrannosaurus': { lat: 47.5, lon: -105.5, name: 'Hell Creek Formation, Montana' },
-  'triceratops': { lat: 47.5, lon: -105.5, name: 'Hell Creek Formation, Montana' },
-  'edmontosaurus': { lat: 50.5, lon: -111.5, name: 'Dinosaur Park Formation, Alberta' },
-  'albertosaurus': { lat: 50.5, lon: -111.5, name: 'Dinosaur Park Formation, Alberta' },
-  'diplodocus': { lat: 43.0, lon: -107.5, name: 'Morrison Formation, Wyoming' },
-  'stegosaurus': { lat: 43.0, lon: -107.5, name: 'Morrison Formation, Wyoming' },
-  'allosaurus': { lat: 43.0, lon: -107.5, name: 'Morrison Formation, Wyoming' },
-  'utahraptor': { lat: 39.0, lon: -109.0, name: 'Cedar Mountain Formation, Utah' },
-  'coelophysis': { lat: 35.0, lon: -106.0, name: 'Chinle Formation, New Mexico' },
-  
+  "t-rex": { lat: 47.5, lon: -105.5, name: "Hell Creek Formation, Montana" },
+  tyrannosaurus: {
+    lat: 47.5,
+    lon: -105.5,
+    name: "Hell Creek Formation, Montana",
+  },
+  triceratops: {
+    lat: 47.5,
+    lon: -105.5,
+    name: "Hell Creek Formation, Montana",
+  },
+  edmontosaurus: {
+    lat: 50.5,
+    lon: -111.5,
+    name: "Dinosaur Park Formation, Alberta",
+  },
+  albertosaurus: {
+    lat: 50.5,
+    lon: -111.5,
+    name: "Dinosaur Park Formation, Alberta",
+  },
+  diplodocus: { lat: 43.0, lon: -107.5, name: "Morrison Formation, Wyoming" },
+  stegosaurus: { lat: 43.0, lon: -107.5, name: "Morrison Formation, Wyoming" },
+  allosaurus: { lat: 43.0, lon: -107.5, name: "Morrison Formation, Wyoming" },
+  utahraptor: {
+    lat: 39.0,
+    lon: -109.0,
+    name: "Cedar Mountain Formation, Utah",
+  },
+  coelophysis: { lat: 35.0, lon: -106.0, name: "Chinle Formation, New Mexico" },
+
   // ASIA
-  'velociraptor': { lat: 43.5, lon: 104.0, name: 'Nemegt Formation, Mongolia' },
-  'protoceratops': { lat: 43.5, lon: 104.0, name: 'Nemegt Formation, Mongolia' },
-  'tarbosaurus': { lat: 43.5, lon: 104.0, name: 'Nemegt Formation, Mongolia' },
-  'yutyrannus': { lat: 41.5, lon: 121.0, name: 'Yixian Formation, China' },
-  'microraptor': { lat: 41.5, lon: 121.0, name: 'Yixian Formation, China' },
-  'sinornithosaurus': { lat: 41.5, lon: 121.0, name: 'Yixian Formation, China' },
-  'mamenchisaurus': { lat: 30.0, lon: 104.5, name: 'Shaximiao Formation, Sichuan' },
-  
+  velociraptor: { lat: 43.5, lon: 104.0, name: "Nemegt Formation, Mongolia" },
+  protoceratops: { lat: 43.5, lon: 104.0, name: "Nemegt Formation, Mongolia" },
+  tarbosaurus: { lat: 43.5, lon: 104.0, name: "Nemegt Formation, Mongolia" },
+  yutyrannus: { lat: 41.5, lon: 121.0, name: "Yixian Formation, China" },
+  microraptor: { lat: 41.5, lon: 121.0, name: "Yixian Formation, China" },
+  sinornithosaurus: { lat: 41.5, lon: 121.0, name: "Yixian Formation, China" },
+  mamenchisaurus: {
+    lat: 30.0,
+    lon: 104.5,
+    name: "Shaximiao Formation, Sichuan",
+  },
+
   // SOUTH AMERICA
-  'giganotosaurus': { lat: -43.0, lon: -67.0, name: 'Cerro Barcino Formation, Patagonia' },
-  'argentinosaurus': { lat: -43.0, lon: -67.0, name: 'Cerro Barcino Formation, Patagonia' },
-  'carnotaurus': { lat: -43.0, lon: -67.0, name: 'La Colonia Formation, Patagonia' },
-  'herrerasaurus': { lat: -33.0, lon: -69.0, name: 'Ischigualasto Formation, Argentina' },
-  
+  giganotosaurus: {
+    lat: -43.0,
+    lon: -67.0,
+    name: "Cerro Barcino Formation, Patagonia",
+  },
+  argentinosaurus: {
+    lat: -43.0,
+    lon: -67.0,
+    name: "Cerro Barcino Formation, Patagonia",
+  },
+  carnotaurus: {
+    lat: -43.0,
+    lon: -67.0,
+    name: "La Colonia Formation, Patagonia",
+  },
+  herrerasaurus: {
+    lat: -33.0,
+    lon: -69.0,
+    name: "Ischigualasto Formation, Argentina",
+  },
+
   // EUROPE
-  'iguanodon': { lat: 50.5, lon: -2.5, name: 'Purbeck Formation, England' },
-  'megalosaurus': { lat: 50.5, lon: -2.5, name: 'Purbeck Formation, England' },
-  'archaeopteryx': { lat: 48.8, lon: 11.0, name: 'Solnhofen Formation, Germany' },
-  'compsognathus': { lat: 48.8, lon: 11.0, name: 'Solnhofen Formation, Germany' },
-  'torvosaurus': { lat: 39.2, lon: -9.3, name: 'Lourinhã Formation, Portugal' },
-  
+  iguanodon: { lat: 50.5, lon: -2.5, name: "Purbeck Formation, England" },
+  megalosaurus: { lat: 50.5, lon: -2.5, name: "Purbeck Formation, England" },
+  archaeopteryx: { lat: 48.8, lon: 11.0, name: "Solnhofen Formation, Germany" },
+  compsognathus: { lat: 48.8, lon: 11.0, name: "Solnhofen Formation, Germany" },
+  torvosaurus: { lat: 39.2, lon: -9.3, name: "Lourinhã Formation, Portugal" },
+
   // AFRICA
-  'spinosaurus': { lat: 31.0, lon: -4.0, name: 'Kem Kem Beds, Morocco' },
-  'carcharodontosaurus': { lat: 31.0, lon: -4.0, name: 'Kem Kem Beds, Morocco' },
-  'majungasaurus': { lat: -18.0, lon: 46.5, name: 'Maevarano Formation, Madagascar' },
-  
+  spinosaurus: { lat: 31.0, lon: -4.0, name: "Kem Kem Beds, Morocco" },
+  carcharodontosaurus: { lat: 31.0, lon: -4.0, name: "Kem Kem Beds, Morocco" },
+  majungasaurus: {
+    lat: -18.0,
+    lon: 46.5,
+    name: "Maevarano Formation, Madagascar",
+  },
+
   // AUSTRALIA
-  'australovenator': { lat: -23.0, lon: 145.0, name: 'Winton Formation, Queensland' },
-  'leaellynasaura': { lat: -37.5, lon: 144.0, name: 'Dinosaur Cove, Victoria' }
+  australovenator: {
+    lat: -23.0,
+    lon: 145.0,
+    name: "Winton Formation, Queensland",
+  },
+  leaellynasaura: { lat: -37.5, lon: 144.0, name: "Dinosaur Cove, Victoria" },
 };
 
 // ============================================
@@ -75,71 +123,71 @@ const FAMOUS_FORMATIONS = {
 // ============================================
 
 const CONTINENT_ZONES = {
-  'north america': [
-    { lat: 47.5, lon: -105.5, name: 'Montana' },
-    { lat: 43.0, lon: -107.5, name: 'Wyoming' },
-    { lat: 39.0, lon: -109.0, name: 'Utah' },
-    { lat: 35.0, lon: -106.0, name: 'New Mexico' },
-    { lat: 50.5, lon: -111.5, name: 'Alberta' }
+  "north america": [
+    { lat: 47.5, lon: -105.5, name: "Montana" },
+    { lat: 43.0, lon: -107.5, name: "Wyoming" },
+    { lat: 39.0, lon: -109.0, name: "Utah" },
+    { lat: 35.0, lon: -106.0, name: "New Mexico" },
+    { lat: 50.5, lon: -111.5, name: "Alberta" },
   ],
-  'asia': [
-    { lat: 43.5, lon: 104.0, name: 'Mongolia' },
-    { lat: 41.5, lon: 121.0, name: 'China (Liaoning)' },
-    { lat: 30.0, lon: 104.5, name: 'China (Sichuan)' },
-    { lat: 48.0, lon: 67.0, name: 'Kazakhstan' },
-    { lat: 16.0, lon: 102.0, name: 'Thailand' }
+  asia: [
+    { lat: 43.5, lon: 104.0, name: "Mongolia" },
+    { lat: 41.5, lon: 121.0, name: "China (Liaoning)" },
+    { lat: 30.0, lon: 104.5, name: "China (Sichuan)" },
+    { lat: 48.0, lon: 67.0, name: "Kazakhstan" },
+    { lat: 16.0, lon: 102.0, name: "Thailand" },
   ],
-  'south america': [
-    { lat: -43.0, lon: -67.0, name: 'Patagonia' },
-    { lat: -15.0, lon: -47.5, name: 'Brazil' },
-    { lat: -33.0, lon: -69.0, name: 'Argentina (Mendoza)' },
-    { lat: -38.0, lon: -71.0, name: 'Chile' },
-    { lat: -32.5, lon: -55.5, name: 'Uruguay' }
+  "south america": [
+    { lat: -43.0, lon: -67.0, name: "Patagonia" },
+    { lat: -15.0, lon: -47.5, name: "Brazil" },
+    { lat: -33.0, lon: -69.0, name: "Argentina (Mendoza)" },
+    { lat: -38.0, lon: -71.0, name: "Chile" },
+    { lat: -32.5, lon: -55.5, name: "Uruguay" },
   ],
-  'europe': [
-    { lat: 50.5, lon: -2.5, name: 'England' },
-    { lat: 48.8, lon: 11.0, name: 'Germany' },
-    { lat: 44.0, lon: 4.0, name: 'France' },
-    { lat: 43.5, lon: -5.0, name: 'Spain' },
-    { lat: 39.2, lon: -9.3, name: 'Portugal' }
+  europe: [
+    { lat: 50.5, lon: -2.5, name: "England" },
+    { lat: 48.8, lon: 11.0, name: "Germany" },
+    { lat: 44.0, lon: 4.0, name: "France" },
+    { lat: 43.5, lon: -5.0, name: "Spain" },
+    { lat: 39.2, lon: -9.3, name: "Portugal" },
   ],
-  'africa': [
-    { lat: 31.0, lon: -4.0, name: 'Morocco' },
-    { lat: 27.0, lon: 31.0, name: 'Egypt' },
-    { lat: -32.0, lon: 22.0, name: 'South Africa' },
-    { lat: 16.0, lon: 8.0, name: 'Niger' },
-    { lat: -18.0, lon: 46.5, name: 'Madagascar' }
+  africa: [
+    { lat: 31.0, lon: -4.0, name: "Morocco" },
+    { lat: 27.0, lon: 31.0, name: "Egypt" },
+    { lat: -32.0, lon: 22.0, name: "South Africa" },
+    { lat: 16.0, lon: 8.0, name: "Niger" },
+    { lat: -18.0, lon: 46.5, name: "Madagascar" },
   ],
-  'australia': [
-    { lat: -23.0, lon: 145.0, name: 'Queensland' },
-    { lat: -37.5, lon: 144.0, name: 'Victoria' },
-    { lat: -26.0, lon: 118.0, name: 'Western Australia' },
-    { lat: -32.0, lon: 148.0, name: 'New South Wales' }
+  australia: [
+    { lat: -23.0, lon: 145.0, name: "Queensland" },
+    { lat: -37.5, lon: 144.0, name: "Victoria" },
+    { lat: -26.0, lon: 118.0, name: "Western Australia" },
+    { lat: -32.0, lon: 148.0, name: "New South Wales" },
   ],
-  'india': [
-    { lat: 21.0, lon: 78.0, name: 'Central India' },
-    { lat: 18.0, lon: 74.0, name: 'Western Ghats' },
-    { lat: 23.0, lon: 82.0, name: 'Eastern India' },
-    { lat: 13.0, lon: 80.0, name: 'Southern India' }
+  india: [
+    { lat: 21.0, lon: 78.0, name: "Central India" },
+    { lat: 18.0, lon: 74.0, name: "Western Ghats" },
+    { lat: 23.0, lon: 82.0, name: "Eastern India" },
+    { lat: 13.0, lon: 80.0, name: "Southern India" },
   ],
-  'global oceans': [
-    { lat: 0.0, lon: -30.0, name: 'Atlantic Ocean' },
-    { lat: -10.0, lon: 160.0, name: 'Pacific Ocean' },
-    { lat: -20.0, lon: 60.0, name: 'Indian Ocean' },
-    { lat: 60.0, lon: -10.0, name: 'Arctic Ocean' }
-  ]
+  "global oceans": [
+    { lat: 0.0, lon: -30.0, name: "Atlantic Ocean" },
+    { lat: -10.0, lon: 160.0, name: "Pacific Ocean" },
+    { lat: -20.0, lon: 60.0, name: "Indian Ocean" },
+    { lat: 60.0, lon: -10.0, name: "Arctic Ocean" },
+  ],
 };
 
 // Index de rotation pour chaque continent
 const rotationIndexes = {
-  'north america': 0,
-  'asia': 0,
-  'south america': 0,
-  'europe': 0,
-  'africa': 0,
-  'australia': 0,
-  'india': 0,
-  'global oceans': 0
+  "north america": 0,
+  asia: 0,
+  "south america": 0,
+  europe: 0,
+  africa: 0,
+  australia: 0,
+  india: 0,
+  "global oceans": 0,
 };
 
 // Stocker tous les points placés
@@ -184,22 +232,22 @@ function randomOffset(min, max) {
 function findNonCollidingPosition(baseLat, baseLon) {
   // Essayer d'abord la position de base avec petit offset
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
-    const radius = NORMAL_OFFSET + (attempt * 0.5); // Augmenter plus rapidement le rayon
-    const angle = (attempt * 137.5) * (Math.PI / 180); // Golden angle pour distribution uniforme
-    
+    const radius = NORMAL_OFFSET + attempt * 0.5; // Augmenter plus rapidement le rayon
+    const angle = attempt * 137.5 * (Math.PI / 180); // Golden angle pour distribution uniforme
+
     const lat = baseLat + radius * Math.sin(angle);
     const lon = baseLon + radius * Math.cos(angle);
-    
+
     if (!hasCollision(lat, lon)) {
       return { lat, lon, attempts: attempt + 1 };
     }
   }
-  
+
   // Dernier recours : position très éloignée aléatoire
-  return { 
-    lat: baseLat + randomOffset(-20, 20), 
+  return {
+    lat: baseLat + randomOffset(-20, 20),
     lon: baseLon + randomOffset(-20, 20),
-    attempts: MAX_ATTEMPTS
+    attempts: MAX_ATTEMPTS,
   };
 }
 
@@ -208,37 +256,37 @@ function findNonCollidingPosition(baseLat, baseLon) {
  */
 function extractPeriod(tags) {
   const periods = {
-    'late cretaceous': 66,
-    'early cretaceous': 125,
-    'cretaceous': 100,
-    'late jurassic': 150,
-    'middle jurassic': 170,
-    'early jurassic': 190,
-    'jurassic': 160,
-    'late triassic': 210,
-    'middle triassic': 235,
-    'early triassic': 245,
-    'triassic': 220,
-    'permian': 280,
-    'carboniferous': 320,
-    'devonian': 380,
-    'silurian': 410,
-    'cambrian': 500,
-    'pleistocene': 1,
-    'pliocene': 4,
-    'miocene': 15,
-    'oligocene': 30,
-    'eocene': 50,
-    'paleocene': 60
+    "late cretaceous": 66,
+    "early cretaceous": 125,
+    cretaceous: 100,
+    "late jurassic": 150,
+    "middle jurassic": 170,
+    "early jurassic": 190,
+    jurassic: 160,
+    "late triassic": 210,
+    "middle triassic": 235,
+    "early triassic": 245,
+    triassic: 220,
+    permian: 280,
+    carboniferous: 320,
+    devonian: 380,
+    silurian: 410,
+    cambrian: 500,
+    pleistocene: 1,
+    pliocene: 4,
+    miocene: 15,
+    oligocene: 30,
+    eocene: 50,
+    paleocene: 60,
   };
-  
+
   for (const [period, age] of Object.entries(periods)) {
     if (tags.includes(period)) {
       return { period, age };
     }
   }
-  
-  return { period: 'unknown', age: 0 };
+
+  return { period: "unknown", age: 0 };
 }
 
 /**
@@ -246,29 +294,41 @@ function extractPeriod(tags) {
  */
 function parseFreeTags(freeTags) {
   if (!freeTags) return { continent: null, species: [], period: null, age: 0 };
-  
+
   const tags = freeTags.toLowerCase();
-  
+
   // Détecter le continent
   let continent = null;
-  if (tags.includes('north america')) continent = 'north america';
-  else if (tags.includes('south america')) continent = 'south america';
-  else if (tags.includes('asia')) continent = 'asia';
-  else if (tags.includes('europe')) continent = 'europe';
-  else if (tags.includes('africa') || tags.includes('arica')) continent = 'africa'; // Gérer typo "arica"
-  else if (tags.includes('australia')) continent = 'australia';
-  else if (tags.includes('india')) continent = 'india';
-  else if (tags.includes('global ocean')) continent = 'global oceans';
-  
+  if (tags.includes("north america")) continent = "north america";
+  else if (tags.includes("south america")) continent = "south america";
+  else if (tags.includes("asia")) continent = "asia";
+  else if (tags.includes("europe")) continent = "europe";
+  else if (tags.includes("africa") || tags.includes("arica"))
+    continent = "africa"; // Gérer typo "arica"
+  else if (tags.includes("australia")) continent = "australia";
+  else if (tags.includes("india")) continent = "india";
+  else if (tags.includes("global ocean")) continent = "global oceans";
+
   // Extraire les espèces (mots en minuscules de 4+ lettres)
   const species = tags
-    .split(',')
-    .map(s => s.trim())
-    .filter(s => s.length >= 4 && !['late', 'early', 'middle', 'cretaceous', 'jurassic', 'triassic'].includes(s));
-  
+    .split(",")
+    .map((s) => s.trim())
+    .filter(
+      (s) =>
+        s.length >= 4 &&
+        ![
+          "late",
+          "early",
+          "middle",
+          "cretaceous",
+          "jurassic",
+          "triassic",
+        ].includes(s),
+    );
+
   // Extraire la période
   const { period, age } = extractPeriod(tags);
-  
+
   return { continent, species, period, age };
 }
 
@@ -277,55 +337,55 @@ function parseFreeTags(freeTags) {
  */
 function findCoordinates(freeTags, itemId) {
   const { continent, species, period, age } = parseFreeTags(freeTags);
-  
+
   if (!continent) {
     console.warn(`⚠️  [${itemId}] Continent non détecté dans: "${freeTags}"`);
     return null;
   }
-  
+
   // Étape 1 : Chercher une formation célèbre
   for (const speciesName of species) {
     if (FAMOUS_FORMATIONS[speciesName]) {
       const formation = FAMOUS_FORMATIONS[speciesName];
       const position = findNonCollidingPosition(formation.lat, formation.lon);
-      
+
       return {
         lat: Math.round(position.lat * 100) / 100,
         lon: Math.round(position.lon * 100) / 100,
         location: formation.name,
-        confidence: 'high',
-        source: 'famous_formation',
+        confidence: "high",
+        source: "famous_formation",
         period: period,
         age: age,
-        collisionAttempts: position.attempts
+        collisionAttempts: position.attempts,
       };
     }
   }
-  
+
   // Étape 2 : Utiliser zone continentale avec rotation
   const zones = CONTINENT_ZONES[continent];
   if (!zones) {
     console.warn(`⚠️  [${itemId}] Zones non définies pour: ${continent}`);
     return null;
   }
-  
+
   const index = rotationIndexes[continent];
   const zone = zones[index];
-  
+
   // Incrémenter l'index pour le prochain item
   rotationIndexes[continent] = (index + 1) % zones.length;
-  
+
   const position = findNonCollidingPosition(zone.lat, zone.lon);
-  
+
   return {
     lat: Math.round(position.lat * 100) / 100,
     lon: Math.round(position.lon * 100) / 100,
     location: `${zone.name}, ${continent}`,
-    confidence: 'medium',
-    source: 'continent_zone',
+    confidence: "medium",
+    source: "continent_zone",
     period: period,
     age: age,
-    collisionAttempts: position.attempts
+    collisionAttempts: position.attempts,
   };
 }
 
@@ -338,11 +398,13 @@ function resetGeocodeState() {
 
 async function fetchAllItems({ log = true } = {}) {
   if (!WEBFLOW_TOKEN) {
-    throw new Error('WEBFLOW_TOKEN manquant. Définis la variable d\'environnement.');
+    throw new Error(
+      "WEBFLOW_TOKEN manquant. Définis la variable d'environnement.",
+    );
   }
 
   if (log) {
-    console.log('📋 Récupération des items CMS...\n');
+    console.log("📋 Récupération des items CMS...\n");
   }
 
   let allItems = [];
@@ -355,7 +417,7 @@ async function fetchAllItems({ log = true } = {}) {
       {
         headers: {
           Authorization: `Bearer ${WEBFLOW_TOKEN}`,
-          accept: 'application/json',
+          accept: "application/json",
         },
       },
     );
@@ -387,14 +449,14 @@ function geocodeItems(allItems, { log = true } = {}) {
   resetGeocodeState();
 
   if (log) {
-    console.log('🔍 Analyse et génération des coordonnées...\n');
-    console.log('─'.repeat(80));
+    console.log("🔍 Analyse et génération des coordonnées...\n");
+    console.log("─".repeat(80));
   }
 
   const results = [];
 
   for (const item of allItems) {
-    const freeTags = item.fieldData['free-tags'];
+    const freeTags = item.fieldData["free-tags"];
     const name = item.fieldData.name;
 
     if (!freeTags) {
@@ -414,7 +476,9 @@ function geocodeItems(allItems, { log = true } = {}) {
           ? Math.min(
               ...placedPoints
                 .slice(0, -1)
-                .map((p) => calculateDistance(coords.lat, coords.lon, p.lat, p.lon)),
+                .map((p) =>
+                  calculateDistance(coords.lat, coords.lon, p.lat, p.lon),
+                ),
             )
           : null;
 
@@ -429,13 +493,15 @@ function geocodeItems(allItems, { log = true } = {}) {
         console.log(`   → Confiance: ${coords.confidence}`);
         if (nearestDistance) {
           console.log(
-            `   → Distance au plus proche: ${nearestDistance.toFixed(1)}° ${nearestDistance >= MIN_DISTANCE_DEGREES ? '✓' : '⚠️'}`,
+            `   → Distance au plus proche: ${nearestDistance.toFixed(1)}° ${nearestDistance >= MIN_DISTANCE_DEGREES ? "✓" : "⚠️"}`,
           );
         }
         if (coords.collisionAttempts > 1) {
-          console.log(`   → Tentatives anti-collision: ${coords.collisionAttempts}`);
+          console.log(
+            `   → Tentatives anti-collision: ${coords.collisionAttempts}`,
+          );
         }
-        console.log('');
+        console.log("");
       }
 
       results.push({
@@ -457,16 +523,16 @@ function geocodeItems(allItems, { log = true } = {}) {
   }
 
   if (log) {
-    console.log('─'.repeat(80));
+    console.log("─".repeat(80));
     console.log(`\n📊 Résumé:`);
     console.log(`   Total items: ${allItems.length}`);
     console.log(`   Géocodés: ${results.length}`);
     console.log(`   Ignorés: ${allItems.length - results.length}`);
     console.log(
-      `   Haute confiance: ${results.filter((r) => r.confidence === 'high').length}`,
+      `   Haute confiance: ${results.filter((r) => r.confidence === "high").length}`,
     );
     console.log(
-      `   Confiance moyenne: ${results.filter((r) => r.confidence === 'medium').length}`,
+      `   Confiance moyenne: ${results.filter((r) => r.confidence === "medium").length}`,
     );
 
     const collisions = results.filter((r) => {
@@ -475,7 +541,9 @@ function geocodeItems(allItems, { log = true } = {}) {
         .map((p) => calculateDistance(r.latitude, r.longitude, p.lat, p.lon));
       return nearest.length > 0 && Math.min(...nearest) < MIN_DISTANCE_DEGREES;
     }).length;
-    console.log(`   ⚠️  Collisions (< ${MIN_DISTANCE_DEGREES}°): ${collisions}`);
+    console.log(
+      `   ⚠️  Collisions (< ${MIN_DISTANCE_DEGREES}°): ${collisions}`,
+    );
   }
 
   return results;
@@ -486,8 +554,11 @@ async function fetchGeocodedItems({ writeFile = false, log = true } = {}) {
   const results = geocodeItems(allItems, { log });
 
   if (writeFile) {
-    const fs = await import('fs');
-    fs.writeFileSync('geocoding-results.json', JSON.stringify(results, null, 2));
+    const fs = await import("fs");
+    fs.writeFileSync(
+      "geocoding-results.json",
+      JSON.stringify(results, null, 2),
+    );
     if (log) {
       console.log(`\n💾 Résultats sauvegardés dans: geocoding-results.json`);
     }
@@ -505,13 +576,12 @@ async function fetchGeocodedItems({ writeFile = false, log = true } = {}) {
 // ============================================
 
 async function main() {
-  console.log('\n🌍 PREHISTORIC DOMAIN - Auto Geocoding\n');
+  console.log("\n🌍 PREHISTORIC DOMAIN - Auto Geocoding\n");
 
   try {
     await fetchGeocodedItems({ writeFile: true, log: true });
-    
   } catch (error) {
-    console.error('\n❌ Erreur:', error.message);
+    console.error("\n❌ Erreur:", error.message);
     process.exit(1);
   }
 }

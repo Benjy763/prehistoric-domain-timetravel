@@ -181,7 +181,7 @@ async function main() {
         generated: new Date().toISOString(),
         totalItems: results.length,
         periods: PERIODS.map((p) => ({ time: p.time, name: p.name })),
-          model: "MERDITH2021",
+        model: "MERDITH2021",
         note: "Cambrian and Ordovician use Silurian (410 Ma) data due to API limitations",
       },
       items: results,
