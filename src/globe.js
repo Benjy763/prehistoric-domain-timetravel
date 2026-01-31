@@ -1050,7 +1050,7 @@ class GlobeManager {
     const centerY = 32; // Centré
 
     // Rayon uniforme pour tous les types
-    const circleRadius = 22;
+    const circleRadius = 14;
 
     // Cercle plein
     const hexColor = "#" + pointColor.toString(16).padStart(6, "0");
@@ -1078,9 +1078,9 @@ class GlobeManager {
 
     const sprite = new THREE.Sprite(spriteMaterial);
     sprite.position.copy(position);
-    sprite.scale.set(0.2, 0.2, 1);
+    sprite.scale.set(0.1, 0.1, 1);
     sprite.userData = data;
-    sprite.userData._initialScale = 0.2;
+    sprite.userData._initialScale = 0.1;
     sprite.userData.type = contentType;
 
     this.globe.add(sprite);
@@ -1144,7 +1144,7 @@ class GlobeManager {
     // Rescale sprites avec distance au centre du globe (uniforme pour tous)
     const globeCenter = new THREE.Vector3(0, 0, 0);
     const distanceToGlobe = this.camera.position.distanceTo(globeCenter);
-    const baseScale = distanceToGlobe * 0.02;
+    const baseScale = distanceToGlobe * 0.015;
 
     this.points.forEach((sprite, index) => {
       const pulse = 1 + Math.sin(Date.now() * 0.003 + index) * 0.05;

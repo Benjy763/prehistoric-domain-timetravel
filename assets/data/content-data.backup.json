@@ -1,0 +1,1886 @@
+{
+  "metadata": {
+    "generated": "2026-01-30T21:09:20.346Z",
+    "totalItems": 22,
+    "sourceItems": 200,
+    "eligibleItems": 20,
+    "periods": [
+      {
+        "time": 0,
+        "name": "today"
+      },
+      {
+        "time": 2,
+        "name": "quaternary"
+      },
+      {
+        "time": 15,
+        "name": "neogene"
+      },
+      {
+        "time": 50,
+        "name": "paleogene"
+      },
+      {
+        "time": 100,
+        "name": "cretaceous"
+      },
+      {
+        "time": 160,
+        "name": "jurassic"
+      },
+      {
+        "time": 220,
+        "name": "triassic"
+      },
+      {
+        "time": 280,
+        "name": "permian"
+      },
+      {
+        "time": 320,
+        "name": "carboniferous"
+      },
+      {
+        "time": 380,
+        "name": "devonian"
+      },
+      {
+        "time": 410,
+        "name": "silurian"
+      },
+      {
+        "time": 450,
+        "name": "ordovician"
+      },
+      {
+        "time": 500,
+        "name": "cambrian"
+      }
+    ],
+    "model": "MERDITH2021",
+    "note": "Cambrian and Ordovician use Silurian (410 Ma) data due to API limitations"
+  },
+  "items": [
+    {
+      "id": "679d15a7238ea17a52d58215",
+      "name": "Giants of the ice age",
+      "slug": "experience-giants-of-the-ice-age",
+      "description": "Step into the Ice Age and witness the mighty woolly mammoths roaming their frozen homeland, as they once did thousands of years ago.",
+      "creditsLine": "A Prehistoric Domain original immersive experience.",
+      "category": "3d",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "quaternary",
+      "contentLink": "https://tour.prehistoricdomain.com/live/scenes/mammoth/",
+      "youtubeId": "nT0PBq9K5hk",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/67b207ab18675f682032a0fd_mammoth.avif",
+      "galleryImage": null,
+      "freeTags": "North America, Late Pleistocene, Woolly Mammoth, Dire Wolf, Golden Eagle",
+      "modernLat": 44.34,
+      "modernLon": -138.42,
+      "location": "north america",
+      "confidence": "medium",
+      "estimatedAge": 1,
+      "periods": {
+        "2Ma": {
+          "lat": 44.4148,
+          "lon": -136.4327
+        }
+      }
+    },
+    {
+      "id": "695fecefdad0a9fd6e395e1d",
+      "name": "Jurassic Wild - Episode 1 | Journey for Survival",
+      "slug": "jurassic-wild-episode-1",
+      "description": "\"Journey for Survival\" is the first episode of Jurassic Wild.\nIt tells the story of a Yutyrannus fighting to survive in a harsh, cold environment.\nI hope you’ll enjoy it :D I created this episode using Jurassic World Evolution 3, with incredible narration by Kat Mackay.",
+      "creditsLine": "A Prehistoric Domain original project.",
+      "type": "videos",
+      "isNew": true,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": "w3oKrw1upls",
+      "youtubeUrl": "https://www.youtube.com/watch?v=w3oKrw1upls",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/w3oKrw1upls/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/jurassic-wild-episode-1",
+      "modernLat": 41.5,
+      "modernLon": 122.5,
+      "estimatedAge": 125,
+      "location": "Yixian Formation, China",
+      "confidence": "high",
+      "periods": {
+        "0": {
+          "lat": 41.5,
+          "lon": 122.5
+        },
+        "2": {
+          "lat": 42.07,
+          "lon": 121.9
+        },
+        "15": {
+          "lat": 45.2,
+          "lon": 119.25
+        },
+        "50": {
+          "lat": 46.98,
+          "lon": 118.51
+        },
+        "100": {
+          "lat": 46.58,
+          "lon": 134.4
+        },
+        "160": {
+          "lat": 55.86,
+          "lon": 153.08
+        },
+        "220": {
+          "lat": 57.18,
+          "lon": 165.7
+        },
+        "280": {
+          "lat": 30.44,
+          "lon": 145.08
+        },
+        "320": {
+          "lat": 23.97,
+          "lon": 139.49
+        },
+        "380": {
+          "lat": 33.36,
+          "lon": 101.05
+        },
+        "410": {
+          "lat": 28.98,
+          "lon": 112.1
+        },
+        "450": {
+          "lat": 28.98,
+          "lon": 112.1
+        },
+        "500": {
+          "lat": 28.98,
+          "lon": 112.1
+        }
+      }
+    },
+    {
+      "id": "69371b280eb30fb51b6b7319",
+      "name": "Pre-History: Outliers | Episode 1 | A Carnotaurus paleo animation",
+      "slug": "pre-history-outliers-episode-1-a-carnotaurus-paleo-animation",
+      "description": "Every individual living life form are unique, and sometimes they are born with genetic mutations. And dinosaurs, the living and breathing animals they were, are no exception. The animals that are born different can be referred to as \"Outliers\". In this episode of Pre-History, we explore a very curious case of a female Albino Carnotaurus. Her skin itself was rare as it is, for her to survive till adulthood as well, was nothing short of a miracle.",
+      "creditsLine": "Created by Bill Nguyen",
+      "creatorLink": "https://www.youtube.com/@billnguyen4148",
+      "type": "videos",
+      "isNew": true,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": "zkwBYgI5KNA",
+      "youtubeUrl": "https://www.youtube.com/watch?v=zkwBYgI5KNA",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/zkwBYgI5KNA/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/pre-history-outliers-episode-1-a-carnotaurus-paleo-animation",
+      "modernLat": -43,
+      "modernLon": -65.5,
+      "estimatedAge": 66,
+      "location": "La Colonia Formation, Patagonia",
+      "confidence": "high",
+      "periods": {
+        "0": {
+          "lat": -43,
+          "lon": -65.5
+        },
+        "2": {
+          "lat": -43.46,
+          "lon": -65.59
+        },
+        "15": {
+          "lat": -46.6,
+          "lon": -64.02
+        },
+        "50": {
+          "lat": -49.13,
+          "lon": -55.03
+        },
+        "100": {
+          "lat": -44.31,
+          "lon": -31.85
+        },
+        "160": {
+          "lat": -46.83,
+          "lon": -19.95
+        },
+        "220": {
+          "lat": -56.03,
+          "lon": -13.56
+        },
+        "280": {
+          "lat": -55.21,
+          "lon": -50.11
+        },
+        "320": {
+          "lat": -57.92,
+          "lon": -72.54
+        },
+        "380": {
+          "lat": -54.92,
+          "lon": -157.75
+        },
+        "410": {
+          "lat": -72.51,
+          "lon": -171.73
+        },
+        "450": {
+          "lat": -72.51,
+          "lon": -171.73
+        },
+        "500": {
+          "lat": -72.51,
+          "lon": -171.73
+        }
+      }
+    },
+    {
+      "id": "692ae940e3769a41c0776d4b",
+      "name": "Tyrannosaurus Rex",
+      "slug": "tyrannosaurus-rex-3",
+      "description": "Tyrannosaurus Rex paleoat.",
+      "creditsLine": "Created by Julio Lacerda.",
+      "creatorLink": "https://www.instagram.com/lacerda.julio/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb774a93d08f9b506f9_692ae938825b6b42e36d2a49_Tyrannosaurus_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb774a93d08f9b506f5_692ae92cdf042459a4c54c7e_Tyrannosaurus_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb774a93d08f9b506f9_692ae938825b6b42e36d2a49_Tyrannosaurus_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/tyrannosaurus-rex-3",
+      "modernLat": 47.5,
+      "modernLon": -104,
+      "estimatedAge": 66,
+      "location": "Montana, north america",
+      "confidence": "medium",
+      "periods": {
+        "0": {
+          "lat": 47.5,
+          "lon": -104
+        },
+        "2": {
+          "lat": 47.8,
+          "lon": -102.34
+        },
+        "15": {
+          "lat": 48.08,
+          "lon": -93.15
+        },
+        "50": {
+          "lat": 50.28,
+          "lon": -73
+        },
+        "100": {
+          "lat": 51.3,
+          "lon": -52.85
+        },
+        "160": {
+          "lat": 36.44,
+          "lon": -30.71
+        },
+        "220": {
+          "lat": 18.92,
+          "lon": -32.01
+        },
+        "280": {
+          "lat": 18.1,
+          "lon": -24.13
+        },
+        "320": {
+          "lat": 8.89,
+          "lon": -26.38
+        },
+        "380": {
+          "lat": -13.97,
+          "lon": -72.25
+        },
+        "410": {
+          "lat": -22.5,
+          "lon": -83.65
+        },
+        "450": {
+          "lat": -22.5,
+          "lon": -83.65
+        },
+        "500": {
+          "lat": -22.5,
+          "lon": -83.65
+        }
+      }
+    },
+    {
+      "id": "692ae8fbd8c1a12b6b4fdf01",
+      "name": "Pteranodon",
+      "slug": "pteranodon",
+      "description": "Pteranodon paleoart.",
+      "creditsLine": "Created by Julio Lacerda.",
+      "creatorLink": "https://www.instagram.com/lacerda.julio/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea76e2d6ecc2fbd527b_692ae8d1746ae62d8de1572a_Pteranodon_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb1e7117fcff54019ef_692ae8d5b5a7f34172bc33ce_Pteranodon_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea76e2d6ecc2fbd527b_692ae8d1746ae62d8de1572a_Pteranodon_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/pteranodon",
+      "modernLat": 43,
+      "modernLon": -106,
+      "estimatedAge": 66,
+      "location": "Wyoming, north america",
+      "confidence": "medium",
+      "periods": {
+        "0": {
+          "lat": 43,
+          "lon": -106
+        },
+        "2": {
+          "lat": 43.34,
+          "lon": -104.52
+        },
+        "15": {
+          "lat": 43.86,
+          "lon": -96.16
+        },
+        "50": {
+          "lat": 46.52,
+          "lon": -77.29
+        },
+        "100": {
+          "lat": 47.41,
+          "lon": -56.94
+        },
+        "160": {
+          "lat": 32.65,
+          "lon": -34.12
+        },
+        "220": {
+          "lat": 14.74,
+          "lon": -34.29
+        },
+        "280": {
+          "lat": 15.22,
+          "lon": -28.03
+        },
+        "320": {
+          "lat": 6.61,
+          "lon": -30.54
+        },
+        "380": {
+          "lat": -15.37,
+          "lon": -76.9
+        },
+        "410": {
+          "lat": -24.49,
+          "lon": -88.31
+        },
+        "450": {
+          "lat": -24.49,
+          "lon": -88.31
+        },
+        "500": {
+          "lat": -24.49,
+          "lon": -88.31
+        }
+      }
+    },
+    {
+      "id": "692ae8b61fab07d46ee509fd",
+      "name": "Patagonia",
+      "slug": "patagonia",
+      "description": "Patagonia landscape paleoart.",
+      "creditsLine": "Created by Julio Lacerda.",
+      "creatorLink": "https://www.instagram.com/lacerda.julio/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb08d8129b0e5dc8789_6931a97922afffaacaa69580_Patagonia_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb08d8129b0e5dc8785_6931a973586b6279d4c631fb_Patagonia_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb08d8129b0e5dc8789_6931a97922afffaacaa69580_Patagonia_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/patagonia",
+      "modernLat": -41.65,
+      "modernLon": -68.47,
+      "estimatedAge": 66,
+      "location": "Patagonia, south america",
+      "confidence": "medium",
+      "periods": {
+        "0": {
+          "lat": -41.65,
+          "lon": -68.47
+        },
+        "2": {
+          "lat": -42.07,
+          "lon": -68.55
+        },
+        "15": {
+          "lat": -45.09,
+          "lon": -67.01
+        },
+        "50": {
+          "lat": -47.47,
+          "lon": -57.99
+        },
+        "100": {
+          "lat": -42.88,
+          "lon": -34.82
+        },
+        "160": {
+          "lat": -46.08,
+          "lon": -23.53
+        },
+        "220": {
+          "lat": -55.77,
+          "lon": -18.14
+        },
+        "280": {
+          "lat": -53.26,
+          "lon": -52.99
+        },
+        "320": {
+          "lat": -55.5,
+          "lon": -74.12
+        },
+        "380": {
+          "lat": -53.26,
+          "lon": -154.39
+        },
+        "410": {
+          "lat": -71.24,
+          "lon": -164.51
+        },
+        "450": {
+          "lat": -71.24,
+          "lon": -164.51
+        },
+        "500": {
+          "lat": -71.24,
+          "lon": -164.51
+        }
+      }
+    },
+    {
+      "id": "692ae83a66b7c7edf8fd70d7",
+      "name": "Oxalaia",
+      "slug": "oxalaia",
+      "description": "Oxalaia paleoart.",
+      "creditsLine": "Created by Julio Lacerda.",
+      "creatorLink": "https://www.instagram.com/lacerda.julio/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb01ebd069f1d0ab0a7_692ae830549666c089395aef_Oxalaia_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb01ebd069f1d0ab0a3_692ae82a453550d51ef05d46_Oxalaia_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb01ebd069f1d0ab0a7_692ae830549666c089395aef_Oxalaia_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/oxalaia",
+      "modernLat": -15,
+      "modernLon": -46,
+      "estimatedAge": 66,
+      "location": "Brazil, south america",
+      "confidence": "medium",
+      "periods": {
+        "0": {
+          "lat": -15,
+          "lon": -46
+        },
+        "2": {
+          "lat": -15.68,
+          "lon": -45.55
+        },
+        "15": {
+          "lat": -19.46,
+          "lon": -41.96
+        },
+        "50": {
+          "lat": -22.91,
+          "lon": -30.44
+        },
+        "100": {
+          "lat": -16.71,
+          "lon": -11.25
+        },
+        "160": {
+          "lat": -18.1,
+          "lon": -3.27
+        },
+        "220": {
+          "lat": -25.24,
+          "lon": -2.42
+        },
+        "280": {
+          "lat": -34.26,
+          "lon": -15.31
+        },
+        "320": {
+          "lat": -44.13,
+          "lon": -25.46
+        },
+        "380": {
+          "lat": -76.86,
+          "lon": -91.5
+        },
+        "410": {
+          "lat": -75.04,
+          "lon": -13.77
+        },
+        "450": {
+          "lat": -75.04,
+          "lon": -13.77
+        },
+        "500": {
+          "lat": -75.04,
+          "lon": -13.77
+        }
+      }
+    },
+    {
+      "id": "692ae7e5453550d51ef0561a",
+      "name": "Niobrara",
+      "slug": "niobrara",
+      "description": "Niobrara formation paleoart.",
+      "creditsLine": "Created by Julio Lacerda.",
+      "creatorLink": "https://www.instagram.com/lacerda.julio/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf13e05afd44747c6a_692ae73f9fb22197745dd286_Niobrara_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf13e05afd44747c65_692ae748882020a833319d82_Niobrara_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf13e05afd44747c6a_692ae73f9fb22197745dd286_Niobrara_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/niobrara",
+      "modernLat": 39,
+      "modernLon": -107.5,
+      "estimatedAge": 66,
+      "location": "Utah, north america",
+      "confidence": "medium",
+      "periods": {
+        "0": {
+          "lat": 39,
+          "lon": -107.5
+        },
+        "2": {
+          "lat": 39.37,
+          "lon": -106.15
+        },
+        "15": {
+          "lat": 40.06,
+          "lon": -98.44
+        },
+        "50": {
+          "lat": 43.08,
+          "lon": -80.57
+        },
+        "100": {
+          "lat": 43.85,
+          "lon": -60.03
+        },
+        "160": {
+          "lat": 29.22,
+          "lon": -36.86
+        },
+        "220": {
+          "lat": 11.03,
+          "lon": -36.2
+        },
+        "280": {
+          "lat": 12.61,
+          "lon": -31.37
+        },
+        "320": {
+          "lat": 4.54,
+          "lon": -34.17
+        },
+        "380": {
+          "lat": -16.55,
+          "lon": -81.05
+        },
+        "410": {
+          "lat": -26.15,
+          "lon": -92.53
+        },
+        "450": {
+          "lat": -26.15,
+          "lon": -92.53
+        },
+        "500": {
+          "lat": -26.15,
+          "lon": -92.53
+        }
+      }
+    },
+    {
+      "id": "692ae600bc5e04cdf4ec91e1",
+      "name": "Morrison",
+      "slug": "morrison",
+      "description": "Morrison formation paleoart.",
+      "creditsLine": "Created by Julio Lacerda.",
+      "creatorLink": "https://www.instagram.com/lacerda.julio/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "jurassic",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf0a48e32c27ae11ca_692ae5e2b875fc9ea4909be8_Morrison_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf0a48e32c27ae11cf_692ae5da9e5df6fe6c84dbbc_Morrison_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf0a48e32c27ae11ca_692ae5e2b875fc9ea4909be8_Morrison_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/morrison",
+      "modernLat": 44.35,
+      "modernLon": -108.97,
+      "estimatedAge": 150,
+      "location": "Morrison Formation, Wyoming",
+      "confidence": "high",
+      "periods": {
+        "0": {
+          "lat": 44.35,
+          "lon": -108.97
+        },
+        "2": {
+          "lat": 44.74,
+          "lon": -107.46
+        },
+        "15": {
+          "lat": 45.51,
+          "lon": -98.86
+        },
+        "50": {
+          "lat": 48.5,
+          "lon": -79.65
+        },
+        "100": {
+          "lat": 49.3,
+          "lon": -59.47
+        },
+        "160": {
+          "lat": 34.64,
+          "lon": -36.01
+        },
+        "220": {
+          "lat": 16.49,
+          "lon": -36.2
+        },
+        "280": {
+          "lat": 17.58,
+          "lon": -29.01
+        },
+        "320": {
+          "lat": 9.08,
+          "lon": -31.11
+        },
+        "380": {
+          "lat": -12.83,
+          "lon": -76.91
+        },
+        "410": {
+          "lat": -21.98,
+          "lon": -88.67
+        },
+        "450": {
+          "lat": -21.98,
+          "lon": -88.67
+        },
+        "500": {
+          "lat": -21.98,
+          "lon": -88.67
+        }
+      }
+    },
+    {
+      "id": "692ae5b79043883991fa0776",
+      "name": "Mamenchisaurus",
+      "slug": "mamenchisaurus",
+      "description": "Mamenchisaurus paleoart.",
+      "creditsLine": "Created by Julio Lacerda.",
+      "creatorLink": "https://www.instagram.com/lacerda.julio/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "jurassic",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaee16b576b19678ccd_692ae4212d7b98e2b61c27e0_Mamenchisaurus_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaee16b576b19678cc9_692ae4259ee06264d5253403_Mamenchisaurus_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaee16b576b19678ccd_692ae4212d7b98e2b61c27e0_Mamenchisaurus_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/mamenchisaurus",
+      "modernLat": 30,
+      "modernLon": 106,
+      "estimatedAge": 150,
+      "location": "Shaximiao Formation, Sichuan",
+      "confidence": "high",
+      "periods": {
+        "0": {
+          "lat": 30,
+          "lon": 106
+        },
+        "2": {
+          "lat": 30.33,
+          "lon": 105.56
+        },
+        "15": {
+          "lat": 32.45,
+          "lon": 103.55
+        },
+        "50": {
+          "lat": 32.94,
+          "lon": 104.53
+        },
+        "100": {
+          "lat": 33.15,
+          "lon": 119.46
+        },
+        "160": {
+          "lat": 42.22,
+          "lon": 135.88
+        },
+        "220": {
+          "lat": 48.73,
+          "lon": 116.47
+        },
+        "280": {
+          "lat": 8.73,
+          "lon": 100.43
+        },
+        "320": {
+          "lat": 1.48,
+          "lon": 103.38
+        },
+        "380": {
+          "lat": -0.41,
+          "lon": 91.19
+        },
+        "410": {
+          "lat": -1.17,
+          "lon": 95.56
+        },
+        "450": {
+          "lat": -1.17,
+          "lon": 95.56
+        },
+        "500": {
+          "lat": -1.17,
+          "lon": 95.56
+        }
+      }
+    },
+    {
+      "id": "692ae327825b6b42e36c87fb",
+      "name": "Irritator",
+      "slug": "irritator",
+      "description": "Irritator paleoart.",
+      "creditsLine": "Created by Julio Lacerda.",
+      "creatorLink": "https://www.instagram.com/lacerda.julio/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eada268bb5c643c0bb4_692ae3c367ce35fbf31e0ff5_Irritator_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eada268bb5c643c0bae_692ae3bcb5a7f34172bba741_Irritator_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eada268bb5c643c0bb4_692ae3c367ce35fbf31e0ff5_Irritator_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/irritator",
+      "modernLat": -33,
+      "modernLon": -67.5,
+      "estimatedAge": 125,
+      "location": "Argentina (Mendoza), south america",
+      "confidence": "medium",
+      "periods": {
+        "0": {
+          "lat": -33,
+          "lon": -67.5
+        },
+        "2": {
+          "lat": -33.44,
+          "lon": -67.39
+        },
+        "15": {
+          "lat": -36.52,
+          "lon": -65.17
+        },
+        "50": {
+          "lat": -39.01,
+          "lon": -55.26
+        },
+        "100": {
+          "lat": -34.26,
+          "lon": -33.47
+        },
+        "160": {
+          "lat": -36.06,
+          "lon": -25.4
+        },
+        "220": {
+          "lat": -46.11,
+          "lon": -22.92
+        },
+        "280": {
+          "lat": -43.83,
+          "lon": -47.45
+        },
+        "320": {
+          "lat": -47.72,
+          "lon": -63.65
+        },
+        "380": {
+          "lat": -55.87,
+          "lon": -137.49
+        },
+        "410": {
+          "lat": -73.85,
+          "lon": -131.44
+        },
+        "450": {
+          "lat": -73.85,
+          "lon": -131.44
+        },
+        "500": {
+          "lat": -73.85,
+          "lon": -131.44
+        }
+      }
+    },
+    {
+      "id": "692ae18743ab9dabc6151f90",
+      "name": "Homotherium",
+      "slug": "homotherium",
+      "description": "Homotherium paleoart.",
+      "creditsLine": "Created by Julio Lacerda.",
+      "creatorLink": "https://www.instagram.com/lacerda.julio/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "quaternary",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaca60731fee47eb145_692ae1214717ab70ad14b0dd_Homotherium_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaca60731fee47eb141_692ae3e4135604dcbec287b6_Homotherium_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaca60731fee47eb145_692ae1214717ab70ad14b0dd_Homotherium_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/homotherium",
+      "modernLat": 43.5,
+      "modernLon": 105.5,
+      "estimatedAge": 1,
+      "location": "Mongolia, asia",
+      "confidence": "medium",
+      "periods": {
+        "0": {
+          "lat": 43.5,
+          "lon": 105.5
+        },
+        "2": {
+          "lat": 43.82,
+          "lon": 104.72
+        },
+        "15": {
+          "lat": 45.83,
+          "lon": 101.15
+        },
+        "50": {
+          "lat": 46.02,
+          "lon": 100.11
+        },
+        "100": {
+          "lat": 46.38,
+          "lon": 115.96
+        },
+        "160": {
+          "lat": 55.27,
+          "lon": 130.6
+        },
+        "220": {
+          "lat": 66.79,
+          "lon": 147.82
+        },
+        "280": {
+          "lat": 999.99,
+          "lon": 999.99
+        },
+        "320": {
+          "lat": 999.99,
+          "lon": 999.99
+        },
+        "380": {
+          "lat": 999.99,
+          "lon": 999.99
+        },
+        "410": {
+          "lat": 999.99,
+          "lon": 999.99
+        },
+        "450": {
+          "lat": 999.99,
+          "lon": 999.99
+        },
+        "500": {
+          "lat": 999.99,
+          "lon": 999.99
+        }
+      }
+    },
+    {
+      "id": "691b560347a6752d57a44b6f",
+      "name": "Torvosaurus head",
+      "slug": "torvosaurus-head",
+      "description": "Torvosaurus head illustration.",
+      "creditsLine": "Created by Ttorroo.",
+      "creatorLink": "https://www.instagram.com/ttorroo/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "jurassic",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb613e05afd44747de9_691b55f9951f74c285eb109d_IMG_6365_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb613e05afd44747dee_691b55f2e92a0c6600bd6d59_IMG_6365_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb613e05afd44747de9_691b55f9951f74c285eb109d_IMG_6365_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/torvosaurus-head",
+      "modernLat": 39.2,
+      "modernLon": -7.8,
+      "estimatedAge": 150,
+      "location": "Lourinhã Formation, Portugal",
+      "confidence": "high",
+      "periods": {
+        "0": {
+          "lat": 39.2,
+          "lon": -7.8
+        },
+        "2": {
+          "lat": 38.25,
+          "lon": -7.67
+        },
+        "15": {
+          "lat": 33.76,
+          "lon": -7.63
+        },
+        "50": {
+          "lat": 28.61,
+          "lon": -2.43
+        },
+        "100": {
+          "lat": 32.12,
+          "lon": 8.01
+        },
+        "160": {
+          "lat": 25.81,
+          "lon": 15.18
+        },
+        "220": {
+          "lat": 18.88,
+          "lon": 9.79
+        },
+        "280": {
+          "lat": 3.02,
+          "lon": 13.09
+        },
+        "320": {
+          "lat": -9.18,
+          "lon": 8.83
+        },
+        "380": {
+          "lat": -40.76,
+          "lon": -9.9
+        },
+        "410": {
+          "lat": -26.65,
+          "lon": -4.4
+        },
+        "450": {
+          "lat": -26.65,
+          "lon": -4.4
+        },
+        "500": {
+          "lat": -26.65,
+          "lon": -4.4
+        }
+      }
+    },
+    {
+      "id": "691b55b41dd783219fb3d608",
+      "name": "Dilophosaurus head",
+      "slug": "dilophosaurus-head",
+      "description": "Dilophosaurus head illustration.",
+      "creditsLine": "Created by Ttorroo.",
+      "creatorLink": "https://www.instagram.com/ttorroo/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "jurassic",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaa84fb0770640f689c_691b558a1b3101cf33755537_IMG_6360_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaa84fb0770640f68a3_691b558fd9408000dfc2cb96_IMG_6360_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaa84fb0770640f689c_691b558a1b3101cf33755537_IMG_6360_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/dilophosaurus-head",
+      "modernLat": 35,
+      "modernLon": -104.5,
+      "estimatedAge": 190,
+      "location": "New Mexico, north america",
+      "confidence": "medium",
+      "periods": {
+        "0": {
+          "lat": 35,
+          "lon": -104.5
+        },
+        "2": {
+          "lat": 35.31,
+          "lon": -103.25
+        },
+        "15": {
+          "lat": 35.77,
+          "lon": -96.12
+        },
+        "50": {
+          "lat": 38.55,
+          "lon": -79.11
+        },
+        "100": {
+          "lat": 39.38,
+          "lon": -58.28
+        },
+        "160": {
+          "lat": 24.68,
+          "lon": -35.68
+        },
+        "220": {
+          "lat": 6.66,
+          "lon": -34.54
+        },
+        "280": {
+          "lat": 7.96,
+          "lon": -31.66
+        },
+        "320": {
+          "lat": -0.01,
+          "lon": -35.2
+        },
+        "380": {
+          "lat": -20.69,
+          "lon": -83.31
+        },
+        "410": {
+          "lat": -30.51,
+          "lon": -94.4
+        },
+        "450": {
+          "lat": -30.51,
+          "lon": -94.4
+        },
+        "500": {
+          "lat": -30.51,
+          "lon": -94.4
+        }
+      }
+    },
+    {
+      "id": "691b555594ce6e30eb457d48",
+      "name": "A flock of Thalassodromeus flying above the beach",
+      "slug": "a-flock-of-thalassodromeus-flying-above-the-beach",
+      "description": "Illustration of a flock of Thalassodromeus flying above the beach.",
+      "creditsLine": "Created by Ttorroo.",
+      "creatorLink": "https://www.instagram.com/ttorroo/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea6e63b4610ce26a07f_691b5540283dc37fc1d57e99_IMG_4714_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea6e63b4610ce26a07a_691b553ad1cf5cbcff667d05_IMG_4714_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea6e63b4610ce26a07f_691b5540283dc37fc1d57e99_IMG_4714_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/a-flock-of-thalassodromeus-flying-above-the-beach",
+      "modernLat": -38,
+      "modernLon": -69.5,
+      "estimatedAge": 100,
+      "location": "Chile, south america",
+      "confidence": "medium",
+      "periods": {
+        "0": {
+          "lat": -38,
+          "lon": -69.5
+        },
+        "2": {
+          "lat": -38.41,
+          "lon": -69.5
+        },
+        "15": {
+          "lat": -41.39,
+          "lon": -67.71
+        },
+        "50": {
+          "lat": -43.74,
+          "lon": -58.33
+        },
+        "100": {
+          "lat": -39.21,
+          "lon": -35.7
+        },
+        "160": {
+          "lat": -42.1,
+          "lon": -26.58
+        },
+        "220": {
+          "lat": -52.22,
+          "lon": -22.95
+        },
+        "280": {
+          "lat": -48.73,
+          "lon": -52.74
+        },
+        "320": {
+          "lat": -51.28,
+          "lon": -71.31
+        },
+        "380": {
+          "lat": -53.05,
+          "lon": -146.83
+        },
+        "410": {
+          "lat": -71.41,
+          "lon": -150.32
+        },
+        "450": {
+          "lat": -71.41,
+          "lon": -150.32
+        },
+        "500": {
+          "lat": -71.41,
+          "lon": -150.32
+        }
+      }
+    },
+    {
+      "id": "691b54f5d7bc9c89f6ba2092",
+      "name": "Spinosaurus reconstruction",
+      "slug": "spinosaurus-reconstruction",
+      "description": "Spinosaurus reconstruction illustration.",
+      "creditsLine": "Created by Ttorroo.",
+      "creatorLink": "https://www.instagram.com/ttorroo/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb3975b02bc78bdaf56_691b54dfc34437d876fb5d60_IMG_6381_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb3975b02bc78bdaf51_691b54e6be2cf5938a8a407e_IMG_6381_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb3975b02bc78bdaf56_691b54dfc34437d876fb5d60_IMG_6381_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/spinosaurus-reconstruction",
+      "modernLat": 31,
+      "modernLon": -2.5,
+      "estimatedAge": 100,
+      "location": "Kem Kem Beds, Morocco",
+      "confidence": "high",
+      "periods": {
+        "0": {
+          "lat": 31,
+          "lon": -2.5
+        },
+        "2": {
+          "lat": 29.95,
+          "lon": -2.4
+        },
+        "15": {
+          "lat": 25.04,
+          "lon": -2.13
+        },
+        "50": {
+          "lat": 18.44,
+          "lon": 1.54
+        },
+        "100": {
+          "lat": 21.38,
+          "lon": 8.48
+        },
+        "160": {
+          "lat": 17.58,
+          "lon": 11.88
+        },
+        "220": {
+          "lat": 12.51,
+          "lon": 6.14
+        },
+        "280": {
+          "lat": -2.44,
+          "lon": 8.26
+        },
+        "320": {
+          "lat": -14.49,
+          "lon": 3.75
+        },
+        "380": {
+          "lat": -50.81,
+          "lon": -11.97
+        },
+        "410": {
+          "lat": -36.72,
+          "lon": -2.91
+        },
+        "450": {
+          "lat": -36.72,
+          "lon": -2.91
+        },
+        "500": {
+          "lat": -36.72,
+          "lon": -2.91
+        }
+      }
+    },
+    {
+      "id": "691b54bc83f4b633a9f570a0",
+      "name": "Albertaceratops vs Daspletosaurus",
+      "slug": "albertaceratops-vs-daspletosaurus",
+      "description": "Albertaceratops vs Daspletosaurus illustration.",
+      "creditsLine": "Created by Ttorroo.",
+      "creatorLink": "https://www.instagram.com/ttorroo/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea751ec098552b4fee4_691b54a88ef99f19ceb57932_IMG_6368_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea751ec098552b4ff03_691b53b732c64580050b5d0c_IMG_6368_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea751ec098552b4fee4_691b54a88ef99f19ceb57932_IMG_6368_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/albertaceratops-vs-daspletosaurus",
+      "modernLat": 50.5,
+      "modernLon": -110,
+      "estimatedAge": 66,
+      "location": "Alberta, north america",
+      "confidence": "medium",
+      "periods": {
+        "0": {
+          "lat": 50.5,
+          "lon": -110
+        },
+        "2": {
+          "lat": 50.91,
+          "lon": -108.25
+        },
+        "15": {
+          "lat": 51.69,
+          "lon": -98.4
+        },
+        "50": {
+          "lat": 54.51,
+          "lon": -77.23
+        },
+        "100": {
+          "lat": 55.38,
+          "lon": -57.55
+        },
+        "160": {
+          "lat": 40.63,
+          "lon": -34.06
+        },
+        "220": {
+          "lat": 22.64,
+          "lon": -35.49
+        },
+        "280": {
+          "lat": 22.86,
+          "lon": -25.57
+        },
+        "320": {
+          "lat": 13.8,
+          "lon": -27.02
+        },
+        "380": {
+          "lat": -9.03,
+          "lon": -71.94
+        },
+        "410": {
+          "lat": -17.57,
+          "lon": -84.05
+        },
+        "450": {
+          "lat": -17.57,
+          "lon": -84.05
+        },
+        "500": {
+          "lat": -17.57,
+          "lon": -84.05
+        }
+      }
+    },
+    {
+      "id": "691b546bf019207aaba28a91",
+      "name": "Herd of horns",
+      "slug": "herd-of-horns",
+      "description": "A herd triceratops in the fild",
+      "creditsLine": "Created by Ttorroo.",
+      "creatorLink": "https://www.instagram.com/ttorroo/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eacc702b657b2d9cbdd_691b54024cdc275f2123185a_IMG_6359_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eacc702b657b2d9cbe0_691b540751fefb89c95faef9_IMG_6359_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eacc702b657b2d9cbdd_691b54024cdc275f2123185a_IMG_6359_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/herd-of-horns",
+      "modernLat": 48.85,
+      "modernLon": -106.97,
+      "estimatedAge": 66,
+      "location": "Hell Creek Formation, Montana",
+      "confidence": "high",
+      "periods": {
+        "0": {
+          "lat": 48.85,
+          "lon": -106.97
+        },
+        "2": {
+          "lat": 49.2,
+          "lon": -105.27
+        },
+        "15": {
+          "lat": 49.74,
+          "lon": -95.79
+        },
+        "50": {
+          "lat": 52.25,
+          "lon": -75.18
+        },
+        "100": {
+          "lat": 53.19,
+          "lon": -55.25
+        },
+        "160": {
+          "lat": 38.38,
+          "lon": -32.47
+        },
+        "220": {
+          "lat": 20.61,
+          "lon": -33.81
+        },
+        "280": {
+          "lat": 20.35,
+          "lon": -25
+        },
+        "320": {
+          "lat": 11.24,
+          "lon": -26.87
+        },
+        "380": {
+          "lat": -11.57,
+          "lon": -72.28
+        },
+        "410": {
+          "lat": -20.13,
+          "lon": -84.03
+        },
+        "450": {
+          "lat": -20.13,
+          "lon": -84.03
+        },
+        "500": {
+          "lat": -20.13,
+          "lon": -84.03
+        }
+      }
+    },
+    {
+      "id": "691b53e78fc8b4d81937ada6",
+      "name": "Lokiceratops looking curious",
+      "slug": "lokiceratops-looking-curious",
+      "description": "Lokiceratops looking curious who's behind the bushes",
+      "creditsLine": "Created by Ttorroo.",
+      "creatorLink": "https://www.instagram.com/ttorroo/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead049e8f6fb4d0f249_691b53c4818838b7ddbd31e5_IMG_6380_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead049e8f6fb4d0f24d_691b53bf500d8e2e9983b569_IMG_6380_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead049e8f6fb4d0f249_691b53c4818838b7ddbd31e5_IMG_6380_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/lokiceratops-looking-curious",
+      "modernLat": 46.89,
+      "modernLon": -108.95,
+      "estimatedAge": 66,
+      "location": "Hell Creek Formation, Montana",
+      "confidence": "high",
+      "periods": {
+        "0": {
+          "lat": 46.89,
+          "lon": -108.95
+        },
+        "2": {
+          "lat": 47.28,
+          "lon": -107.34
+        },
+        "15": {
+          "lat": 48.02,
+          "lon": -98.26
+        },
+        "50": {
+          "lat": 50.89,
+          "lon": -78.3
+        },
+        "100": {
+          "lat": 51.73,
+          "lon": -58.3
+        },
+        "160": {
+          "lat": 37.02,
+          "lon": -34.91
+        },
+        "220": {
+          "lat": 18.97,
+          "lon": -35.62
+        },
+        "280": {
+          "lat": 19.59,
+          "lon": -27.38
+        },
+        "320": {
+          "lat": 10.83,
+          "lon": -29.24
+        },
+        "380": {
+          "lat": -11.51,
+          "lon": -74.69
+        },
+        "410": {
+          "lat": -20.39,
+          "lon": -86.54
+        },
+        "450": {
+          "lat": -20.39,
+          "lon": -86.54
+        },
+        "500": {
+          "lat": -20.39,
+          "lon": -86.54
+        }
+      }
+    },
+    {
+      "id": "691b536abd718b139dff88da",
+      "name": "Hunger or being stabbed by their horns",
+      "slug": "hunger-or-being-stabbed-by-their-horns",
+      "description": "Two triceratops is on alert knowing a t rex hiding behind the tree.",
+      "creditsLine": "Created by Ttorroo.",
+      "creatorLink": "https://www.instagram.com/ttorroo/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead0a48e32c27ae1111_691b4f0cf9864600ba384a7a_IMG_6435_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead0a48e32c27ae1115_691b4f15f57bc5c350091feb_IMG_6435_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead0a48e32c27ae1111_691b4f0cf9864600ba384a7a_IMG_6435_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/hunger-or-being-stabbed-by-their-horns",
+      "modernLat": 45.35,
+      "modernLon": -102.13,
+      "estimatedAge": 66,
+      "location": "Hell Creek Formation, Montana",
+      "confidence": "high",
+      "periods": {
+        "0": {
+          "lat": 45.35,
+          "lon": -102.13
+        },
+        "2": {
+          "lat": 45.62,
+          "lon": -100.54
+        },
+        "15": {
+          "lat": 45.76,
+          "lon": -91.78
+        },
+        "50": {
+          "lat": 47.82,
+          "lon": -72.29
+        },
+        "100": {
+          "lat": 48.86,
+          "lon": -51.94
+        },
+        "160": {
+          "lat": 33.99,
+          "lon": -30.07
+        },
+        "220": {
+          "lat": 16.59,
+          "lon": -31.03
+        },
+        "280": {
+          "lat": 15.6,
+          "lon": -24.28
+        },
+        "320": {
+          "lat": 6.44,
+          "lon": -26.89
+        },
+        "380": {
+          "lat": -16.28,
+          "lon": -73.25
+        },
+        "410": {
+          "lat": -24.93,
+          "lon": -84.34
+        },
+        "450": {
+          "lat": -24.93,
+          "lon": -84.34
+        },
+        "500": {
+          "lat": -24.93,
+          "lon": -84.34
+        }
+      }
+    },
+    {
+      "id": "691b5293d262dc29992a57bc",
+      "name": "Sometimes, you become the prey",
+      "slug": "sometimes-you-become-the-prey",
+      "description": "A dead tyrannosaurus becoming a meal for 2 giant mosasaurus",
+      "creditsLine": "Created by Ttorroo.",
+      "creatorLink": "https://www.instagram.com/ttorroo/",
+      "type": "images",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2298b797811d3d7a9_691b526763489e6decb826ed_IMG_6434_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2298b797811d3d7a4_691b526183f4b633a9f495b5_IMG_6434_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2298b797811d3d7a9_691b526763489e6decb826ed_IMG_6434_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/sometimes-you-become-the-prey",
+      "modernLat": 51.85,
+      "modernLon": -106.66,
+      "estimatedAge": 66,
+      "location": "Hell Creek Formation, Montana",
+      "confidence": "high",
+      "periods": {
+        "0": {
+          "lat": 51.85,
+          "lon": -106.66
+        },
+        "2": {
+          "lat": 52.2,
+          "lon": -104.83
+        },
+        "15": {
+          "lat": 52.66,
+          "lon": -94.66
+        },
+        "50": {
+          "lat": 54.96,
+          "lon": -72.98
+        },
+        "100": {
+          "lat": 55.97,
+          "lon": -53.25
+        },
+        "160": {
+          "lat": 41.11,
+          "lon": -30.83
+        },
+        "220": {
+          "lat": 23.51,
+          "lon": -32.96
+        },
+        "280": {
+          "lat": 22.63,
+          "lon": -22.88
+        },
+        "320": {
+          "lat": 13.2,
+          "lon": -24.54
+        },
+        "380": {
+          "lat": -10.05,
+          "lon": -69.63
+        },
+        "410": {
+          "lat": -18.26,
+          "lon": -81.54
+        },
+        "450": {
+          "lat": -18.26,
+          "lon": -81.54
+        },
+        "500": {
+          "lat": -18.26,
+          "lon": -81.54
+        }
+      }
+    },
+    {
+      "id": "6845b2261013a7b5a9f92d4f",
+      "name": "Edmontosaurus mating ritual",
+      "slug": "experience-edmontosaurus-mating-ritual",
+      "description": "Meet Edmontosaurus during a mating ritual.",
+      "creditsLine": "A Prehistoric Domain original immersive experience.",
+      "category": "3d",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": "https://tour.prehistoricdomain.com/live/scenes/edmon/",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eabab1d2df98415b7f1_6845b2f6fa10c2acc2a37039_Edmon.jpeg",
+      "galleryImage": null,
+      "freeTags": "North America, Late Cretaceous, Edmontosaurus",
+      "modernLat": 50.5,
+      "modernLon": -110,
+      "location": "Dinosaur Park Formation, Alberta",
+      "confidence": "high",
+      "estimatedAge": 66,
+      "periods": {
+        "100": {
+          "lat": 55.3785,
+          "lon": -57.5452
+        }
+      }
+    },
+    {
+      "id": "6837496099c597a03b19e97c",
+      "name": "Cambrian, Cradle of the Phanerozoic",
+      "slug": "cambrian-cradle-of-the-phanerozoic",
+      "description": "A trip through the Middle Cambrian, just over half a billion years ago. Featuring a variety of Trilobites, Radiodonts, Conodonts, Stylophoran Echinoderms, Pikaia, Lobopodians, Vetulicola, early Molluscs, and various other early animals.",
+      "creditsLine": "Created by CenospireAnimation.",
+      "creatorLink": "https://www.youtube.com/@cenospire/videos",
+      "category": "videos",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cambrian",
+      "youtubeId": "8bF5I8sKS80",
+      "youtubeUrl": "https://www.youtube.com/watch?v=8bF5I8sKS80",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/8bF5I8sKS80/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/cambrian-cradle-of-the-phanerozoic",
+      "freeTags": "Cambrian, Trilobites, Radiodonts, Conodonts, Stylophoran Echinoderms, Pikaia, Lobopodians, Vetulicola",
+      "modernLat": 11.68,
+      "modernLon": -163.86,
+      "location": "global oceans",
+      "confidence": "medium",
+      "estimatedAge": 500,
+      "periods": {
+        "500": {
+          "lat": -30,
+          "lon": 120
+        }
+      }
+    },
+    {
+      "id": "6845b730fb9f90434aa19b4d",
+      "name": "The Meg",
+      "slug": "experience-the-meg",
+      "description": "Meet the megalodon...",
+      "creditsLine": "A Prehistoric Domain original immersive experience.",
+      "category": "3d",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "neogene",
+      "contentLink": "https://tour.prehistoricdomain.com/live/scenes/lagoon/",
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb549c52c7a3ecbd618_6845b786e04c328c642f125a_meg.jpeg",
+      "galleryImage": null,
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb549c52c7a3ecbd618_6845b786e04c328c642f125a_meg.jpeg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/experience-the-meg",
+      "freeTags": "Miocene, Megalodon",
+      "modernLat": -51.18,
+      "modernLon": -114.73,
+      "location": "global oceans",
+      "confidence": "medium",
+      "estimatedAge": 15,
+      "periods": {
+        "15": {
+          "lat": -15,
+          "lon": -140
+        }
+      }
+    },
+    {
+      "id": "6835dca82824eb694199f7f6",
+      "name": "Livyatan & Megalodon",
+      "slug": "livyatan-megalodon",
+      "description": "\"Livyatan & Megalodon\" animation.",
+      "creditsLine": "Created by Julian Johnson-Mortimer & Robert Fabiani.",
+      "creatorLink": "https://www.youtube.com/@johnsonmortimer",
+      "category": "videos",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "neogene",
+      "youtubeId": "MEIiCc4_vjo",
+      "youtubeUrl": "https://www.youtube.com/watch?v=MEIiCc4_vjo",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/MEIiCc4_vjo/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/livyatan-megalodon",
+      "freeTags": "Miocene, Livyatan, Megalodon",
+      "modernLat": 33.24,
+      "modernLon": -116.48,
+      "location": "global oceans",
+      "confidence": "medium",
+      "estimatedAge": 15,
+      "periods": {
+        "15": {
+          "lat": 5,
+          "lon": -35
+        }
+      }
+    },
+    {
+      "id": "6835efaa60df927f54354599",
+      "name": "Megalodon The Revenge",
+      "slug": "megalodon-the-revenge",
+      "description": "\"Megalodon The Revenge\" animation.",
+      "creditsLine": "Created by Julian Johnson-Mortimer & Robert Fabiani.",
+      "creatorLink": "https://www.youtube.com/@johnsonmortimer",
+      "category": "videos",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "neogene",
+      "youtubeId": "iFEb36lMYjo",
+      "youtubeUrl": "https://www.youtube.com/watch?v=iFEb36lMYjo",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/iFEb36lMYjo/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/megalodon-the-revenge",
+      "freeTags": "Miocene, Megalodon",
+      "modernLat": 80.29,
+      "modernLon": 137.36,
+      "location": "global oceans",
+      "confidence": "medium",
+      "estimatedAge": 15,
+      "periods": {
+        "15": {
+          "lat": -25,
+          "lon": 75
+        }
+      }
+    },
+    {
+      "id": "6835ef13d418f6dfa6a09db4",
+      "name": "Livyatan Vs Megalodon Part 2.. Livyatan's Revenge",
+      "slug": "livyatan-vs-megalodon-part-2-livyatans-revenge",
+      "description": "\"Livyatan the Revenge\" animation.",
+      "creditsLine": "Created by Julian Johnson-Mortimer & Robert Fabiani.",
+      "creatorLink": "https://www.youtube.com/@johnsonmortimer",
+      "category": "videos",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "neogene",
+      "youtubeId": "BZnVzS7RDOY",
+      "youtubeUrl": "https://www.youtube.com/watch?v=BZnVzS7RDOY",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/BZnVzS7RDOY/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/livyatan-vs-megalodon-part-2-livyatans-revenge",
+      "freeTags": "Miocene, Livyatan, Megalodon",
+      "modernLat": -15.72,
+      "modernLon": -54.65,
+      "location": "global oceans",
+      "confidence": "medium",
+      "estimatedAge": 15,
+      "periods": {
+        "15": {
+          "lat": -18.10497044605945,
+          "lon": -138.1465687980596
+        }
+      }
+    },
+    {
+      "id": "6845b5468225cafe7ea32b39",
+      "name": "Cretaceous Oceans",
+      "slug": "experience-cretaceous-oceans",
+      "description": "Meet species of Cretaceous Oceans.",
+      "creditsLine": "A Prehistoric Domain original immersive experience.",
+      "category": "3d",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": "https://tour.prehistoricdomain.com/live/scenes/cretaceous-lagoon/",
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea9ab1d2df98415b7aa_6845b5ff153a9f31378a4226_Ichthyosaurus.jpeg",
+      "galleryImage": null,
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea9ab1d2df98415b7aa_6845b5ff153a9f31378a4226_Ichthyosaurus.jpeg",
+      "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/cretaceous-lagoon/",
+      "freeTags": "Early Cretaceous, Ichthyosaurus, Mosasaurus, Plesiosaurus",
+      "modernLat": -26.02,
+      "modernLon": 89.15,
+      "location": "global oceans",
+      "confidence": "medium",
+      "estimatedAge": 125,
+      "periods": {
+        "100": {
+          "lat": 0,
+          "lon": -120
+        }
+      }
+    },
+    {
+      "id": "68e6a35b79005e6c607930fb",
+      "name": "Tyrannosaurus rex | Bone Bed",
+      "slug": "tyrannosaurus-rex-bone-bed",
+      "description": "\"The courtship behavior of modern birds are extremely diverse and unique. One bird in particular called the Bowerbird would build structures out of branches and decorate them with colorful objects to attract mates. This extraordinary behavior is what inspired me to make this 3D animation, with the male T.rex gathering skulls and bones of prey animals and lay them out in a mass display, making essentially a Bone Bed, to try and impress it's partner that it is a capable hunter. While also performing a \"dance\" that highlights it's strength and battle scars, hoping to be accepted and carry on the bloodline of one of the greatest predator in Earth's history.\"",
+      "creditsLine": "Created by Bill Nguyen.",
+      "creatorLink": "https://www.youtube.com/@billnguyen4148",
+      "category": "videos",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "youtubeId": "Ife9NB8oYZY",
+      "youtubeUrl": "https://www.youtube.com/watch?v=Ife9NB8oYZY",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/Ife9NB8oYZY/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/tyrannosaurus-rex-bone-bed",
+      "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops",
+      "modernLat": 47.5,
+      "modernLon": -104,
+      "location": "Hell Creek Formation, Montana",
+      "confidence": "high",
+      "estimatedAge": 66,
+      "periods": {
+        "100": {
+          "lat": 48.481073909872045,
+          "lon": -53.0218700428324
+        }
+      }
+    }
+  ]
+}

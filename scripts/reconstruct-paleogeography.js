@@ -101,9 +101,17 @@ async function reconstructClosestPeriod(
 // ============================================
 
 async function main() {
+  // Parse --limit=N
+  const args = process.argv.slice(2);
+  const limitArg = args.find((arg) => arg.startsWith("--limit="));
+  const limit = limitArg ? parseInt(limitArg.split("=")[1], 10) : null;
+
   console.log("\n🌍 PREHISTORIC DOMAIN - Reconstruction Paléogéographique\n");
   if (SAMPLE_MODE) {
-    console.log("📝 MODE SAMPLE (2 items) - test e2e\n");
+    console.log("📋 MODE SAMPLE (2 items) - test e2e\n");
+  }
+  if (limit && !SAMPLE_MODE) {
+    console.log(`⚙️  Mode test: limite à ${limit} items\n`);
   }
   console.log("📋 Chargement des coordonnées modernes (Webflow)...\n");
 
@@ -111,6 +119,7 @@ async function main() {
     const geocodingData = await fetchGeocodedItems({
       writeFile: false,
       log: true,
+      limit: !SAMPLE_MODE ? limit : null,
     });
 
     let eligibleItems = geocodingData.filter(

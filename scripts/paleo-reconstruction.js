@@ -344,10 +344,45 @@ async function reconstructItemForPeriod(item, options = {}) {
 
   const coords = await reconstructPoint(latitude, longitude, age);
 
+  // Vérifier les collisions avec les items existants
+  const COLLISION_THRESHOLD = 3.0; // 3° de distance minimale
+  let finalLat = coords.lat;
+  let finalLon = coords.lon;
+
+  for (const existingItem of existingItems) {
+    if (existingItem.id === item.id) continue; // Ignorer l'item lui-même
+
+    const periodData = existingItem.periods?.[String(age)];
+    if (!periodData) continue;
+
+    const distance = Math.sqrt(
+      Math.pow(periodData.lat - finalLat, 2) +
+        Math.pow(periodData.lon - finalLon, 2),
+    );
+
+    if (distance < COLLISION_THRESHOLD) {
+      // Collision détectée ! Appliquer un offset aléatoire plus grand
+      const offsetLat = (Math.random() - 0.5) * 6; // -3° à +3°
+      const offsetLon = (Math.random() - 0.5) * 6; // -3° à +3°
+      finalLat = coords.lat + offsetLat;
+      finalLon = coords.lon + offsetLon;
+
+      if (verbose) {
+        console.log(
+          `   ⚠️  Collision détectée avec "${existingItem.slug}" - dispersion appliquée`,
+        );
+        console.log(
+          `   📍 Nouvelle position: ${finalLat.toFixed(2)}°, ${finalLon.toFixed(2)}°`,
+        );
+      }
+      break; // Une seule dispersion suffit
+    }
+  }
+
   return {
     age,
-    lat: coords.lat,
-    lon: coords.lon,
+    lat: finalLat,
+    lon: finalLon,
   };
 }
 

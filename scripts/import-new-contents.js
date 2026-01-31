@@ -294,16 +294,17 @@ async function updateDisplayOnApp(token, itemIds) {
   console.log("✅ display-on-app activé\n");
 }
 
-function runPipeline(incremental = false) {
+function runPipeline(incremental = false, limit = null) {
   console.log("\n🚀 LANCEMENT DU PIPELINE AUTOMATIQUE\n");
   console.log("─".repeat(80));
 
   try {
     // Étape 1: Géocodage
     console.log("\n▶️  Géocodage automatique...\n");
-    execSync(`node ${path.join(__dirname, "auto-geocode-contents.js")}`, {
-      stdio: "inherit",
-    });
+    const geocodeCmd = limit
+      ? `node ${path.join(__dirname, "auto-geocode-contents.js")} --limit=${limit}`
+      : `node ${path.join(__dirname, "auto-geocode-contents.js")}`;
+    execSync(geocodeCmd, { stdio: "inherit" });
     console.log("\n✅ Géocodage terminé\n");
 
     // Étape 2: Reconstruction (incrémentale ou complète)
@@ -311,18 +312,18 @@ function runPipeline(incremental = false) {
       console.log(
         "\n▶️  Reconstruction paléogéographique INCRÉMENTALE (nouveaux/modifiés seulement)...\n",
       );
-      execSync(
-        `node ${path.join(__dirname, "reconstruct-paleogeography-incremental.js")} --incremental`,
-        { stdio: "inherit" },
-      );
+      const reconstructCmd = limit
+        ? `node ${path.join(__dirname, "reconstruct-paleogeography-incremental.js")} --incremental --limit=${limit}`
+        : `node ${path.join(__dirname, "reconstruct-paleogeography-incremental.js")} --incremental`;
+      execSync(reconstructCmd, { stdio: "inherit" });
     } else {
       console.log(
         "\n▶️  Reconstruction paléogéographique COMPLÈTE (tous les items)...\n",
       );
-      execSync(
-        `node ${path.join(__dirname, "reconstruct-paleogeography.js")}`,
-        { stdio: "inherit" },
-      );
+      const reconstructCmd = limit
+        ? `node ${path.join(__dirname, "reconstruct-paleogeography.js")} --limit=${limit}`
+        : `node ${path.join(__dirname, "reconstruct-paleogeography.js")}`;
+      execSync(reconstructCmd, { stdio: "inherit" });
     }
     console.log("\n✅ Reconstruction terminée\n");
 
@@ -342,7 +343,14 @@ async function main() {
   const options = {
     all: args.includes("--all"),
     dryRun: args.includes("--dry-run"),
+    limit: null,
   };
+
+  // Parse --limit=N
+  const limitArg = args.find((arg) => arg.startsWith("--limit="));
+  if (limitArg) {
+    options.limit = parseInt(limitArg.split("=")[1], 10);
+  }
 
   const token = readToken();
 
@@ -357,6 +365,10 @@ async function main() {
     console.log(
       "⚠️  Mode --all: réimportation complète de tous les contenus\n",
     );
+  }
+
+  if (options.limit) {
+    console.log(`⚙️  Mode test: limite à ${options.limit} items\n`);
   }
 
   if (options.dryRun) {
@@ -389,6 +401,15 @@ async function main() {
         ).length,
       }
     : findNewItems(allItems);
+
+  // Appliquer la limite si spécifiée
+  if (options.limit && result.newItems.length > options.limit) {
+    console.log(
+      `⚠️  Limitation à ${options.limit} items sur ${result.newItems.length} trouvés\n`,
+    );
+    result.newItems = result.newItems.slice(0, options.limit);
+    result.total = options.limit;
+  }
 
   // 3. Afficher résumé
   displaySummary(result);
@@ -451,7 +472,7 @@ async function main() {
       `   Mode: ${useIncremental ? "INCRÉMENTAL ⚡" : "COMPLET 🔄"}\n`,
     );
 
-    runPipeline(useIncremental);
+    runPipeline(useIncremental, options.limit);
   }
 
   // 7. Nettoyer APRÈS si besoin (items supprimés ou désactivés)
