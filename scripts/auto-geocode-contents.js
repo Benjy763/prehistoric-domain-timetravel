@@ -60,10 +60,46 @@ const NORMAL_OFFSET = 1.5; // Offset normal
 const MAX_ATTEMPTS = 100; // Tentatives maximales anti-collision
 
 // ============================================
-// BASE DE DONNÉES DES FORMATIONS CÉLÈBRES
+// CHARGEMENT DES FORMATIONS CÉLÈBRES
 // ============================================
 
-const FAMOUS_FORMATIONS = {
+function loadFamousFormations() {
+  const formationsPath = path.join(
+    __dirname,
+    "../assets/data/famous-formations.json",
+  );
+
+  if (!fs.existsSync(formationsPath)) {
+    console.warn("⚠️  Fichier famous-formations.json introuvable");
+    return {};
+  }
+
+  const data = JSON.parse(fs.readFileSync(formationsPath, "utf8"));
+  const formations = {};
+
+  // Convertir structure JSON en format utilisable
+  for (const [continent, formationsList] of Object.entries(data.formations)) {
+    for (const formation of formationsList) {
+      for (const species of formation.species) {
+        formations[species] = {
+          lat: formation.lat,
+          lon: formation.lon,
+          name: formation.name,
+        };
+      }
+    }
+  }
+
+  return formations;
+}
+
+const FAMOUS_FORMATIONS = loadFamousFormations();
+
+// ============================================
+// LEGACY: Formations en dur (fallback)
+// ============================================
+
+const LEGACY_FORMATIONS = {
   // NORTH AMERICA
   "t-rex": { lat: 47.5, lon: -105.5, name: "Hell Creek Formation, Montana" },
   tyrannosaurus: {
@@ -95,6 +131,12 @@ const FAMOUS_FORMATIONS = {
     name: "Cedar Mountain Formation, Utah",
   },
   coelophysis: { lat: 35.0, lon: -106.0, name: "Chinle Formation, New Mexico" },
+  pteranodon: { lat: 38.5, lon: -100.5, name: "Niobrara Formation, Kansas" },
+  quetzalcoatlus: {
+    lat: 29.5,
+    lon: -103.5,
+    name: "Javelina Formation, Texas",
+  },
 
   // ASIA
   velociraptor: { lat: 43.5, lon: 104.0, name: "Nemegt Formation, Mongolia" },
@@ -265,6 +307,65 @@ function randomOffset(min, max) {
 }
 
 /**
+ * Génère une position aléatoire dans les limites d'un continent
+ */
+function getRandomPositionInContinent(continent) {
+  const bounds = {
+    "north america": {
+      minLat: 15,
+      maxLat: 72,
+      minLon: -170,
+      maxLon: -50,
+    },
+    asia: { minLat: -10, maxLat: 77, minLon: 26, maxLon: 170 },
+    "south america": {
+      minLat: -56,
+      maxLat: 13,
+      minLon: -82,
+      maxLon: -34,
+    },
+    europe: {
+      minLat: 36,
+      maxLat: 71,
+      minLon: -10,
+      maxLon: 40,
+    },
+    africa: {
+      minLat: -35,
+      maxLat: 37,
+      minLon: -18,
+      maxLon: 52,
+    },
+    australia: {
+      minLat: -44,
+      maxLat: -10,
+      minLon: 113,
+      maxLon: 154,
+    },
+    india: {
+      minLat: 8,
+      maxLat: 35,
+      minLon: 68,
+      maxLon: 97,
+    },
+    "global oceans": {
+      minLat: -89,
+      maxLat: 89,
+      minLon: -180,
+      maxLon: 180,
+    },
+  };
+
+  const bound = bounds[continent];
+  if (!bound) return null;
+
+  const lat = bound.minLat + Math.random() * (bound.maxLat - bound.minLat);
+  const lon = bound.minLon + Math.random() * (bound.maxLon - bound.minLon);
+
+  return { lat, lon };
+}
+
+/**
  * Recherche en spirale pour trouver une position sans collision
  */
 function findNonCollidingPosition(baseLat, baseLon) {
@@ -374,17 +475,36 @@ function parseFreeTags(freeTags) {
  * Trouve les coordonnées pour un item
  */
 function findCoordinates(freeTags, itemId) {
-  const { continent, species, period, age } = parseFreeTags(freeTags);
+  let { continent, species, period, age } = parseFreeTags(freeTags);
 
+  // Si aucun continent détecté, c'est un item océanique global
   if (!continent) {
-    console.warn(`⚠️  [${itemId}] Continent non détecté dans: "${freeTags}"`);
-    return null;
+    console.warn(
+      `⚠️  [${itemId}] Continent non détecté, placement océanique global`,
+    );
+    continent = "global oceans";
   }
 
   // Étape 1 : Chercher une formation célèbre
   for (const speciesName of species) {
-    if (FAMOUS_FORMATIONS[speciesName]) {
-      const formation = FAMOUS_FORMATIONS[speciesName];
+    // Normaliser le nom : enlever espaces, tirets, points
+    const normalized = speciesName.replace(/[\s\-\.]/g, "").toLowerCase();
+
+    // Chercher dans FAMOUS_FORMATIONS avec correspondance flexible
+    let foundKey = null;
+    for (const key of Object.keys(FAMOUS_FORMATIONS)) {
+      const keyNormalized = key.replace(/[\s\-\.]/g, "").toLowerCase();
+      if (
+        normalized.includes(keyNormalized) ||
+        keyNormalized.includes(normalized)
+      ) {
+        foundKey = key;
+        break;
+      }
+    }
+
+    if (foundKey) {
+      const formation = FAMOUS_FORMATIONS[foundKey];
       const position = findNonCollidingPosition(formation.lat, formation.lon);
 
       return {
@@ -400,7 +520,25 @@ function findCoordinates(freeTags, itemId) {
     }
   }
 
-  // Étape 2 : Utiliser zone continentale avec rotation
+  // Étape 2 : Essayer placement aléatoire sur le continent (50 tentatives)
+  for (let attempt = 0; attempt < 50; attempt++) {
+    const randomPos = getRandomPositionInContinent(continent);
+    if (randomPos && !hasCollision(randomPos.lat, randomPos.lon)) {
+      const position = findNonCollidingPosition(randomPos.lat, randomPos.lon);
+      return {
+        lat: Math.round(position.lat * 100) / 100,
+        lon: Math.round(position.lon * 100) / 100,
+        location: `${continent}`,
+        confidence: "medium",
+        source: "random_continent",
+        period: period,
+        age: age,
+        collisionAttempts: position.attempts,
+      };
+    }
+  }
+
+  // Étape 3 : Fallback - Utiliser zone continentale prédéfinie avec rotation
   const zones = CONTINENT_ZONES[continent];
   if (!zones) {
     console.warn(`⚠️  [${itemId}] Zones non définies pour: ${continent}`);
@@ -420,13 +558,16 @@ function findCoordinates(freeTags, itemId) {
     lon: Math.round(position.lon * 100) / 100,
     location: `${zone.name}, ${continent}`,
     confidence: "medium",
-    source: "continent_zone",
+    source: "continent_zone_fallback",
     period: period,
     age: age,
     collisionAttempts: position.attempts,
   };
 }
 
+/**
+ * Réinitialise l'état du géocodage
+ */
 function resetGeocodeState() {
   placedPoints.length = 0;
   Object.keys(rotationIndexes).forEach((key) => {
@@ -434,20 +575,17 @@ function resetGeocodeState() {
   });
 }
 
+/**
+ * Récupère tous les items de la collection
+ */
 async function fetchAllItems({ log = true } = {}) {
-  if (!WEBFLOW_TOKEN) {
-    throw new Error(
-      "WEBFLOW_TOKEN manquant. Définis la variable d'environnement.",
-    );
-  }
-
-  if (log) {
-    console.log("📋 Récupération des items CMS...\n");
-  }
-
   let allItems = [];
   let offset = 0;
   let hasMore = true;
+
+  if (log) {
+    console.log("📥 Récupération des items depuis le CMS...");
+  }
 
   while (hasMore) {
     const response = await fetch(

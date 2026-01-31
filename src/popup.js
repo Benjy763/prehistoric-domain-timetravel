@@ -10,12 +10,12 @@ class PopupManager {
     this.closeBtn = document.getElementById("popupClose");
     this.elements = {
       image: document.getElementById("popupImage"),
-      videoIcon: document.getElementById("popupVideoIcon"),
+      imageLink: document.getElementById("popupImageLink"),
+      playIcon: document.getElementById("popupPlayIcon"),
+      video: document.getElementById("popupVideo"),
       title: document.getElementById("popupTitle"),
       description: document.getElementById("popupDescription"),
       artist: document.getElementById("popupArtist"),
-      period: document.getElementById("popupPeriod"),
-      type: document.getElementById("popupType"),
       link: document.getElementById("popupLink"),
     };
 
@@ -57,39 +57,46 @@ class PopupManager {
     // Artiste
     this.elements.artist.innerHTML = `<strong>Artiste:</strong> ${content.artist || "Inconnu"}`;
 
-    // Période
-    this.elements.period.innerHTML = `<strong>Période:</strong> ${content.period || "Non spécifié"}`;
-
-    // Type
-    const typeLabels = {
-      videos: "Vidéo",
-      images: "Image",
-      "3d": "Immersion 3D",
-      texts: "Texte",
-    };
-    this.elements.type.innerHTML = `<strong>Type:</strong> ${typeLabels[content.type] || content.type}`;
-
-    // Image preview
-    if (content.preview) {
-      this.elements.image.src = content.preview;
-      this.elements.image.alt = content.title;
-    }
-
-    // Icône vidéo pour les vidéos YouTube
+    // Afficher la vidéo YouTube embédée pour les vidéos
     if (content.type === "videos" && content.youtubeUrl) {
-      this.elements.videoIcon.classList.add("visible");
-      // Utiliser la miniature YouTube si disponible
       const videoId = this.extractYouTubeId(content.youtubeUrl);
-      if (videoId) {
-        this.elements.image.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+      if (videoId && this.elements.video) {
+        this.elements.video.src = `https://www.youtube.com/embed/${videoId}`;
+        this.elements.video.style.display = "block";
+        if (this.elements.imageLink) {
+          this.elements.imageLink.style.display = "none";
+        }
       }
     } else {
-      this.elements.videoIcon.classList.remove("visible");
+      // Pour les images et contenus 3D, afficher l'image
+      if (this.elements.video) {
+        this.elements.video.style.display = "none";
+      }
+      if (this.elements.imageLink) {
+        this.elements.imageLink.style.display = "block";
+      }
+      
+      if (content.preview && this.elements.image) {
+        this.elements.image.src = content.preview;
+        this.elements.image.alt = content.title;
+      }
+
+      // Afficher l'icône play pour le contenu 3D
+      if (this.elements.playIcon) {
+        if (content.type === "3d") {
+          this.elements.playIcon.style.display = "block";
+        } else {
+          this.elements.playIcon.style.display = "none";
+        }
+      }
     }
 
-    // Lien vers la page
+    // Lien vers la page (même onglet)
     if (content.pageUrl) {
       this.elements.link.href = content.pageUrl;
+      if (this.elements.imageLink) {
+        this.elements.imageLink.href = content.pageUrl;
+      }
     }
 
     // Afficher la popup
@@ -100,6 +107,10 @@ class PopupManager {
   hide() {
     this.popup.classList.remove("active");
     this.backdrop.classList.remove("active");
+    // Arrêter la vidéo YouTube
+    if (this.elements.video) {
+      this.elements.video.src = "";
+    }
   }
 
   extractYouTubeId(url) {

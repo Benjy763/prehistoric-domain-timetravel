@@ -1,0 +1,227 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-01-31",
+    "description": "Base de données des formations géologiques célèbres et leurs fossiles associés",
+    "sources": ["Paleobiology Database", "Wikipedia", "Scientific literature"]
+  },
+  "formations": {
+    "northAmerica": [
+      {
+        "species": ["tyrannosaurus", "t-rex", "triceratops"],
+        "lat": 47.5,
+        "lon": -105.5,
+        "name": "Hell Creek Formation, Montana",
+        "age": 66,
+        "period": "Late Cretaceous",
+        "description": "Formation célèbre pour ses dinosaures du Crétacé tardif",
+        "source": "https://en.wikipedia.org/wiki/Hell_Creek_Formation"
+      },
+      {
+        "species": ["diplodocus", "stegosaurus", "allosaurus", "brachiosaurus"],
+        "lat": 43.0,
+        "lon": -107.5,
+        "name": "Morrison Formation, Wyoming",
+        "age": 150,
+        "period": "Late Jurassic",
+        "description": "L'une des formations jurassiques les plus riches en fossiles",
+        "source": "https://en.wikipedia.org/wiki/Morrison_Formation"
+      },
+      {
+        "species": ["edmontosaurus", "albertosaurus", "pachyrhinosaurus"],
+        "lat": 50.5,
+        "lon": -111.5,
+        "name": "Dinosaur Park Formation, Alberta",
+        "age": 76,
+        "period": "Late Cretaceous",
+        "description": "Formation canadienne riche en cératopsiens et hadrosaures",
+        "source": "https://en.wikipedia.org/wiki/Dinosaur_Park_Formation"
+      },
+      {
+        "species": ["pteranodon"],
+        "lat": 38.5,
+        "lon": -100.5,
+        "name": "Niobrara Formation, Kansas",
+        "age": 87,
+        "period": "Late Cretaceous",
+        "description": "Mer intérieure occidentale, célèbre pour ses ptérosaures et reptiles marins",
+        "source": "https://en.wikipedia.org/wiki/Niobrara_Formation"
+      },
+      {
+        "species": ["quetzalcoatlus"],
+        "lat": 29.5,
+        "lon": -103.5,
+        "name": "Javelina Formation, Texas",
+        "age": 66,
+        "period": "Late Cretaceous",
+        "description": "Formation du Texas, habitat du plus grand ptérosaure connu",
+        "source": "https://en.wikipedia.org/wiki/Javelina_Formation"
+      },
+      {
+        "species": ["utahraptor"],
+        "lat": 39.0,
+        "lon": -109.0,
+        "name": "Cedar Mountain Formation, Utah",
+        "age": 125,
+        "period": "Early Cretaceous",
+        "description": "Formation riche en théropodes du Crétacé inférieur",
+        "source": "https://en.wikipedia.org/wiki/Cedar_Mountain_Formation"
+      },
+      {
+        "species": ["coelophysis"],
+        "lat": 35.0,
+        "lon": -106.0,
+        "name": "Chinle Formation, New Mexico",
+        "age": 225,
+        "period": "Late Triassic",
+        "description": "L'un des premiers dinosaures, trouvé en grand nombre",
+        "source": "https://en.wikipedia.org/wiki/Chinle_Formation"
+      }
+    ],
+    "asia": [
+      {
+        "species": ["velociraptor", "protoceratops", "tarbosaurus"],
+        "lat": 43.5,
+        "lon": 104.0,
+        "name": "Nemegt Formation, Mongolia",
+        "age": 70,
+        "period": "Late Cretaceous",
+        "description": "Désert de Gobi, site de découvertes majeures de dinosaures",
+        "source": "https://en.wikipedia.org/wiki/Nemegt_Formation"
+      },
+      {
+        "species": [
+          "yutyrannus",
+          "microraptor",
+          "sinornithosaurus",
+          "psittacosaurus"
+        ],
+        "lat": 41.5,
+        "lon": 121.0,
+        "name": "Yixian Formation, China",
+        "age": 125,
+        "period": "Early Cretaceous",
+        "description": "Formation chinoise célèbre pour ses dinosaures à plumes préservés",
+        "source": "https://en.wikipedia.org/wiki/Yixian_Formation"
+      },
+      {
+        "species": ["mamenchisaurus", "yangchuanosaurus"],
+        "lat": 30.0,
+        "lon": 104.5,
+        "name": "Shaximiao Formation, Sichuan",
+        "age": 160,
+        "period": "Middle Jurassic",
+        "description": "Formation chinoise du Jurassique moyen",
+        "source": "https://en.wikipedia.org/wiki/Shaximiao_Formation"
+      }
+    ],
+    "southAmerica": [
+      {
+        "species": ["giganotosaurus", "argentinosaurus"],
+        "lat": -43.0,
+        "lon": -67.0,
+        "name": "Cerro Barcino Formation, Patagonia",
+        "age": 97,
+        "period": "Late Cretaceous",
+        "description": "Patagonie argentine, géants du Crétacé",
+        "source": "https://en.wikipedia.org/wiki/Cerro_Barcino_Formation"
+      },
+      {
+        "species": ["carnotaurus"],
+        "lat": -43.0,
+        "lon": -65.5,
+        "name": "La Colonia Formation, Patagonia",
+        "age": 66,
+        "period": "Late Cretaceous",
+        "description": "Formation de la fin du Crétacé en Patagonie",
+        "source": "https://en.wikipedia.org/wiki/La_Colonia_Formation"
+      },
+      {
+        "species": ["herrerasaurus", "eoraptor"],
+        "lat": -33.0,
+        "lon": -69.0,
+        "name": "Ischigualasto Formation, Argentina",
+        "age": 231,
+        "period": "Late Triassic",
+        "description": "L'un des premiers dinosaures connus, Trias supérieur",
+        "source": "https://en.wikipedia.org/wiki/Ischigualasto_Formation"
+      }
+    ],
+    "europe": [
+      {
+        "species": ["iguanodon", "megalosaurus", "baryonyx"],
+        "lat": 50.5,
+        "lon": -2.5,
+        "name": "Purbeck Formation, England",
+        "age": 145,
+        "period": "Late Jurassic - Early Cretaceous",
+        "description": "Formation anglaise, site historique de découvertes",
+        "source": "https://en.wikipedia.org/wiki/Purbeck_Group"
+      },
+      {
+        "species": ["archaeopteryx", "compsognathus"],
+        "lat": 48.8,
+        "lon": 11.0,
+        "name": "Solnhofen Formation, Germany",
+        "age": 150,
+        "period": "Late Jurassic",
+        "description": "Calcaire de Solnhofen, fossiles exceptionnellement préservés",
+        "source": "https://en.wikipedia.org/wiki/Solnhofen_Limestone"
+      },
+      {
+        "species": ["torvosaurus", "allosaurus"],
+        "lat": 39.2,
+        "lon": -9.3,
+        "name": "Lourinhã Formation, Portugal",
+        "age": 150,
+        "period": "Late Jurassic",
+        "description": "Formation portugaise, équivalent européen de Morrison",
+        "source": "https://en.wikipedia.org/wiki/Lourinhã_Formation"
+      }
+    ],
+    "africa": [
+      {
+        "species": ["spinosaurus", "carcharodontosaurus", "bahariasaurus"],
+        "lat": 31.0,
+        "lon": -4.0,
+        "name": "Kem Kem Beds, Morocco",
+        "age": 95,
+        "period": "Late Cretaceous",
+        "description": "Maroc, prédateurs géants du Crétacé",
+        "source": "https://en.wikipedia.org/wiki/Kem_Kem_Beds"
+      },
+      {
+        "species": ["majungasaurus", "rapetosaurus"],
+        "lat": -18.0,
+        "lon": 46.5,
+        "name": "Maevarano Formation, Madagascar",
+        "age": 70,
+        "period": "Late Cretaceous",
+        "description": "Madagascar, faune endémique du Crétacé tardif",
+        "source": "https://en.wikipedia.org/wiki/Maevarano_Formation"
+      }
+    ],
+    "australia": [
+      {
+        "species": ["australovenator", "diamantinasaurus"],
+        "lat": -23.0,
+        "lon": 145.0,
+        "name": "Winton Formation, Queensland",
+        "age": 95,
+        "period": "Late Cretaceous",
+        "description": "Queensland, dinosaures australiens du Crétacé",
+        "source": "https://en.wikipedia.org/wiki/Winton_Formation"
+      },
+      {
+        "species": ["leaellynasaura", "timimus"],
+        "lat": -37.5,
+        "lon": 144.0,
+        "name": "Dinosaur Cove, Victoria",
+        "age": 106,
+        "period": "Early Cretaceous",
+        "description": "Victoria, dinosaures polaires du Crétacé inférieur",
+        "source": "https://en.wikipedia.org/wiki/Dinosaur_Cove"
+      }
+    ]
+  }
+}

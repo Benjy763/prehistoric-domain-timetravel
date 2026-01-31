@@ -1,542 +1,264 @@
-# 🌍 PREHISTORIC DOMAIN - Stratégie Technique Finale
+# 🔬 Stratégie Technique
 
-**Version :** 1.0
-**Date :** 30 janvier 2026
-**Auteur :** Prehistoric Domain Team
+**Modèles géologiques et optimisations de performance.**
 
 ---
 
-## 📋 TABLE DES MATIÈRES
+## 🌍 Modèles Paléog\u00e9ographiques
 
-1. [Vue d'ensemble](#vue-densemble)
-2. [Modèles géologiques](#modèles-géologiques)
-3. [Affichage des continents](#affichage-des-continents)
-4. [Repositionnement des points](#repositionnement-des-points)
-5. [Sources de données](#sources-de-données)
-6. [Architecture technique](#architecture-technique)
-7. [Workflow de mise à jour](#workflow-de-mise-à-jour)
+### Merdith et al. 2021 (PRINCIPAL)
 
----
+**Usage** :
 
-## 🌐 VUE D'ENSEMBLE
+- Affichage continents (layer "Our Continents")
+- Reconstruction points fossiles (API GPlates)
 
-### Objectif
+**Caractéristiques** :
 
-Afficher un globe 3D interactif montrant l'évolution de la Terre sur 500 millions d'années avec deux vues complémentaires :
+- Couverture : 0-1000 Ma (API limitée à 410 Ma)
+- 34 snapshots temporels
+- Modèle : `MERDITH2021`
+- Endpoint : `https://gws.gplates.org/reconstruct/reconstruct_points/`
 
-- **Our Continents** : Plaques tectoniques et masses continentales
-- **Real Land** : Terres émergées (paléogéographie)
-
-### Périodes supportées
-
-```
-Today (0 Ma) → Cambrian (500 Ma)
-13 périodes au total : 0, 2, 15, 50, 100, 160, 220, 280, 320, 380, 410, 450, 500 Ma
-```
-
----
-
-## 🧭 MODÈLES GÉOLOGIQUES
-
-### Modèle Principal : Merdith et al. 2021
-
-**Utilisé pour :**
-
-- Affichage des continents (layer "Our Continents")
-- Repositionnement des **nouveaux** points fossiles (à partir de janvier 2026)
-
-**Caractéristiques :**
-
-- Reconstruction globale des plaques tectoniques
-- Couverture : 0-1 000 Ma (API limitée à 410 Ma)
-- Précision : Haute résolution avec 34 snapshots temporels
-- Source : GPlates Web Service + fichiers locaux
-
-**Fichiers locaux disponibles :**
+**Fichiers locaux** :
 
 ```
 assets/merdith2021-coastlines/
-  2Ma.json, 6Ma.json, 14Ma.json, 22Ma.json, 33Ma.json, 45Ma.json,
-  53Ma.json, 76Ma.json, 90Ma.json, 100Ma.json, 105Ma.json, 126Ma.json,
-  140Ma.json, 152Ma.json, 160Ma.json, 169Ma.json, 195Ma.json, 218Ma.json,
-  220Ma.json, 232Ma.json, 255Ma.json, 277Ma.json, 280Ma.json, 287Ma.json,
-  302Ma.json, 320Ma.json, 328Ma.json, 348Ma.json, 368Ma.json, 380Ma.json,
-  396Ma.json, 410Ma.json, 450Ma.json, 500Ma.json
+  0Ma.json, 2Ma.json, 100Ma.json, 160Ma.json, ..., 500Ma.json
+  (34 fichiers GeoJSON)
 ```
 
-### Modèle Secondaire : Cao et al. 2017
+### Cao et al. 2017 (SECONDAIRE)
 
-**Utilisé pour :**
+**Usage** : Affichage terres émergées (layer "Real Land")
 
-- Affichage des terres émergées (layer "Real Land")
-
-**Caractéristiques :**
+**Caractéristiques** :
 
 - Paléogéographie détaillée (terres vs océans)
 - Couverture : 0-400 Ma
-- Précision : Reconstruction paléo-environnementale
-- Source : GeoTIFF convertis en GeoJSON
+- 23 snapshots
 
-### Modèle Legacy : Zahirovic et al. 2022
+**Fichiers** :
 
-**Utilisé pour :**
-
-- Points fossiles générés **avant** janvier 2026
-
-**Statut :**
-
-- Compatible avec Merdith 2021 (différence < 3° pour la plupart des points)
-- Ne pas régénérer les points existants (temps de calcul prohibitif)
-- Nouveaux points utilisent exclusivement Merdith 2021
-
----
-
-## 🗺️ AFFICHAGE DES CONTINENTS
-
-### Layer 1 : Our Continents (Merdith 2021)
-
-**Source de données :**
-
-```javascript
-// Fichiers locaux (préférés)
-assets/merdith2021-coastlines/{time}Ma.json
-
-// Fallback API (si fichier manquant)
-https://gws.gplates.org/reconstruct/coastlines/?time={time}&model=MERDITH2021
 ```
-
-**Algorithme de matching temporel :**
-
-```javascript
-// Si temps exact non disponible, utiliser le plus proche
-availableTimes = [2, 6, 14, 22, 33, 45, 53, 76, 90, 100, ...]
-requestedTime = 15  // Ma
-closestTime = findClosest(requestedTime, availableTimes)  // → 14 Ma
-
-console.log("Requested 15 Ma, using closest available: 14 Ma")
-```
-
-**Rendu :**
-
-- Couleur : Bleu clair (`#4A90E2`)
-- Opacité : 0.3
-- Style : Lignes continues (coastlines)
-
-### Layer 2 : Real Land (Cao 2017)
-
-**Source de données :**
-
-```javascript
-assets/cao-paleogeography/{time}Ma-land.json
-```
-
-**Extraction :**
-
-- Pixels jaunes (255,255,0) = Terres émergées
-- Pixels oranges (255,165,0) = Montagnes
-- Conversion GeoTIFF → GeoJSON via OpenCV
-
-**Rendu :**
-
-- Couleur : Vert forêt (`#2E7D32`)
-- Opacité : 0.5
-- Style : Polygones remplis
-
-**Auto-disable :**
-
-```javascript
-// Désactivé automatiquement pour :
--time === 0(Today) - time >= 450(Ordovician, Cambrian);
-
-// Raison : données Cao limitées à 2-400 Ma
+assets/cao-paleogeography/
+  6Ma-land.json, 14Ma-land.json, ..., 500Ma-land.json
 ```
 
 ---
 
-## 📍 REPOSITIONNEMENT DES POINTS
+## ⚡ Optimisations de Performance
 
-### Workflow Complet
+### 1. Reconstruction paléogéographique
 
-```
-┌─────────────────────────────────────────────────────────┐
-│ 1. COORDONNÉES MODERNES (GPS actuel)                    │
-│    Définies dans COORDINATES_RULES.md                   │
-│    Exemple : Montana, USA → 47.5°N, 105.5°W            │
-└─────────────────────────┬───────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────┐
-│ 2. HARMONISATION ANTI-COLLISION                         │
-│    Distance minimale : 2.5° (~275 km)                   │
-│    Algorithme en spirale si collision détectée          │
-└─────────────────────────┬───────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────┐
-│ 3. RECONSTRUCTION PALÉOGÉOGRAPHIQUE                     │
-│    API GPlates : Merdith 2021 (nouveaux points)        │
-│    Format : lon,lat,time → ancient_lon,ancient_lat     │
-└─────────────────────────┬───────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────┐
-│ 4. STOCKAGE STATIQUE                                    │
-│    Fichier : assets/data/content-data.json              │
-│    13 périodes × N points pré-calculés                  │
-└─────────────────────────────────────────────────────────┘
-```
+**Ancien système** : 13 périodes × N items = 2600 API calls
 
-### Script de génération
+**Système actuel** : 1 période par item (période géologique)
 
-**Fichier :** `scripts/reconstruct-paleogeography.js`
+**Exemple** :
+
+- Item T-Rex (`geological-period: "cretaceous"`, âge 66 Ma)
+- Reconstruit uniquement à **100 Ma** (période Crétacé du globe)
+- 1 API call au lieu de 13
+
+**Économie** : **92% d'appels API**
+
+### 2. Mode incrémental automatique
+
+**Détection changements** :
 
 ```javascript
-// Configuration actuelle (janvier 2026)
-const GPLATES_API = "https://gws.gplates.org/reconstruct/reconstruct_points/";
-const MODEL = "MERDITH2021"; // ← Nouveau modèle
-
-// Appel API
-const url = `${GPLATES_API}?points=${lon},${lat}&time=${time}&model=${MODEL}`;
-
-// Note : Limite API = 410 Ma maximum
-// Cambrian (500 Ma) et Ordovician (450 Ma) utilisent 410 Ma
-```
-
-**Exécution :**
-
-```bash
-cd scripts
-node reconstruct-paleogeography.js
-
-# Output : assets/data/content-data.json
-# Temps : ~5-10 minutes pour ~200 points
-```
-
----
-
-## 📦 SOURCES DE DONNÉES
-
-### Fichiers locaux (Production)
-
-```
-assets/
-├── merdith2021-coastlines/        # 34 fichiers GeoJSON
-│   ├── 2Ma.json                   # 2-500 Ma (snapshots Merdith)
-│   ├── 14Ma.json
-│   └── ...
-│
-├── cao-paleogeography/            # 23 fichiers GeoJSON
-│   ├── 6Ma-land.json              # 6-400 Ma (terres émergées)
-│   └── ...
-│
-└── data/
-    └── content-data.json  # Points + métadonnées CMS pré-calculés
-```
-
-### APIs externes (Fallback)
-
-```
-GPlates Web Service
-├── Coastlines : https://gws.gplates.org/reconstruct/coastlines/
-│   └── Params : ?time={Ma}&model={MERDITH2021|ZAHIROVIC2022}
-│
-└── Point reconstruction : https://gws.gplates.org/reconstruct/reconstruct_points/
-    └── Params : ?points={lon},{lat}&time={Ma}&model={model}
-```
-
-### Données brutes (Archives)
-
-```
-data/
-├── Cao_etal_2017_Biogeosciences/  # GeoTIFF source
-└── PresentDay_Palegeog_Matthews2016/  # Shapefiles (non utilisé)
-```
-
----
-
-## 🏗️ ARCHITECTURE TECHNIQUE
-
-### Chargement des données
-
-```javascript
-// src/globe.js - Méthode optimisée
-
-async loadContinentsOnly(time) {
-  // 1. Chercher fichier local
-  const availableTimes = [2, 6, 14, 22, 33, ...]
-  const closestTime = findClosest(time, availableTimes)
-
-  // 2. Tenter chargement local
-  const localPath = `assets/merdith2021-coastlines/${closestTime}Ma.json`
-  const geojson = await this.loadGeoJSON(localPath)
-
-  if (geojson) {
-    this.drawContinents(geojson)
-    return
-  }
-
-  // 3. Fallback API
-  const apiUrl = `https://gws.gplates.org/reconstruct/coastlines/?time=${time}&model=MERDITH2021`
-  const apiData = await fetch(apiUrl).then(r => r.json())
-  this.drawContinents(apiData)
+if (item.lastUpdated > metadata.generated) {
+  // Item modifié → reconstruire
+} else {
+  // Item intact → garder données existantes
 }
 ```
 
-### Cache Strategy
+**Seuil mode complet** : > 50% des items changés
+
+**Exemple** : 5 items modifiés sur 200
+
+- Mode incrémental : 5 API calls (~30 sec)
+- Mode complet évité : 200 API calls (~15 min)
+- **Économie** : 97.5%
+
+### 3. Format clés périodes
+
+**Optimisation** : String numérique au lieu d'objet
 
 ```javascript
-// Cache hiérarchique
-1. Fichiers locaux (toujours)
-2. Cache mémoire (session)
-3. API externe (fallback)
+// ✅ Actuel (performant)
+periods["100"] = { lat, lon };
 
-// Invalidation : jamais (données statiques)
+// ❌ Ancien (plus lourd)
+periods: [{ time: 100, lat, lon }];
 ```
 
-### Performance
-
-```
-Continents Merdith 2021 :
-- Taille moyenne : 120 KB/fichier
-- Temps chargement : < 100ms (local)
-- Polygones : ~200-500 features/période
-
-Terres Cao 2017 :
-- Taille moyenne : 80 KB/fichier
-- Temps chargement : < 50ms (local)
-- Polygones : ~50-150 features/période
-
-Points fossiles :
-- Fichier unique : ~180 KB
-- Chargement initial : < 200ms
-- Accès période : instantané (objet indexé)
-```
+**Avantage** : Accès O(1) direct par clé
 
 ---
 
-## 🔄 WORKFLOW DE MISE À JOUR
+## 🗺️ Système de Géocodage
 
-### Ajouter un nouveau point fossile
+### Hiérarchie de placement
 
-```bash
-# 1. Ajouter les coordonnées modernes dans CMS Webflow
-#    Ou éditer COORDINATES_RULES.md
+1. **Formations célèbres** (haute confiance)
+   - Base de données : `assets/data/famous-formations.json`
+   - Coordonnées précises de découverte
+   - Exemple : T-Rex → Hell Creek Formation (47.5°N, -105.5°W)
 
-# 2. Régénérer le fichier de géocodage
-cd scripts
-node auto-geocode-contents.js
+2. **Placement continental** (confiance moyenne)
+   - Algorithme : Aléatoire dans limites continent
+   - Anti-collision : Distance min 5° entre points
+   - 50 tentatives max
 
-# 3. Reconstruire les coordonnées historiques
-node reconstruct-paleogeography.js
+3. **Zones prédéfinies** (fallback)
+   - 5 zones par continent (rotation)
+   - Garantie distribution uniforme
 
-# 4. Vérifier le résultat
-cat ../assets/data/content-data.json | jq '.items[-1]'
+### Items océaniques
 
-# 5. Commit + deploy
-git add assets/data/content-data.json
-git commit -m "feat: add new fossil point"
-git push
-```
+**Détection** : `location === "global oceans"` (aucun continent dans free-tags)
 
-### Ajouter une nouvelle période temporelle
-
-```bash
-# 1. Télécharger coastlines Merdith 2021
-cd scripts
-python3 fetch-merdith2021.py
-
-# 2. Ajouter la période dans config.js
-# PERIODS.push({ time: 350, name: 'new-period' })
-
-# 3. Régénérer tous les points
-export WEBFLOW_TOKEN="your_token_here"
-node scripts/reconstruct-paleogeography.js
-
-# 4. Deploy
-```
-
-### Régénérer tout depuis zéro (rare)
-
-```bash
-# ⚠️  Temps : ~1 heure pour 200 points
-
-# 1. Nettoyer
-rm assets/data/content-data.json
-
-# 2. Reconstruction depuis Webflow (inclut géocodage + reconstruction)
-export WEBFLOW_TOKEN="your_token_here"
-node scripts/reconstruct-paleogeography.js
-
-# 3. Validation
-# Vérifier manuellement quelques points sur le globe
-```
-
----
-
-## 📊 STATISTIQUES ACTUELLES
-
-### Données générées
-
-```
-Points fossiles : ~200 items
-Périodes : 13
-Reconstructions : ~2600 coordonnées pré-calculées
-Fichiers coastlines : 34 (Merdith) + 23 (Cao)
-Taille totale : ~5.2 MB
-```
-
-### Modèles utilisés
-
-```
-Merdith 2021 :
-- Continents (layer Our Continents) : 100%
-- Nouveaux points (2026+) : 100%
-
-Cao 2017 :
-- Terres émergées (layer Real Land) : 100%
-
-Zahirovic 2022 :
-- Points legacy (pré-2026) : ~95%
-- Compatible avec Merdith : Oui (diff < 3°)
-```
-
----
-
-## 🔮 ÉVOLUTIONS FUTURES
-
-### Court terme
-
-- [ ] Ajouter snapshots Merdith à 180 Ma, 250 Ma (gaps actuels)
-- [ ] Optimiser taille GeoJSON (simplification polygones)
-- [ ] Ajouter indicateurs de confiance par période
-
-### Moyen terme
-
-- [ ] Migration complète vers Merdith 2021 (régénération tous points)
-- [ ] Ajout du modèle SETON2012 pour comparaison
-- [ ] Support périodes > 410 Ma (Cambrian early)
-
-### Long terme
-
-- [ ] API backend custom (cache + optimisations)
-- [ ] Support incertitudes de reconstruction
-- [ ] Visualisation 4D (animation temporelle fluide)
-
----
-
-## 🛠️ SCRIPTS UTILITAIRES
-
-### Scripts en production
-
-```bash
-scripts/
-├── reconstruct-paleogeography.js    # ✅ PRINCIPAL - Génère coordonnées historiques depuis Webflow
-├── fetch-merdith2021.py             # ✅ GARDER - Télécharge coastlines Merdith
-├── test-webflow-token.js            # ✅ GARDER - Validation token API
-└── auto-geocode-contents.js         # ⚙️  OPTIONNEL - Debug géocodage uniquement
-```
-
-**Usage principal :**
-
-```bash
-# 1. Reconstruire TOUTES les coordonnées historiques (récupère depuis Webflow)
-export WEBFLOW_TOKEN="your_token_here"
-node scripts/reconstruct-paleogeography.js
-# → Génère assets/data/content-data.json
-
-# 2. Télécharger nouvelles coastlines Merdith (si nouvelles périodes)
-python3 scripts/fetch-merdith2021.py
-
-# 3. Tester token Webflow avant utilisation
-node scripts/test-webflow-token.js
-```
-
-**Usage optionnel (debugging) :**
-
-```bash
-# Tester le géocodage des coordonnées modernes uniquement
-# (utile pour vérifier la logique anti-collision)
-node scripts/auto-geocode-contents.js
-# → Affiche les coordonnées modernes sans appeler l'API GPlates
-```
-
-**⚠️ Important :**
-
-- Le script `reconstruct-paleogeography.js` appelle **directement l'API Webflow**
-- Plus besoin de générer `geocoding-results.json` manuellement
-- Le fichier `geocoding-results.json` à la racine peut être **supprimé** (obsolète)
-
-### Scripts obsolètes (à supprimer)
-
-```bash
-# ❌ SUPPRIMER - Modèle non utilisé (MATTHEWS2016)
-scripts/fetch-continents-muller2022.py
-scripts/convert-matthews2016-to-geojson.py
-
-# ❌ SUPPRIMER - Conversion Cao déjà effectuée
-scripts/convert-cao-to-geojson.py
-
-# Raison :
-# - Fichiers GeoJSON déjà générés et stockés dans assets/
-# - Ne sert plus à rien de les régénérer
-# - Scripts de conversion Python inutiles en production
-```
-
----
-
-## 📚 RÉFÉRENCES
-
-### Publications scientifiques
-
-**Merdith et al. 2021**
-_Extending full-plate tectonic models into deep time: Linking the Neoproterozoic and the Phanerozoic_
-Earth-Science Reviews, Vol. 214, 103477
-https://doi.org/10.1016/j.earscirev.2020.103477
-
-**Cao et al. 2017**
-_Improving global paleogeography since the late Paleozoic using paleobiology_
-Biogeosciences, Vol. 14, 5425-5439
-https://doi.org/10.5194/bg-14-5425-2017
-
-**Zahirovic et al. 2022**
-_The Cretaceous and Cenozoic tectonic evolution of Southeast Asia_
-Solid Earth, Vol. 13, 517-544
-https://doi.org/10.5194/se-13-517-2022
-
-### APIs et outils
-
-**GPlates Web Service**
-https://gws.gplates.org
-Documentation : https://gwsdoc.gplates.org
-
-**Three.js**
-https://threejs.org (r128)
-
----
-
-## ✅ VALIDATION
-
-### Tests de cohérence
+**Positions prédéfinies par période** :
 
 ```javascript
-// 1. Vérifier que points et continents matchent (Merdith 2021)
-// → Nouveaux points doivent être SUR les continents affichés
-
-// 2. Vérifier distance minimale (2.5°)
-// → Anti-collision respecté
-
-// 3. Vérifier périodes limites
-// → 0 Ma : Real Land désactivé
-// → 450 Ma+ : Real Land désactivé, fallback 410 Ma API
+500 Ma: Panthalassa (-30°, 120°), Iapetus (0°, 0°)
+100 Ma: Pacific (0°, -120°), Atlantic (15°, -40°), Tethys (-10°, 90°)
 ```
 
-### Checklist déploiement
+**Rotation** : Plusieurs items même période → positions différentes
 
-- [x] Fichiers GeoJSON présents dans `assets/`
-- [x] `content-data.json` à jour
-- [x] Modèle Merdith 2021 configuré dans globe.js
-- [x] Script de reconstruction utilise MERDITH2021
-- [x] Documentation COORDINATES_RULES.md synchronisée
-- [x] Ce document de stratégie créé
+**Fallback** : Offset aléatoire ±5° si toutes positions utilisées
 
 ---
 
-**Fin du document**
-_Version 1.0 - Janvier 2026_
+## 🏗️ Architecture du Code
+
+### Module centralisé : `paleo-reconstruction.js`
+
+**Responsabilité unique** : Logique de reconstruction
+
+**Exports** :
+
+- `PERIOD_MAPPING` : période géologique → âge (Ma)
+- `PERIODS` : Array de toutes les périodes
+- `buildDerivedFields(item)` : Construit youtubeUrl, preview, pageUrl
+- `reconstructItemForPeriod(item, options)` : Reconstruction 1 période
+- `reconstructPoint(lat, lon, time)` : API GPlates bas niveau
+
+**Règles algorithmiques** :
+
+1. Items océaniques → positions prédéfinies + rotation
+2. Items >410 Ma → position moderne préservée (limite API)
+3. Items continentaux → reconstruction API GPlates
+
+### Scripts de production
+
+```
+paleo-reconstruction.js (module central)
+    ├── add-content-by-slug.js (ajouter 1 item)
+    ├── import-new-contents.js (sync auto)
+    └── reconstruct-paleogeography.js (rebuild complet)
+        └── auto-geocode-contents.js (coordonnées modernes)
+```
+
+**Principe DRY** : Aucune duplication logique reconstruction
+
+---
+
+## 📊 Métriques de Performance
+
+### Temps de traitement
+
+| Opération           | Items | API Calls | Durée   | Mode        |
+| ------------------- | ----- | --------- | ------- | ----------- |
+| Ajouter 1 item      | 1     | 1         | ~5 sec  | -           |
+| Sync (5 nouveaux)   | 5     | 5         | ~30 sec | Incrémental |
+| Sync (120 nouveaux) | 200   | 200       | ~15 min | Complet     |
+| Init complète       | 200   | 200       | ~15 min | Complet     |
+
+### Limites API GPlates
+
+- **Rate limit** : Non documenté (API publique)
+- **Timeout** : 30 sec par requête
+- **Limite temporelle** : 410 Ma max (au-delà = 999.99)
+- **Délai entre calls** : 100ms (recommandé)
+
+---
+
+## 🔧 Configuration Technique
+
+### API GPlates
+
+```javascript
+const GPLATES_API_URL =
+  "https://gws.gplates.org/reconstruct/reconstruct_points/";
+const GPLATES_MODEL = "MERDITH2021";
+const GPLATES_MAX_AGE = 410; // Ma
+```
+
+### Mapping périodes
+
+```javascript
+const PERIOD_MAPPING = {
+  today: 0,
+  quaternary: 2,
+  neogene: 15,
+  paleogene: 50,
+  cretaceous: 100,
+  jurassic: 160,
+  triassic: 220,
+  permian: 280,
+  carboniferous: 320,
+  devonian: 380,
+  silurian: 410,
+  ordovician: 450, // Utilise 410 Ma (limite API)
+  cambrian: 500, // Utilise 410 Ma (limite API)
+};
+```
+
+### Anti-collision
+
+```javascript
+const MIN_DISTANCE_DEGREES = 5.0; // Distance min entre points
+const MAX_COLLISION_ATTEMPTS = 50; // Tentatives max placement
+```
+
+---
+
+## 🎯 Choix de Design
+
+### Pourquoi 1 période par item ?
+
+**Raison** : Mapping avec `geological-period` (champ Webflow)
+
+Item Crétacé (66-145 Ma) → affiché sur période 100 Ma du globe
+Item Jurassique (145-201 Ma) → affiché sur période 160 Ma du globe
+
+**Avantage** : Cohérence visuelle (même période géologique = même tranche temporelle)
+
+### Pourquoi positions océaniques prédéfinies ?
+
+**Raison** : API GPlates retourne 999.99 pour points océaniques
+
+L'API ne peut reconstruire que les plaques **continentales**, pas océaniques.
+
+**Solution** : Positions historiques des grands bassins océaniques :
+
+- Panthalassa (Paléozoïque/Mésozoïque)
+- Tethys (Mésozoïque)
+- Iapetus (Paléozoïque)
+
+---
+
+## 📖 Références
+
+- **Merdith et al. 2021** : "Extending full-plate tectonic models into deep time"
+- **Cao et al. 2017** : "Improving global paleogeography since the late Paleozoic using paleobiology"
+- **GPlates Web Service** : https://gws.gplates.org/
+
+---
+
+**Dernière mise à jour** : 31 janvier 2026

@@ -1012,19 +1012,21 @@ class GlobeManager {
   addPoint(lat, lon, data) {
     const position = this.latLonToVector3(lat, lon, 2.05);
 
-    // Couleur selon le type de contenu
+    // Couleur selon le type de contenu (vérifier type ou category)
+    const contentType = data.type || data.category;
+
     let pointColor;
-    switch (data.type) {
+    switch (contentType) {
       case "videos":
       case "video":
         pointColor = 0x6c5ce7; // Violet pour vidéos
         break;
       case "images":
       case "image":
-        pointColor = 0xfd79a8; // Rose pour images
+        pointColor = 0xfdcb6e; // Jaune pour images
         break;
       case "3d":
-        pointColor = 0xfdcb6e; // Jaune pour 3D
+        pointColor = 0xfd79a8; // Rose pour 3D
         break;
       case "new":
         pointColor = 0x00b894; // Vert turquoise pour nouveautés
@@ -1034,33 +1036,27 @@ class GlobeManager {
         break;
     }
 
-    // Créer texture pinpoint
+    // Créer texture pinpoint avec taille identique pour tous
     const canvas = document.createElement("canvas");
     canvas.width = 64;
     canvas.height = 64;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
+
+    // Activer antialiasing pour contours lisses
+    ctx.imageSmoothingEnabled = true;
 
     // Dessiner un pinpoint (épingle) avec la couleur selon le type
     const centerX = 32;
-    const centerY = 24; // Un peu plus haut pour la forme de l'épingle
+    const centerY = 32; // Centré
 
-    // Cercle principal du pinpoint
-    const gradient = ctx.createRadialGradient(
-      centerX,
-      centerY,
-      0,
-      centerX,
-      centerY,
-      20,
-    );
+    // Rayon uniforme pour tous les types
+    const circleRadius = 22;
+
+    // Cercle plein
     const hexColor = "#" + pointColor.toString(16).padStart(6, "0");
-    gradient.addColorStop(0, hexColor);
-    gradient.addColorStop(0.8, hexColor);
-    gradient.addColorStop(1, hexColor + "00");
-
-    ctx.fillStyle = gradient;
+    ctx.fillStyle = hexColor;
     ctx.beginPath();
-    ctx.arc(centerX, centerY, 20, 0, Math.PI * 2);
+    ctx.arc(centerX, centerY, circleRadius, 0, Math.PI * 2);
     ctx.fill();
 
     // Point blanc au centre pour effet de relief
@@ -1070,6 +1066,8 @@ class GlobeManager {
     ctx.fill();
 
     const texture = new THREE.CanvasTexture(canvas);
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
 
     // Sprite - facilement cliquable et toujours face caméra
     const spriteMaterial = new THREE.SpriteMaterial({
@@ -1080,8 +1078,10 @@ class GlobeManager {
 
     const sprite = new THREE.Sprite(spriteMaterial);
     sprite.position.copy(position);
-    sprite.scale.set(0.15, 0.15, 1); // Taille fixe
+    sprite.scale.set(0.2, 0.2, 1);
     sprite.userData = data;
+    sprite.userData._initialScale = 0.2;
+    sprite.userData.type = contentType;
 
     this.globe.add(sprite);
     this.points.push(sprite);
@@ -1090,6 +1090,7 @@ class GlobeManager {
   }
 
   clearPoints() {
+    console.log(`🗑️ Nettoyage de ${this.points.length} points`);
     this.points.forEach((point) => {
       this.globe.remove(point);
     });
@@ -1138,18 +1139,16 @@ class GlobeManager {
   animate() {
     requestAnimationFrame(() => this.animate());
 
-    // Slow automatic rotation
-    this.globe.rotation.y += 0.001;
+    // Slow automatic rotation (désactivée)
 
-    // Rescale sprites pour garder taille constante malgré perspective/zoom
+    // Rescale sprites avec distance au centre du globe (uniforme pour tous)
+    const globeCenter = new THREE.Vector3(0, 0, 0);
+    const distanceToGlobe = this.camera.position.distanceTo(globeCenter);
+    const baseScale = distanceToGlobe * 0.02;
+
     this.points.forEach((sprite, index) => {
-      // Distance entre caméra et sprite
-      const distance = this.camera.position.distanceTo(sprite.position);
-      // Facteur de scale réduit pour points plus petits et mieux compensés
-      const scale = distance * 0.015; // Réduit de 0.04 à 0.015
-      // Animation pulse plus subtile
-      const pulse = 1 + Math.sin(Date.now() * 0.003 + index) * 0.1;
-      sprite.scale.set(scale * pulse, scale * pulse, 1);
+      const pulse = 1 + Math.sin(Date.now() * 0.003 + index) * 0.05;
+      sprite.scale.set(baseScale * pulse, baseScale * pulse, 1);
     });
 
     this.renderer.render(this.scene, this.camera);

@@ -6,7 +6,16 @@
   "scripts": {
     "dev": "python3 -m http.server 8000",
     "build": "echo 'Build completed - ready for deployment'",
-    "deploy": "echo 'Upload files to Hostinger server'"
+    "deploy": "echo 'Upload files to Hostinger server'",
+    "init": "node scripts/import-new-contents.js --all",
+    "sync": "node scripts/import-new-contents.js",
+    "sync:dry": "node scripts/import-new-contents.js --dry-run",
+    "add": "node scripts/add-content-by-slug.js",
+    "validate": "node scripts/validate-content-data.js",
+    "validate:tags": "node scripts/validate-free-tags.js",
+    "validate:tags:errors": "node scripts/validate-free-tags.js --only-errors",
+    "find-formation": "node scripts/find-formation.js",
+    "help": "bash scripts/help.sh"
   },
   "keywords": [
     "prehistoric",

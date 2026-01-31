@@ -81,7 +81,7 @@
           </svg>
         </span>
         <span class="layer-name">Our Continents</span>
-        <span class="layer-desc">Modern coastlines</span>
+        <span class="layer-desc" style="font-size: 1.1em; font-weight: 500;">Repositioned</span>
       </button>
       <button class="layer-btn" data-layer="cao2017" disabled style="opacity: 0.3; cursor: not-allowed;">
         <span class="layer-icon">
@@ -91,7 +91,7 @@
           </svg>
         </span>
         <span class="layer-name">Real Land</span>
-        <span class="layer-desc">Emerged lands</span>
+        <span class="layer-desc" style="font-size: 1.1em; font-weight: 500;">At this time</span>
       </button>
     </div>
 
@@ -187,8 +187,18 @@
     <button class="popup-close" id="popupClose">×</button>
     <div class="popup-content">
       <div class="popup-preview">
-        <img src="" alt="Preview" class="popup-image" id="popupImage">
-        <div class="popup-video-overlay" id="popupVideoIcon">▶</div>
+        <a href="#" id="popupImageLink" style="display: none;">
+          <img src="" alt="Preview" class="popup-image" id="popupImage">
+          <div class="popup-play-icon" id="popupPlayIcon" style="display: none;">
+            <svg width="60" height="60" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" fill="rgba(230, 218, 199, 0.9)"/>
+              <polygon points="23,18 23,42 43,30" fill="#2c2013"/>
+            </svg>
+          </div>
+        </a>
+        <iframe id="popupVideo" class="popup-video" style="display: none; width: 100%; height: 100%; border: none;"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
       </div>
       <div class="popup-info">
         <h3 class="popup-title" id="popupTitle">T-REX HUNT - Gobi Desert</h3>
@@ -199,14 +209,8 @@
           <span class="popup-artist" id="popupArtist">
             <strong>Artist:</strong> John Doe
           </span>
-          <span class="popup-period" id="popupPeriod">
-            <strong>Period:</strong> Jurassic
-          </span>
-          <span class="popup-type" id="popupType">
-            <strong>Type:</strong> Video
-          </span>
         </div>
-        <a href="#" class="popup-link buttons-item" id="popupLink" target="_blank">
+        <a href="#" class="popup-link buttons-item" id="popupLink">
           VIEW MORE
         </a>
       </div>
@@ -218,6 +222,18 @@
     <div class="info-modal-content">
       <button class="info-modal-close" id="closeLayerInfo">&times;</button>
       <h2>Understanding the Globe Views</h2>
+
+      <div class="info-section">
+        <h3>� About the points locations</h3>
+        <p>Each point on the globe represents a prehistoric life content. The locations are:</p>
+        <ul>
+          <li>Placed at the <strong>estimated present-day location</strong> where fossils were discovered</li>
+          <li>Then <strong>automatically repositioned</strong> to their ancient coordinates based on plate tectonic
+            reconstructions for the selected time period and repartition algorithm</li>
+          <li><strong>Note:</strong> Points are only visible in the "Our Continents" view, as the plate tectonic model
+            is used for repositioning</li>
+        </ul>
+      </div>
 
       <div class="info-section">
         <h3>🗺️ Our Continents View</h3>
@@ -235,17 +251,6 @@
           significantly from modern continents.</p>
         <p class="info-note"><em>Cao et al. 2017 paleogeographic reconstruction — built upon Matthews 2016 plate motions
             with added paleogeographic data (ancient sea levels, mountain ranges, shallow seas).</em></p>
-      </div>
-
-      <div class="info-section">
-        <h3>📍 About the Fossil Locations</h3>
-        <p>Each point on the globe represents a prehistoric life content. The locations are:</p>
-        <ul>
-          <li>Placed at the <strong>estimated present-day location</strong> where fossils were discovered</li>
-          <li>Then <strong>automatically repositioned</strong> to their ancient coordinates based on plate tectonic
-            reconstructions for the selected time period and repartition algorithm</li>
-          <li>This gives a visual idea where these organisms may actually lived millions of years ago</li>
-        </ul>
       </div>
 
       <div class="info-section">

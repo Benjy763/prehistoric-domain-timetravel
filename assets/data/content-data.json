@@ -1,7 +1,7 @@
 {
   "metadata": {
     "generated": "2026-01-30T21:09:20.346Z",
-    "totalItems": 20,
+    "totalItems": 22,
     "sourceItems": 200,
     "eligibleItems": 20,
     "periods": [
@@ -62,6 +62,33 @@
     "note": "Cambrian and Ordovician use Silurian (410 Ma) data due to API limitations"
   },
   "items": [
+    {
+      "id": "679d15a7238ea17a52d58215",
+      "name": "Giants of the ice age",
+      "slug": "experience-giants-of-the-ice-age",
+      "description": "Step into the Ice Age and witness the mighty woolly mammoths roaming their frozen homeland, as they once did thousands of years ago.",
+      "creditsLine": "A Prehistoric Domain original immersive experience.",
+      "category": "3d",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "quaternary",
+      "contentLink": "https://tour.prehistoricdomain.com/live/scenes/mammoth/",
+      "youtubeId": "nT0PBq9K5hk",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/67b207ab18675f682032a0fd_mammoth.avif",
+      "galleryImage": null,
+      "freeTags": "North America, Late Pleistocene, Woolly Mammoth, Dire Wolf, Golden Eagle",
+      "modernLat": 44.34,
+      "modernLon": -138.42,
+      "location": "north america",
+      "confidence": "medium",
+      "estimatedAge": 1,
+      "periods": {
+        "2Ma": {
+          "lat": 44.4148,
+          "lon": -136.4327
+        }
+      }
+    },
     {
       "id": "695fecefdad0a9fd6e395e1d",
       "name": "Jurassic Wild - Episode 1 | Journey for Survival",
@@ -1618,6 +1645,240 @@
         "500": {
           "lat": -18.26,
           "lon": -81.54
+        }
+      }
+    },
+    {
+      "id": "6845b2261013a7b5a9f92d4f",
+      "name": "Edmontosaurus mating ritual",
+      "slug": "experience-edmontosaurus-mating-ritual",
+      "description": "Meet Edmontosaurus during a mating ritual.",
+      "creditsLine": "A Prehistoric Domain original immersive experience.",
+      "category": "3d",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": "https://tour.prehistoricdomain.com/live/scenes/edmon/",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eabab1d2df98415b7f1_6845b2f6fa10c2acc2a37039_Edmon.jpeg",
+      "galleryImage": null,
+      "freeTags": "North America, Late Cretaceous, Edmontosaurus",
+      "modernLat": 50.5,
+      "modernLon": -110,
+      "location": "Dinosaur Park Formation, Alberta",
+      "confidence": "high",
+      "estimatedAge": 66,
+      "periods": {
+        "100": {
+          "lat": 55.3785,
+          "lon": -57.5452
+        }
+      }
+    },
+    {
+      "id": "6837496099c597a03b19e97c",
+      "name": "Cambrian, Cradle of the Phanerozoic",
+      "slug": "cambrian-cradle-of-the-phanerozoic",
+      "description": "A trip through the Middle Cambrian, just over half a billion years ago. Featuring a variety of Trilobites, Radiodonts, Conodonts, Stylophoran Echinoderms, Pikaia, Lobopodians, Vetulicola, early Molluscs, and various other early animals.",
+      "creditsLine": "Created by CenospireAnimation.",
+      "creatorLink": "https://www.youtube.com/@cenospire/videos",
+      "category": "videos",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cambrian",
+      "youtubeId": "8bF5I8sKS80",
+      "youtubeUrl": "https://www.youtube.com/watch?v=8bF5I8sKS80",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/8bF5I8sKS80/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/cambrian-cradle-of-the-phanerozoic",
+      "freeTags": "Cambrian, Trilobites, Radiodonts, Conodonts, Stylophoran Echinoderms, Pikaia, Lobopodians, Vetulicola",
+      "modernLat": 11.68,
+      "modernLon": -163.86,
+      "location": "global oceans",
+      "confidence": "medium",
+      "estimatedAge": 500,
+      "periods": {
+        "500": {
+          "lat": -30,
+          "lon": 120
+        }
+      }
+    },
+    {
+      "id": "6845b730fb9f90434aa19b4d",
+      "name": "The Meg",
+      "slug": "experience-the-meg",
+      "description": "Meet the megalodon...",
+      "creditsLine": "A Prehistoric Domain original immersive experience.",
+      "category": "3d",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "neogene",
+      "contentLink": "https://tour.prehistoricdomain.com/live/scenes/lagoon/",
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb549c52c7a3ecbd618_6845b786e04c328c642f125a_meg.jpeg",
+      "galleryImage": null,
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb549c52c7a3ecbd618_6845b786e04c328c642f125a_meg.jpeg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/experience-the-meg",
+      "freeTags": "Miocene, Megalodon",
+      "modernLat": -51.18,
+      "modernLon": -114.73,
+      "location": "global oceans",
+      "confidence": "medium",
+      "estimatedAge": 15,
+      "periods": {
+        "15": {
+          "lat": -15,
+          "lon": -140
+        }
+      }
+    },
+    {
+      "id": "6835dca82824eb694199f7f6",
+      "name": "Livyatan & Megalodon",
+      "slug": "livyatan-megalodon",
+      "description": "\"Livyatan & Megalodon\" animation.",
+      "creditsLine": "Created by Julian Johnson-Mortimer & Robert Fabiani.",
+      "creatorLink": "https://www.youtube.com/@johnsonmortimer",
+      "category": "videos",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "neogene",
+      "youtubeId": "MEIiCc4_vjo",
+      "youtubeUrl": "https://www.youtube.com/watch?v=MEIiCc4_vjo",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/MEIiCc4_vjo/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/livyatan-megalodon",
+      "freeTags": "Miocene, Livyatan, Megalodon",
+      "modernLat": 33.24,
+      "modernLon": -116.48,
+      "location": "global oceans",
+      "confidence": "medium",
+      "estimatedAge": 15,
+      "periods": {
+        "15": {
+          "lat": 5,
+          "lon": -35
+        }
+      }
+    },
+    {
+      "id": "6835efaa60df927f54354599",
+      "name": "Megalodon The Revenge",
+      "slug": "megalodon-the-revenge",
+      "description": "\"Megalodon The Revenge\" animation.",
+      "creditsLine": "Created by Julian Johnson-Mortimer & Robert Fabiani.",
+      "creatorLink": "https://www.youtube.com/@johnsonmortimer",
+      "category": "videos",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "neogene",
+      "youtubeId": "iFEb36lMYjo",
+      "youtubeUrl": "https://www.youtube.com/watch?v=iFEb36lMYjo",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/iFEb36lMYjo/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/megalodon-the-revenge",
+      "freeTags": "Miocene, Megalodon",
+      "modernLat": 80.29,
+      "modernLon": 137.36,
+      "location": "global oceans",
+      "confidence": "medium",
+      "estimatedAge": 15,
+      "periods": {
+        "15": {
+          "lat": -25,
+          "lon": 75
+        }
+      }
+    },
+    {
+      "id": "6835ef13d418f6dfa6a09db4",
+      "name": "Livyatan Vs Megalodon Part 2.. Livyatan's Revenge",
+      "slug": "livyatan-vs-megalodon-part-2-livyatans-revenge",
+      "description": "\"Livyatan the Revenge\" animation.",
+      "creditsLine": "Created by Julian Johnson-Mortimer & Robert Fabiani.",
+      "creatorLink": "https://www.youtube.com/@johnsonmortimer",
+      "category": "videos",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "neogene",
+      "youtubeId": "BZnVzS7RDOY",
+      "youtubeUrl": "https://www.youtube.com/watch?v=BZnVzS7RDOY",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/BZnVzS7RDOY/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/livyatan-vs-megalodon-part-2-livyatans-revenge",
+      "freeTags": "Miocene, Livyatan, Megalodon",
+      "modernLat": -15.72,
+      "modernLon": -54.65,
+      "location": "global oceans",
+      "confidence": "medium",
+      "estimatedAge": 15,
+      "periods": {
+        "15": {
+          "lat": -18.10497044605945,
+          "lon": -138.1465687980596
+        }
+      }
+    },
+    {
+      "id": "6845b5468225cafe7ea32b39",
+      "name": "Cretaceous Oceans",
+      "slug": "experience-cretaceous-oceans",
+      "description": "Meet species of Cretaceous Oceans.",
+      "creditsLine": "A Prehistoric Domain original immersive experience.",
+      "category": "3d",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": "https://tour.prehistoricdomain.com/live/scenes/cretaceous-lagoon/",
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea9ab1d2df98415b7aa_6845b5ff153a9f31378a4226_Ichthyosaurus.jpeg",
+      "galleryImage": null,
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea9ab1d2df98415b7aa_6845b5ff153a9f31378a4226_Ichthyosaurus.jpeg",
+      "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/cretaceous-lagoon/",
+      "freeTags": "Early Cretaceous, Ichthyosaurus, Mosasaurus, Plesiosaurus",
+      "modernLat": -26.02,
+      "modernLon": 89.15,
+      "location": "global oceans",
+      "confidence": "medium",
+      "estimatedAge": 125,
+      "periods": {
+        "100": {
+          "lat": 0,
+          "lon": -120
+        }
+      }
+    },
+    {
+      "id": "68e6a35b79005e6c607930fb",
+      "name": "Tyrannosaurus rex | Bone Bed",
+      "slug": "tyrannosaurus-rex-bone-bed",
+      "description": "\"The courtship behavior of modern birds are extremely diverse and unique. One bird in particular called the Bowerbird would build structures out of branches and decorate them with colorful objects to attract mates. This extraordinary behavior is what inspired me to make this 3D animation, with the male T.rex gathering skulls and bones of prey animals and lay them out in a mass display, making essentially a Bone Bed, to try and impress it's partner that it is a capable hunter. While also performing a \"dance\" that highlights it's strength and battle scars, hoping to be accepted and carry on the bloodline of one of the greatest predator in Earth's history.\"",
+      "creditsLine": "Created by Bill Nguyen.",
+      "creatorLink": "https://www.youtube.com/@billnguyen4148",
+      "category": "videos",
+      "isNew": false,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "youtubeId": "Ife9NB8oYZY",
+      "youtubeUrl": "https://www.youtube.com/watch?v=Ife9NB8oYZY",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/Ife9NB8oYZY/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/tyrannosaurus-rex-bone-bed",
+      "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops",
+      "modernLat": 47.5,
+      "modernLon": -104,
+      "location": "Hell Creek Formation, Montana",
+      "confidence": "high",
+      "estimatedAge": 66,
+      "periods": {
+        "100": {
+          "lat": 51.299,
+          "lon": -52.8524
         }
       }
     }

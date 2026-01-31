@@ -139,6 +139,22 @@ class AppController {
       .forEach((b) => b.classList.remove("active"));
     button.classList.add("active");
 
+    // Désactiver/activer les filtres selon la couche
+    const filterItems = document.querySelectorAll(".filter-item");
+    if (layer === "cao2017") {
+      // Désactiver les filtres en Real Land view
+      filterItems.forEach(item => {
+        item.style.opacity = "0.3";
+        item.style.pointerEvents = "none";
+      });
+    } else {
+      // Activer les filtres en Our Continents view
+      filterItems.forEach(item => {
+        item.style.opacity = "1";
+        item.style.pointerEvents = "auto";
+      });
+    }
+
     // Mise à jour du globe
     if (this.globeManager) {
       this.globeManager.currentLayer = layer;
@@ -229,6 +245,12 @@ class AppController {
 
     // Supprimer les points existants
     this.globeManager.clearPoints();
+
+    // Ne pas afficher les points en Real Land view
+    if (this.globeManager.currentLayer === "cao2017") {
+      console.log("⚪ Points masqués en Real Land view");
+      return;
+    }
 
     // Récupérer les filtres actifs
     const activeFilters = this.filtersManager.getActiveFilters();

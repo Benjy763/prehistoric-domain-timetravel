@@ -18,143 +18,63 @@
 
 const fs = require("fs");
 const { fetchGeocodedItems } = require("./auto-geocode-contents");
+const {
+  PERIODS,
+  reconstructItemForAllPeriods,
+  buildDerivedFields,
+} = require("./paleo-reconstruction");
 
 // Configuration
-const PERIODS = [
-  { time: 0, name: "today" },
-  { time: 2, name: "quaternary" },
-  { time: 15, name: "neogene" },
-  { time: 50, name: "paleogene" },
-  { time: 100, name: "cretaceous" },
-  { time: 160, name: "jurassic" },
-  { time: 220, name: "triassic" },
-  { time: 280, name: "permian" },
-  { time: 320, name: "carboniferous" },
-  { time: 380, name: "devonian" },
-  { time: 410, name: "silurian" },
-  { time: 450, name: "ordovician" },
-  { time: 500, name: "cambrian" },
-];
-
-const GPLATES_API = "https://gws.gplates.org/reconstruct/reconstruct_points/";
 const OUTPUT_FILE = "assets/data/content-data.json";
 const API_DELAY_MS = 100;
 
 // Modes
 const SAMPLE_MODE = process.argv.includes("--sample");
 const INCREMENTAL_MODE = process.argv.includes("--incremental");
-const SAMPLE_SIZE = 20; // 20 items pour test e2e robuste
+const SAMPLE_SIZE = 20;
 
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-async function reconstructPoint(lat, lon, time) {
-  try {
-    const actualTime = Math.min(time, 410);
-    const url = `${GPLATES_API}?points=${lon},${lat}&time=${actualTime}&model=MERDITH2021`;
-
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      console.warn(`⚠️  API erreur pour time=${time}: ${response.status}`);
-      return { lat, lon };
-    }
-
-    const data = await response.json();
-
-    if (data.coordinates && data.coordinates.length > 0) {
-      const coords = data.coordinates[0];
-      return {
-        lat: Math.round(coords[1] * 100) / 100,
-        lon: Math.round(coords[0] * 100) / 100,
-      };
-    }
-
-    return { lat, lon };
-  } catch (error) {
-    console.error(
-      `❌ Erreur reconstruction (${lat}, ${lon}) @ ${time}Ma:`,
-      error.message,
-    );
-    return { lat, lon };
-  }
-}
-
+/**
+ * Reconstruit toutes les périodes pour un item
+ * Utilise le module centralisé paleo-reconstruction.js
+ */
 async function reconstructAllPeriods(item, index, total) {
-  const {
-    latitude,
-    longitude,
-    name,
-    id,
-    age,
-    slug,
-    description,
-    creditsLine,
-    creatorLink,
-    category,
-    isNew,
-    displayOnApp,
-    geologicalPeriod,
-    contentLink,
-    youtubeId,
-    backgroundImage,
-    galleryImage,
-  } = item;
+  const { latitude, longitude, name, geologicalPeriod } = item;
 
   console.log(`\n[${index + 1}/${total}] 🔄 ${name}`);
   console.log(`   Position moderne: ${latitude}°, ${longitude}°`);
   console.log(`   Période: ${geologicalPeriod}`);
 
-  const pageUrl = contentLink
-    ? contentLink
-    : slug
-      ? `https://www.prehistoricdomain.com/content/${slug}`
-      : null;
+  // Utiliser le module centralisé pour la reconstruction
+  const periods = await reconstructItemForAllPeriods(item, {
+    verbose: true,
+    delay: API_DELAY_MS,
+  });
 
-  const youtubeUrl = youtubeId
-    ? `https://www.youtube.com/watch?v=${youtubeId}`
-    : null;
-
-  const preview =
-    category === "videos" && youtubeId
-      ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`
-      : backgroundImage || galleryImage || null;
-
-  const periods = {};
-
-  for (const period of PERIODS) {
-    await delay(API_DELAY_MS);
-
-    const coords = await reconstructPoint(latitude, longitude, period.time);
-    periods[period.time] = {
-      lat: coords.lat,
-      lon: coords.lon,
-    };
-    process.stdout.write(".");
-  }
+  // Construire les champs dérivés via le module centralisé
+  const derivedFields = buildDerivedFields(item);
 
   return {
-    id,
-    name,
-    slug,
-    description,
-    creditsLine,
-    creatorLink,
-    type: category || null,
-    isNew: !!isNew,
-    displayOnApp: !!displayOnApp,
-    geologicalPeriod: geologicalPeriod || null,
-    contentLink: contentLink || null,
-    youtubeId: youtubeId || null,
-    youtubeUrl,
-    backgroundImage,
-    galleryImage,
-    preview,
-    pageUrl,
+    id: item.id,
+    name: item.name,
+    slug: item.slug,
+    description: item.description,
+    creditsLine: item.creditsLine,
+    creatorLink: item.creatorLink,
+    category: item.category,
+    isNew: !!item.isNew,
+    displayOnApp: !!item.displayOnApp,
+    geologicalPeriod: item.geologicalPeriod || null,
+    contentLink: item.contentLink || null,
+    youtubeId: item.youtubeId || null,
+    youtubeUrl: derivedFields.youtubeUrl,
+    backgroundImage: item.backgroundImage,
+    galleryImage: item.galleryImage,
+    preview: derivedFields.preview,
+    pageUrl: derivedFields.pageUrl,
+    freeTags: item.freeTags,
     modernLat: latitude,
     modernLon: longitude,
-    estimatedAge: age,
+    estimatedAge: item.age,
     location: item.location,
     confidence: item.confidence,
     periods,
