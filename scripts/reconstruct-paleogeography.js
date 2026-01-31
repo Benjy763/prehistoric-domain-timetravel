@@ -10,7 +10,7 @@
  */
 
 const fs = require("fs");
-const { fetchGeocodedItems } = require("./auto-geocode-contents");
+const { fetchGeocodedItems } = require("./import-cms-items");
 const {
   PERIODS,
   reconstructItemForPeriod,
@@ -101,10 +101,18 @@ async function reconstructClosestPeriod(
 // ============================================
 
 async function main() {
-  // Parse --limit=N
+  // Parse --limit=N et --slugs
   const args = process.argv.slice(2);
   const limitArg = args.find((arg) => arg.startsWith("--limit="));
   const limit = limitArg ? parseInt(limitArg.split("=")[1], 10) : null;
+
+  const slugsArg = args.find((arg) => arg.startsWith("--slugs="));
+  const slugs = slugsArg
+    ? slugsArg
+        .split("=")[1]
+        .split(",")
+        .map((s) => s.trim())
+    : null;
 
   console.log("\n🌍 PREHISTORIC DOMAIN - Reconstruction Paléogéographique\n");
   if (SAMPLE_MODE) {
@@ -113,6 +121,11 @@ async function main() {
   if (limit && !SAMPLE_MODE) {
     console.log(`⚙️  Mode test: limite à ${limit} items\n`);
   }
+  if (slugs) {
+    console.log(
+      `🎯 Mode --slugs: reconstruction de ${slugs.length} slug(s) spécifique(s)\n`,
+    );
+  }
   console.log("📋 Chargement des coordonnées modernes (Webflow)...\n");
 
   try {
@@ -120,6 +133,7 @@ async function main() {
       writeFile: false,
       log: true,
       limit: !SAMPLE_MODE ? limit : null,
+      slugs: slugs,
     });
 
     let eligibleItems = geocodingData.filter(

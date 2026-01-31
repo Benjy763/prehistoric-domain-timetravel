@@ -98,13 +98,13 @@ Voir : [TECHNICAL_STRATEGY.md#2-mode-incrémental-automatique](./TECHNICAL_STRAT
 
 ```bash
 # Ajouter 1 item (rapide)
-node scripts/add-content-by-slug.js <slug>
+node scripts/sync-contents.js --slugs= <slug>
 
 # Synchroniser changements
-node scripts/import-new-contents.js
+node scripts/sync-contents.js
 
 # Init complète
-node scripts/import-new-contents.js --all
+node scripts/sync-contents.js --all
 
 # Valider données
 node scripts/validate-content-data.js
@@ -140,7 +140,7 @@ Globe 3D (Three.js)
 **Aucun point affiché** :
 
 ```bash
-node scripts/import-new-contents.js --all
+node scripts/sync-contents.js --all
 ```
 
 **Module manquant** :

@@ -157,12 +157,24 @@ periods: [{ time: 100, lat, lon }];
 ### Scripts de production
 
 ```
-paleo-reconstruction.js (module central)
-    ├── add-content-by-slug.js (ajouter 1 item)
-    ├── import-new-contents.js (sync auto)
-    └── reconstruct-paleogeography.js (rebuild complet)
-        └── auto-geocode-contents.js (coordonnées modernes)
+Webflow CMS
+    ↓
+sync-contents.js (orchestrateur principal)
+    │
+    ├──> import-cms-items.js (récup CMS + géocodage MODERNE)
+    │      ↓ Output: geocoded-items.json (temporaire)
+    │
+    └──> reconstruct-paleogeography.js (reconstruction PALÉO)
+           │ Utilise: paleo-reconstruction.js (module partagé)
+           ↓ Output: content-data.json (final)
 ```
+
+**Fichiers clés** :
+- `import-cms-items.js` : Récupère CMS + parse free-tags + calcule coords modernes
+- `geocoded-items.json` : Fichier temporaire (auto-supprimé après pipeline)
+- `reconstruct-paleogeography.js` : Reconstruction paléo via GPlates API
+- `paleo-reconstruction.js` : Module partagé (logique métier)
+- `content-data.json` : Fichier final (moderne + paléo + métadatas)
 
 **Principe DRY** : Aucune duplication logique reconstruction
 

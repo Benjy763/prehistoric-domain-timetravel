@@ -1,11 +1,34 @@
 #!/usr/bin/env node
 
 /**
- * PREHISTORIC DOMAIN - Auto Geocoding Script
+ * PREHISTORIC DOMAIN - Import et Géocodage Moderne
  *
- * Ce script analyse tous les items CMS et génère automatiquement
- * des coordonnées lat/lon basées sur les free-tags, en suivant
- * les règles documentées dans COORDINATES_RULES.md
+ * RÔLE : Récupère les items depuis Webflow CMS et calcule leurs coordonnées géographiques ACTUELLES
+ *
+ * ÉTAPES :
+ * 1. Récupère tous les items depuis Webflow CMS (API)
+ * 2. Extrait métadatas : name, slug, category, youtubeId, freeTags, geologicalPeriod, etc.
+ * 3. Parse les free-tags → continent, espèces, période géologique
+ * 4. Géocode → coordonnées géographiques MODERNES (latitude/longitude actuelles)
+ * 5. Enrichit via Paleobiology Database (PBDB) si espèce inconnue
+ *
+ * SOURCES DE GÉOCODAGE (par priorité) :
+ *   1. Formations célèbres (famous-formations.json) - haute précision
+ *   2. PBDB API - auto-enrichissement avec cache
+ *   3. Placement continental aléatoire - fallback
+ *
+ * OUTPUT : geocoded-items.json
+ *   → Items CMS complets avec coordonnées modernes
+ *   → Prêt pour reconstruction paléogéographique (étape suivante)
+ *
+ * OPTIONS :
+ *   --slugs=slug1,slug2  Importer seulement ces items (rapide)
+ *   --limit=N            Limiter à N items (pour tests)
+ *
+ * EXEMPLES :
+ *   node scripts/import-cms-items.js --slugs=pteranodon
+ *   node scripts/import-cms-items.js --limit=20
+ *   node scripts/import-cms-items.js --slugs=pteranodon,spinosaurus,tyrannosaurus-rex
  */
 
 // ============================================
@@ -98,6 +121,11 @@ const FAMOUS_FORMATIONS = loadFamousFormations();
 // ============================================
 // RECHERCHE PALEOBIOLOGY DATABASE
 // ============================================
+
+// Cache en mémoire pour éviter appels PBDB redondants
+const PBDB_CACHE = new Map();
+let PBDB_CACHE_HITS = 0;
+let PBDB_CACHE_MISSES = 0;
 
 /**
  * Ajoute une nouvelle formation au fichier famous-formations.json
@@ -193,6 +221,15 @@ async function addFormationToJSON(speciesName, pbdbData, continent, period) {
  * formation et coordonnées d'une espèce
  */
 async function searchPaleobioDB(genus) {
+  // Vérifier le cache d'abord
+  const cacheKey = genus.toLowerCase().trim();
+  if (PBDB_CACHE.has(cacheKey)) {
+    PBDB_CACHE_HITS++;
+    console.log(`   💾 Cache PBDB: "${genus}" (hit #${PBDB_CACHE_HITS})`);
+    return PBDB_CACHE.get(cacheKey);
+  }
+
+  PBDB_CACHE_MISSES++;
   const url = `https://paleobiodb.org/data1.2/occs/list.json?base_name=${encodeURIComponent(genus)}&show=coords,loc,stratext&limit=10`;
 
   try {
@@ -200,6 +237,8 @@ async function searchPaleobioDB(genus) {
     const data = await response.json();
 
     if (!data.records || data.records.length === 0) {
+      // Cacher aussi les résultats vides
+      PBDB_CACHE.set(cacheKey, null);
       return null;
     }
 
@@ -209,6 +248,7 @@ async function searchPaleobioDB(genus) {
       data.records.find((r) => r.lng && r.lat);
 
     if (!best) {
+      PBDB_CACHE.set(cacheKey, null);
       return null;
     }
 
@@ -216,7 +256,7 @@ async function searchPaleobioDB(genus) {
       `   🔬 PBDB: ${best.formation || "Formation inconnue"} (${best.cc || "N/A"})`,
     );
 
-    return {
+    const result = {
       formation: best.formation,
       lat: parseFloat(best.lat),
       lng: parseFloat(best.lng),
@@ -225,8 +265,14 @@ async function searchPaleobioDB(genus) {
       period: best.early_interval || best.late_interval,
       source: "paleobiodb",
     };
+
+    // Sauvegarder dans le cache
+    PBDB_CACHE.set(cacheKey, result);
+    return result;
   } catch (error) {
     // Erreur silencieuse, fallback sur méthodes existantes
+    // Cacher aussi les échecs pour éviter retry
+    PBDB_CACHE.set(cacheKey, null);
     return null;
   }
 }
@@ -673,9 +719,13 @@ async function findCoordinates(freeTags, itemId) {
     const position = findNonCollidingPosition(formation.lat, formation.lon);
 
     // Suggérer d'ajouter les espèces non trouvées à la même formation
+    // OPTIMISATION: Skip PBDB car on a déjà une formation connue
     if (unmatchedSpecies.length > 0 && species.length > 1) {
       console.log(
         `💡 Suggestion: Ajouter "${unmatchedSpecies.join(", ")}" à "${formation.name}" dans famous-formations.json`,
+      );
+      console.log(
+        `   ⚡ Skip PBDB pour espèces restantes (formation déjà connue)`,
       );
     }
 
@@ -994,6 +1044,15 @@ async function geocodeItems(allItems, { log = true } = {}) {
       `   Confiance moyenne: ${results.filter((r) => r.confidence === "medium").length}`,
     );
 
+    // Statistiques cache PBDB
+    const totalPBDB = PBDB_CACHE_HITS + PBDB_CACHE_MISSES;
+    if (totalPBDB > 0) {
+      const hitRate = ((PBDB_CACHE_HITS / totalPBDB) * 100).toFixed(1);
+      console.log(
+        `   ⚡ Cache PBDB: ${PBDB_CACHE_HITS} hits / ${totalPBDB} requêtes (${hitRate}% efficacité)`,
+      );
+    }
+
     const collisions = results.filter((r) => {
       const nearest = placedPoints
         .filter((p) => p.id !== r.id)
@@ -1012,12 +1071,25 @@ async function fetchGeocodedItems({
   writeFile = false,
   log = true,
   limit = null,
+  slugs = null,
 } = {}) {
   const allItems = await fetchAllItems({ log });
   let itemsToProcess = allItems;
 
-  // Appliquer la limite si spécifiée
-  if (limit && allItems.length > limit) {
+  // Filtrer par slugs si spécifié
+  if (slugs && slugs.length > 0) {
+    const beforeFilter = allItems.length;
+    itemsToProcess = allItems.filter((item) =>
+      slugs.includes(item.fieldData.slug),
+    );
+    if (log) {
+      console.log(
+        `✅ ${itemsToProcess.length} item(s) trouvé(s) sur ${beforeFilter} (filtré par slug)\n`,
+      );
+    }
+  }
+  // Appliquer la limite si spécifiée (après filtre slugs)
+  else if (limit && allItems.length > limit) {
     if (log) {
       console.log(
         `⚠️  Limitation à ${limit} items sur ${allItems.length} trouvés\n`,
@@ -1053,17 +1125,31 @@ async function fetchGeocodedItems({
 async function main() {
   console.log("\n🌍 PREHISTORIC DOMAIN - Auto Geocoding\n");
 
-  // Parse --limit=N
+  // Parse arguments
   const args = process.argv.slice(2);
   const limitArg = args.find((arg) => arg.startsWith("--limit="));
   const limit = limitArg ? parseInt(limitArg.split("=")[1], 10) : null;
+
+  const slugsArg = args.find((arg) => arg.startsWith("--slugs="));
+  const slugs = slugsArg
+    ? slugsArg
+        .split("=")[1]
+        .split(",")
+        .map((s) => s.trim())
+    : null;
 
   if (limit) {
     console.log(`⚙️  Mode test: limite à ${limit} items\n`);
   }
 
+  if (slugs) {
+    console.log(
+      `🎯 Mode --slugs: géocodage de ${slugs.length} slug(s) spécifique(s)\n`,
+    );
+  }
+
   try {
-    await fetchGeocodedItems({ writeFile: true, log: true, limit });
+    await fetchGeocodedItems({ writeFile: true, log: true, limit, slugs });
   } catch (error) {
     console.error("\n❌ Erreur:", error.message);
     process.exit(1);

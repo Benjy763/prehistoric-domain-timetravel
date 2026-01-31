@@ -21,13 +21,13 @@
 
 ```bash
 # Ajouter 1 item (rapide ~5 sec)
-node scripts/add-content-by-slug.js <slug>
+node scripts/sync-contents.js --slugs= <slug>
 
 # Synchroniser tous changements (auto-détection)
-node scripts/import-new-contents.js
+node scripts/sync-contents.js
 
 # Init complète (première fois)
-node scripts/import-new-contents.js --all
+node scripts/sync-contents.js --all
 ```
 
 ### Développement
@@ -154,7 +154,7 @@ Détection changements par comparaison `lastUpdated` (Webflow) vs `metadata.gene
 ```
 Webflow CMS (collection "contents")
     ↓ (free-tags: "Continent, Période, Espèce")
-auto-geocode-contents.js (coordonnées modernes)
+import-cms-items.js (coordonnées modernes)
     ↓
 paleo-reconstruction.js (module centralisé)
     ↓ (API GPlates MERDITH2021)
@@ -168,9 +168,9 @@ app.js → Globe 3D (Three.js)
 ```
 scripts/
 ├── paleo-reconstruction.js    # Module central (logique reconstruction)
-├── add-content-by-slug.js     # Ajouter 1 item
-├── import-new-contents.js     # Sync auto (nouveaux/modifiés)
-└── auto-geocode-contents.js   # Géocodage moderne
+├── sync-contents.js --slugs=     # Ajouter 1 item
+├── sync-contents.js     # Sync auto (nouveaux/modifiés)
+└── import-cms-items.js   # Géocodage moderne
 
 assets/data/
 ├── content-data.json          # Données finales (utilisées par globe)
@@ -208,7 +208,7 @@ node scripts/find-formation.js "Spinosaurus"
 
 # 2. Éditer assets/data/famous-formations.json
 # 3. Re-géocoder items concernés
-node scripts/add-content-by-slug.js <slug>
+node scripts/sync-contents.js --slugs= <slug>
 ```
 
 ---

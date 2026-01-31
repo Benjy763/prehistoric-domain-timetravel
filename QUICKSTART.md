@@ -28,13 +28,13 @@ Le globe charge automatiquement `assets/data/content-data.json`.
 ### Ajouter 1 item (rapide ~5 sec)
 
 ```bash
-node scripts/add-content-by-slug.js experience-the-meg
+node scripts/sync-contents.js --slugs=experience-the-meg
 ```
 
 ### Synchroniser changements (auto-détection)
 
 ```bash
-node scripts/import-new-contents.js
+node scripts/sync-contents.js
 ```
 
 Détecte : nouveaux, modifiés, supprimés
@@ -42,7 +42,7 @@ Détecte : nouveaux, modifiés, supprimés
 ### Init complète (~15 min)
 
 ```bash
-node scripts/import-new-contents.js --all
+node scripts/sync-contents.js --all
 ```
 
 ---
@@ -76,7 +76,7 @@ display-on-app: true
 
 ## ⚠️ Dépannage
 
-**Aucun point** : `node scripts/import-new-contents.js --all`
+**Aucun point** : `node scripts/sync-contents.js --all`
 **Module manquant** : Vérifier `node --version` (v18+)
 **API timeout** : Relancer le script
 

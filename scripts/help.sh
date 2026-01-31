@@ -13,16 +13,20 @@ cat << 'EOF'
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🔄 PIPELINE AUTOMATIQUE
-  npm run update-contents     Pipeline complet (sync + geocode + reconstruct)
+  npm run sync-contents       Pipeline complet (sync CMS → globe)
+  npm run sync-contents:all   Réimporter tous les items
+  npm run sync-contents:dry   Simulation sans modifications
+
+🎯 MODES D'IMPORT
+  --slugs=item1,item2        Importer items spécifiques (rapide)
+  --all                      Réimporter tout (complet)
+  --limit=N                  Limiter à N items (test)
+  --dry-run                  Simulation seulement
+
+➕ UTILITAIRES
   npm run sync                Synchroniser display-on-app
   npm run geocode             Générer coordonnées modernes
   npm run reconstruct         Calculer positions paléogéographiques
-
-➕ GESTION DES CONTENUS
-  npm run add <slug>          Ajouter un item par slug
-  npm run import              Importer nouveaux items
-  npm run import:all          Réimporter tous les items
-  npm run import:dry          Simulation sans modifications
 
 ✅ VALIDATION ET RECHERCHE
   npm run validate            Valider tous les free-tags
@@ -38,20 +42,20 @@ cat << 'EOF'
 📚 EXEMPLES D'UTILISATION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-1️⃣  AJOUTER UN NOUVEAU CONTENU
-   npm run add experience-giants-of-the-ice-age
+1️⃣  IMPORTER UN ITEM SPÉCIFIQUE (RAPIDE)
+   node scripts/sync-contents.js --slugs=pteranodon
 
-2️⃣  IMPORTER TOUS LES NOUVEAUX CONTENUS
-   npm run import
+2️⃣  IMPORTER PLUSIEURS ITEMS
+   node scripts/sync-contents.js --slugs=pteranodon,spinosaurus,tyrannosaurus-rex
 
-3️⃣  RECHERCHER UNE FORMATION
+3️⃣  TESTER AVEC 20 ITEMS
+   node scripts/sync-contents.js --all --limit=20
+
+4️⃣  RECHERCHER UNE FORMATION
    npm run find-formation "Tyrannosaurus rex"
 
-4️⃣  VALIDER LES FREE-TAGS
-   npm run validate
-
-5️⃣  PIPELINE COMPLET APRÈS MODIFICATIONS DANS WEBFLOW
-   npm run update-contents
+5️⃣  SYNCHRONISATION COMPLÈTE
+   node scripts/sync-contents.js
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

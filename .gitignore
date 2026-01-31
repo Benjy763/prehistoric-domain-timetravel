@@ -27,6 +27,7 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+geocoded-items.json
 
 # API keys (to be replaced before deployment)
 config/api-keys.js

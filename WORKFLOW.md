@@ -12,7 +12,7 @@ Pour une IA sans contexte : ce fichier contient TOUS les workflows nécessaires 
 
 ```bash
 # Importer TOUS les contenus depuis Webflow
-node scripts/import-new-contents.js --all
+node scripts/sync-contents.js --all
 ```
 
 **Situation :** Nouveau projet, pas encore de `content-data.json`
@@ -49,11 +49,46 @@ node scripts/import-new-contents.js --all
 
 ---
 
-### 2️⃣ Ajouter UN item spécifique (par slug)
+### 2️⃣ Import ciblé par slug (rapide)
 
 ```bash
-# Ajouter un seul item
+# Importer 1 item spécifique
+node scripts/sync-contents.js --slugs=pteranodon
+
+# Importer plusieurs items
+node scripts/sync-contents.js --slugs=pteranodon,spinosaurus,tyrannosaurus-rex
+```
+
+**Situation :** Nouvel item créé dans Webflow ou test rapide
+
+**Ce qui se passe :**
+
+1. 📥 **Fetch Webflow CMS** → ~2-3 API calls (récupère tout puis filtre)
+2. 🗺️ **Géocodage** → Seulement les slugs spécifiés
+3. 🌍 **Reconstruction GPlates** → **N API calls** (1 par slug)
+4. 💾 **Merge fichier** → Ajoute/remplace dans `content-data.json` existant
+
+**Appels API totaux :**
+- Webflow : 2-3 calls (toujours, pas de filtre API)
+- GPlates : **N calls** (N = nombre de slugs)
+
+**Durée estimée :** ~1-3s par item
+
+**Avantage :** Très rapide pour tester/ajouter quelques items
+
+---
+
+### 3️⃣ Ajouter UN item spécifique (OBSOLETE - utiliser --slugs)
+
+```bash
+# Ancienne méthode (fichier supprimé)
 node scripts/add-content-by-slug.js experience-giants-of-the-ice-age
+```
+
+**⚠️ OBSOLETE** : Utiliser `--slugs` à la place :
+
+```bash
+node scripts/sync-contents.js --slugs=experience-giants-of-the-ice-age
 ```
 
 **Situation :** Nouvel item créé dans Webflow, tu connais son slug
@@ -79,14 +114,14 @@ node scripts/add-content-by-slug.js experience-giants-of-the-ice-age
 
 ---
 
-### 3️⃣ Sync complète (detect nouveaux/modifiés/supprimés)
+### 4️⃣ Sync complète (detect nouveaux/modifiés/supprimés)
 
 ```bash
 # Détecter et appliquer tous les changements
-node scripts/import-new-contents.js
+node scripts/sync-contents.js
 
 # Simulation (voir ce qui changerait)
-node scripts/import-new-contents.js --dry-run
+node scripts/sync-contents.js --dry-run
 ```
 
 **Situation :** Utilisation quotidienne/hebdomadaire
@@ -153,7 +188,7 @@ node scripts/import-new-contents.js --dry-run
 
 ```bash
 # Sync détecte automatiquement les modifications
-node scripts/import-new-contents.js
+node scripts/sync-contents.js
 ```
 
 **Situation :** Item existe, tu modifies description/image dans Webflow
@@ -184,7 +219,7 @@ node scripts/import-new-contents.js
 
 ```bash
 # Sync détecte automatiquement les suppressions
-node scripts/import-new-contents.js
+node scripts/sync-contents.js
 ```
 
 **Situation :** Item supprimé dans Webflow CMS
@@ -214,7 +249,7 @@ node scripts/import-new-contents.js
 
 ```bash
 # Sync détecte automatiquement les désactivations
-node scripts/import-new-contents.js
+node scripts/sync-contents.js
 ```
 
 **Situation :** Item existe mais tu désactives `display-on-app` dans Webflow
@@ -342,7 +377,7 @@ node scripts/sync-display-on-app.js
 
 ```bash
 # 1. Importer tous les contenus
-node scripts/import-new-contents.js --all
+node scripts/sync-contents.js --all
 
 # 2. Vérifier le résultat
 node scripts/validate-content-data.js
@@ -362,7 +397,7 @@ open index.html
 node scripts/add-content-by-slug.js <slug>
 
 # Option B : Sync complète (détecte aussi autres changements)
-node scripts/import-new-contents.js
+node scripts/sync-contents.js
 ```
 
 **Étapes dans Webflow AVANT d'exécuter :**
@@ -380,10 +415,10 @@ node scripts/import-new-contents.js
 
 ```bash
 # 1. Simulation pour voir les changements
-node scripts/import-new-contents.js --dry-run
+node scripts/sync-contents.js --dry-run
 
 # 2. Appliquer les changements
-node scripts/import-new-contents.js
+node scripts/sync-contents.js
 
 # 3. Vérifier
 node scripts/validate-content-data.js
@@ -406,7 +441,7 @@ node scripts/validate-content-data.js
 **Puis lancer :**
 
 ```bash
-node scripts/import-new-contents.js
+node scripts/sync-contents.js
 # → Détecte et retire automatiquement l'item de content-data.json
 ```
 
@@ -418,7 +453,7 @@ node scripts/import-new-contents.js
 
 ```bash
 # La synchro détecte automatiquement les suppressions
-node scripts/import-new-contents.js
+node scripts/sync-contents.js
 # → Retire l'item de content-data.json
 ```
 
@@ -437,10 +472,10 @@ node scripts/import-new-contents.js
 
 ```bash
 # Détecte automatiquement les items modifiés
-node scripts/import-new-contents.js
+node scripts/sync-contents.js
 
 # OU en dry-run pour voir ce qui sera mis à jour
-node scripts/import-new-contents.js --dry-run
+node scripts/sync-contents.js --dry-run
 ```
 
 **Ce qui se passe :**
@@ -591,7 +626,7 @@ assets/
 
 | Script                     | Usage                  | Durée    | Appels API  |
 | -------------------------- | ---------------------- | -------- | ----------- |
-| `import-new-contents.js`   | Init + Sync complète   | 5-10 min | N items     |
+| `sync-contents.js`   | Init + Sync complète   | 5-10 min | N items     |
 | `add-content-by-slug.js`   | Ajouter 1 item         | 5 sec    | 1           |
 | `sync-display-on-app.js`   | Sync switch uniquement | 5 sec    | 0 (GPlates) |
 | `validate-content-data.js` | Vérifier structure     | 1 sec    | 0           |
@@ -600,7 +635,7 @@ assets/
 
 ### Scripts internes (ne pas appeler directement)
 
-- `auto-geocode-contents.js` : Appelé automatiquement par import/add
+- `import-cms-items.js` : Appelé automatiquement par import/add
 - `reconstruct-paleogeography.js` : Appelé automatiquement par import/add
 
 ---
@@ -655,14 +690,14 @@ node scripts/validate-free-tags.js --errors-only
    - Un item = un lieu = un continent
 
 4. ❌ Lancer `reconstruct-paleogeography.js` directement
-   - Utiliser `import-new-contents.js` à la place
+   - Utiliser `sync-contents.js` à la place
 
 ### Bonnes pratiques
 
 1. ✅ Utiliser `--dry-run` avant synchronisation
 
    ```bash
-   node scripts/import-new-contents.js --dry-run
+   node scripts/sync-contents.js --dry-run
    ```
 
 2. ✅ Vérifier les free-tags avant import
@@ -693,9 +728,9 @@ node scripts/validate-free-tags.js --errors-only
 ```json
 {
   "scripts": {
-    "init": "node scripts/import-new-contents.js --all",
-    "sync": "node scripts/import-new-contents.js",
-    "sync:dry": "node scripts/import-new-contents.js --dry-run",
+    "init": "node scripts/sync-contents.js --all",
+    "sync": "node scripts/sync-contents.js",
+    "sync:dry": "node scripts/sync-contents.js --dry-run",
     "add": "node scripts/add-content-by-slug.js",
     "validate": "node scripts/validate-content-data.js",
     "validate:tags": "node scripts/validate-free-tags.js",
@@ -729,7 +764,7 @@ npm run find-formation "T-Rex"  # Chercher formation
 rm assets/data/content-data.json
 
 # Réimporter tout
-node scripts/import-new-contents.js --all
+node scripts/sync-contents.js --all
 
 # Vérifier
 node scripts/validate-content-data.js
@@ -745,7 +780,7 @@ python3 scripts/fetch-merdith2021.py
 # Ajouter : { time: 350, name: 'new-period' }
 
 # 3. Régénérer
-node scripts/import-new-contents.js --all
+node scripts/sync-contents.js --all
 ```
 
 ### Migrer vers un nouveau modèle
@@ -759,7 +794,7 @@ node scripts/import-new-contents.js --all
 
 # 2. Régénérer tout
 rm assets/data/content-data.json
-node scripts/import-new-contents.js --all
+node scripts/sync-contents.js --all
 ```
 
 ---
@@ -816,7 +851,7 @@ const periodMapping = {
 **Détection automatique :**
 
 ```javascript
-// Dans auto-geocode-contents.js
+// Dans import-cms-items.js
 if (!continent) {
   continent = "global oceans"; // Fallback automatique
 }

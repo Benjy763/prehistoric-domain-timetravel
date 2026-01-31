@@ -294,16 +294,19 @@ async function updateDisplayOnApp(token, itemIds) {
   console.log("✅ display-on-app activé\n");
 }
 
-function runPipeline(incremental = false, limit = null) {
+function runPipeline(incremental = false, limit = null, slugs = null) {
   console.log("\n🚀 LANCEMENT DU PIPELINE AUTOMATIQUE\n");
   console.log("─".repeat(80));
 
   try {
     // Étape 1: Géocodage
     console.log("\n▶️  Géocodage automatique...\n");
-    const geocodeCmd = limit
-      ? `node ${path.join(__dirname, "auto-geocode-contents.js")} --limit=${limit}`
-      : `node ${path.join(__dirname, "auto-geocode-contents.js")}`;
+    let geocodeCmd = `node ${path.join(__dirname, "import-cms-items.js")}`;
+    if (slugs && slugs.length > 0) {
+      geocodeCmd += ` --slugs=${slugs.join(",")}`;
+    } else if (limit) {
+      geocodeCmd += ` --limit=${limit}`;
+    }
     execSync(geocodeCmd, { stdio: "inherit" });
     console.log("\n✅ Géocodage terminé\n");
 
@@ -312,20 +315,33 @@ function runPipeline(incremental = false, limit = null) {
       console.log(
         "\n▶️  Reconstruction paléogéographique INCRÉMENTALE (nouveaux/modifiés seulement)...\n",
       );
-      const reconstructCmd = limit
-        ? `node ${path.join(__dirname, "reconstruct-paleogeography-incremental.js")} --incremental --limit=${limit}`
-        : `node ${path.join(__dirname, "reconstruct-paleogeography-incremental.js")} --incremental`;
+      let reconstructCmd = `node ${path.join(__dirname, "reconstruct-paleogeography-incremental.js")} --incremental`;
+      if (slugs && slugs.length > 0) {
+        reconstructCmd += ` --slugs=${slugs.join(",")}`;
+      } else if (limit) {
+        reconstructCmd += ` --limit=${limit}`;
+      }
       execSync(reconstructCmd, { stdio: "inherit" });
     } else {
       console.log(
         "\n▶️  Reconstruction paléogéographique COMPLÈTE (tous les items)...\n",
       );
-      const reconstructCmd = limit
-        ? `node ${path.join(__dirname, "reconstruct-paleogeography.js")} --limit=${limit}`
-        : `node ${path.join(__dirname, "reconstruct-paleogeography.js")}`;
+      let reconstructCmd = `node ${path.join(__dirname, "reconstruct-paleogeography.js")}`;
+      if (slugs && slugs.length > 0) {
+        reconstructCmd += ` --slugs=${slugs.join(",")}`;
+      } else if (limit) {
+        reconstructCmd += ` --limit=${limit}`;
+      }
       execSync(reconstructCmd, { stdio: "inherit" });
     }
     console.log("\n✅ Reconstruction terminée\n");
+
+    // Nettoyer le fichier temporaire
+    const tempFile = path.join(__dirname, "../geocoded-items.json");
+    if (fs.existsSync(tempFile)) {
+      fs.unlinkSync(tempFile);
+      console.log("🗑️  Fichier temporaire supprimé: geocoded-items.json\n");
+    }
 
     console.log("─".repeat(80));
     console.log("✅ PIPELINE TERMINÉ AVEC SUCCÈS");
@@ -344,12 +360,22 @@ async function main() {
     all: args.includes("--all"),
     dryRun: args.includes("--dry-run"),
     limit: null,
+    slugs: null,
   };
 
   // Parse --limit=N
   const limitArg = args.find((arg) => arg.startsWith("--limit="));
   if (limitArg) {
     options.limit = parseInt(limitArg.split("=")[1], 10);
+  }
+
+  // Parse --slugs=slug1,slug2,slug3
+  const slugsArg = args.find((arg) => arg.startsWith("--slugs="));
+  if (slugsArg) {
+    options.slugs = slugsArg
+      .split("=")[1]
+      .split(",")
+      .map((s) => s.trim());
   }
 
   const token = readToken();
@@ -375,32 +401,59 @@ async function main() {
     console.log("🔍 Mode --dry-run: simulation sans modifications\n");
   }
 
-  // 1. Récupérer tous les items
-  const allItems = await fetchAllItems(token);
+  if (options.slugs) {
+    console.log(
+      `🎯 Mode --slugs: import ciblé de ${options.slugs.length} slug(s)\n`,
+    );
+    console.log(`   Slugs: ${options.slugs.join(", ")}\n`);
+  }
 
-  // 2. Analyser les nouveaux
-  const result = options.all
-    ? {
-        newItems: allItems.filter(
-          (item) =>
-            item.fieldData["free-tags"] &&
-            !item.isArchived &&
-            !item.isDraft &&
-            item.fieldData["display-on-app"],
-        ),
-        updatedItems: [],
-        readyToDisplay: [],
-        toRemove: [],
-        toDisable: [],
-        total: allItems.filter(
-          (item) =>
-            item.fieldData["free-tags"] &&
-            !item.isArchived &&
-            !item.isDraft &&
-            item.fieldData["display-on-app"],
-        ).length,
-      }
-    : findNewItems(allItems);
+  // 1. Récupérer tous les items
+  let allItems = await fetchAllItems(token);
+
+  // Filtrer par slugs si spécifié
+  if (options.slugs && options.slugs.length > 0) {
+    const beforeFilter = allItems.length;
+    allItems = allItems.filter((item) =>
+      options.slugs.includes(item.fieldData.slug),
+    );
+    console.log(
+      `✅ ${allItems.length} item(s) trouvé(s) sur ${beforeFilter} (filtré par slug)\n`,
+    );
+
+    // Vérifier slugs non trouvés
+    const foundSlugs = allItems.map((item) => item.fieldData.slug);
+    const notFound = options.slugs.filter((slug) => !foundSlugs.includes(slug));
+    if (notFound.length > 0) {
+      console.log(`⚠️  Slugs non trouvés: ${notFound.join(", ")}\n`);
+    }
+  }
+
+  //  2. Analyser les nouveaux
+  console.log("🔍 DEBUG: Début analyse des nouveaux items...");
+  const result =
+    options.all || options.slugs
+      ? {
+          newItems: allItems.filter(
+            (item) =>
+              item.fieldData["free-tags"] &&
+              !item.isArchived &&
+              !item.isDraft &&
+              item.fieldData["display-on-app"],
+          ),
+          updatedItems: [],
+          readyToDisplay: [],
+          toRemove: [],
+          toDisable: [],
+          total: allItems.filter(
+            (item) =>
+              item.fieldData["free-tags"] &&
+              !item.isArchived &&
+              !item.isDraft &&
+              item.fieldData["display-on-app"],
+          ).length,
+        }
+      : findNewItems(allItems);
 
   // Appliquer la limite si spécifiée
   if (options.limit && result.newItems.length > options.limit) {
@@ -419,14 +472,22 @@ async function main() {
   }
 
   // 4. Demander confirmation
+  console.log(
+    `🔍 DEBUG: dryRun=${options.dryRun}, slugs=${options.slugs ? options.slugs.join(",") : "none"}`,
+  );
   if (!options.dryRun) {
-    console.log(
-      `\n⚠️  ${result.total} changements vont être appliqués. Continuer ?\n`,
-    );
-    console.log(
-      "   Pour annuler, appuyez sur Ctrl+C. Pour continuer, attendez 5 secondes...\n",
-    );
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    // Skip confirmation si --slugs (import ciblé)
+    if (!options.slugs) {
+      console.log(
+        `\n⚠️  ${result.total} changements vont être appliqués. Continuer ?\n`,
+      );
+      console.log(
+        "   Pour annuler, appuyez sur Ctrl+C. Pour continuer, attendez 5 secondes...\n",
+      );
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+    } else {
+      console.log(`\n▶️  Import de ${result.total} item(s) via --slugs...\n`);
+    }
   }
 
   if (options.dryRun) {
@@ -472,7 +533,7 @@ async function main() {
       `   Mode: ${useIncremental ? "INCRÉMENTAL ⚡" : "COMPLET 🔄"}\n`,
     );
 
-    runPipeline(useIncremental, options.limit);
+    runPipeline(useIncremental, options.limit, options.slugs);
   }
 
   // 7. Nettoyer APRÈS si besoin (items supprimés ou désactivés)

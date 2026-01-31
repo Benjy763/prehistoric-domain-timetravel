@@ -19,7 +19,9 @@ Système complet de gestion des contenus avec validation automatique, recherche 
 
 ### 2. Scripts d'automatisation
 
-#### `scripts/add-content-by-slug.js`
+#### `scripts/sync-contents.js --slugs`
+
+**Option ajoutée** : Import ciblé par slug(s)
 
 Ajoute un item spécifique au globe par son slug Webflow.
 
@@ -37,7 +39,7 @@ npm run add experience-giants-of-the-ice-age
 - ✅ Lancement du pipeline complet
 - ✅ Affichage du résultat avec coordonnées
 
-#### `scripts/import-new-contents.js`
+#### `scripts/sync-contents.js`
 
 Détecte et importe automatiquement les nouveaux contenus du CMS.
 
@@ -101,7 +103,7 @@ npm run validate:export    # Export JSON/CSV
 
 ## 🎯 Améliorations du Code Existant
 
-### `scripts/auto-geocode-contents.js`
+### `scripts/import-cms-items.js`
 
 - ✅ Chargement des formations depuis JSON externe
 - ✅ Correspondance flexible des noms d'espèces
@@ -279,7 +281,7 @@ npm run import:dry
 ✅ Affichage résultat
 ```
 
-### Script `import-new-contents.js`
+### Script `sync-contents.js`
 
 ```bash
 ✅ Détection nouveaux items

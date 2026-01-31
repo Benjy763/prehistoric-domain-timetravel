@@ -88,7 +88,7 @@ node scripts/add-content-by-slug.js tyrannosaurus-rex
 1. Fetch item depuis Webflow (par slug)
 2. Validation des free-tags (continent requis)
 3. Activation display-on-app si nécessaire
-4. Géocodage moderne (auto-geocode-contents.js)
+4. Géocodage moderne (import-cms-items.js)
 5. Reconstruction paléogéographique (paleo-reconstruction.js)
 6. Ajout/update dans content-data.json
 7. Anti-collision océanique avec items existants
@@ -101,22 +101,79 @@ node scripts/add-content-by-slug.js tyrannosaurus-rex
 
 ---
 
-## Scripts Utilitaires
+## 🔄 Flow de données
 
-### 📍 `auto-geocode-contents.js`
-
-**Usage**: Génère coordonnées modernes à partir des free-tags
-
-```bash
-node scripts/auto-geocode-contents.js
+```
+Webflow CMS (source)
+    ↓
+[sync-contents.js] Orchestrateur
+    ↓
+[import-cms-items.js] Import + Géocodage MODERNE
+    → Récupère items CMS
+    → Parse free-tags
+    → Enrichit via PBDB (cache)
+    → Calcule coordonnées modernes
+    → Output: geocoded-items.json (temporaire)
+    ↓
+[reconstruct-paleogeography.js] Reconstruction PALÉO
+    → Lit geocoded-items.json
+    → Appelle GPlates API
+    → Calcule 13 périodes
+    → Utilise paleo-reconstruction.js (module)
+    ↓
+assets/data/content-data.json (final)
+    → Coordonnées modernes + paléo
+    → Métadatas complètes
+    → Prêt pour le globe 3D
 ```
 
-**Logique**:
+---
 
-- Parse free-tags pour extraire continent + période
-- Zones géographiques par continent (avec variance)
-- Anti-collision spatiale (distance minimum 5°)
-- Détection items océaniques: `location = "global oceans"`
+## Scripts Principaux
+
+### 🎯 `sync-contents.js`
+
+**Rôle**: Orchestrateur principal - synchronise CMS Webflow → Globe
+
+**Options**:
+```bash
+node scripts/sync-contents.js                    # Mode intelligent (nouveaux/modifiés)
+node scripts/sync-contents.js --all              # Réimport complet
+node scripts/sync-contents.js --slugs=item1,item2  # Import ciblé (rapide)
+node scripts/sync-contents.js --limit=20         # Test (20 items)
+node scripts/sync-contents.js --dry-run          # Simulation
+```
+
+**Pipeline automatique**:
+1. Appelle `import-cms-items.js` (géocodage moderne)
+2. Appelle `reconstruct-paleogeography.js` (reconstruction paléo)
+3. Merge résultats dans `content-data.json`
+4. Nettoie fichier temporaire
+
+---
+
+### 📥 `import-cms-items.js`
+
+**Rôle**: Récupère items CMS + calcule coordonnées géographiques MODERNES
+
+**Options**:
+```bash
+node scripts/import-cms-items.js --slugs=pteranodon
+node scripts/import-cms-items.js --limit=20
+```
+
+**Pipeline**:
+1. Fetch items depuis Webflow CMS (API)
+2. Extrait métadatas (name, slug, category, youtubeId, etc.)
+3. Parse free-tags → continent, espèces, période
+4. Géocode → coordonnées modernes (lat/lon actuelles)
+5. Enrichit via PBDB si espèce inconnue (cache)
+6. Output: `geocoded-items.json` (temporaire)
+
+**Sources géocodage**:
+- Formations célèbres (famous-formations.json) - haute précision
+- PBDB API - auto-enrichissement avec cache
+- Placement continental aléatoire - fallback
 
 **Quand utiliser**: Rarement en standalone (utilisé par autres scripts)
 
@@ -219,7 +276,7 @@ paleo-reconstruction.js (module central)
     ├── reconstruct-paleogeography-incremental.js
     └── add-content-by-slug.js
             ↓
-            └── auto-geocode-contents.js
+            └── import-cms-items.js
 ```
 
 ---
