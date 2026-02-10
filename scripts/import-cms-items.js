@@ -32,6 +32,9 @@ const COORDINATE_FIXES = JSON.parse(
   fs.readFileSync(path.join(__dirname, "manual-coordinate-fixes.json"), "utf8"),
 );
 
+// Land validation (modern coastlines)
+const { isPointOnLand } = require("./paleo-reconstruction.js");
+
 const SITE_ID = "609e6b701730a329c6f67850";
 const COLLECTION_ID = "679d148479ad083f33c518a1";
 
@@ -63,18 +66,44 @@ const GEOLOGICAL_PERIOD_MAP = {
   "4e39033d83b30b505bb4c90e342dd596": "cretaceous",
   "690d38c55e87859a90059f87e5803c9e": "jurassic",
   "3e8d8939bfd52f7fa3ce13bb6fcbffb3": "triassic",
-  "f3e16047f64a12d4824314badfc168a2": "permian",
+  f3e16047f64a12d4824314badfc168a2: "permian",
   "533e85b7f1b3b58d6ebfff5540af3f2c": "carboniferous",
   "1f640518ea2f2905ae9e818010b9c3f6": "devonian",
   "927ffc97d1dec789edc8062baa88b5a1": "silurian",
   "7935a60cb719155a2d225b59569b5699": "ordovician",
-  "f44a29ca025a2b23e3c47810ec7621a1": "cambrian",
+  f44a29ca025a2b23e3c47810ec7621a1: "cambrian",
 };
 
-const MIN_DISTANCE_DEGREES = 2.5; // Distance minimale entre 2 points
-const MAX_OFFSET = 15.0; // Offset maximum en cas de collision (priorité visuelle)
-const NORMAL_OFFSET = 1.5; // Offset normal
-const MAX_ATTEMPTS = 100; // Tentatives maximales anti-collision
+const MIN_DISTANCE_DEGREES = 1.5; // Distance minimale entre 2 points
+const MAX_ATTEMPTS = 20; // Tentatives maximales anti-collision
+
+// Bounding boxes for continent filtering of PBDB results
+const CONTINENT_BOUNDS = {
+  "north america": { latMin: 10, latMax: 85, lonMin: -170, lonMax: -50 },
+  "south america": { latMin: -60, latMax: 15, lonMin: -85, lonMax: -30 },
+  "europe": { latMin: 35, latMax: 75, lonMin: -15, lonMax: 60 },
+  "asia": { latMin: 0, latMax: 75, lonMin: 60, lonMax: 180 },
+  "africa": { latMin: -40, latMax: 40, lonMin: -20, lonMax: 55 },
+  "australia": { latMin: -50, latMax: -10, lonMin: 110, lonMax: 180 },
+  "india": { latMin: 5, latMax: 40, lonMin: 65, lonMax: 100 },
+  "eurasia": { latMin: 0, latMax: 85, lonMin: -15, lonMax: 180 },
+  "central asia": { latMin: 25, latMax: 55, lonMin: 50, lonMax: 110 },
+  "north africa": { latMin: 15, latMax: 40, lonMin: -20, lonMax: 40 },
+};
+
+// Fallback center coordinates for each continent
+const CONTINENT_CENTERS = {
+  "north america": { lat: 45, lon: -100 },
+  "south america": { lat: -15, lon: -60 },
+  "europe": { lat: 50, lon: 15 },
+  "asia": { lat: 40, lon: 100 },
+  "africa": { lat: 5, lon: 25 },
+  "australia": { lat: -25, lon: 135 },
+  "india": { lat: 20, lon: 78 },
+  "eurasia": { lat: 50, lon: 60 },
+  "central asia": { lat: 42, lon: 75 },
+  "north africa": { lat: 28, lon: 10 },
+};
 
 // Cache en mémoire pour éviter appels PBDB redondants
 const PBDB_CACHE = new Map();
@@ -96,21 +125,19 @@ const placedPoints = [];
 // ============================================
 
 /**
- * Recherche dans la Paleobiology Database pour trouver
- * formation et coordonnées d'une espèce
+ * Search PBDB and return ALL occurrences with coordinates (not just the best).
+ * Used for multi-species aggregation with continent filtering and median.
  */
-async function searchPaleobioDB(genus) {
-  // Vérifier le cache d'abord
-  const cacheKey = genus.toLowerCase().trim();
+async function searchPaleoBioDBAll(genus) {
+  const cacheKey = `all_${genus.toLowerCase().trim()}`;
   if (PBDB_CACHE.has(cacheKey)) {
     PBDB_CACHE_HITS++;
-    console.log(`   💾 Cache PBDB: "${genus}" (hit #${PBDB_CACHE_HITS})`);
     return PBDB_CACHE.get(cacheKey);
   }
 
   PBDB_CACHE_MISSES++;
   PBDB_STATS.apiCalls++;
-  const url = `https://paleobiodb.org/data1.2/occs/list.json?base_name=${encodeURIComponent(genus)}&show=coords,loc,stratext&limit=10`;
+  const url = `https://paleobiodb.org/data1.2/occs/list.json?base_name=${encodeURIComponent(genus)}&show=coords,loc,stratext&limit=50`;
 
   try {
     const response = await fetch(url);
@@ -118,43 +145,60 @@ async function searchPaleobioDB(genus) {
 
     if (!data.records || data.records.length === 0) {
       PBDB_STATS.noRecords++;
-      PBDB_CACHE.set(cacheKey, null);
-      return null;
+      PBDB_CACHE.set(cacheKey, []);
+      return [];
     }
 
-    // Trouver la meilleure occurrence avec coordonnées et formation
-    const best =
-      data.records.find((r) => r.lng && r.lat && r.formation) ||
-      data.records.find((r) => r.lng && r.lat);
+    const records = data.records
+      .filter((r) => r.lat && r.lng)
+      .map((r) => ({
+        lat: parseFloat(r.lat),
+        lng: parseFloat(r.lng),
+        formation: r.formation,
+        country: r.cc,
+        state: r.state,
+        period: r.early_interval || r.late_interval,
+      }));
 
-    if (!best) {
+    if (records.length === 0) {
       PBDB_STATS.noCoords++;
-      PBDB_CACHE.set(cacheKey, null);
-      return null;
+    } else {
+      PBDB_STATS.apiOk++;
     }
 
-    PBDB_STATS.apiOk++;
-    console.log(
-      `   🔬 PBDB: ${best.formation || "Formation inconnue"} (${best.cc || "N/A"})`,
-    );
-
-    const result = {
-      formation: best.formation,
-      lat: parseFloat(best.lat),
-      lng: parseFloat(best.lng),
-      country: best.cc,
-      state: best.state,
-      period: best.early_interval || best.late_interval,
-      source: "paleobiodb",
-    };
-
-    PBDB_CACHE.set(cacheKey, result);
-    return result;
+    PBDB_CACHE.set(cacheKey, records);
+    return records;
   } catch (error) {
     PBDB_STATS.errors++;
-    PBDB_CACHE.set(cacheKey, null);
-    return null;
+    PBDB_CACHE.set(cacheKey, []);
+    return [];
   }
+}
+
+/**
+ * Check if a coordinate falls within a continent's bounding box
+ */
+function isInContinent(lat, lng, continent) {
+  const bounds = CONTINENT_BOUNDS[continent];
+  if (!bounds) return true; // Unknown continent → accept all
+  return (
+    lat >= bounds.latMin &&
+    lat <= bounds.latMax &&
+    lng >= bounds.lonMin &&
+    lng <= bounds.lonMax
+  );
+}
+
+/**
+ * Compute the median of a numeric array
+ */
+function median(arr) {
+  if (arr.length === 0) return 0;
+  const sorted = [...arr].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 !== 0
+    ? sorted[mid]
+    : (sorted[mid - 1] + sorted[mid]) / 2;
 }
 
 // ============================================
@@ -184,13 +228,6 @@ function hasCollision(lat, lon, minDistance = MIN_DISTANCE_DEGREES) {
 }
 
 /**
- * Génère un offset aléatoire
- */
-function randomOffset(min, max) {
-  return min + Math.random() * (max - min);
-}
-
-/**
  * Génère une position aléatoire dans les limites d'un continent
  */
 function getRandomPositionInContinent(continent) {
@@ -214,27 +251,36 @@ function getRandomPositionInContinent(continent) {
 
 /**
  * Recherche en spirale pour trouver une position sans collision
+ * @param {number} baseLat - Latitude de base
+ * @param {number} baseLon - Longitude de base
+ * @param {boolean} requireLand - Si true, rejeter les positions en mer (validation 0Ma)
  */
-function findNonCollidingPosition(baseLat, baseLon) {
-  // Essayer d'abord la position de base avec petit offset
-  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
-    const radius = NORMAL_OFFSET + attempt * 0.5; // Augmenter plus rapidement le rayon
-    const angle = attempt * 137.5 * (Math.PI / 180); // Golden angle pour distribution uniforme
+function findNonCollidingPosition(baseLat, baseLon, requireLand = false) {
+  // Essayer la position de base d'abord
+  if (!hasCollision(baseLat, baseLon)) {
+    if (!requireLand || isPointOnLand(baseLat, baseLon, 0) !== false) {
+      return { lat: baseLat, lon: baseLon, attempts: 0 };
+    }
+  }
+
+  // Spirale avec rayon progressif : max = 0.3 + 20*0.3 = 6.3°
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    const radius = 0.3 + attempt * 0.3;
+    const angle = attempt * 137.5 * (Math.PI / 180); // Golden angle
 
     const lat = baseLat + radius * Math.sin(angle);
     const lon = baseLon + radius * Math.cos(angle);
 
     if (!hasCollision(lat, lon)) {
-      return { lat, lon, attempts: attempt + 1 };
+      if (requireLand && isPointOnLand(lat, lon, 0) === false) {
+        continue; // Skip : position en mer
+      }
+      return { lat, lon, attempts: attempt };
     }
   }
 
-  // Dernier recours : position très éloignée aléatoire
-  return {
-    lat: baseLat + randomOffset(-20, 20),
-    lon: baseLon + randomOffset(-20, 20),
-    attempts: MAX_ATTEMPTS,
-  };
+  // Dernier recours : accepter la position de base (collision plutôt que mauvais placement)
+  return { lat: baseLat, lon: baseLon, attempts: MAX_ATTEMPTS };
 }
 
 /**
@@ -293,6 +339,9 @@ function parseFreeTags(freeTags) {
     continent = "africa"; // Gérer typo "arica"
   else if (tags.includes("australia")) continent = "australia";
   else if (tags.includes("india")) continent = "india";
+  else if (tags.includes("central asia")) continent = "central asia";
+  else if (tags.includes("eurasia")) continent = "eurasia";
+  else if (tags.includes("north africa")) continent = "north africa";
   else if (tags.includes("global ocean")) continent = "global oceans";
 
   // NOUVEAU: Extraire SEULEMENT les noms biologiques (espèces, genres, noms communs d'animaux)
@@ -478,21 +527,82 @@ async function findCoordinates(freeTags, itemId, slug) {
     tagsLower,
   );
 
-  // Étape 1 : Chercher la première espèce dans PBDB (pour TOUS les items)
-  const firstSpecies = species[0];
-  if (firstSpecies) {
-    console.log(`🔍 Recherche Paleobiology Database pour "${firstSpecies}"...`);
-    const pbdbData = await searchPaleobioDB(firstSpecies);
+  // Étape 1 : Chercher chaque espèce dans PBDB, dans l'ordre des free-tags
+  // La première espèce avec des résultats dans le bon continent est utilisée
+  if (species.length > 0) {
+    let fallbackResult = null; // Première espèce avec résultats (hors continent)
 
-    if (pbdbData && pbdbData.lat && pbdbData.lng) {
-      const position = findNonCollidingPosition(pbdbData.lat, pbdbData.lng);
+    for (const sp of species) {
+      console.log(`🔍 Recherche PBDB pour "${sp}"...`);
+      const records = await searchPaleoBioDBAll(sp);
+      if (records.length === 0) continue;
+      console.log(`   🔬 ${records.length} occurrence(s) trouvée(s)`);
+
+      // Filtrer par continent attendu si connu
+      let filtered = records;
+      if (continent && continent !== "global oceans") {
+        const continentFiltered = records.filter((r) =>
+          isInContinent(r.lat, r.lng, continent),
+        );
+        if (continentFiltered.length > 0) {
+          filtered = continentFiltered;
+          console.log(
+            `   ✓ ${filtered.length}/${records.length} résultats dans ${continent}`,
+          );
+        } else {
+          console.log(
+            `   ⚠️  Aucun résultat dans ${continent} pour "${sp}"`,
+          );
+          // Sauvegarder comme fallback si c'est la première espèce avec résultats
+          if (!fallbackResult) {
+            fallbackResult = { records, species: sp };
+          }
+          continue; // Essayer l'espèce suivante
+        }
+      }
+
+      // Cette espèce a des résultats dans le bon continent → utiliser
+      const medianLat = median(filtered.map((r) => r.lat));
+      const medianLon = median(filtered.map((r) => r.lng));
+
+      const position = findNonCollidingPosition(medianLat, medianLon, !isMarine);
+
+      const bestFormation = filtered.find((r) => r.formation)?.formation;
+      const bestCountry = filtered[0]?.country;
+
       return {
         ok: true,
         lat: Math.round(position.lat * 100) / 100,
         lon: Math.round(position.lon * 100) / 100,
-        location:
-          pbdbData.formation || `${pbdbData.country || "Unknown"} (PBDB)`,
-        confidence: pbdbData.formation ? "high" : "medium",
+        location: bestFormation || `${bestCountry || "Unknown"} (PBDB)`,
+        confidence: bestFormation ? "high" : "medium",
+        source: "pbdb",
+        period: period,
+        age: age,
+        collisionAttempts: position.attempts,
+      };
+    }
+
+    // Aucune espèce dans le bon continent → utiliser le fallback (première espèce avec résultats)
+    if (fallbackResult) {
+      console.log(
+        `   ⚠️  Fallback: utilisation de "${fallbackResult.species}" sans filtre continent`,
+      );
+      const records = fallbackResult.records;
+      const medianLat = median(records.map((r) => r.lat));
+      const medianLon = median(records.map((r) => r.lng));
+
+      const position = findNonCollidingPosition(medianLat, medianLon, !isMarine);
+
+      const bestFormation = records.find((r) => r.formation)?.formation;
+      const bestCountry = records[0]?.country;
+
+      return {
+        ok: true,
+        lat: Math.round(position.lat * 100) / 100,
+        lon: Math.round(position.lon * 100) / 100,
+        location: bestFormation || `${bestCountry || "Unknown"} (PBDB)`,
+        confidence: "medium",
         source: "pbdb",
         period: period,
         age: age,
@@ -523,7 +633,27 @@ async function findCoordinates(freeTags, itemId, slug) {
     }
   }
 
-  // Étape 3 : Item terrestre sans espèce ou PBDB échouée → ignorer
+  // Étape 3 : Fallback continent center (terrestre sans résultat PBDB)
+  if (continent && continent !== "global oceans" && CONTINENT_CENTERS[continent]) {
+    const center = CONTINENT_CENTERS[continent];
+    console.log(
+      `   📍 Fallback: centre du continent ${continent} (${center.lat}°, ${center.lon}°)`,
+    );
+    const position = findNonCollidingPosition(center.lat, center.lon, true);
+    return {
+      ok: true,
+      lat: Math.round(position.lat * 100) / 100,
+      lon: Math.round(position.lon * 100) / 100,
+      location: `${continent} (continent center)`,
+      confidence: "low",
+      source: "continent_fallback",
+      period: period,
+      age: age,
+      collisionAttempts: position.attempts,
+    };
+  }
+
+  // Étape 4 : Aucune donnée → ignorer
   return { ok: false, reason: "pbdb_failed" };
 }
 
@@ -589,7 +719,7 @@ async function geocodeItems(allItems, { log = true } = {}) {
   }
 
   const results = [];
-  const failedItems = [];  // Items dont la géocodification a échoué
+  const failedItems = []; // Items dont la géocodification a échoué
 
   for (const item of allItems) {
     const freeTags = item.fieldData["free-tags"];
@@ -666,7 +796,7 @@ async function geocodeItems(allItems, { log = true } = {}) {
         name,
         slug,
         freeTags,
-        reason: coords?.reason || "unknown"
+        reason: coords?.reason || "unknown",
       });
       continue;
     }
@@ -741,7 +871,9 @@ async function geocodeItems(allItems, { log = true } = {}) {
     console.log(`   Total items: ${allItems.length}`);
     console.log(`   Géocodés: ${results.length}`);
     console.log(`   Échoués: ${failedItems.length}`);
-    console.log(`   Ignorés: ${allItems.length - results.length - failedItems.length}`);
+    console.log(
+      `   Ignorés: ${allItems.length - results.length - failedItems.length}`,
+    );
     console.log(
       `   Haute confiance: ${results.filter((r) => r.confidence === "high").length}`,
     );
@@ -814,10 +946,7 @@ async function fetchGeocodedItems({
 
   if (writeFile) {
     const fs = await import("fs");
-    fs.writeFileSync(
-      "geocoded-items.json",
-      JSON.stringify(results, null, 2),
-    );
+    fs.writeFileSync("geocoded-items.json", JSON.stringify(results, null, 2));
     if (log) {
       console.log(`\n💾 Résultats sauvegardés dans: geocoded-items.json`);
     }

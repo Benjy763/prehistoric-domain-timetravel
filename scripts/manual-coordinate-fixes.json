@@ -1,7 +1,32 @@
 {
   "t-rex-family": {
     "lat": 51.9,
-    "lon": -113.0,
+    "lon": -113,
     "reason": "Default T.rex location - Alberta Canada"
+  },
+  "riojavenatrix-lacustris": {
+    "lat": 42.3,
+    "lon": -2.5,
+    "reason": "Fossil from La Rioja, Spain (CMS tag says S. America but fossil is European)"
+  },
+  "claw-of-the-desert": {
+    "lat": 43.5,
+    "lon": 100.5,
+    "reason": "Therizinosaurus - Nemegt Formation, Mongolia (tag says India but fossil is Asian)"
+  },
+  "what-else-lived-alongside-the-dinosaurs": {
+    "lat": 48,
+    "lon": -108,
+    "reason": "Multi-continent content - primary focus North America (Montana)"
+  },
+  "were-dinosaurs-good-parents": {
+    "lat": 47.6,
+    "lon": -112,
+    "reason": "Maiasaura - Two Medicine Formation, Montana (PBDB median skewed by Indian species)"
+  },
+  "video-could-giant-pterosaurs-really-hunt-on-the-ground": {
+    "lat": 46,
+    "lon": -104,
+    "reason": "Hatzegopteryx content but tagged N. America - Hell Creek context"
   }
 }

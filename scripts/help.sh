@@ -1,97 +1,60 @@
 #!/bin/bash
 
-# 🦕 PREHISTORIC DOMAIN - Helper Script
-# Affiche l'aide pour toutes les commandes disponibles
-
 cat << 'EOF'
 
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                    🦕 PREHISTORIC DOMAIN - AIDE RAPIDE                      ║
+║                    PREHISTORIC DOMAIN - AIDE RAPIDE                        ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
-📋 COMMANDES PRINCIPALES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SYNCHRONISATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🔄 PIPELINE AUTOMATIQUE
-  npm run sync-contents       Pipeline complet (sync CMS → globe)
-  npm run sync-contents:all   Réimporter tous les items
-  npm run sync-contents:dry   Simulation sans modifications
+  npm run sync                Sync incremental (defaut)
+  npm run sync:all            Rebuild complet
+  npm run sync:dry            Simulation sans modifications
 
-🎯 MODES D'IMPORT
-  --slugs=item1,item2        Importer items spécifiques (rapide)
-  --all                      Réimporter tout (complet)
-  --limit=N                  Limiter à N items (test)
-  --dry-run                  Simulation seulement
+  Options directes :
+  node scripts/sync-contents.js --slugs=item1,item2   Import cible
+  node scripts/sync-contents.js --limit=20             Limiter a N items
 
-➕ UTILITAIRES
-  npm run sync                Synchroniser display-on-app
-  npm run geocode             Générer coordonnées modernes
-  npm run reconstruct         Calculer positions paléogéographiques
+VALIDATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-✅ VALIDATION ET RECHERCHE
-  npm run validate            Valider tous les free-tags
-  npm run validate:errors     Afficher uniquement les erreurs
-  npm run validate:export     Exporter rapport en JSON
+  npm run validate            Valider la structure du JSON
+  npm run validate:tags       Rapport complet des free-tags
+  npm run validate:tags:errors  Erreurs free-tags seulement
 
-🚀 DÉVELOPPEMENT
+PLACEMENT MANUEL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  npm run placement           Outil de placement (http://localhost:8080/placement.html)
+
+DEVELOPPEMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
   npm run dev                 Serveur local (http://localhost:8000)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXEMPLES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📚 EXEMPLES D'UTILISATION
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  1. Importer un item specifique :
+     node scripts/sync-contents.js --slugs=pteranodon
 
-1️⃣  IMPORTER UN ITEM SPÉCIFIQUE (RAPIDE)
-   node scripts/sync-contents.js --slugs=pteranodon
+  2. Importer plusieurs items :
+     node scripts/sync-contents.js --slugs=pteranodon,spinosaurus
 
-2️⃣  IMPORTER PLUSIEURS ITEMS
-   node scripts/sync-contents.js --slugs=pteranodon,spinosaurus,tyrannosaurus-rex
+  3. Tester avec 20 items :
+     node scripts/sync-contents.js --all --limit=20
 
-3️⃣  TESTER AVEC 20 ITEMS
-   node scripts/sync-contents.js --all --limit=20
+  4. Sync incremental (nouveaux/modifies) :
+     node scripts/sync-contents.js
 
-4️⃣  SYNCHRONISATION COMPLÈTE
-   node scripts/sync-contents.js
+DOCUMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-📝 FORMAT DES FREE-TAGS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Structure:  Continent, Période, Espèce1, Espèce2, ...
-
-✅ Valides:
-   North America, Late Cretaceous, Tyrannosaurus rex, Triceratops
-   Asia, Early Cretaceous, Yutyrannus
-   Europe, Late Jurassic, Archaeopteryx
-
-❌ Invalides:
-   Tyrannosaurus rex                          (manque continent)
-   T.rex, Giganotosaurus                      (manque continent)
-   Brachiosaurus                              (manque continent)
-
-Continents reconnus:
-   North America, South America, Asia, Europe, Africa, Australia, India
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-📁 FICHIERS IMPORTANTS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  assets/data/content-data.json          Données consolidées (NE PAS ÉDITER)
-  WORKFLOW.md                            Guide complet
-  CHANGELOG.md                           Nouvelles fonctionnalités
-  README.md                              Démarrage rapide
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-🆘 BESOIN D'AIDE ?
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-  Documentation:  cat WORKFLOW.md
-  Nouveautés:     cat CHANGELOG.md
-  Problèmes:      npm run validate
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  CLAUDE.md           Contexte projet, stack, conventions
+  SPEC.md             Specification produit
+  ARCHITECTURE.md     Architecture technique et data workflow
+  TASKS.md            Plan d'execution actif
 
 EOF

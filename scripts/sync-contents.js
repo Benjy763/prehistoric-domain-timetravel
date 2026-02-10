@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 
 /**
- * PREHISTORIC DOMAIN - Import New Contents
+ * PREHISTORIC DOMAIN - Sync Contents
  *
- * Détecte et importe automatiquement les nouveaux items du CMS :
- * - Items récemment créés ou modifiés
- * - Items avec free-tags mais display-on-app = false
- * - Option --all pour tout réimporter
+ * Point d'entrée unique du pipeline de données.
+ * Modes :
+ *   (défaut)        Incrémental — détecte nouveaux/modifiés/supprimés
+ *   --all           Rebuild complet
+ *   --slugs=a,b     Import ciblé
+ *   --dry-run       Simulation sans modifications
+ *   --limit=N       Limiter à N items (test)
  */
 
 const fs = require("fs");
@@ -346,7 +349,12 @@ async function disableFailedItems(token, failedItemIds) {
   console.log(`✅ ${failedItemIds.length} items désactivés\n`);
 }
 
-async function runPipeline(token, incremental = false, limit = null, slugs = null) {
+async function runPipeline(
+  token,
+  incremental = false,
+  limit = null,
+  slugs = null,
+) {
   console.log("\n🚀 LANCEMENT DU PIPELINE AUTOMATIQUE\n");
   console.log("─".repeat(80));
 
@@ -365,16 +373,22 @@ async function runPipeline(token, incremental = false, limit = null, slugs = nul
     // Étape 2: Désactiver les items échoués (nouveauté)
     const geocodingResultsFile = path.join(__dirname, "../geocoded-items.json");
     if (fs.existsSync(geocodingResultsFile)) {
-      const geocodingResults = JSON.parse(fs.readFileSync(geocodingResultsFile, "utf8"));
+      const geocodingResults = JSON.parse(
+        fs.readFileSync(geocodingResultsFile, "utf8"),
+      );
       const failedItems = geocodingResults.failed || [];
-      
+
       if (failedItems.length > 0) {
-        console.log(`\n⚠️  ${failedItems.length} items ont échoué la géocodification:\n`);
+        console.log(
+          `\n⚠️  ${failedItems.length} items ont échoué la géocodification:\n`,
+        );
         failedItems.forEach((item, index) => {
-          console.log(`   ${index + 1}. ${item.name} (${item.slug}) - Raison: ${item.reason}`);
+          console.log(
+            `   ${index + 1}. ${item.name} (${item.slug}) - Raison: ${item.reason}`,
+          );
         });
-        
-        const failedIds = failedItems.map(item => item.id);
+
+        const failedIds = failedItems.map((item) => item.id);
         await disableFailedItems(token, failedIds);
       } else {
         console.log("\n✅ Aucun item n'a échoué\n");
@@ -386,7 +400,7 @@ async function runPipeline(token, incremental = false, limit = null, slugs = nul
       console.log(
         "\n▶️  Reconstruction paléogéographique INCRÉMENTALE (nouveaux/modifiés seulement)...\n",
       );
-      let reconstructCmd = `node ${path.join(__dirname, "reconstruct-paleogeography-incremental.js")} --incremental`;
+      let reconstructCmd = `node ${path.join(__dirname, "reconstruct-paleogeography.js")} --incremental`;
       if (slugs && slugs.length > 0) {
         reconstructCmd += ` --slugs=${slugs.join(",")}`;
       } else if (limit) {
@@ -408,14 +422,14 @@ async function runPipeline(token, incremental = false, limit = null, slugs = nul
     console.log("\n✅ Reconstruction terminée\n");
 
     // Nettoyer les fichiers temporaires
-    const tempFiles = [
-      path.join(__dirname, "../geocoded-items.json")
-    ];
-    
+    const tempFiles = [path.join(__dirname, "../geocoded-items.json")];
+
     for (const tempFile of tempFiles) {
       if (fs.existsSync(tempFile)) {
         fs.unlinkSync(tempFile);
-        console.log(`🗑️  Fichier temporaire supprimé: ${path.basename(tempFile)}`);
+        console.log(
+          `🗑️  Fichier temporaire supprimé: ${path.basename(tempFile)}`,
+        );
       }
     }
     console.log("");
@@ -462,7 +476,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log("\n🌍 PREHISTORIC DOMAIN - Import New Contents\n");
+  console.log("\n🌍 PREHISTORIC DOMAIN - Sync Contents\n");
 
   if (options.all) {
     console.log(
@@ -506,8 +520,7 @@ async function main() {
     }
   }
 
-  //  2. Analyser les nouveaux
-  console.log("🔍 DEBUG: Début analyse des nouveaux items...");
+  //  2. Analyser les changements
   const result =
     options.all || options.slugs
       ? {
@@ -548,23 +561,9 @@ async function main() {
     process.exit(0);
   }
 
-  // 4. Demander confirmation
-  console.log(
-    `🔍 DEBUG: dryRun=${options.dryRun}, slugs=${options.slugs ? options.slugs.join(",") : "none"}`,
-  );
+  // 4. Lancer le pipeline
   if (!options.dryRun) {
-    // Skip confirmation si --slugs (import ciblé)
-    if (!options.slugs) {
-      console.log(
-        `\n⚠️  ${result.total} changements vont être appliqués. Continuer ?\n`,
-      );
-      console.log(
-        "   Pour annuler, appuyez sur Ctrl+C. Pour continuer, attendez 5 secondes...\n",
-      );
-      await new Promise((resolve) => setTimeout(resolve, 5000));
-    } else {
-      console.log(`\n▶️  Import de ${result.total} item(s) via --slugs...\n`);
-    }
+    console.log(`\n▶️  Traitement de ${result.total} changement(s)...\n`);
   }
 
   if (options.dryRun) {

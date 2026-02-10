@@ -29,6 +29,9 @@ class GlobeManager {
     // Current layer: 'cao2017' or 'muller2022'
     this.currentLayer = "cao2017";
 
+    // External click handler (used by placement tool)
+    this.clickHandler = null;
+
     this.init();
   }
 
@@ -1098,6 +1101,12 @@ class GlobeManager {
   }
 
   onMouseClick(event) {
+    // Delegate to external handler if set (placement tool)
+    if (this.clickHandler) {
+      this.clickHandler(event);
+      return;
+    }
+
     // Calculate mouse position in normalized coordinates
     const rect = this.container.getBoundingClientRect();
     this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;

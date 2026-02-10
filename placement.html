@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prehistoric Domain - Placement Tool</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    body { overflow: hidden; margin: 0; }
+
+    .placement-sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 320px;
+      height: 100vh;
+      background: rgba(13, 17, 23, 0.98);
+      border-right: 1px solid rgba(255,255,255,0.1);
+      padding: 20px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #c9d1d9;
+    }
+
+    .placement-sidebar h1 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #8b949e;
+      margin: 0 0 16px 0;
+    }
+
+    .item-info h2 {
+      font-size: 16px;
+      margin: 0 0 8px 0;
+      color: #f0f6fc;
+    }
+
+    .item-meta {
+      font-size: 12px;
+      color: #8b949e;
+      line-height: 1.8;
+    }
+
+    .item-meta strong { color: #c9d1d9; }
+
+    .coord-display {
+      margin-top: 10px;
+      padding: 10px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 6px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 12px;
+    }
+
+    .coord-display.proposed {
+      border: 1px solid #58a6ff;
+      background: rgba(88,166,255,0.08);
+    }
+
+    .coord-display .coord-label {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 11px;
+      color: #8b949e;
+      margin-bottom: 2px;
+    }
+
+    .coord-display .coord-value {
+      font-size: 13px;
+      color: #f0f6fc;
+    }
+
+    .nav-controls {
+      display: flex;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .nav-controls button, .action-btn {
+      flex: 1;
+      padding: 8px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #c9d1d9;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .nav-controls button:hover, .action-btn:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .action-btn.primary {
+      background: #58a6ff;
+      color: #0d1117;
+      border-color: #58a6ff;
+    }
+    .action-btn.primary:hover { background: #79b8ff; }
+    .action-btn.primary:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .action-btn.toggle-view {
+      background: transparent;
+      border: 1px solid rgba(253,203,110,0.4);
+      color: #fdcb6e;
+      font-size: 10px;
+    }
+    .action-btn.toggle-view:hover {
+      background: rgba(253,203,110,0.1);
+    }
+    .action-btn.toggle-view.active-paleo {
+      background: rgba(253,203,110,0.15);
+      border-color: #fdcb6e;
+    }
+
+    .filter-controls {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-controls button {
+      padding: 5px 8px;
+      font-size: 10px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #8b949e;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-controls button.active {
+      background: rgba(255,255,255,0.1);
+      color: #f0f6fc;
+      border-color: #f0f6fc;
+    }
+
+    .item-counter {
+      font-size: 11px;
+      color: #8b949e;
+      margin-bottom: 6px;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .status-badge.on-land { background: rgba(0,184,148,0.2); color: #00b894; }
+    .status-badge.corrected { background: rgba(253,203,110,0.2); color: #fdcb6e; }
+    .status-badge.ocean { background: rgba(255,107,53,0.2); color: #ff6b35; }
+    .status-badge.fixed { background: rgba(88,166,255,0.2); color: #58a6ff; }
+
+    .placement-globe {
+      position: fixed;
+      top: 0;
+      left: 320px;
+      right: 0;
+      bottom: 0;
+    }
+
+    #globe-canvas {
+      width: 100%;
+      height: 100%;
+      cursor: crosshair;
+    }
+
+    .click-hint {
+      position: fixed;
+      bottom: 20px;
+      left: calc(320px + 50%);
+      transform: translateX(-50%);
+      background: rgba(23,28,37,0.9);
+      padding: 8px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 11px;
+      color: #8b949e;
+      pointer-events: none;
+    }
+
+    #fixReason {
+      width: 100%;
+      padding: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #c9d1d9;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-bottom: 8px;
+      box-sizing: border-box;
+    }
+
+    .coords-section { margin-top: 12px; }
+    .coords-section h3 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #8b949e;
+      margin: 0 0 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="placement-sidebar">
+    <h1>Placement Tool</h1>
+
+    <div class="filter-controls">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="needs-fix">Needs Fix</button>
+      <button data-filter="corrected">Corrected</button>
+      <button data-filter="has-fix">Fixed</button>
+    </div>
+
+    <div class="item-counter" id="itemCounter">Item 0 / 0</div>
+
+    <div class="nav-controls">
+      <button id="btnPrev">Previous</button>
+      <button id="btnNext">Next</button>
+    </div>
+
+    <div class="item-info">
+      <h2 id="itemName">Loading...</h2>
+      <div class="item-meta" id="itemMeta"></div>
+    </div>
+
+    <div class="coords-section">
+      <h3>Positions</h3>
+
+      <div class="coord-display" id="currentCoords">
+        <div class="coord-label">Modern position (on globe):</div>
+        <div class="coord-value" id="currentLatLon">--</div>
+      </div>
+
+      <div class="coord-display" style="margin-top:6px;">
+        <div class="coord-label">Paleo reconstruction:</div>
+        <div class="coord-value" id="paleoLatLon">--</div>
+      </div>
+
+      <div class="coord-display proposed" id="proposedCoords" style="display:none; margin-top:6px;">
+        <div class="coord-label">Proposed new modern position:</div>
+        <div class="coord-value" id="proposedLatLon">--</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 10px;">
+      <button class="action-btn toggle-view" id="btnToggleView">Preview Paleo (P)</button>
+    </div>
+
+    <div style="margin-top: 10px;">
+      <input type="text" id="fixReason" placeholder="Reason for fix (optional)">
+      <button class="action-btn primary" id="btnSaveFix" disabled>Save Fix</button>
+      <button class="action-btn" id="btnReset" style="margin-top:6px;">Reset</button>
+    </div>
+  </div>
+
+  <div class="placement-globe">
+    <div id="globe-canvas"></div>
+  </div>
+
+  <div class="click-hint" id="clickHint">Click on the globe to propose new MODERN coordinates</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="src/globe.js"></script>
+  <script src="src/placement.js"></script>
+</body>
+</html>

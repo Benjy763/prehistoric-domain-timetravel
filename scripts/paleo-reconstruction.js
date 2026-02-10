@@ -119,11 +119,32 @@ const OCEANIC_POSITIONS_BY_PERIOD = {
 // Index de rotation pour les positions océaniques (comme rotationIndexes dans auto-geocode)
 const oceanicRotationIndexes = {};
 
+// Ages disponibles dans assets/geojson/ (correspondant aux 13 périodes)
+const AVAILABLE_GEOJSON_AGES = [0, 2, 15, 50, 100, 160, 220, 280, 320, 380, 410, 450, 500];
+
+/**
+ * Trouve l'âge GeoJSON disponible le plus proche d'un âge cible
+ * Ex: 66 → 50, 125 → 100, 3 → 2
+ */
+function getNearestAvailableAge(age) {
+  let nearest = AVAILABLE_GEOJSON_AGES[0];
+  let minDiff = Math.abs(age - nearest);
+  for (const a of AVAILABLE_GEOJSON_AGES) {
+    const diff = Math.abs(age - a);
+    if (diff < minDiff) {
+      minDiff = diff;
+      nearest = a;
+    }
+  }
+  return nearest;
+}
+
 // Cache GeoJSON des continents par période
 const LAND_GEOJSON_CACHE = new Map();
 
 function loadLandGeoJSON(age) {
-  const key = String(Math.round(age));
+  const nearestAge = getNearestAvailableAge(age);
+  const key = String(nearestAge);
   if (LAND_GEOJSON_CACHE.has(key)) return LAND_GEOJSON_CACHE.get(key);
 
   const filePath = path.join(__dirname, `../assets/geojson/${key}Ma.json`);
@@ -192,14 +213,14 @@ function findNearbyLand(lat, lon, age, attempts = 100, radiusStart = 5) {
 
   // Recherche progessive avec rayon croissant (5° -> 10° -> 20° -> 40°)
   const radii = [5, 10, 20, 40];
-  
+
   for (const radius of radii) {
     for (let i = 0; i < Math.min(attempts, 25); i++) {
       const offsetLat = (Math.random() - 0.5) * radius * 2;
       const offsetLon = (Math.random() - 0.5) * radius * 2;
       const testLat = lat + offsetLat;
       const testLon = lon + offsetLon;
-      
+
       // Validation des coordonnées
       if (Math.abs(testLat) <= 90 && Math.abs(testLon) <= 180) {
         if (isPointOnLand(testLat, testLon, age)) {
@@ -208,7 +229,7 @@ function findNearbyLand(lat, lon, age, attempts = 100, radiusStart = 5) {
       }
     }
   }
-  
+
   return null;
 }
 
@@ -439,17 +460,35 @@ async function reconstructItemForPeriod(item, options = {}) {
   }
 
   let coords = await reconstructPoint(latitude, longitude, age);
+  let validationStatus = "unvalidated";
 
-  // Si l'item n'est pas océanique, éviter les points en mer
+  // Validation paléo : vérifier que le point reconstruit est sur terre
   if (!isOceanicItem(item)) {
-    const landResult = findNearbyLand(coords.lat, coords.lon, age);
-    if (landResult) {
-      coords = landResult;
-    } else if (verbose) {
-      console.log(
-        `   ⚠️  Point reconstruit en mer (${age} Ma) - conservation de la position`,
-      );
+    const onLand = isPointOnLand(coords.lat, coords.lon, age);
+
+    if (onLand === true) {
+      validationStatus = "on_land";
+    } else if (onLand === false) {
+      // Point dans l'océan → chercher terre proche
+      const landResult = findNearbyLand(coords.lat, coords.lon, age);
+      if (landResult) {
+        if (verbose) {
+          console.log(
+            `   🔧 Point corrigé vers terre proche: ${landResult.lat.toFixed(2)}°, ${landResult.lon.toFixed(2)}°`,
+          );
+        }
+        coords = landResult;
+        validationStatus = "corrected_to_land";
+      } else {
+        if (verbose) {
+          console.log(
+            `   ⚠️  Point reconstruit en mer (${age} Ma) - conservation de la position GPlates`,
+          );
+        }
+        validationStatus = "ocean_no_correction";
+      }
     }
+    // onLand === null → pas de données GeoJSON, reste "unvalidated"
   }
 
   // Vérifier les collisions avec les items existants
@@ -458,7 +497,7 @@ async function reconstructItemForPeriod(item, options = {}) {
   let finalLon = coords.lon;
 
   for (const existingItem of existingItems) {
-    if (existingItem.id === item.id) continue; // Ignorer l'item lui-même
+    if (existingItem.id === item.id) continue;
 
     const periodData = existingItem.periods?.[String(age)];
     if (!periodData) continue;
@@ -469,9 +508,8 @@ async function reconstructItemForPeriod(item, options = {}) {
     );
 
     if (distance < COLLISION_THRESHOLD) {
-      // Collision détectée ! Appliquer un offset aléatoire plus grand
-      const offsetLat = (Math.random() - 0.5) * 6; // -3° à +3°
-      const offsetLon = (Math.random() - 0.5) * 6; // -3° à +3°
+      const offsetLat = (Math.random() - 0.5) * 6;
+      const offsetLon = (Math.random() - 0.5) * 6;
       finalLat = coords.lat + offsetLat;
       finalLon = coords.lon + offsetLon;
 
@@ -479,11 +517,8 @@ async function reconstructItemForPeriod(item, options = {}) {
         console.log(
           `   ⚠️  Collision détectée avec "${existingItem.slug}" - dispersion appliquée`,
         );
-        console.log(
-          `   📍 Nouvelle position: ${finalLat.toFixed(2)}°, ${finalLon.toFixed(2)}°`,
-        );
       }
-      break; // Une seule dispersion suffit
+      break;
     }
   }
 
@@ -491,6 +526,7 @@ async function reconstructItemForPeriod(item, options = {}) {
     age,
     lat: finalLat,
     lon: finalLon,
+    validationStatus,
   };
 }
 
@@ -544,6 +580,12 @@ module.exports = {
   isOceanicItem,
   exceedsAPILimit,
   buildDerivedFields,
+
+  // Land validation
+  isPointOnLand,
+  findNearbyLand,
+  getNearestAvailableAge,
+  AVAILABLE_GEOJSON_AGES,
 
   // Reconstruction functions
   reconstructPoint,

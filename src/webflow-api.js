@@ -5,12 +5,6 @@
 
 class WebflowAPI {
   constructor() {
-    // Utiliser la configuration depuis config.js
-    if (typeof API_CONFIG !== "undefined") {
-      this.apiToken = API_CONFIG.webflow.apiToken;
-      this.collectionId = API_CONFIG.webflow.collectionId;
-      this.baseUrl = API_CONFIG.webflow.baseUrl;
-    }
     this.contents = [];
   }
 
