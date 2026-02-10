@@ -50,8 +50,13 @@ class PlacementController {
     this.applyFilter();
     this.setupEvents();
 
-    // Small delay to let globe initialize
-    setTimeout(() => this.showCurrentItem(), 200);
+    // Check URL param for direct navigation
+    const urlSlug = new URLSearchParams(window.location.search).get("slug");
+    if (urlSlug) {
+      setTimeout(() => this.navigateToSlug(urlSlug), 200);
+    } else {
+      setTimeout(() => this.showCurrentItem(), 200);
+    }
   }
 
   async loadItems() {
@@ -111,10 +116,79 @@ class PlacementController {
       .addEventListener("click", () => this.navigate(1));
 
     document.addEventListener("keydown", (e) => {
+      if (e.key === "/" && e.target.tagName !== "INPUT") {
+        e.preventDefault();
+        document.getElementById("itemSearch").focus();
+        return;
+      }
+      if (e.key === "Escape" && e.target.id === "itemSearch") {
+        e.target.blur();
+        this.hideSearchResults();
+        return;
+      }
       if (e.target.tagName === "INPUT") return;
       if (e.key === "ArrowLeft") this.navigate(-1);
       if (e.key === "ArrowRight") this.navigate(1);
       if (e.key === "p" || e.key === "P") this.togglePaleoView();
+    });
+
+    // Search input
+    const searchInput = document.getElementById("itemSearch");
+    const searchResults = document.getElementById("searchResults");
+    const searchClear = document.getElementById("searchClear");
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
+      searchClear.style.display = query ? "block" : "none";
+      if (query.length < 2) {
+        this.hideSearchResults();
+        return;
+      }
+      const matches = this.items
+        .filter(
+          (item) =>
+            item.name.toLowerCase().includes(query) ||
+            item.slug.toLowerCase().includes(query),
+        )
+        .slice(0, 10);
+
+      if (matches.length === 0) {
+        searchResults.innerHTML =
+          '<div class="search-result-item" style="color:#484f58;">No results</div>';
+      } else {
+        searchResults.innerHTML = matches
+          .map(
+            (item) =>
+              `<div class="search-result-item" data-slug="${item.slug}">
+                <div class="result-name">${item.name}</div>
+                <div class="result-slug">${item.slug}</div>
+              </div>`,
+          )
+          .join("");
+      }
+      searchResults.style.display = "block";
+    });
+
+    searchResults.addEventListener("click", (e) => {
+      const el = e.target.closest(".search-result-item");
+      if (!el || !el.dataset.slug) return;
+      this.navigateToSlug(el.dataset.slug);
+      searchInput.value = "";
+      searchClear.style.display = "none";
+      this.hideSearchResults();
+    });
+
+    searchClear.addEventListener("click", () => {
+      searchInput.value = "";
+      searchClear.style.display = "none";
+      this.hideSearchResults();
+    });
+
+    // Hide search when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".search-container")) {
+        this.hideSearchResults();
+      }
     });
 
     document
@@ -195,6 +269,37 @@ class PlacementController {
     while (lon > 180) lon -= 360;
 
     return { lat, lon };
+  }
+
+  navigateToSlug(slug) {
+    // Reset filter to "all" to ensure the item is findable
+    this.currentFilter = "all";
+    document
+      .querySelectorAll(".filter-controls button")
+      .forEach((b) => b.classList.remove("active"));
+    document
+      .querySelector('.filter-controls button[data-filter="all"]')
+      ?.classList.add("active");
+    this.applyFilter();
+
+    const idx = this.filteredItems.findIndex((item) => item.slug === slug);
+    if (idx === -1) {
+      console.warn(`Item "${slug}" not found`);
+      return;
+    }
+    this.currentIndex = idx;
+    this.isPaleoView = false;
+    this.resetProposed();
+    this.showCurrentItem();
+
+    // Update URL without reload
+    const url = new URL(window.location);
+    url.searchParams.set("slug", slug);
+    window.history.replaceState({}, "", url);
+  }
+
+  hideSearchResults() {
+    document.getElementById("searchResults").style.display = "none";
   }
 
   navigate(direction) {
