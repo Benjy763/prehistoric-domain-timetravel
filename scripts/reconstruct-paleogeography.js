@@ -81,6 +81,7 @@ async function reconstructClosestPeriod(
     geologicalPeriod: item.geologicalPeriod || null,
     contentLink: item.contentLink || null,
     youtubeId: item.youtubeId || null,
+    lastUpdated: item.lastUpdated || null,
     youtubeUrl: derivedFields.youtubeUrl,
     backgroundImage: item.backgroundImage,
     galleryImage: item.galleryImage,
@@ -136,7 +137,12 @@ async function main() {
       slugs: slugs,
     });
 
-    let eligibleItems = geocodingData.filter(
+    // Gérer le nouveau format { successful, failed } ou l'ancien format (array)
+    const items = Array.isArray(geocodingData) 
+      ? geocodingData 
+      : geocodingData.successful || [];
+
+    let eligibleItems = items.filter(
       (item) => item.displayOnApp && item.geologicalPeriod,
     );
 
@@ -145,9 +151,9 @@ async function main() {
       eligibleItems = eligibleItems.slice(0, SAMPLE_SIZE);
     }
 
-    const skippedItems = geocodingData.length - eligibleItems.length;
+    const skippedItems = items.length - eligibleItems.length;
 
-    console.log(`✅ ${geocodingData.length} items chargés\n`);
+    console.log(`✅ ${items.length} items chargés\n`);
     console.log(
       `✅ ${eligibleItems.length} items éligibles (display-on-app + geological-period)`,
     );

@@ -120,7 +120,7 @@ python3 -m http.server 8000
 ```
 Webflow CMS
     ↓
-auto-geocode (coordonnées modernes)
+import-cms-items.js (coordonnées modernes)
     ↓
 paleo-reconstruction.js (module central)
     ↓

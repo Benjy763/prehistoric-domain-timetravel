@@ -14,7 +14,7 @@ Organisation centralisée et optimisée des scripts de reconstruction paléogéo
 - `PERIODS` - Array de toutes les périodes disponibles
 - `buildDerivedFields(item)` - Construit youtubeUrl, preview, pageUrl
 - `reconstructItemForPeriod(item, options)` - Reconstruit 1 période (la plus proche)
-- `reconstructItemForAllPeriods(item, options)` - Reconstruit toutes les périodes
+- `reconstructItemForAllPeriods(item, options)` - (legacy)
 - `reconstructPoint(lat, lon, time)` - API GPlates bas niveau
 - `isOceanicItem(item)` - Détecte si item océanique
 - `getPeriodAge(geologicalPeriod)` - Conversion période → âge
@@ -52,7 +52,7 @@ node scripts/reconstruct-paleogeography.js --sample # Test (20 items)
 
 ### 🔄 `reconstruct-paleogeography-incremental.js`
 
-**Usage**: Reconstruction exhaustive (toutes périodes)
+**Usage**: Reconstruction incrémentale (1 période par item)
 
 ```bash
 node scripts/reconstruct-paleogeography-incremental.js             # Full
@@ -62,42 +62,20 @@ node scripts/reconstruct-paleogeography-incremental.js --incremental # Delta onl
 
 **Caractéristiques**:
 
-- 13 appels API par item (une par période géologique)
+- 1 appel API par item (période la plus proche)
 - Mode incrémental: seulement items nouveaux/modifiés
 - Fichier avec timestamp `_reconstructedAt`
 
 **Quand utiliser**:
 
-- Changement de modèle GPlates
-- Validation complète
-- Génération de dataset complet pour recherche
+- Mises à jour rapides
+- Tests ciblés (slugs)
 
 ---
 
-### ➕ `add-content-by-slug.js`
+### ➕ Ajout par slug
 
-**Usage**: Ajouter un item spécifique au globe
-
-```bash
-node scripts/add-content-by-slug.js experience-the-meg
-node scripts/add-content-by-slug.js tyrannosaurus-rex
-```
-
-**Pipeline automatique**:
-
-1. Fetch item depuis Webflow (par slug)
-2. Validation des free-tags (continent requis)
-3. Activation display-on-app si nécessaire
-4. Géocodage moderne (import-cms-items.js)
-5. Reconstruction paléogéographique (paleo-reconstruction.js)
-6. Ajout/update dans content-data.json
-7. Anti-collision océanique avec items existants
-
-**Quand utiliser**:
-
-- Ajout manuel d'un item
-- Test d'un nouveau contenu
-- Re-géocodage après modification Webflow
+Utiliser `sync-contents.js --slugs=...` (pipeline complet).
 
 ---
 
@@ -108,17 +86,17 @@ Webflow CMS (source)
     ↓
 [sync-contents.js] Orchestrateur
     ↓
-[import-cms-items.js] Import + Géocodage MODERNE
+[import-cms-items.js] Import + Géocodage MODERNE (PBDB-only)
     → Récupère items CMS
-    → Parse free-tags
-    → Enrichit via PBDB (cache)
-    → Calcule coordonnées modernes
+    → Parse free-tags (espèces)
+    → PBDB uniquement (1 espèce, 1 requête)
+    → Échec PBDB = item ignoré
     → Output: geocoded-items.json (temporaire)
     ↓
 [reconstruct-paleogeography.js] Reconstruction PALÉO
     → Lit geocoded-items.json
     → Appelle GPlates API
-    → Calcule 13 périodes
+    → 1 période par item
     → Utilise paleo-reconstruction.js (module)
     ↓
 assets/data/content-data.json (final)
@@ -136,6 +114,7 @@ assets/data/content-data.json (final)
 **Rôle**: Orchestrateur principal - synchronise CMS Webflow → Globe
 
 **Options**:
+
 ```bash
 node scripts/sync-contents.js                    # Mode intelligent (nouveaux/modifiés)
 node scripts/sync-contents.js --all              # Réimport complet
@@ -145,6 +124,7 @@ node scripts/sync-contents.js --dry-run          # Simulation
 ```
 
 **Pipeline automatique**:
+
 1. Appelle `import-cms-items.js` (géocodage moderne)
 2. Appelle `reconstruct-paleogeography.js` (reconstruction paléo)
 3. Merge résultats dans `content-data.json`
@@ -157,12 +137,14 @@ node scripts/sync-contents.js --dry-run          # Simulation
 **Rôle**: Récupère items CMS + calcule coordonnées géographiques MODERNES
 
 **Options**:
+
 ```bash
 node scripts/import-cms-items.js --slugs=pteranodon
 node scripts/import-cms-items.js --limit=20
 ```
 
 **Pipeline**:
+
 1. Fetch items depuis Webflow CMS (API)
 2. Extrait métadatas (name, slug, category, youtubeId, etc.)
 3. Parse free-tags → continent, espèces, période
@@ -171,9 +153,9 @@ node scripts/import-cms-items.js --limit=20
 6. Output: `geocoded-items.json` (temporaire)
 
 **Sources géocodage**:
-- Formations célèbres (famous-formations.json) - haute précision
-- PBDB API - auto-enrichissement avec cache
-- Placement continental aléatoire - fallback
+
+- PBDB API uniquement (aucune donnée locale)
+- Items marins → placement direct en océan
 
 **Quand utiliser**: Rarement en standalone (utilisé par autres scripts)
 
@@ -274,7 +256,6 @@ paleo-reconstruction.js (module central)
     ↓
     ├── reconstruct-paleogeography.js
     ├── reconstruct-paleogeography-incremental.js
-    └── add-content-by-slug.js
             ↓
             └── import-cms-items.js
 ```
@@ -291,7 +272,7 @@ node --check scripts/*.js
 node -e "const m = require('./scripts/paleo-reconstruction'); console.log(Object.keys(m));"
 
 # Test reconstruction 1 item
-node scripts/add-content-by-slug.js --help
+node scripts/sync-contents.js --slugs=<slug>
 
 # Test reconstruction sample
 node scripts/reconstruct-paleogeography.js --sample

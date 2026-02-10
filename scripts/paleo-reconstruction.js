@@ -12,6 +12,9 @@
 // CONFIGURATION
 // ============================================
 
+const fs = require("fs");
+const path = require("path");
+
 const PERIOD_MAPPING = {
   today: 0,
   quaternary: 2,
@@ -115,6 +118,99 @@ const OCEANIC_POSITIONS_BY_PERIOD = {
 
 // Index de rotation pour les positions océaniques (comme rotationIndexes dans auto-geocode)
 const oceanicRotationIndexes = {};
+
+// Cache GeoJSON des continents par période
+const LAND_GEOJSON_CACHE = new Map();
+
+function loadLandGeoJSON(age) {
+  const key = String(Math.round(age));
+  if (LAND_GEOJSON_CACHE.has(key)) return LAND_GEOJSON_CACHE.get(key);
+
+  const filePath = path.join(__dirname, `../assets/geojson/${key}Ma.json`);
+  if (!fs.existsSync(filePath)) {
+    LAND_GEOJSON_CACHE.set(key, null);
+    return null;
+  }
+
+  try {
+    const raw = fs.readFileSync(filePath, "utf8");
+    const geo = JSON.parse(raw);
+    const polygons = [];
+
+    for (const feature of geo.features || []) {
+      const geom = feature.geometry;
+      if (!geom) continue;
+      if (geom.type === "Polygon") {
+        polygons.push(geom.coordinates);
+      } else if (geom.type === "MultiPolygon") {
+        for (const poly of geom.coordinates) polygons.push(poly);
+      }
+    }
+
+    LAND_GEOJSON_CACHE.set(key, polygons);
+    return polygons;
+  } catch (error) {
+    LAND_GEOJSON_CACHE.set(key, null);
+    return null;
+  }
+}
+
+function pointInRing(point, ring) {
+  const [x, y] = point;
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const xi = ring[i][0],
+      yi = ring[i][1];
+    const xj = ring[j][0],
+      yj = ring[j][1];
+    const intersect =
+      yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+
+function pointInPolygon(point, polygon) {
+  if (!polygon || polygon.length === 0) return false;
+  // On utilise seulement l'anneau extérieur (index 0)
+  return pointInRing(point, polygon[0]);
+}
+
+function isPointOnLand(lat, lon, age) {
+  const polygons = loadLandGeoJSON(age);
+  if (!polygons) return null;
+
+  const point = [lon, lat];
+  for (const polygon of polygons) {
+    if (pointInPolygon(point, polygon)) return true;
+  }
+  return false;
+}
+
+function findNearbyLand(lat, lon, age, attempts = 100, radiusStart = 5) {
+  if (isPointOnLand(lat, lon, age)) return { lat, lon };
+
+  // Recherche progessive avec rayon croissant (5° -> 10° -> 20° -> 40°)
+  const radii = [5, 10, 20, 40];
+  
+  for (const radius of radii) {
+    for (let i = 0; i < Math.min(attempts, 25); i++) {
+      const offsetLat = (Math.random() - 0.5) * radius * 2;
+      const offsetLon = (Math.random() - 0.5) * radius * 2;
+      const testLat = lat + offsetLat;
+      const testLon = lon + offsetLon;
+      
+      // Validation des coordonnées
+      if (Math.abs(testLat) <= 90 && Math.abs(testLon) <= 180) {
+        if (isPointOnLand(testLat, testLon, age)) {
+          return { lat: testLat, lon: testLon };
+        }
+      }
+    }
+  }
+  
+  return null;
+}
 
 // ============================================
 // CONSTRUCTION DES CHAMPS DÉRIVÉS
@@ -342,7 +438,19 @@ async function reconstructItemForPeriod(item, options = {}) {
     console.log(`   🔄 Reconstruction à ${age} Ma via GPlates API...`);
   }
 
-  const coords = await reconstructPoint(latitude, longitude, age);
+  let coords = await reconstructPoint(latitude, longitude, age);
+
+  // Si l'item n'est pas océanique, éviter les points en mer
+  if (!isOceanicItem(item)) {
+    const landResult = findNearbyLand(coords.lat, coords.lon, age);
+    if (landResult) {
+      coords = landResult;
+    } else if (verbose) {
+      console.log(
+        `   ⚠️  Point reconstruit en mer (${age} Ma) - conservation de la position`,
+      );
+    }
+  }
 
   // Vérifier les collisions avec les items existants
   const COLLISION_THRESHOLD = 3.0; // 3° de distance minimale

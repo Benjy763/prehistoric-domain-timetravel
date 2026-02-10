@@ -99,27 +99,18 @@ periods: [{ time: 100, lat, lon }];
 
 ---
 
-## 🗺️ Système de Géocodage
+## 🗺️ Système de Géocodage (PBDB-only)
 
-### Hiérarchie de placement
+### Règles de placement
 
-1. **Formations célèbres** (haute confiance)
-   - Base de données : `assets/data/famous-formations.json`
-   - Coordonnées précises de découverte
-   - Exemple : T-Rex → Hell Creek Formation (47.5°N, -105.5°W)
-
-2. **Placement continental** (confiance moyenne)
-   - Algorithme : Aléatoire dans limites continent
-   - Anti-collision : Distance min 5° entre points
-   - 50 tentatives max
-
-3. **Zones prédéfinies** (fallback)
-   - 5 zones par continent (rotation)
-   - Garantie distribution uniforme
+1. **PBDB API** (unique source)
+  - 1 espèce valide → 1 requête
+  - Coordonnées modernes uniquement
+2. **Échec PBDB** → item ignoré (pas de fallback local)
 
 ### Items océaniques
 
-**Détection** : `location === "global oceans"` (aucun continent dans free-tags)
+**Détection** : tags `Ocean`/`Sea`/`Marine` → `global oceans`
 
 **Positions prédéfinies par période** :
 
@@ -160,17 +151,18 @@ periods: [{ time: 100, lat, lon }];
 Webflow CMS
     ↓
 sync-contents.js (orchestrateur principal)
-    │
-    ├──> import-cms-items.js (récup CMS + géocodage MODERNE)
-    │      ↓ Output: geocoded-items.json (temporaire)
-    │
-    └──> reconstruct-paleogeography.js (reconstruction PALÉO)
+  │
+  ├──> import-cms-items.js (récup CMS + géocodage MODERNE via PBDB)
+  │      ↓ Output: geocoded-items.json (temporaire)
+  │
+  └──> reconstruct-paleogeography.js (reconstruction PALÉO)
            │ Utilise: paleo-reconstruction.js (module partagé)
            ↓ Output: content-data.json (final)
 ```
 
 **Fichiers clés** :
-- `import-cms-items.js` : Récupère CMS + parse free-tags + calcule coords modernes
+
+- `import-cms-items.js` : Récupère CMS + parse free-tags + coords modernes via PBDB
 - `geocoded-items.json` : Fichier temporaire (auto-supprimé après pipeline)
 - `reconstruct-paleogeography.js` : Reconstruction paléo via GPlates API
 - `paleo-reconstruction.js` : Module partagé (logique métier)

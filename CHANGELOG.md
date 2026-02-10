@@ -10,14 +10,7 @@ Système complet de gestion des contenus avec validation automatique, recherche 
 
 ## 📁 Nouveaux Fichiers
 
-### 1. Base de données externe
-
-- **`assets/data/famous-formations.json`**
-  - 30+ formations célèbres organisées par continent
-  - Métadonnées complètes (âge, période, description, source)
-  - Facile à éditer sans toucher au code
-
-### 2. Scripts d'automatisation
+### Scripts d'automatisation
 
 #### `scripts/sync-contents.js --slugs`
 
@@ -57,23 +50,6 @@ npm run import:dry      # Simulation
 - Items avec free-tags mais display-on-app désactivé
 - Items modifiés récemment
 
-#### `scripts/find-formation.js`
-
-Recherche des formations géologiques pour une espèce donnée.
-
-**Utilisation** :
-
-```bash
-npm run find-formation "Tyrannosaurus rex"
-npm run find-formation velociraptor
-```
-
-**Sources** :
-
-- Base locale (famous-formations.json)
-- Paleobiology Database API
-- Propose format d'ajout automatique
-
 #### `scripts/validate-free-tags.js`
 
 Validation automatique des free-tags de tous les items CMS.
@@ -105,10 +81,9 @@ npm run validate:export    # Export JSON/CSV
 
 ### `scripts/import-cms-items.js`
 
-- ✅ Chargement des formations depuis JSON externe
-- ✅ Correspondance flexible des noms d'espèces
-- ✅ Support des variantes (T.rex, Tyrannosaurus rex, etc.)
-- ✅ Fallback vers formations en dur si JSON absent
+- ✅ Géocodage PBDB-only
+- ✅ 1 seule espèce utilisée (première)
+- ✅ Échec PBDB = item ignoré
 
 ### `package.json`
 
@@ -123,19 +98,16 @@ npm run validate:export    # Export JSON/CSV
 ### Workflow typique : Ajouter un nouveau contenu
 
 ```bash
-# 1. Rechercher la formation pour une espèce
-npm run find-formation "Spinosaurus"
-
-# 2. Valider les free-tags existants
+# 1. Valider les free-tags existants
 npm run validate:errors
 
-# 3. Ajouter un item spécifique par slug
+# 2. Ajouter un item spécifique par slug
 npm run add experience-giants-of-the-ice-age
 
-# 4. Ou importer tous les nouveaux
+# 3. Ou importer tous les nouveaux
 npm run import
 
-# 5. Vérifier le résultat
+# 4. Vérifier le résultat
 npm run dev
 # Ouvrir http://localhost:8000
 ```
@@ -153,22 +125,6 @@ npm run import
 # Pipeline complet
 npm run update-contents
 ```
-
-### Workflow : Recherche et ajout de formations
-
-```bash
-# Rechercher une formation
-npm run find-formation "Velociraptor"
-
-# Si trouvée dans l'API mais pas en local :
-# Éditer assets/data/famous-formations.json
-# Ajouter la formation selon le format proposé
-
-# Relancer le géocodage
-npm run geocode
-```
-
----
 
 ## 📊 Statistiques Actuelles
 
@@ -191,24 +147,6 @@ Sans free-tags:               39
 
 ---
 
-## 🗺️ Formations Disponibles
-
-**Total** : 30+ formations dans 6 continents
-
-**Par continent** :
-
-- Amérique du Nord : 7 formations
-- Asie : 3 formations
-- Amérique du Sud : 3 formations
-- Europe : 3 formations
-- Afrique : 2 formations
-- Australie : 2 formations
-
-**Espèces couvertes** :
-T-Rex, Triceratops, Velociraptor, Spinosaurus, Brachiosaurus, Diplodocus, Stegosaurus, Pteranodon, Archaeopteryx, Carnotaurus, Giganotosaurus, et bien d'autres...
-
----
-
 ## 🔧 Installation et Utilisation
 
 ### Prérequis
@@ -225,9 +163,6 @@ chmod +x scripts/*.js
 # Tester la validation
 npm run validate
 
-# Tester la recherche
-npm run find-formation "T.rex"
-
 # Import de test (simulation)
 npm run import:dry
 ```
@@ -241,8 +176,6 @@ npm run import:dry
 1. **[WORKFLOW.md](./WORKFLOW.md)** - Guide complet (20+ pages)
 2. **[README.md](./README.md)** - Démarrage rapide
 3. **[COORDINATES_RULES.md](./COORDINATES_RULES.md)** - Règles de géocodage
-4. **[famous-formations.json](./assets/data/famous-formations.json)** - Base de données
-
 ### Ressources externes
 
 - [Paleobiology Database](https://paleobiodb.org/) - API de recherche
@@ -252,14 +185,6 @@ npm run import:dry
 ---
 
 ## ✅ Tests Effectués
-
-### Script `find-formation.js`
-
-```bash
-✅ Recherche locale : Tyrannosaurus rex → Hell Creek Formation
-✅ Recherche locale : Velociraptor → Nemegt Formation
-✅ Recherche API : Spinosaurus → Kem Kem Beds
-```
 
 ### Script `validate-free-tags.js`
 
@@ -297,13 +222,11 @@ npm run import:dry
 ### Mineurs
 
 1. ⚠️ API Paleobiology Database parfois lente (timeout après 10s)
-2. ⚠️ Certaines formations manquent dans famous-formations.json
-3. ⚠️ Validation ne détecte pas les fautes d'orthographe subtiles
+2. ⚠️ Validation ne détecte pas les fautes d'orthographe subtiles
 
 ### Solutions en cours
 
 - Améliorer timeout et retry pour l'API
-- Enrichir progressivement la base de formations
 - Ajouter dictionnaire de corrections courantes
 
 ---
@@ -313,7 +236,6 @@ npm run import:dry
 ### Priorité haute
 
 - [ ] Intégration CI/CD avec validation automatique
-- [ ] Interface web pour éditer famous-formations.json
 - [ ] Export des rapports de validation en PDF
 
 ### Priorité moyenne
@@ -327,23 +249,6 @@ npm run import:dry
 - [ ] Dashboard de statistiques en temps réel
 - [ ] Machine Learning pour suggestions de formations
 - [ ] Détection automatique de doublons
-
----
-
-## 👥 Contribution
-
-Pour ajouter une formation :
-
-1. Rechercher : `npm run find-formation "Espèce"`
-2. Éditer `assets/data/famous-formations.json`
-3. Commit : `git commit -m "feat: add formation for Espèce"`
-4. Tester : `npm run geocode`
-
-Pour signaler un bug :
-
-1. Lancer `npm run validate:export`
-2. Joindre le rapport généré
-3. Créer une issue Git
 
 ---
 

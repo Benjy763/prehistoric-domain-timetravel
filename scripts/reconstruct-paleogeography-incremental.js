@@ -13,14 +13,13 @@
  * - Compare avec les items CMS actuels (par ID)
  * - Reconstruit seulement les items nouveaux ou dont la dernière modification est plus récente
  * - Merge les résultats avec les anciens
- * - Économise ~70% des appels API
+ * - Toujours 1 appel API par item (période la plus proche)
  */
 
 const fs = require("fs");
 const { fetchGeocodedItems } = require("./import-cms-items");
 const {
-  PERIODS,
-  reconstructItemForAllPeriods,
+  reconstructItemForPeriod,
   buildDerivedFields,
 } = require("./paleo-reconstruction");
 
@@ -34,21 +33,28 @@ const INCREMENTAL_MODE = process.argv.includes("--incremental");
 const SAMPLE_SIZE = 20;
 
 /**
- * Reconstruit toutes les périodes pour un item
+ * Reconstruit UNIQUEMENT la période la plus proche pour un item
  * Utilise le module centralisé paleo-reconstruction.js
  */
-async function reconstructAllPeriods(item, index, total) {
+async function reconstructClosestPeriod(item, index, total) {
   const { latitude, longitude, name, geologicalPeriod } = item;
 
   console.log(`\n[${index + 1}/${total}] 🔄 ${name}`);
   console.log(`   Position moderne: ${latitude}°, ${longitude}°`);
   console.log(`   Période: ${geologicalPeriod}`);
 
-  // Utiliser le module centralisé pour la reconstruction
-  const periods = await reconstructItemForAllPeriods(item, {
+  // Utiliser le module centralisé pour la reconstruction (1 seule période)
+  const result = await reconstructItemForPeriod(item, {
     verbose: true,
-    delay: API_DELAY_MS,
   });
+
+  if (!result) {
+    return null;
+  }
+
+  const periods = {
+    [String(result.age)]: { lat: result.lat, lon: result.lon },
+  };
 
   // Construire les champs dérivés via le module centralisé
   const derivedFields = buildDerivedFields(item);
@@ -66,6 +72,7 @@ async function reconstructAllPeriods(item, index, total) {
     geologicalPeriod: item.geologicalPeriod || null,
     contentLink: item.contentLink || null,
     youtubeId: item.youtubeId || null,
+    lastUpdated: item.lastUpdated || null,
     youtubeUrl: derivedFields.youtubeUrl,
     backgroundImage: item.backgroundImage,
     galleryImage: item.galleryImage,
@@ -134,7 +141,12 @@ async function main() {
       slugs: slugs,
     });
 
-    let eligibleItems = geocodingData.filter(
+    // Gérer le nouveau format { successful, failed } ou l'ancien format (array)
+    const items = Array.isArray(geocodingData) 
+      ? geocodingData 
+      : geocodingData.successful || [];
+
+    let eligibleItems = items.filter(
       (item) => item.displayOnApp && item.geologicalPeriod,
     );
 
@@ -150,18 +162,37 @@ async function main() {
       existingData = loadExistingData();
 
       if (existingData && existingData.items && existingData.items.length > 0) {
-        const existingIds = new Set(existingData.items.map((i) => i.id));
-        const newItems = eligibleItems.filter((i) => !existingIds.has(i.id));
+        const existingById = new Map(existingData.items.map((i) => [i.id, i]));
+        const newItems = eligibleItems.filter((i) => !existingById.has(i.id));
+        const updatedItems = eligibleItems.filter((i) => {
+          const existingItem = existingById.get(i.id);
+          if (!existingItem || !i.lastUpdated) return false;
+          const existingUpdated =
+            existingItem.lastUpdated ||
+            existingItem._reconstructedAt ||
+            existingData.metadata.generated;
+          return new Date(i.lastUpdated) > new Date(existingUpdated);
+        });
+        const updatedIds = new Set(updatedItems.map((i) => i.id));
+        const uniqueUpdates = updatedItems.filter(
+          (i) => !newItems.find((n) => n.id === i.id),
+        );
 
         console.log(`\n📊 État actuel:`);
         console.log(`   Items en base: ${existingData.items.length}`);
         console.log(`   Items éligibles actuels: ${eligibleItems.length}`);
         console.log(`   Items nouveaux: ${newItems.length}`);
+        console.log(`   Items modifiés: ${uniqueUpdates.length}`);
 
-        itemsToReconstruct = newItems;
+        if (slugs && slugs.length > 0) {
+          itemsToReconstruct = eligibleItems;
+          console.log(`   Items ciblés (slugs): ${itemsToReconstruct.length}`);
+        } else {
+          itemsToReconstruct = [...newItems, ...uniqueUpdates];
+        }
 
-        if (newItems.length === 0) {
-          console.log("\n✨ Aucun nouvel item à reconstruire!\n");
+        if (itemsToReconstruct.length === 0) {
+          console.log("\n✨ Aucun item à reconstruire!\n");
           process.exit(0);
         }
       }
@@ -179,7 +210,7 @@ async function main() {
 
     console.log("\n🔄 Reconstruction des coordonnées historiques...");
     console.log(
-      `   (${PERIODS.length} périodes × ${itemsToReconstruct.length} items = ${PERIODS.length * itemsToReconstruct.length} appels API)\n`,
+      `   (1 période × ${itemsToReconstruct.length} items = ${itemsToReconstruct.length} appels API)\n`,
     );
     console.log("─".repeat(80));
 
@@ -187,12 +218,14 @@ async function main() {
     const startTime = Date.now();
 
     for (let i = 0; i < itemsToReconstruct.length; i++) {
-      const reconstructed = await reconstructAllPeriods(
+      const reconstructed = await reconstructClosestPeriod(
         itemsToReconstruct[i],
         i,
         itemsToReconstruct.length,
       );
-      reconstructedItems.push(reconstructed);
+      if (reconstructed) {
+        reconstructedItems.push(reconstructed);
+      }
     }
 
     // Merger avec les anciennes données en mode incrémental
@@ -211,10 +244,8 @@ async function main() {
     console.log("\n" + "─".repeat(80));
     console.log(`\n📊 Résumé:`);
     console.log(`   Items traités: ${reconstructedItems.length}`);
-    console.log(`   Périodes par item: ${PERIODS.length}`);
-    console.log(
-      `   Appels API réussis: ${reconstructedItems.length * PERIODS.length}`,
-    );
+    console.log("   Périodes par item: 1");
+    console.log(`   Appels API réussis: ${reconstructedItems.length}`);
     console.log(`   Temps total: ${duration}s`);
 
     const outputDir = OUTPUT_FILE.split("/").slice(0, -1).join("/");

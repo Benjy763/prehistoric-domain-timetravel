@@ -69,8 +69,8 @@ geological-period: "cretaceous"
 display-on-app: true
 ```
 
-**Sans continent** → item océanique
-**Sans geological-period** → ignoré
+**Items océaniques** → ajouter `Ocean`/`Sea`/`Marine` dans free-tags
+**Sans espèce** → ignoré (PBDB-only)
 
 ---
 

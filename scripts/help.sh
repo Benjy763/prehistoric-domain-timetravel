@@ -32,7 +32,6 @@ cat << 'EOF'
   npm run validate            Valider tous les free-tags
   npm run validate:errors     Afficher uniquement les erreurs
   npm run validate:export     Exporter rapport en JSON
-  npm run find-formation <espèce>  Rechercher une formation
 
 🚀 DÉVELOPPEMENT
   npm run dev                 Serveur local (http://localhost:8000)
@@ -51,10 +50,7 @@ cat << 'EOF'
 3️⃣  TESTER AVEC 20 ITEMS
    node scripts/sync-contents.js --all --limit=20
 
-4️⃣  RECHERCHER UNE FORMATION
-   npm run find-formation "Tyrannosaurus rex"
-
-5️⃣  SYNCHRONISATION COMPLÈTE
+4️⃣  SYNCHRONISATION COMPLÈTE
    node scripts/sync-contents.js
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -83,7 +79,6 @@ Continents reconnus:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   assets/data/content-data.json          Données consolidées (NE PAS ÉDITER)
-  assets/data/famous-formations.json     Formations célèbres (ÉDITABLE)
   WORKFLOW.md                            Guide complet
   CHANGELOG.md                           Nouvelles fonctionnalités
   README.md                              Démarrage rapide

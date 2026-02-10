@@ -69,6 +69,7 @@ node scripts/sync-contents.js --slugs=pteranodon,spinosaurus,tyrannosaurus-rex
 4. 💾 **Merge fichier** → Ajoute/remplace dans `content-data.json` existant
 
 **Appels API totaux :**
+
 - Webflow : 2-3 calls (toujours, pas de filtre API)
 - GPlates : **N calls** (N = nombre de slugs)
 
@@ -526,36 +527,17 @@ Exemple: North America, Late Cretaceous, Tyrannosaurus rex, Triceratops
 - `Permian`, `Carboniferous`, `Devonian`, `Silurian`, `Cambrian`
 - `Pleistocene`, `Pliocene`, `Miocene`
 
-### Hiérarchie de placement (3 étapes)
+### Hiérarchie de placement (PBDB-only)
 
-#### Étape 1 : Formations célèbres (haute confiance)
+#### Étape 1 : PBDB (espèce → coordonnées modernes)
 
-**Source :** `assets/data/famous-formations.json`
+- 1 seule espèce utilisée (la première)
+- Aucune donnée locale
 
-Exemples :
+#### Étape 2 : Océan (si tags marins)
 
-- T-Rex → Hell Creek Formation, Montana (47.5°, -105.5°)
-- Velociraptor → Nemegt Formation, Mongolia (43.5°, 104.0°)
-- Pteranodon → Niobrara Formation, Kansas (38.5°, -100.5°)
-
-**Ajouter une formation :**
-
-```bash
-# Recherche automatique
-npm run find-formation "Spinosaurus"
-
-# Puis éditer assets/data/famous-formations.json
-```
-
-#### Étape 2 : Placement aléatoire sur continent (confiance moyenne)
-
-- 50 tentatives dans les limites du continent
-- Évite collisions (distance min 2.5°)
-
-#### Étape 3 : Zones continentales prédéfinies (fallback)
-
-- 5 zones par continent en rotation
-- Garantit distribution uniforme
+- Placement direct en océan global
+- Pas d'appel PBDB
 
 ---
 
@@ -572,10 +554,10 @@ npm run find-formation "Spinosaurus"
 └─────────────────────────┬───────────────────────────────┘
                           ↓
 ┌─────────────────────────────────────────────────────────┐
-│ 2. GÉOCODAGE : assets/data/famous-formations.json       │
-│    - Formations célèbres (espèces connues)              │
-│    - Placement aléatoire sur continent                  │
-│    - Anti-collision (distance min 2.5°)                 │
+│ 2. GÉOCODAGE : PBDB uniquement                           │
+│    - 1 appel PBDB (première espèce)                     │
+│    - Océan = placement global                            │
+│    - Échec PBDB = item ignoré                           │
 └─────────────────────────┬───────────────────────────────┘
                           ↓
 ┌─────────────────────────────────────────────────────────┐
@@ -615,8 +597,7 @@ npm run find-formation "Spinosaurus"
 ```
 assets/
 ├── data/
-│   ├── content-data.json           ← SOURCE utilisée par le globe
-│   └── famous-formations.json      ← Formations célèbres (éditable)
+│   └── content-data.json           ← SOURCE utilisée par le globe
 │
 ├── merdith2021-coastlines/         ← Continents (34 périodes)
 └── cao-paleogeography/             ← Terres émergées (23 périodes)
@@ -626,12 +607,11 @@ assets/
 
 | Script                     | Usage                  | Durée    | Appels API  |
 | -------------------------- | ---------------------- | -------- | ----------- |
-| `sync-contents.js`   | Init + Sync complète   | 5-10 min | N items     |
+| `sync-contents.js`         | Init + Sync complète   | 5-10 min | N items     |
 | `add-content-by-slug.js`   | Ajouter 1 item         | 5 sec    | 1           |
 | `sync-display-on-app.js`   | Sync switch uniquement | 5 sec    | 0 (GPlates) |
 | `validate-content-data.js` | Vérifier structure     | 1 sec    | 0           |
 | `validate-free-tags.js`    | Vérifier free-tags     | 5 sec    | 0           |
-| `find-formation.js`        | Rechercher formation   | 2 sec    | 0           |
 
 ### Scripts internes (ne pas appeler directement)
 
@@ -733,8 +713,7 @@ node scripts/validate-free-tags.js --errors-only
     "sync:dry": "node scripts/sync-contents.js --dry-run",
     "add": "node scripts/add-content-by-slug.js",
     "validate": "node scripts/validate-content-data.js",
-    "validate:tags": "node scripts/validate-free-tags.js",
-    "find-formation": "node scripts/find-formation.js"
+    "validate:tags": "node scripts/validate-free-tags.js"
   }
 }
 ```
@@ -748,7 +727,6 @@ npm run sync:dry          # Simulation
 npm run add <slug>        # Ajouter 1 item
 npm run validate          # Vérifier structure
 npm run validate:tags     # Vérifier free-tags
-npm run find-formation "T-Rex"  # Chercher formation
 ```
 
 ---

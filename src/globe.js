@@ -254,8 +254,8 @@ class GlobeManager {
 
   async loadCoastlines(time) {
     // GPlates API doesn't require an API key
-    // Using MATTHEWS2016 model (same base as Cao 2017)
-    const url = `https://gws.gplates.org/reconstruct/coastlines/?time=${time}&model=MATTHEWS2016`;
+    // Using MERDITH2021 model (aligné avec la reconstruction des points)
+    const url = `https://gws.gplates.org/reconstruct/coastlines/?time=${time}&model=MERDITH2021`;
 
     console.log(`🌍 Loading coastlines for ${time} Ma...`);
 

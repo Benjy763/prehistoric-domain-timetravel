@@ -8,27 +8,16 @@
  * ÉTAPES :
  * 1. Récupère tous les items depuis Webflow CMS (API)
  * 2. Extrait métadatas : name, slug, category, youtubeId, freeTags, geologicalPeriod, etc.
- * 3. Parse les free-tags → continent, espèces, période géologique
- * 4. Géocode → coordonnées géographiques MODERNES (latitude/longitude actuelles)
- * 5. Enrichit via Paleobiology Database (PBDB) si espèce inconnue
+ * 3. Parse les free-tags → espèces + période géologique
+ * 4. Géocode → coordonnées géographiques MODERNES via PBDB (latitude/longitude actuelles)
+ * 5. Si PBDB échoue → item ignoré (pas de fallback local)
  *
- * SOURCES DE GÉOCODAGE (par priorité) :
- *   1. Formations célèbres (famous-formations.json) - haute précision
- *   2. PBDB API - auto-enrichissement avec cache
- *   3. Placement continental aléatoire - fallback
+ * SOURCES DE GÉOCODAGE :
+ *   - PBDB API uniquement (aucune donnée locale)
+ *   - Items marins → placement direct en océan (pas de PBDB)
  *
  * OUTPUT : geocoded-items.json
  *   → Items CMS complets avec coordonnées modernes
- *   → Prêt pour reconstruction paléogéographique (étape suivante)
- *
- * OPTIONS :
- *   --slugs=slug1,slug2  Importer seulement ces items (rapide)
- *   --limit=N            Limiter à N items (pour tests)
- *
- * EXEMPLES :
- *   node scripts/import-cms-items.js --slugs=pteranodon
- *   node scripts/import-cms-items.js --limit=20
- *   node scripts/import-cms-items.js --slugs=pteranodon,spinosaurus,tyrannosaurus-rex
  */
 
 // ============================================
@@ -37,6 +26,11 @@
 
 const fs = require("fs");
 const path = require("path");
+
+// Load manual coordinate fixes
+const COORDINATE_FIXES = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "manual-coordinate-fixes.json"), "utf8"),
+);
 
 const SITE_ID = "609e6b701730a329c6f67850";
 const COLLECTION_ID = "679d148479ad083f33c518a1";
@@ -69,12 +63,12 @@ const GEOLOGICAL_PERIOD_MAP = {
   "4e39033d83b30b505bb4c90e342dd596": "cretaceous",
   "690d38c55e87859a90059f87e5803c9e": "jurassic",
   "3e8d8939bfd52f7fa3ce13bb6fcbffb3": "triassic",
-  f3e16047f64a12d4824314badfc168a2: "permian",
+  "f3e16047f64a12d4824314badfc168a2": "permian",
   "533e85b7f1b3b58d6ebfff5540af3f2c": "carboniferous",
   "1f640518ea2f2905ae9e818010b9c3f6": "devonian",
   "927ffc97d1dec789edc8062baa88b5a1": "silurian",
   "7935a60cb719155a2d225b59569b5699": "ordovician",
-  f44a29ca025a2b23e3c47810ec7621a1: "cambrian",
+  "f44a29ca025a2b23e3c47810ec7621a1": "cambrian",
 };
 
 const MIN_DISTANCE_DEGREES = 2.5; // Distance minimale entre 2 points
@@ -82,139 +76,24 @@ const MAX_OFFSET = 15.0; // Offset maximum en cas de collision (priorité visuel
 const NORMAL_OFFSET = 1.5; // Offset normal
 const MAX_ATTEMPTS = 100; // Tentatives maximales anti-collision
 
-// ============================================
-// CHARGEMENT DES FORMATIONS CÉLÈBRES
-// ============================================
-
-function loadFamousFormations() {
-  const formationsPath = path.join(
-    __dirname,
-    "../assets/data/famous-formations.json",
-  );
-
-  if (!fs.existsSync(formationsPath)) {
-    console.warn("⚠️  Fichier famous-formations.json introuvable");
-    return {};
-  }
-
-  const data = JSON.parse(fs.readFileSync(formationsPath, "utf8"));
-  const formations = {};
-
-  // Convertir structure JSON en format utilisable
-  for (const [continent, formationsList] of Object.entries(data.formations)) {
-    for (const formation of formationsList) {
-      for (const species of formation.species) {
-        formations[species] = {
-          lat: formation.lat,
-          lon: formation.lon,
-          name: formation.name,
-        };
-      }
-    }
-  }
-
-  return formations;
-}
-
-const FAMOUS_FORMATIONS = loadFamousFormations();
-
-// ============================================
-// RECHERCHE PALEOBIOLOGY DATABASE
-// ============================================
-
 // Cache en mémoire pour éviter appels PBDB redondants
 const PBDB_CACHE = new Map();
 let PBDB_CACHE_HITS = 0;
 let PBDB_CACHE_MISSES = 0;
+const PBDB_STATS = {
+  apiCalls: 0,
+  apiOk: 0,
+  noRecords: 0,
+  noCoords: 0,
+  errors: 0,
+};
 
-/**
- * Ajoute une nouvelle formation au fichier famous-formations.json
- */
-async function addFormationToJSON(speciesName, pbdbData, continent, period) {
-  const formationsPath = path.resolve(
-    __dirname,
-    "../assets/data/famous-formations.json",
-  );
+// Stocker tous les points placés
+const placedPoints = [];
 
-  // Mapper continent vers clé JSON
-  const continentMap = {
-    "north america": "northAmerica",
-    "south america": "southAmerica",
-    europe: "europe",
-    africa: "africa",
-    asia: "asia",
-    australia: "australia",
-  };
-
-  const continentKey = continentMap[continent.toLowerCase()];
-  if (!continentKey) {
-    console.warn(
-      `⚠️  Continent "${continent}" non mappé, formation non ajoutée`,
-    );
-    return false;
-  }
-
-  try {
-    // Lire le fichier JSON
-    const data = JSON.parse(fs.readFileSync(formationsPath, "utf8"));
-
-    // Vérifier si la formation existe déjà
-    const existingFormation = data.formations[continentKey]?.find(
-      (f) => f.name === pbdbData.formation,
-    );
-
-    if (existingFormation) {
-      // Ajouter l'espèce si elle n'existe pas déjà
-      const speciesNormalized = speciesName.toLowerCase();
-      if (!existingFormation.species.includes(speciesNormalized)) {
-        existingFormation.species.push(speciesNormalized);
-        console.log(
-          `   ✏️  Espèce "${speciesName}" ajoutée à formation existante "${pbdbData.formation}"`,
-        );
-      } else {
-        return false; // Déjà présent
-      }
-    } else {
-      // Créer une nouvelle formation
-      const newFormation = {
-        species: [speciesName.toLowerCase()],
-        lat: pbdbData.lat,
-        lon: pbdbData.lng,
-        name: pbdbData.formation,
-        age: null, // PBDB ne fournit pas toujours l'âge numérique
-        period: pbdbData.period || period,
-        description: `Auto-découvert via Paleobiology Database (${pbdbData.country || "N/A"})`,
-        source: "https://paleobiodb.org (auto-enrichment)",
-      };
-
-      if (!data.formations[continentKey]) {
-        data.formations[continentKey] = [];
-      }
-
-      data.formations[continentKey].push(newFormation);
-      console.log(
-        `   ✨ Nouvelle formation ajoutée: "${pbdbData.formation}" avec "${speciesName}"`,
-      );
-    }
-
-    // Mettre à jour metadata.lastUpdated
-    const now = new Date();
-    data.metadata.lastUpdated = now.toISOString().split("T")[0];
-
-    // Sauvegarder le fichier
-    fs.writeFileSync(formationsPath, JSON.stringify(data, null, 2), "utf8");
-
-    // Recharger FAMOUS_FORMATIONS en mémoire
-    Object.assign(FAMOUS_FORMATIONS, loadFamousFormations());
-
-    return true;
-  } catch (error) {
-    console.error(
-      `❌ Erreur lors de l'ajout de la formation: ${error.message}`,
-    );
-    return false;
-  }
-}
+// ============================================
+// RECHERCHE PALEOBIOLOGY DATABASE
+// ============================================
 
 /**
  * Recherche dans la Paleobiology Database pour trouver
@@ -230,6 +109,7 @@ async function searchPaleobioDB(genus) {
   }
 
   PBDB_CACHE_MISSES++;
+  PBDB_STATS.apiCalls++;
   const url = `https://paleobiodb.org/data1.2/occs/list.json?base_name=${encodeURIComponent(genus)}&show=coords,loc,stratext&limit=10`;
 
   try {
@@ -237,7 +117,7 @@ async function searchPaleobioDB(genus) {
     const data = await response.json();
 
     if (!data.records || data.records.length === 0) {
-      // Cacher aussi les résultats vides
+      PBDB_STATS.noRecords++;
       PBDB_CACHE.set(cacheKey, null);
       return null;
     }
@@ -248,10 +128,12 @@ async function searchPaleobioDB(genus) {
       data.records.find((r) => r.lng && r.lat);
 
     if (!best) {
+      PBDB_STATS.noCoords++;
       PBDB_CACHE.set(cacheKey, null);
       return null;
     }
 
+    PBDB_STATS.apiOk++;
     console.log(
       `   🔬 PBDB: ${best.formation || "Formation inconnue"} (${best.cc || "N/A"})`,
     );
@@ -266,194 +148,14 @@ async function searchPaleobioDB(genus) {
       source: "paleobiodb",
     };
 
-    // Sauvegarder dans le cache
     PBDB_CACHE.set(cacheKey, result);
     return result;
   } catch (error) {
-    // Erreur silencieuse, fallback sur méthodes existantes
-    // Cacher aussi les échecs pour éviter retry
+    PBDB_STATS.errors++;
     PBDB_CACHE.set(cacheKey, null);
     return null;
   }
 }
-
-// ============================================
-// LEGACY: Formations en dur (fallback)
-// ============================================
-
-const LEGACY_FORMATIONS = {
-  // NORTH AMERICA
-  "t-rex": { lat: 47.5, lon: -105.5, name: "Hell Creek Formation, Montana" },
-  tyrannosaurus: {
-    lat: 47.5,
-    lon: -105.5,
-    name: "Hell Creek Formation, Montana",
-  },
-  triceratops: {
-    lat: 47.5,
-    lon: -105.5,
-    name: "Hell Creek Formation, Montana",
-  },
-  edmontosaurus: {
-    lat: 50.5,
-    lon: -111.5,
-    name: "Dinosaur Park Formation, Alberta",
-  },
-  albertosaurus: {
-    lat: 50.5,
-    lon: -111.5,
-    name: "Dinosaur Park Formation, Alberta",
-  },
-  diplodocus: { lat: 43.0, lon: -107.5, name: "Morrison Formation, Wyoming" },
-  stegosaurus: { lat: 43.0, lon: -107.5, name: "Morrison Formation, Wyoming" },
-  allosaurus: { lat: 43.0, lon: -107.5, name: "Morrison Formation, Wyoming" },
-  utahraptor: {
-    lat: 39.0,
-    lon: -109.0,
-    name: "Cedar Mountain Formation, Utah",
-  },
-  coelophysis: { lat: 35.0, lon: -106.0, name: "Chinle Formation, New Mexico" },
-  pteranodon: { lat: 38.5, lon: -100.5, name: "Niobrara Formation, Kansas" },
-  quetzalcoatlus: {
-    lat: 29.5,
-    lon: -103.5,
-    name: "Javelina Formation, Texas",
-  },
-
-  // ASIA
-  velociraptor: { lat: 43.5, lon: 104.0, name: "Nemegt Formation, Mongolia" },
-  protoceratops: { lat: 43.5, lon: 104.0, name: "Nemegt Formation, Mongolia" },
-  tarbosaurus: { lat: 43.5, lon: 104.0, name: "Nemegt Formation, Mongolia" },
-  yutyrannus: { lat: 41.5, lon: 121.0, name: "Yixian Formation, China" },
-  microraptor: { lat: 41.5, lon: 121.0, name: "Yixian Formation, China" },
-  sinornithosaurus: { lat: 41.5, lon: 121.0, name: "Yixian Formation, China" },
-  mamenchisaurus: {
-    lat: 30.0,
-    lon: 104.5,
-    name: "Shaximiao Formation, Sichuan",
-  },
-
-  // SOUTH AMERICA
-  giganotosaurus: {
-    lat: -39.5,
-    lon: -69.5,
-    name: "Candeleros Formation, Patagonia",
-  },
-  argentinosaurus: {
-    lat: -40.0,
-    lon: -69.0,
-    name: "Huincul Formation, Patagonia",
-  },
-  carnotaurus: {
-    lat: -45.0,
-    lon: -67.5,
-    name: "La Colonia Formation, Patagonia",
-  },
-  herrerasaurus: {
-    lat: -30.0,
-    lon: -68.0,
-    name: "Ischigualasto Formation, Argentina",
-  },
-
-  // EUROPE
-  iguanodon: { lat: 50.5, lon: -2.5, name: "Purbeck Formation, England" },
-  megalosaurus: { lat: 50.5, lon: -2.5, name: "Purbeck Formation, England" },
-  archaeopteryx: { lat: 48.8, lon: 11.0, name: "Solnhofen Formation, Germany" },
-  compsognathus: { lat: 48.8, lon: 11.0, name: "Solnhofen Formation, Germany" },
-  torvosaurus: { lat: 39.2, lon: -9.3, name: "Lourinhã Formation, Portugal" },
-
-  // AFRICA
-  spinosaurus: { lat: 31.0, lon: -4.0, name: "Kem Kem Beds, Morocco" },
-  carcharodontosaurus: { lat: 31.0, lon: -4.0, name: "Kem Kem Beds, Morocco" },
-  majungasaurus: {
-    lat: -18.0,
-    lon: 46.5,
-    name: "Maevarano Formation, Madagascar",
-  },
-
-  // AUSTRALIA
-  australovenator: {
-    lat: -23.0,
-    lon: 145.0,
-    name: "Winton Formation, Queensland",
-  },
-  leaellynasaura: { lat: -37.5, lon: 144.0, name: "Dinosaur Cove, Victoria" },
-};
-
-// ============================================
-// ZONES DE DISTRIBUTION PAR CONTINENT
-// ============================================
-
-const CONTINENT_ZONES = {
-  "north america": [
-    { lat: 47.5, lon: -105.5, name: "Montana" },
-    { lat: 43.0, lon: -107.5, name: "Wyoming" },
-    { lat: 39.0, lon: -109.0, name: "Utah" },
-    { lat: 35.0, lon: -106.0, name: "New Mexico" },
-    { lat: 50.5, lon: -111.5, name: "Alberta" },
-  ],
-  asia: [
-    { lat: 43.5, lon: 104.0, name: "Mongolia" },
-    { lat: 41.5, lon: 121.0, name: "China (Liaoning)" },
-    { lat: 30.0, lon: 104.5, name: "China (Sichuan)" },
-    { lat: 48.0, lon: 67.0, name: "Kazakhstan" },
-    { lat: 16.0, lon: 102.0, name: "Thailand" },
-  ],
-  "south america": [
-    { lat: -43.0, lon: -67.0, name: "Patagonia" },
-    { lat: -15.0, lon: -47.5, name: "Brazil" },
-    { lat: -33.0, lon: -69.0, name: "Argentina (Mendoza)" },
-    { lat: -38.0, lon: -71.0, name: "Chile" },
-    { lat: -32.5, lon: -55.5, name: "Uruguay" },
-  ],
-  europe: [
-    { lat: 50.5, lon: -2.5, name: "England" },
-    { lat: 48.8, lon: 11.0, name: "Germany" },
-    { lat: 44.0, lon: 4.0, name: "France" },
-    { lat: 43.5, lon: -5.0, name: "Spain" },
-    { lat: 39.2, lon: -9.3, name: "Portugal" },
-  ],
-  africa: [
-    { lat: 31.0, lon: -4.0, name: "Morocco" },
-    { lat: 27.0, lon: 31.0, name: "Egypt" },
-    { lat: -32.0, lon: 22.0, name: "South Africa" },
-    { lat: 16.0, lon: 8.0, name: "Niger" },
-    { lat: -18.0, lon: 46.5, name: "Madagascar" },
-  ],
-  australia: [
-    { lat: -23.0, lon: 145.0, name: "Queensland" },
-    { lat: -37.5, lon: 144.0, name: "Victoria" },
-    { lat: -26.0, lon: 118.0, name: "Western Australia" },
-    { lat: -32.0, lon: 148.0, name: "New South Wales" },
-  ],
-  india: [
-    { lat: 21.0, lon: 78.0, name: "Central India" },
-    { lat: 18.0, lon: 74.0, name: "Western Ghats" },
-    { lat: 23.0, lon: 82.0, name: "Eastern India" },
-    { lat: 13.0, lon: 80.0, name: "Southern India" },
-  ],
-  "global oceans": [
-    { lat: 0.0, lon: -30.0, name: "Atlantic Ocean" },
-    { lat: -10.0, lon: 160.0, name: "Pacific Ocean" },
-    { lat: -20.0, lon: 60.0, name: "Indian Ocean" },
-    { lat: 60.0, lon: -10.0, name: "Arctic Ocean" },
-  ],
-};
-
-// Index de rotation pour chaque continent
-const rotationIndexes = {
-  "north america": 0,
-  asia: 0,
-  "south america": 0,
-  europe: 0,
-  africa: 0,
-  australia: 0,
-  india: 0,
-  "global oceans": 0,
-};
-
-// Stocker tous les points placés
-const placedPoints = [];
 
 // ============================================
 // FONCTIONS UTILITAIRES
@@ -492,64 +194,13 @@ function randomOffset(min, max) {
  * Génère une position aléatoire dans les limites d'un continent
  */
 function getRandomPositionInContinent(continent) {
-  // Points de référence centraux sur terre pour chaque continent
-  // Ces points sont garantis d'être sur terre
-  const centralPoints = {
-    "north america": [
-      { lat: 40, lon: -100 }, // USA central
-      { lat: 35, lon: -110 }, // Southwest USA
-      { lat: 50, lon: -105 }, // Canada
-      { lat: 30, lon: -95 }, // Texas
-      { lat: 45, lon: -90 }, // Great Lakes
-    ],
-    asia: [
-      { lat: 35, lon: 105 }, // China central
-      { lat: 50, lon: 100 }, // Mongolia
-      { lat: 25, lon: 80 }, // India
-      { lat: 60, lon: 90 }, // Siberia
-      { lat: 40, lon: 45 }, // Middle East
-    ],
-    "south america": [
-      { lat: -10, lon: -55 }, // Brazil central
-      { lat: -40, lon: -68 }, // Patagonia (inland)
-      { lat: -5, lon: -62 }, // Amazon
-      { lat: -23, lon: -50 }, // Southeast Brazil (more inland)
-      { lat: 0, lon: -75 }, // Colombia/Ecuador
-      { lat: -15, lon: -70 }, // Peru/Bolivia
-    ],
-    europe: [
-      { lat: 50, lon: 10 }, // Germany/Poland
-      { lat: 45, lon: 25 }, // Romania
-      { lat: 55, lon: 35 }, // Russia west
-      { lat: 40, lon: -5 }, // Spain
-      { lat: 60, lon: 15 }, // Scandinavia
-    ],
-    africa: [
-      { lat: 0, lon: 25 }, // Congo
-      { lat: -20, lon: 25 }, // Southern Africa
-      { lat: 10, lon: 10 }, // West Africa
-      { lat: 30, lon: 30 }, // Egypt
-      { lat: -10, lon: 35 }, // East Africa
-    ],
-    australia: [
-      { lat: -25, lon: 135 }, // Central Australia
-      { lat: -35, lon: 145 }, // Southeast
-      { lat: -20, lon: 125 }, // Western Australia
-    ],
-    india: [
-      { lat: 22, lon: 80 }, // Central India
-      { lat: 28, lon: 77 }, // North India
-      { lat: 15, lon: 75 }, // South India
-    ],
-    "global oceans": [
-      { lat: 0, lon: -160 }, // Pacific
-      { lat: 0, lon: -30 }, // Atlantic
-      { lat: -45, lon: 140 }, // Southern Ocean
-    ],
-  };
+  if (continent !== "global oceans") return null;
 
-  const points = centralPoints[continent];
-  if (!points) return null;
+  const points = [
+    { lat: 0, lon: -160 }, // Pacific
+    { lat: 0, lon: -30 }, // Atlantic
+    { lat: -45, lon: 140 }, // Southern Ocean
+  ];
 
   // Choisir un point aléatoire parmi les références
   const basePoint = points[Math.floor(Math.random() * points.length)];
@@ -644,22 +295,152 @@ function parseFreeTags(freeTags) {
   else if (tags.includes("india")) continent = "india";
   else if (tags.includes("global ocean")) continent = "global oceans";
 
-  // Extraire les espèces (mots en minuscules de 4+ lettres)
+  // NOUVEAU: Extraire SEULEMENT les noms biologiques (espèces, genres, noms communs d'animaux)
+  const GEOLOGICAL_PERIODS = [
+    "late",
+    "early",
+    "middle",
+    "upper",
+    "lower",
+    "cretaceous",
+    "jurassic",
+    "triassic",
+    "permian",
+    "carboniferous",
+    "devonian",
+    "silurian",
+    "ordovician",
+    "cambrian",
+    "pleistocene",
+    "pliocene",
+    "miocene",
+    "oligocene",
+    "eocene",
+    "paleocene",
+    "holocene",
+    "quaternary",
+    "neogene",
+    "paleogene",
+  ];
+
+  const CONTINENTS_AND_REGIONS = [
+    "north america",
+    "south america",
+    "asia",
+    "europe",
+    "africa",
+    "australia",
+    "india",
+    "antarctica",
+    "madagascar",
+    "central asia",
+    "north africa",
+    "eurasia",
+  ];
+
+  const GEOGRAPHIC_TERMS = [
+    "formation",
+    "group",
+    "member",
+    "beds",
+    "basin",
+    "montana",
+    "alberta",
+    "wyoming",
+    "colorado",
+    "utah",
+    "texas",
+    "kansas",
+    "china",
+    "mongolia",
+    "patagonia",
+    "brazil",
+    "beach",
+    "ocean",
+    "river",
+    "lake",
+    "coast",
+    "island",
+    "mountain",
+    "valley",
+    "forest",
+    "desert",
+    "swamp",
+  ];
+
+  const ANATOMICAL_TERMS = [
+    "head",
+    "tail",
+    "tooth",
+    "bone",
+    "skull",
+    "claw",
+    "nest",
+    "egg",
+    "eggs",
+    "track",
+    "tracks",
+    "footprint",
+  ];
+
   const species = tags
     .split(",")
     .map((s) => s.trim())
-    .filter(
-      (s) =>
-        s.length >= 4 &&
-        ![
-          "late",
-          "early",
-          "middle",
-          "cretaceous",
-          "jurassic",
-          "triassic",
-        ].includes(s),
-    );
+    .filter((s) => {
+      // Longueur minimum
+      if (s.length < 4) return false;
+
+      // ACCEPTER les noms binomiaux latins avec espace (ex: "tyrannosaurus rex")
+      if (s.includes(" ")) {
+        // Vérifier d'abord si c'est un terme géographique connu
+        if (CONTINENTS_AND_REGIONS.some((c) => s === c)) return false;
+        if (
+          s.includes("formation") ||
+          s.includes("group") ||
+          s.includes("member")
+        )
+          return false;
+        if (GEOLOGICAL_PERIODS.includes(s)) return false;
+
+        // Accepter si c'est un nom latin binomial (2 mots, le 2e se termine par -us, -is, -a, etc.)
+        const words = s.split(" ");
+        if (words.length === 2) {
+          const latinEndings = /(?:us|is|a|or|ex|on|es|um|ae)$/i;
+          if (
+            GEOLOGICAL_PERIODS.includes(words[0]) ||
+            GEOLOGICAL_PERIODS.includes(words[1])
+          ) {
+            return false;
+          }
+          if (latinEndings.test(words[1])) {
+            return true; // C'est probablement un nom d'espèce latin
+          }
+        }
+        return false; // Autre expression multi-mots → rejeter
+      }
+
+      // Exclure les périodes géologiques
+      if (GEOLOGICAL_PERIODS.includes(s)) return false;
+
+      // Exclure les continents/régions
+      if (CONTINENTS_AND_REGIONS.some((c) => s.includes(c))) return false;
+
+      // Exclure les termes géographiques
+      if (GEOGRAPHIC_TERMS.includes(s)) return false;
+
+      // Exclure les termes anatomiques
+      if (ANATOMICAL_TERMS.includes(s)) return false;
+
+      // ACCEPTER: Noms latins (se terminent souvent par -us, -is, -a, -or, -ex, -ops, -on, -aurus, -itan, -an)
+      const latinEndings =
+        /(?:saurus|raptor|ceratops|titan|suchus|therium|odon|pteryx|chelys|mimus|venator|lophus|nykus|dactyl|forma|chelonia|aurus|itan|an)$/i;
+      if (latinEndings.test(s)) return true;
+
+      // Noms longs (10+ lettres) probablement des espèces
+      if (s.length >= 10) return true;
+
+      return false;
+    });
 
   // Extraire la période
   const { period, age } = extractPeriod(tags);
@@ -669,141 +450,50 @@ function parseFreeTags(freeTags) {
 
 /**
  * Trouve les coordonnées pour un item
+ * Stratégie : PBDB d'abord pour TOUS les items, fallback océan si marin + échec PBDB
  */
-async function findCoordinates(freeTags, itemId) {
-  let { continent, species, period, age } = parseFreeTags(freeTags);
-
-  // Si aucun continent détecté, c'est un item océanique global
-  if (!continent) {
-    console.warn(
-      `⚠️  [${itemId}] Continent non détecté, placement océanique global`,
+async function findCoordinates(freeTags, itemId, slug) {
+  // Vérifier si une correction manuelle existe
+  if (slug && COORDINATE_FIXES[slug]) {
+    const fix = COORDINATE_FIXES[slug];
+    console.log(
+      `✓ Utilisant correction manuelle pour "${slug}" (${fix.reason})`,
     );
-    continent = "global oceans";
-  }
-
-  // Étape 1 : Chercher une formation célèbre
-  let matchedFormation = null;
-  let unmatchedSpecies = [];
-
-  for (const speciesName of species) {
-    // Normaliser le nom : enlever espaces, tirets, points
-    const normalized = speciesName.replace(/[\s\-\.]/g, "").toLowerCase();
-
-    // Chercher dans FAMOUS_FORMATIONS avec correspondance flexible
-    let foundKey = null;
-    for (const key of Object.keys(FAMOUS_FORMATIONS)) {
-      const keyNormalized = key.replace(/[\s\-\.]/g, "").toLowerCase();
-      if (
-        normalized.includes(keyNormalized) ||
-        keyNormalized.includes(normalized)
-      ) {
-        foundKey = key;
-        break;
-      }
-    }
-
-    if (foundKey) {
-      matchedFormation = {
-        key: foundKey,
-        data: FAMOUS_FORMATIONS[foundKey],
-      };
-      break;
-    } else {
-      unmatchedSpecies.push(speciesName);
-    }
-  }
-
-  // Si une formation a été trouvée, l'utiliser
-  if (matchedFormation) {
-    const formation = matchedFormation.data;
-    const position = findNonCollidingPosition(formation.lat, formation.lon);
-
-    // Suggérer d'ajouter les espèces non trouvées à la même formation
-    // OPTIMISATION: Skip PBDB car on a déjà une formation connue
-    if (unmatchedSpecies.length > 0 && species.length > 1) {
-      console.log(
-        `💡 Suggestion: Ajouter "${unmatchedSpecies.join(", ")}" à "${formation.name}" dans famous-formations.json`,
-      );
-      console.log(
-        `   ⚡ Skip PBDB pour espèces restantes (formation déjà connue)`,
-      );
-    }
-
     return {
-      lat: Math.round(position.lat * 100) / 100,
-      lon: Math.round(position.lon * 100) / 100,
-      location: formation.name,
+      ok: true,
+      lat: fix.lat,
+      lon: fix.lon,
+      location: fix.reason,
       confidence: "high",
-      source: "famous_formation",
-      period: period,
-      age: age,
-      collisionAttempts: position.attempts,
+      source: "manual_fix",
+      period: null,
+      age: 0,
+      collisionAttempts: 0,
     };
   }
 
-  // Si aucune formation trouvée mais qu'on a des espèces, chercher dans PBDB
-  if (unmatchedSpecies.length > 0) {
-    for (const speciesName of unmatchedSpecies) {
-      console.log(
-        `🔍 Recherche Paleobiology Database pour "${speciesName}"...`,
-      );
-      const pbdbData = await searchPaleobioDB(speciesName);
+  let { continent, species, period, age } = parseFreeTags(freeTags);
+  const tagsLower = (freeTags || "").toLowerCase();
+  const isMarine = /ocean|sea|marine|reef|pelagic|offshore|lagoon/.test(
+    tagsLower,
+  );
 
-      if (pbdbData && pbdbData.lat && pbdbData.lng) {
-        const position = findNonCollidingPosition(pbdbData.lat, pbdbData.lng);
+  // Étape 1 : Chercher la première espèce dans PBDB (pour TOUS les items)
+  const firstSpecies = species[0];
+  if (firstSpecies) {
+    console.log(`🔍 Recherche Paleobiology Database pour "${firstSpecies}"...`);
+    const pbdbData = await searchPaleobioDB(firstSpecies);
 
-        // Si formation complète trouvée, enrichir le JSON automatiquement
-        if (pbdbData.formation && continent) {
-          const added = await addFormationToJSON(
-            speciesName,
-            pbdbData,
-            continent,
-            period,
-          );
-          if (added) {
-            console.log(
-              `   📝 Formation "${pbdbData.formation}" enrichie dans famous-formations.json`,
-            );
-          }
-        } else if (!pbdbData.formation) {
-          console.log(
-            `   ⚠️  Pas de formation, utilisation des coordonnées seulement (${pbdbData.lat}, ${pbdbData.lng})`,
-          );
-        }
-
-        return {
-          lat: Math.round(position.lat * 100) / 100,
-          lon: Math.round(position.lon * 100) / 100,
-          location:
-            pbdbData.formation || `${pbdbData.country || "Unknown"} (PBDB)`,
-          confidence: pbdbData.formation ? "high" : "medium",
-          source: "paleobiodb_auto",
-          period: period,
-          age: age,
-          collisionAttempts: position.attempts,
-        };
-      }
-    }
-
-    // Si PBDB n'a rien trouvé non plus
-    if (continent && period) {
-      console.log(
-        `⚠️  Espèce(s) "${unmatchedSpecies.join(", ")}" introuvable dans PBDB - Placement aléatoire sur ${continent}`,
-      );
-    }
-  }
-
-  // Étape 2 : Essayer placement aléatoire sur le continent (50 tentatives)
-  for (let attempt = 0; attempt < 50; attempt++) {
-    const randomPos = getRandomPositionInContinent(continent);
-    if (randomPos && !hasCollision(randomPos.lat, randomPos.lon)) {
-      const position = findNonCollidingPosition(randomPos.lat, randomPos.lon);
+    if (pbdbData && pbdbData.lat && pbdbData.lng) {
+      const position = findNonCollidingPosition(pbdbData.lat, pbdbData.lng);
       return {
+        ok: true,
         lat: Math.round(position.lat * 100) / 100,
         lon: Math.round(position.lon * 100) / 100,
-        location: `${continent}`,
-        confidence: "medium",
-        source: "random_continent",
+        location:
+          pbdbData.formation || `${pbdbData.country || "Unknown"} (PBDB)`,
+        confidence: pbdbData.formation ? "high" : "medium",
+        source: "pbdb",
         period: period,
         age: age,
         collisionAttempts: position.attempts,
@@ -811,31 +501,30 @@ async function findCoordinates(freeTags, itemId) {
     }
   }
 
-  // Étape 3 : Fallback - Utiliser zone continentale prédéfinie avec rotation
-  const zones = CONTINENT_ZONES[continent];
-  if (!zones) {
-    console.warn(`⚠️  [${itemId}] Zones non définies pour: ${continent}`);
-    return null;
+  // Étape 2 : Si PBDB a échoué et que c'est marin → placement océan global
+  if (isMarine) {
+    console.warn(
+      `⚠️  [${itemId}] PBDB échoue, placement océanique global (marin)`,
+    );
+    const oceanPos = getRandomPositionInContinent("global oceans");
+    if (oceanPos) {
+      const position = findNonCollidingPosition(oceanPos.lat, oceanPos.lon);
+      return {
+        ok: true,
+        lat: Math.round(position.lat * 100) / 100,
+        lon: Math.round(position.lon * 100) / 100,
+        location: "global oceans",
+        confidence: "medium",
+        source: "ocean_fallback",
+        period: period,
+        age: age,
+        collisionAttempts: position.attempts,
+      };
+    }
   }
 
-  const index = rotationIndexes[continent];
-  const zone = zones[index];
-
-  // Incrémenter l'index pour le prochain item
-  rotationIndexes[continent] = (index + 1) % zones.length;
-
-  const position = findNonCollidingPosition(zone.lat, zone.lon);
-
-  return {
-    lat: Math.round(position.lat * 100) / 100,
-    lon: Math.round(position.lon * 100) / 100,
-    location: `${zone.name}, ${continent}`,
-    confidence: "medium",
-    source: "continent_zone_fallback",
-    period: period,
-    age: age,
-    collisionAttempts: position.attempts,
-  };
+  // Étape 3 : Item terrestre sans espèce ou PBDB échouée → ignorer
+  return { ok: false, reason: "pbdb_failed" };
 }
 
 /**
@@ -843,9 +532,6 @@ async function findCoordinates(freeTags, itemId) {
  */
 function resetGeocodeState() {
   placedPoints.length = 0;
-  Object.keys(rotationIndexes).forEach((key) => {
-    rotationIndexes[key] = 0;
-  });
 }
 
 /**
@@ -903,6 +589,7 @@ async function geocodeItems(allItems, { log = true } = {}) {
   }
 
   const results = [];
+  const failedItems = [];  // Items dont la géocodification a échoué
 
   for (const item of allItems) {
     const freeTags = item.fieldData["free-tags"];
@@ -955,7 +642,6 @@ async function geocodeItems(allItems, { log = true } = {}) {
     const backgroundImage = item.fieldData.background?.url || null;
     const galleryImage =
       item.fieldData["gallery-low-quality-image"]?.url || null;
-
     if (!freeTags) {
       if (log) {
         console.log(`⏭️  [${name}] Pas de free-tags - ignoré`);
@@ -963,7 +649,27 @@ async function geocodeItems(allItems, { log = true } = {}) {
       continue;
     }
 
-    const coords = await findCoordinates(freeTags, item.id);
+    const coords = await findCoordinates(freeTags, item.id, slug);
+
+    if (!coords || coords.ok === false) {
+      if (log) {
+        console.log(`❌ [${name}] Géoloc échouée`);
+        console.log(`   Tags: ${freeTags}`);
+        if (coords?.reason) {
+          console.log(`   Raison: ${coords.reason}`);
+        }
+        console.log("");
+      }
+      // Ajouter aux items échoués pour désactivation ultérieure
+      failedItems.push({
+        id: item.id,
+        name,
+        slug,
+        freeTags,
+        reason: coords?.reason || "unknown"
+      });
+      continue;
+    }
 
     if (coords) {
       placedPoints.push({ lat: coords.lat, lon: coords.lon, id: item.id });
@@ -1014,6 +720,7 @@ async function geocodeItems(allItems, { log = true } = {}) {
         geologicalPeriod,
         contentLink,
         youtubeId,
+        lastUpdated: item.lastUpdated || null,
         backgroundImage,
         galleryImage,
         freeTags,
@@ -1025,9 +732,6 @@ async function geocodeItems(allItems, { log = true } = {}) {
         age: coords.age,
         collisionAttempts: coords.collisionAttempts,
       });
-    } else if (log) {
-      console.log(`❌ [${name}] Impossible de déterminer les coordonnées`);
-      console.log(`   Tags: ${freeTags}\n`);
     }
   }
 
@@ -1036,7 +740,8 @@ async function geocodeItems(allItems, { log = true } = {}) {
     console.log(`\n📊 Résumé:`);
     console.log(`   Total items: ${allItems.length}`);
     console.log(`   Géocodés: ${results.length}`);
-    console.log(`   Ignorés: ${allItems.length - results.length}`);
+    console.log(`   Échoués: ${failedItems.length}`);
+    console.log(`   Ignorés: ${allItems.length - results.length - failedItems.length}`);
     console.log(
       `   Haute confiance: ${results.filter((r) => r.confidence === "high").length}`,
     );
@@ -1053,6 +758,13 @@ async function geocodeItems(allItems, { log = true } = {}) {
       );
     }
 
+    console.log(
+      `   🌐 PBDB API: ${PBDB_STATS.apiOk}/${PBDB_STATS.apiCalls} OK | ` +
+        `vides: ${PBDB_STATS.noRecords} | ` +
+        `sans coords: ${PBDB_STATS.noCoords} | ` +
+        `erreurs: ${PBDB_STATS.errors}`,
+    );
+
     const collisions = results.filter((r) => {
       const nearest = placedPoints
         .filter((p) => p.id !== r.id)
@@ -1064,7 +776,7 @@ async function geocodeItems(allItems, { log = true } = {}) {
     );
   }
 
-  return results;
+  return { successful: results, failed: failedItems };
 }
 
 async function fetchGeocodedItems({
@@ -1103,11 +815,11 @@ async function fetchGeocodedItems({
   if (writeFile) {
     const fs = await import("fs");
     fs.writeFileSync(
-      "geocoding-results.json",
+      "geocoded-items.json",
       JSON.stringify(results, null, 2),
     );
     if (log) {
-      console.log(`\n💾 Résultats sauvegardés dans: geocoding-results.json`);
+      console.log(`\n💾 Résultats sauvegardés dans: geocoded-items.json`);
     }
   }
 

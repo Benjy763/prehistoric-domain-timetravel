@@ -14,7 +14,6 @@
     "validate": "node scripts/validate-content-data.js",
     "validate:tags": "node scripts/validate-free-tags.js",
     "validate:tags:errors": "node scripts/validate-free-tags.js --only-errors",
-    "find-formation": "node scripts/find-formation.js",
     "help": "bash scripts/help.sh"
   },
   "keywords": [

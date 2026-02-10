@@ -46,7 +46,7 @@ python3 -m http.server 8000
 - ⏱️ 13 périodes géologiques (500 Ma → aujourd'hui)
 - 🗺️ Reconstruction paléogéographique (API GPlates MERDITH2021)
 - 🔍 Filtres par type (Images, Vidéos, 3D)
-- 📍 Géocodage automatique depuis free-tags Webflow
+- 📍 Géocodage moderne via PBDB (free-tags)
 - 🌊 Gestion items océaniques (positions prédéfinies)
 - ⚡ Anti-collision spatiale automatique
 
@@ -76,7 +76,6 @@ npm run import:dry    # Simulation sans modifications
 npm run validate           # Valider tous les free-tags
 npm run validate:errors    # Afficher uniquement les erreurs
 npm run validate:export    # Exporter rapport en JSON
-npm run find-formation <espèce>  # Rechercher une formation
 ```
 
 ### Développement
@@ -90,23 +89,17 @@ npm run dev          # Serveur local (port 8000)
 ### Format free-tags (Webflow)
 
 ```
-Continent, Période, Espèce1, Espèce2
+Continent, Période, Espèce1
 ```
 
 **Continents** : `North America`, `South America`, `Asia`, `Europe`, `Africa`, `Australia`, `India`
-**Sans continent** → `location = "global oceans"` (item océanique)
+**Items océaniques** : tags contenant `Ocean`, `Sea`, `Marine`, etc. → `global oceans`
+**Sans espèce** → item ignoré (PBDB-only)
 
-### Hiérarchie de placement
+### Placement (PBDB-only)
 
-1. **Formations célèbres** → Coordonnées précises (haute confiance)
-   - T-Rex → Hell Creek Formation, Montana (47.5°, -105.5°)
-   - Velociraptor → Nemegt Formation, Mongolia (43.5°, 104.0°)
-
-2. **Placement continental** → Zone aléatoire sur continent (confiance moyenne)
-   - Anti-collision: distance min 5°
-   - 50 tentatives max
-
-3. **Fallback** → Zones prédéfinies par continent (rotation)
+1. **PBDB API** → Coordonnées modernes (1 espèce, 1 requête)
+2. **Échec PBDB** → item ignoré (pas de fallback local)
 
 ### Items océaniques
 
@@ -154,7 +147,7 @@ Détection changements par comparaison `lastUpdated` (Webflow) vs `metadata.gene
 ```
 Webflow CMS (collection "contents")
     ↓ (free-tags: "Continent, Période, Espèce")
-import-cms-items.js (coordonnées modernes)
+import-cms-items.js (coordonnées modernes via PBDB)
     ↓
 paleo-reconstruction.js (module centralisé)
     ↓ (API GPlates MERDITH2021)
@@ -174,7 +167,6 @@ scripts/
 
 assets/data/
 ├── content-data.json          # Données finales (utilisées par globe)
-└── famous-formations.json     # Formations célèbres (éditable)
 
 src/
 ├── app.js        # Logique principale + gestion périodes
@@ -199,19 +191,6 @@ node scripts/validate-content-data.js
 # Tester module central
 node -e "const {buildDerivedFields} = require('./scripts/paleo-reconstruction'); console.log(buildDerivedFields({youtubeId:'TEST', category:'videos', slug:'test'}));"
 ```
-
-### Ajouter une formation célèbre
-
-```bash
-# 1. Rechercher
-node scripts/find-formation.js "Spinosaurus"
-
-# 2. Éditer assets/data/famous-formations.json
-# 3. Re-géocoder items concernés
-node scripts/sync-contents.js --slugs= <slug>
-```
-
----
 
 ## 📄 Licence
 

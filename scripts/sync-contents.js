@@ -126,9 +126,17 @@ function findNewItems(cmsItems, options = {}) {
     ) {
       const existingItem = existingData.items.find((i) => i.id === item.id);
       const cmsUpdated = new Date(item.lastUpdated);
-      const dataGenerated = new Date(existingData.metadata.generated);
 
-      if (cmsUpdated > dataGenerated) {
+      // Comparer avec la date de dernière mise à jour de l'item dans content-data
+      // ou la date de génération globale si l'item n'a pas de lastUpdated
+      let lastProcessed;
+      if (existingItem && existingItem.lastUpdated) {
+        lastProcessed = new Date(existingItem.lastUpdated);
+      } else {
+        lastProcessed = new Date(existingData.metadata.generated);
+      }
+
+      if (cmsUpdated > lastProcessed) {
         updatedItems.push(item);
       }
     }
@@ -294,7 +302,51 @@ async function updateDisplayOnApp(token, itemIds) {
   console.log("✅ display-on-app activé\n");
 }
 
-function runPipeline(incremental = false, limit = null, slugs = null) {
+/**
+ * Désactive les items dont la géocodification a échoué
+ * (set display-on-app = false)
+ */
+async function disableFailedItems(token, failedItemIds) {
+  if (failedItemIds.length === 0) return;
+
+  console.log(
+    `\n⏸️  Désactivation de ${failedItemIds.length} items échoués (display-on-app = false)...\n`,
+  );
+
+  // Batch de 100
+  for (let i = 0; i < failedItemIds.length; i += 100) {
+    const batch = failedItemIds.slice(i, i + 100);
+
+    const updates = batch.map((id) => ({
+      id,
+      fieldData: { "display-on-app": false },
+    }));
+
+    const response = await fetch(
+      `https://api.webflow.com/v2/collections/${COLLECTION_ID}/items`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ items: updates }),
+      },
+    );
+
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(
+        `Erreur API (disable): ${response.status} ${response.statusText} - ${error}`,
+      );
+    }
+  }
+
+  console.log(`✅ ${failedItemIds.length} items désactivés\n`);
+}
+
+async function runPipeline(token, incremental = false, limit = null, slugs = null) {
   console.log("\n🚀 LANCEMENT DU PIPELINE AUTOMATIQUE\n");
   console.log("─".repeat(80));
 
@@ -310,7 +362,26 @@ function runPipeline(incremental = false, limit = null, slugs = null) {
     execSync(geocodeCmd, { stdio: "inherit" });
     console.log("\n✅ Géocodage terminé\n");
 
-    // Étape 2: Reconstruction (incrémentale ou complète)
+    // Étape 2: Désactiver les items échoués (nouveauté)
+    const geocodingResultsFile = path.join(__dirname, "../geocoded-items.json");
+    if (fs.existsSync(geocodingResultsFile)) {
+      const geocodingResults = JSON.parse(fs.readFileSync(geocodingResultsFile, "utf8"));
+      const failedItems = geocodingResults.failed || [];
+      
+      if (failedItems.length > 0) {
+        console.log(`\n⚠️  ${failedItems.length} items ont échoué la géocodification:\n`);
+        failedItems.forEach((item, index) => {
+          console.log(`   ${index + 1}. ${item.name} (${item.slug}) - Raison: ${item.reason}`);
+        });
+        
+        const failedIds = failedItems.map(item => item.id);
+        await disableFailedItems(token, failedIds);
+      } else {
+        console.log("\n✅ Aucun item n'a échoué\n");
+      }
+    }
+
+    // Étape 3: Reconstruction (incrémentale ou complète)
     if (incremental) {
       console.log(
         "\n▶️  Reconstruction paléogéographique INCRÉMENTALE (nouveaux/modifiés seulement)...\n",
@@ -336,12 +407,18 @@ function runPipeline(incremental = false, limit = null, slugs = null) {
     }
     console.log("\n✅ Reconstruction terminée\n");
 
-    // Nettoyer le fichier temporaire
-    const tempFile = path.join(__dirname, "../geocoded-items.json");
-    if (fs.existsSync(tempFile)) {
-      fs.unlinkSync(tempFile);
-      console.log("🗑️  Fichier temporaire supprimé: geocoded-items.json\n");
+    // Nettoyer les fichiers temporaires
+    const tempFiles = [
+      path.join(__dirname, "../geocoded-items.json")
+    ];
+    
+    for (const tempFile of tempFiles) {
+      if (fs.existsSync(tempFile)) {
+        fs.unlinkSync(tempFile);
+        console.log(`🗑️  Fichier temporaire supprimé: ${path.basename(tempFile)}`);
+      }
     }
+    console.log("");
 
     console.log("─".repeat(80));
     console.log("✅ PIPELINE TERMINÉ AVEC SUCCÈS");
@@ -533,7 +610,7 @@ async function main() {
       `   Mode: ${useIncremental ? "INCRÉMENTAL ⚡" : "COMPLET 🔄"}\n`,
     );
 
-    runPipeline(useIncremental, options.limit, options.slugs);
+    await runPipeline(token, useIncremental, options.limit, options.slugs);
   }
 
   // 7. Nettoyer APRÈS si besoin (items supprimés ou désactivés)
