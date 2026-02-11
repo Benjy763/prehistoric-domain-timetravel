@@ -32,6 +32,9 @@ class GlobeManager {
     // External click handler (used by placement tool)
     this.clickHandler = null;
 
+    // Auto-rotation
+    this.autoRotate = true;
+
     this.init();
   }
 
@@ -243,13 +246,48 @@ class GlobeManager {
       isDragging = false;
     });
 
+    // Touch events for mobile
+    this.container.addEventListener("touchstart", (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }
+      this._lastTouchDistance = null;
+    }, { passive: true });
+
+    this.container.addEventListener("touchmove", (e) => {
+      if (e.touches.length === 2) {
+        // Pinch to zoom
+        const dx = e.touches[0].clientX - e.touches[1].clientX;
+        const dy = e.touches[0].clientY - e.touches[1].clientY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (this._lastTouchDistance != null) {
+          const delta = (this._lastTouchDistance - dist) * 0.01;
+          this.camera.position.z = Math.max(2.5, Math.min(10, this.camera.position.z + delta));
+        }
+        this._lastTouchDistance = dist;
+        isDragging = false;
+      } else if (e.touches.length === 1 && isDragging) {
+        const deltaX = e.touches[0].clientX - previousMousePosition.x;
+        const deltaY = e.touches[0].clientY - previousMousePosition.y;
+        this.globe.rotation.y += deltaX * 0.005;
+        this.globe.rotation.x += deltaY * 0.005;
+        previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }
+    }, { passive: true });
+
+    this.container.addEventListener("touchend", () => {
+      isDragging = false;
+      this._lastTouchDistance = null;
+    }, { passive: true });
+
     // Zoom with mouse wheel
     this.container.addEventListener("wheel", (e) => {
       e.preventDefault();
       const delta = e.deltaY * 0.001;
       this.camera.position.z += delta;
       this.camera.position.z = Math.max(
-        3,
+        2.5,
         Math.min(10, this.camera.position.z),
       );
     });
@@ -1019,53 +1057,57 @@ class GlobeManager {
     const contentType = data.type || data.category;
 
     let pointColor;
-    switch (contentType) {
-      case "videos":
-      case "video":
-        pointColor = 0x6c5ce7; // Violet pour vidéos
-        break;
-      case "images":
-      case "image":
-        pointColor = 0xfdcb6e; // Jaune pour images
-        break;
-      case "3d":
-        pointColor = 0xfd79a8; // Rose pour 3D
-        break;
-      case "new":
-        pointColor = 0x00b894; // Vert turquoise pour nouveautés
-        break;
-      default:
-        pointColor = 0xf9f9f9; // Blanc par défaut
-        break;
+    // isNew flag overrides type color
+    if (data.isNew) {
+      pointColor = 0x00b894; // Vert turquoise pour nouveautés
+    } else {
+      switch (contentType) {
+        case "videos":
+        case "video":
+          pointColor = 0x6c5ce7; // Violet pour vidéos
+          break;
+        case "images":
+        case "image":
+          pointColor = 0xfdcb6e; // Jaune pour images
+          break;
+        case "3d":
+          pointColor = 0xfd79a8; // Rose pour 3D
+          break;
+        case "texts":
+        case "text":
+          pointColor = 0x58a6ff; // Bleu pour textes/articles
+          break;
+        default:
+          pointColor = 0xf9f9f9; // Blanc par défaut
+          break;
+      }
     }
 
-    // Créer texture pinpoint avec taille identique pour tous
+    // Créer texture pinpoint avec ring + highlight
     const canvas = document.createElement("canvas");
     canvas.width = 64;
     canvas.height = 64;
     const ctx = canvas.getContext("2d", { alpha: true });
 
-    // Activer antialiasing pour contours lisses
-    ctx.imageSmoothingEnabled = true;
-
-    // Dessiner un pinpoint (épingle) avec la couleur selon le type
-    const centerX = 32;
-    const centerY = 32; // Centré
-
-    // Rayon uniforme pour tous les types
-    const circleRadius = 14;
-
-    // Cercle plein
     const hexColor = "#" + pointColor.toString(16).padStart(6, "0");
+
+    // Outer ring
+    ctx.strokeStyle = hexColor;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.arc(32, 32, 20, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Filled circle
     ctx.fillStyle = hexColor;
     ctx.beginPath();
-    ctx.arc(centerX, centerY, circleRadius, 0, Math.PI * 2);
+    ctx.arc(32, 32, 14, 0, Math.PI * 2);
     ctx.fill();
 
-    // Point blanc au centre pour effet de relief
-    ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+    // Highlight
+    ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
     ctx.beginPath();
-    ctx.arc(centerX - 5, centerY - 5, 6, 0, Math.PI * 2);
+    ctx.arc(27, 27, 5, 0, Math.PI * 2);
     ctx.fill();
 
     const texture = new THREE.CanvasTexture(canvas);
@@ -1077,11 +1119,12 @@ class GlobeManager {
       map: texture,
       transparent: true,
       depthWrite: false,
+      sizeAttenuation: false,
     });
 
     const sprite = new THREE.Sprite(spriteMaterial);
     sprite.position.copy(position);
-    sprite.scale.set(0.1, 0.1, 1);
+    sprite.scale.set(0.025, 0.025, 1);
     sprite.userData = data;
     sprite.userData._initialScale = 0.1;
     sprite.userData.type = contentType;
@@ -1112,7 +1155,6 @@ class GlobeManager {
     this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-    // Raycasting simple sur les sprites - fonctionne nativement
     this.raycaster.setFromCamera(this.mouse, this.camera);
     const intersects = this.raycaster.intersectObjects(this.points);
 
@@ -1148,17 +1190,10 @@ class GlobeManager {
   animate() {
     requestAnimationFrame(() => this.animate());
 
-    // Slow automatic rotation (désactivée)
-
-    // Rescale sprites avec distance au centre du globe (uniforme pour tous)
-    const globeCenter = new THREE.Vector3(0, 0, 0);
-    const distanceToGlobe = this.camera.position.distanceTo(globeCenter);
-    const baseScale = distanceToGlobe * 0.015;
-
-    this.points.forEach((sprite, index) => {
-      const pulse = 1 + Math.sin(Date.now() * 0.003 + index) * 0.05;
-      sprite.scale.set(baseScale * pulse, baseScale * pulse, 1);
-    });
+    // Slow automatic rotation
+    if (this.autoRotate && this.globe) {
+      this.globe.rotation.y += 0.001;
+    }
 
     this.renderer.render(this.scene, this.camera);
   }

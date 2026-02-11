@@ -100,6 +100,15 @@ class AppController {
       });
     });
 
+    // Bouton auto-rotation toggle
+    const autoRotateBtn = document.getElementById("autoRotateBtn");
+    if (autoRotateBtn) {
+      autoRotateBtn.addEventListener("click", () => {
+        this.globeManager.autoRotate = !this.globeManager.autoRotate;
+        autoRotateBtn.classList.toggle("active", this.globeManager.autoRotate);
+      });
+    }
+
     // Bouton info modal
     const layerInfoBtn = document.getElementById("layerInfoBtn");
     const layerInfoModal = document.getElementById("layerInfoModal");

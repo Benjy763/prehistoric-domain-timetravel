@@ -73,8 +73,8 @@ Légende : `[ ]` à faire · `[~]` en cours · `[x]` fait
 ### 2.5 Tester et valider les fixes
 - [x] Lancer `npm run sync:all` pour re-générer content-data.json
 - [x] Vérifier les items problématiques (0 terrestres dans l'océan)
-- [ ] Test visuel sur le globe
-- [ ] Test visuel de l'outil de placement (`npm run placement`)
+- [x] Test visuel sur le globe
+- [x] Test visuel de l'outil de placement (`npm run placement`)
 
 ---
 
@@ -95,4 +95,4 @@ Légende : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 - [ ] Supprimer le mock data de `webflow-api.js`
 - [ ] Gestion d'erreur si `content-data.json` absent
-- [ ] Touch events pour mobile (pinch to zoom, swipe to rotate)
+- [x] Touch events pour mobile (pinch to zoom, swipe to rotate)

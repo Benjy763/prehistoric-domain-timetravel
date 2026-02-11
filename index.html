@@ -165,6 +165,14 @@
     </div>
   </aside>
 
+  <!-- Auto-rotation toggle -->
+  <button class="auto-rotate-btn active" id="autoRotateBtn" title="Toggle auto-rotation">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M23 4v6h-6"></path>
+      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+    </svg>
+  </button>
+
   <!-- Main globe area -->
   <main class="globe-container">
     <div id="globe-canvas"></div>
@@ -224,45 +232,49 @@
       <h2>Understanding the Globe Views</h2>
 
       <div class="info-section">
-        <h3>� About the points locations</h3>
-        <p>Each point on the globe represents a prehistoric life content. The locations are:</p>
+        <h3>About the point locations</h3>
+        <p>Each point on the globe represents a piece of prehistoric life content (video, image, or 3D experience). The locations are determined by:</p>
         <ul>
-          <li>Placed at the <strong>estimated present-day location</strong> where fossils were discovered</li>
-          <li>Then <strong>automatically repositioned</strong> to their ancient coordinates based on plate tectonic
-            reconstructions for the selected time period and repartition algorithm</li>
-          <li><strong>Note:</strong> Points are only visible in the "Our Continents" view, as the plate tectonic model
-            is used for repositioning</li>
+          <li><strong>Fossil occurrence data</strong> from the Paleobiology Database (PBDB), matched to the species mentioned in each content's tags</li>
+          <li><strong>Plate tectonic reconstruction</strong> using the GPlates API (Merdith et al. 2021 model) to reposition modern fossil coordinates to their ancient locations</li>
+          <li><strong>Land validation</strong> ensures terrestrial species are placed on land, not ocean, at each time period</li>
+        </ul>
+        <p class="info-note"><em>Points are only visible in the "Our Continents" view.</em></p>
+      </div>
+
+      <div class="info-section">
+        <h3>Our Continents View</h3>
+        <p>This view shows the outlines of <strong>today's continents</strong> repositioned to where they were located
+          in the past. It helps you recognize familiar landmasses (Africa, South America, etc.) in their ancient
+          positions.</p>
+        <p class="info-note"><em>Merdith et al. 2021 plate tectonic reconstruction, extending back to 1 billion years ago.</em></p>
+      </div>
+
+      <div class="info-section">
+        <h3>Real Land View</h3>
+        <p>This view shows the <strong>actual emerged landmasses</strong> as they existed during each period &mdash; the real
+          ancient coastlines based on geological evidence. Sea levels were different, so the shapes differ
+          significantly from modern continents.</p>
+        <p class="info-note"><em>Cao et al. 2017 paleogeographic reconstruction &mdash; available from Permian (~280 Ma) to Neogene (~6 Ma).</em></p>
+      </div>
+
+      <div class="info-section">
+        <h3>Point colors</h3>
+        <ul>
+          <li><span style="color:#6c5ce7;">&#9679;</span> Videos</li>
+          <li><span style="color:#fdcb6e;">&#9679;</span> Images</li>
+          <li><span style="color:#fd79a8;">&#9679;</span> 3D Experiences</li>
+          <li><span style="color:#00b894;">&#9679;</span> New content</li>
         </ul>
       </div>
 
       <div class="info-section">
-        <h3>🗺️ Our Continents View</h3>
-        <p>This view shows the outlines of <strong>today's continents</strong> repositioned to where they were located
-          in the past. It helps you recognize familiar landmasses (Africa, South America, etc.) in their ancient
-          positions.</p>
-        <p class="info-note"><em>Merdith et al. 2021 plate tectonic reconstruction — an improved successor to Matthews
-            2016, extending further back in geological time.</em></p>
+        <h3>Time Periods</h3>
+        <p>Each period button corresponds to the <strong>midpoint</strong> of that geological era. For example, "Jurassic"
+          shows approximately 160 million years ago (middle of the Jurassic, 201&ndash;145 Ma).</p>
       </div>
 
-      <div class="info-section">
-        <h3>🌍 Real Land View</h3>
-        <p>This view shows the <strong>actual emerged landmasses</strong> as they existed during each period—the real
-          ancient coastlines and geography based on geological evidence. Sea levels were different, so the shapes differ
-          significantly from modern continents.</p>
-        <p class="info-note"><em>Cao et al. 2017 paleogeographic reconstruction — built upon Matthews 2016 plate motions
-            with added paleogeographic data (ancient sea levels, mountain ranges, shallow seas).</em></p>
-      </div>
-
-      <div class="info-section">
-        <h3>⏰ Time Periods</h3>
-        <p>Each period button represents the <strong>midpoint</strong> of that geological era. For example, "Jurassic"
-          corresponds to approximately 160 million years ago, the middle of the Jurassic period (201-145 Ma).</p>
-        <p class="info-note"><em>Data is matched to the closest available reconstruction timepoint in each model's
-            dataset.</em></p>
-      </div>
-
-      <p class="info-footer"><em>Data sources: Matthews et al. (2016), Cao et al. (2017), Merdith et al. (2021) •
-          GPlates Project</em></p>
+      <p class="info-footer"><em>Data: Merdith et al. (2021), Cao et al. (2017), PBDB, GPlates Project</em></p>
     </div>
   </div>
 

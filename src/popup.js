@@ -49,13 +49,18 @@ class PopupManager {
   }
 
   show(content) {
+    // Clear previous image to avoid flash of old content
+    if (this.elements.image) {
+      this.elements.image.src = "";
+    }
+
     // Remplir les informations
     this.elements.title.textContent = content.title || "Sans titre";
     this.elements.description.textContent =
       content.description || "Pas de description disponible";
 
     // Artiste
-    this.elements.artist.innerHTML = `<strong>Artiste:</strong> ${content.artist || "Inconnu"}`;
+    this.elements.artist.innerHTML = `${content.artist || "Inconnu"}`;
 
     // Afficher la vidéo YouTube embédée pour les vidéos
     if (content.type === "videos" && content.youtubeUrl) {
@@ -75,7 +80,7 @@ class PopupManager {
       if (this.elements.imageLink) {
         this.elements.imageLink.style.display = "block";
       }
-      
+
       if (content.preview && this.elements.image) {
         this.elements.image.src = content.preview;
         this.elements.image.alt = content.title;
@@ -91,11 +96,24 @@ class PopupManager {
       }
     }
 
-    // Lien vers la page (même onglet)
-    if (content.pageUrl) {
-      this.elements.link.href = content.pageUrl;
+    // For 3D items, pageUrl is the tour URL — use slug to build the Webflow page URL
+    const webflowPageUrl = content.slug
+      ? `https://www.prehistoricdomain.com/content/${content.slug}`
+      : null;
+    const linkUrl =
+      content.type === "3d" && webflowPageUrl
+        ? webflowPageUrl
+        : content.pageUrl;
+
+    // Lien vers la page (nouvel onglet)
+    if (linkUrl) {
+      this.elements.link.href = linkUrl;
+      this.elements.link.target = "_blank";
+      this.elements.link.rel = "noopener noreferrer";
       if (this.elements.imageLink) {
-        this.elements.imageLink.href = content.pageUrl;
+        this.elements.imageLink.href = linkUrl;
+        this.elements.imageLink.target = "_blank";
+        this.elements.imageLink.rel = "noopener noreferrer";
       }
     }
 

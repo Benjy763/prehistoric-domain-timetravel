@@ -165,8 +165,12 @@ class WebflowAPI {
   }
 
   filterByPeriodAndType(period, types) {
-    return this.contents.filter(
-      (content) => content.period === period && types.includes(content.type),
-    );
+    const hasNewFilter = types.includes("new");
+    return this.contents.filter((content) => {
+      if (content.period !== period) return false;
+      const matchesType = types.includes(content.type);
+      const matchesNew = hasNewFilter && content.isNew;
+      return matchesType || matchesNew;
+    });
   }
 }

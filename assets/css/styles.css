@@ -515,17 +515,17 @@ body {
   font-size: 10px;
 }
 
-/* Couleurs spécifiques par type de filtre */
+/* Couleurs spécifiques par type de filtre (alignées avec globe.js) */
 .filter-item[data-filter="videos"] .filter-badge {
   color: #6c5ce7 !important;
 }
 
 .filter-item[data-filter="images"] .filter-badge {
-  color: #fd79a8 !important;
+  color: #fdcb6e !important;
 }
 
 .filter-item[data-filter="3d"] .filter-badge {
-  color: #fdcb6e !important;
+  color: #fd79a8 !important;
 }
 
 .filter-item[data-filter="new"] .filter-badge {
@@ -965,4 +965,38 @@ body {
   .content-popup {
     width: 95vw;
   }
+}
+
+/* Auto-rotation toggle button */
+.auto-rotate-btn {
+  position: fixed;
+  top: 90px;
+  right: 16px;
+  z-index: 100;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.auto-rotate-btn:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+.auto-rotate-btn.active {
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+.auto-rotate-btn.active svg {
+  animation: spin 3s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

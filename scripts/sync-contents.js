@@ -613,8 +613,7 @@ async function main() {
   }
 
   // 7. Nettoyer APRÈS si besoin (items supprimés ou désactivés)
-  // Seulement si on n'a PAS lancé le pipeline (car sinon déjà fait)
-  else if (result.toRemove.length > 0 || result.toDisable.length > 0) {
+  if (result.toRemove.length > 0 || result.toDisable.length > 0) {
     console.log("\n🗑️  Nettoyage de content-data.json...\n");
 
     const existingData = loadExistingContentData();
