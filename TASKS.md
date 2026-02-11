@@ -88,14 +88,22 @@ Légende : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 ---
 
-## Phase 3 — Fiabiliser le sync incrémental
+## Phase 3 — Fiabiliser le sync incrémental [DONE]
 
 **Objectif** : processus clair et idempotent pour garder le JSON synchronisé.
 
-- [ ] Mode incrémental fiable : détection new/modifié/supprimé via `lastUpdated`
-- [ ] Merge correct dans `content-data.json` (par ID)
-- [ ] Coordonnées manuelles toujours réappliquées
-- [ ] Idempotence : relancer sans changement CMS = aucune modification
+- [x] Mode incrémental fiable : détection new/modifié/supprimé via `lastUpdated`
+  - Logique dans [sync-contents.js:122-145](scripts/sync-contents.js#L122-L145) ✅
+  - Test : 0 items modifiés détectés sur 184 items existants
+- [x] Merge correct dans `content-data.json` (par ID)
+  - Logique dans [reconstruct-paleogeography.js:252-261](scripts/reconstruct-paleogeography.js#L252-L261) ✅
+  - Algorithme : `oldItems.filter(i => !newIds.has(i.id))` + nouveaux items
+- [x] Coordonnées manuelles toujours réappliquées
+  - Priorité absolue dans [import-cms-items.js:506-522](scripts/import-cms-items.js#L506-L522) ✅
+  - Test : item "claw-of-the-desert" garde ses coords manuelles (43.5, 100.5)
+- [x] Idempotence : relancer sans changement CMS = aucune modification
+  - Détection via comparaison dates `lastUpdated` ✅
+  - Test dry-run : 0 changements détectés sur items existants
 
 ---
 
@@ -131,10 +139,58 @@ Légende : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 ---
 
-## Phase 5 — Nettoyage code
+## Phase 5 — Recherche libre de contenus [DONE]
+
+**Objectif** : permettre la recherche multi-champs pour filtrer les contenus affichés sur le globe.
+
+### 5.1 Ajouter freeTags et location au normalize
+
+- [x] Ajouter `freeTags` et `location` dans `normalizeItem()` de `webflow-api.js`
+
+### 5.2 Étendre FiltersManager pour la recherche
+
+- [x] Ajouter propriétés `searchQuery` et `searchDebounceTimer`
+- [x] Initialiser les événements du champ de recherche
+- [x] Implémenter `handleSearchInput()` avec debouncing 400ms
+- [x] Implémenter `setSearchQuery()`, `getSearchQuery()`, `clearSearch()`
+- [x] Mettre à jour `reset()` pour clear la recherche
+
+### 5.3 Logique de recherche dans AppController
+
+- [x] Ajouter méthode `matchesSearch()` avec logique AND multi-termes
+- [x] Intégrer le filtre recherche dans `updatePoints()`
+- [x] Recherche case-insensitive sur title, freeTags, artist, location, description
+
+### 5.4 UI du champ de recherche
+
+- [x] Ajouter HTML (input + icône loupe + bouton clear) entre Layer Selector et Content Filters
+- [x] Styles CSS cohérents avec le thème dark
+- [x] Bouton clear visible uniquement si texte présent
+
+### 5.5 Cross-platform scrollbar
+
+- [x] Masquer la scrollbar de la sidebar sur tous les OS (Firefox, Chrome, IE/Edge)
+
+---
+
+## Phase 6 — Optimisation sidebar [DONE]
+
+**Objectif** : gagner de l'espace pour le globe en réduisant les éléments de la sidebar.
+
+- [x] Réduire largeur sidebar : 200px → 180px (−10%)
+- [x] Réduire padding sidebar : 24px 16px → 20px 14px
+- [x] Réduire font-sizes : titres (11px→10px), filtres (14px→12px), layers (0.9rem→0.8rem)
+- [x] Réduire icônes : filtres (20px→18px), recherche (16px→14px), info (20px→18px)
+- [x] Réduire espacements : margins et paddings réduits de 15-20%
+- [x] Ajuster globe-container : left 200px → 180px
+- [x] Ajuster media query responsive : 180px → 160px
+
+---
+
+## Phase 7 — Nettoyage code [DONE]
 
 **Objectif** : nettoyer le code restant.
 
-- [ ] Supprimer le mock data de `webflow-api.js`
-- [ ] Gestion d'erreur si `content-data.json` absent
+- [x] Supprimer le mock data de `webflow-api.js` (méthode getMockData() supprimée)
+- [x] Gestion d'erreur si `content-data.json` absent (message clair + instructions)
 - [x] Touch events pour mobile (pinch to zoom, swipe to rotate)
