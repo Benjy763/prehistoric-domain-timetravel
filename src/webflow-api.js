@@ -57,6 +57,8 @@ class WebflowAPI {
       pageUrl: item.pageUrl || item.contentLink || null,
       slug: item.slug,
       displayOnApp: !!item.displayOnApp,
+      freeTags: item.freeTags || "",
+      location: item.location || "",
     };
   }
 

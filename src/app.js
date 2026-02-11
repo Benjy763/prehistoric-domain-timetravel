@@ -525,6 +525,18 @@ class AppController {
       );
     }
 
+    // Appliquer le filtre recherche
+    const searchQuery = this.filtersManager.getSearchQuery();
+    if (searchQuery) {
+      const beforeSearchCount = filteredContents.length;
+      filteredContents = filteredContents.filter(content =>
+        this.matchesSearch(content, searchQuery)
+      );
+      console.log(
+        `🔍 Search "${searchQuery}": ${filteredContents.length}/${beforeSearchCount} résultats`
+      );
+    }
+
     // Ajouter les points au globe
     filteredContents.forEach((content) => {
       const periodCoords =
@@ -540,6 +552,25 @@ class AppController {
       const isFavorite = this.favoritesManager.isFavorite(content.id);
       this.globeManager.addPoint(lat, lon, content, isFavorite);
     });
+  }
+
+  matchesSearch(item, searchQuery) {
+    if (!searchQuery) return true;
+
+    const terms = searchQuery.toLowerCase().split(/\s+/).filter(t => t.length > 0);
+    if (terms.length === 0) return true;
+
+    const searchableFields = [
+      item.title || "",
+      item.freeTags || "",
+      item.artist || "",
+      item.location || "",
+      item.description || "",
+    ];
+
+    const searchableText = searchableFields.join(" ").toLowerCase();
+
+    return terms.every(term => searchableText.includes(term));
   }
 
   onFiltersChanged(activeFilters) {

@@ -8,6 +8,8 @@ class FiltersManager {
     // Note: "favorites" and "new" are NOT active by default - user must enable them
     this.activeFilters = new Set(["videos", "images", "3d"]);
     this.filterElements = document.querySelectorAll(".filter-item");
+    this.searchQuery = "";
+    this.searchDebounceTimer = null;
 
     this.init();
   }
@@ -18,6 +20,22 @@ class FiltersManager {
         this.toggleFilter(element);
       });
     });
+
+    // Search input initialization
+    this.searchInput = document.getElementById("searchInput");
+    this.searchClearBtn = document.getElementById("searchClearBtn");
+
+    if (this.searchInput) {
+      this.searchInput.addEventListener("input", (e) => {
+        this.handleSearchInput(e.target.value);
+      });
+    }
+
+    if (this.searchClearBtn) {
+      this.searchClearBtn.addEventListener("click", () => {
+        this.clearSearch();
+      });
+    }
   }
 
   toggleFilter(element) {
@@ -55,5 +73,44 @@ class FiltersManager {
         element.classList.add("active");
       }
     });
+    this.clearSearch();
+  }
+
+  handleSearchInput(value) {
+    if (this.searchDebounceTimer) {
+      clearTimeout(this.searchDebounceTimer);
+    }
+
+    if (this.searchClearBtn) {
+      this.searchClearBtn.style.display = value ? "flex" : "none";
+    }
+
+    this.searchDebounceTimer = setTimeout(() => {
+      this.setSearchQuery(value);
+    }, 400);
+  }
+
+  setSearchQuery(query) {
+    this.searchQuery = query.trim().toLowerCase();
+    if (window.appController) {
+      window.appController.onFiltersChanged(this.activeFilters);
+    }
+  }
+
+  getSearchQuery() {
+    return this.searchQuery;
+  }
+
+  clearSearch() {
+    this.searchQuery = "";
+    if (this.searchInput) {
+      this.searchInput.value = "";
+    }
+    if (this.searchClearBtn) {
+      this.searchClearBtn.style.display = "none";
+    }
+    if (window.appController) {
+      window.appController.onFiltersChanged(this.activeFilters);
+    }
   }
 }
