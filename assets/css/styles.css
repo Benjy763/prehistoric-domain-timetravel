@@ -996,6 +996,37 @@ body {
   display: block;
 }
 
+.popup-tags {
+  padding: 16px;
+  background: rgba(230, 218, 199, 0.05);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+.popup-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.popup-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(230, 218, 199, 0.1);
+  border: 1px solid rgba(230, 218, 199, 0.2);
+  border-radius: 12px;
+  font-size: 11px;
+  color: var(--accent-gold);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.popup-tag:hover {
+  background: rgba(230, 218, 199, 0.15);
+  border-color: rgba(230, 218, 199, 0.3);
+}
+
 /* Info overlay */
 .popup-info-overlay {
   position: absolute;

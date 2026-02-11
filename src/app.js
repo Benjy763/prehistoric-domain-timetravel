@@ -505,16 +505,25 @@ class AppController {
       activeFilters.filter(f => f !== "favorites" && f !== "new"), // Remove exclusive filters from type filters
     );
 
-    // Si le filtre favorites est actif, ne garder QUE les favoris
-    if (favoritesFilterActive) {
+    // Appliquer les filtres exclusifs (favorites et/ou new)
+    if (favoritesFilterActive && newFilterActive) {
+      // Les DEUX filtres actifs → afficher favoris OU nouveaux
+      const favoriteIds = this.favoritesManager.getAll();
+      filteredContents = filteredContents.filter(content =>
+        favoriteIds.includes(content.id) || content.isNew === true
+      );
+      console.log(
+        `💙⭐ Affichage de ${filteredContents.length} favoris ou nouveaux pour la période ${this.currentPeriod}`,
+      );
+    } else if (favoritesFilterActive) {
+      // Seulement favoris
       const favoriteIds = this.favoritesManager.getAll();
       filteredContents = filteredContents.filter(content => favoriteIds.includes(content.id));
       console.log(
         `💙 Affichage de ${filteredContents.length} favoris pour la période ${this.currentPeriod}`,
       );
-    }
-    // Si le filtre new est actif, ne garder QUE les nouveaux items
-    else if (newFilterActive) {
+    } else if (newFilterActive) {
+      // Seulement nouveaux
       filteredContents = filteredContents.filter(content => content.isNew === true);
       console.log(
         `⭐ Affichage de ${filteredContents.length} nouveaux contenus pour la période ${this.currentPeriod}`,

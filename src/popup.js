@@ -20,6 +20,8 @@ class PopupManager {
       title: document.getElementById("popupTitle"),
       description: document.getElementById("popupDescription"),
       artist: document.getElementById("popupArtist"),
+      tags: document.getElementById("popupTags"),
+      tagsList: document.querySelector("#popupTags .popup-tags-list"),
       link: document.getElementById("popupLink"),
     };
 
@@ -121,6 +123,31 @@ class PopupManager {
 
     // Artiste
     this.elements.artist.innerHTML = `${content.artist || "Inconnu"}`;
+
+    // Free Tags
+    if (content.freeTags && content.freeTags.trim()) {
+      const tags = content.freeTags
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter((tag) => tag.length > 0);
+
+      if (tags.length > 0 && this.elements.tagsList) {
+        this.elements.tagsList.innerHTML = tags
+          .map((tag) => `<span class="popup-tag">${tag}</span>`)
+          .join("");
+        if (this.elements.tags) {
+          this.elements.tags.style.display = "block";
+        }
+      } else {
+        if (this.elements.tags) {
+          this.elements.tags.style.display = "none";
+        }
+      }
+    } else {
+      if (this.elements.tags) {
+        this.elements.tags.style.display = "none";
+      }
+    }
 
     // Déterminer le type de contenu à afficher
     const is3DTour = content.type === "3d" && content.pageUrl && content.pageUrl.includes("tour.prehistoricdomain.com");
