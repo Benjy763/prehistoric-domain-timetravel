@@ -1044,14 +1044,16 @@ body {
   }
 }
 
-/* Auto-rotation toggle button */
+/* Control buttons (volume + auto-rotation) */
+.volume-btn,
 .auto-rotate-btn {
   position: fixed;
   top: 90px;
-  right: 16px;
   z-index: 100;
-  padding: 8px 16px;
-  border-radius: 20px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
   border: 1px solid var(--border-color);
   background: var(--bg-secondary);
   color: var(--text-secondary);
@@ -1059,27 +1061,122 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
   transition: all 0.2s ease;
-  font-size: 13px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
+
+.volume-control {
+  position: fixed;
+  top: 90px;
+  right: 70px;
+  z-index: 100;
+}
+
+.volume-btn {
+  position: relative;
+  top: 0;
+}
+
+.auto-rotate-btn {
+  right: 16px;
+}
+
+.volume-btn:hover,
 .auto-rotate-btn:hover {
   background: var(--hover-bg);
   color: var(--text-primary);
 }
+
+.volume-control.active .volume-btn,
 .auto-rotate-btn.active {
   color: var(--accent-primary);
   border-color: var(--accent-primary);
 }
+
+/* Volume slider */
+.volume-slider-container {
+  position: absolute;
+  top: 46px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 8px 8px 12px 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  transition-delay: 0s;
+  pointer-events: none;
+}
+
+/* Keep slider visible when hovering button or slider */
+.volume-control:hover .volume-slider-container,
+.volume-slider-container:hover {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0.1s;
+}
+
+/* Invisible bridge to prevent gap */
+.volume-slider-container::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: transparent;
+}
+
+.volume-slider {
+  -webkit-appearance: slider-vertical;
+  appearance: slider-vertical;
+  width: 6px;
+  height: 100px;
+  background: linear-gradient(to top, var(--accent-primary) 0%, var(--accent-primary) var(--volume-percent, 50%), var(--border-color) var(--volume-percent, 50%), var(--border-color) 100%);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  writing-mode: bt-lr;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  cursor: pointer;
+  border: 2px solid var(--bg-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  cursor: pointer;
+  border: 2px solid var(--bg-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.volume-control.active .volume-btn svg path:nth-child(2),
+.volume-control.active .volume-btn svg path:nth-child(3) {
+  animation: soundwave 1.5s ease-in-out infinite;
+}
+
 .auto-rotate-btn.active svg {
   animation: spin 6s linear infinite;
 }
-.auto-rotate-text {
-  line-height: 1;
+
+@keyframes soundwave {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
 }
+
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

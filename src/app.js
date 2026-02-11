@@ -3,6 +3,230 @@
  * Contrôleur principal de l'application
  */
 
+/**
+ * Audio Manager - Gère la musique d'ambiance
+ */
+class AudioManager {
+  constructor() {
+    this.audio = document.getElementById("ambientAudio");
+    this.volumeBtn = document.getElementById("volumeBtn");
+    this.volumeSlider = document.getElementById("volumeSlider");
+    this.volumeControl = document.getElementById("volumeControl");
+    this.isEnabled = true; // Activé par défaut
+    this.hasStarted = false;
+    this.userInteracted = false;
+    this.fadeInterval = null;
+    this.targetVolume = 0.5; // Volume par défaut (50%)
+    this.previousVolume = 0.5; // Pour le mute/unmute
+
+    // Set initial volume
+    if (this.audio) {
+      this.audio.volume = this.targetVolume;
+    }
+
+    this.init();
+  }
+
+  init() {
+    // Volume slider
+    if (this.volumeSlider) {
+      // Set initial slider value
+      this.volumeSlider.value = this.targetVolume * 100;
+      this.updateVolumeIcon();
+      this.updateSliderBackground();
+
+      // Handle slider input
+      this.volumeSlider.addEventListener("input", (e) => {
+        const volume = e.target.value / 100;
+        this.setVolume(volume);
+        // If user increases volume from 0, also enable audio
+        if (volume > 0 && !this.isEnabled) {
+          this.toggle();
+        }
+      });
+    }
+
+    // Volume button click to toggle play/pause
+    if (this.volumeBtn) {
+      this.volumeBtn.addEventListener("click", () => {
+        this.toggle();
+      });
+    }
+
+    // Tenter l'autoplay (peut échouer selon les navigateurs)
+    this.tryAutoplay();
+
+    // Fallback: jouer au premier clic utilisateur si l'autoplay a échoué
+    const playOnInteraction = () => {
+      if (!this.userInteracted) {
+        this.userInteracted = true;
+        this.playIfNeeded();
+      }
+    };
+
+    document.addEventListener("click", playOnInteraction, { once: true });
+    document.addEventListener("keydown", playOnInteraction, { once: true });
+  }
+
+  async tryAutoplay() {
+    if (!this.isEnabled || !this.audio) return;
+
+    try {
+      await this.audio.play();
+      this.hasStarted = true;
+      console.log("🎵 Ambient audio started automatically");
+    } catch (error) {
+      console.log("🔇 Autoplay blocked by browser, waiting for user interaction");
+    }
+  }
+
+  async playIfNeeded() {
+    if (this.isEnabled && !this.hasStarted && this.audio) {
+      try {
+        await this.audio.play();
+        this.hasStarted = true;
+        console.log("🎵 Ambient audio started after user interaction");
+      } catch (error) {
+        console.error("❌ Failed to play audio:", error);
+      }
+    }
+  }
+
+  fadeOut(duration = 500) {
+    return new Promise((resolve) => {
+      // Clear any existing fade
+      if (this.fadeInterval) {
+        clearInterval(this.fadeInterval);
+      }
+
+      const startVolume = this.audio.volume;
+      const steps = 20;
+      const stepDuration = duration / steps;
+      const volumeStep = startVolume / steps;
+      let currentStep = 0;
+
+      this.fadeInterval = setInterval(() => {
+        currentStep++;
+        const newVolume = Math.max(0, startVolume - volumeStep * currentStep);
+        this.audio.volume = newVolume;
+
+        if (currentStep >= steps || newVolume <= 0) {
+          clearInterval(this.fadeInterval);
+          this.fadeInterval = null;
+          this.audio.volume = 0;
+          this.audio.pause();
+          console.log("🔇 Audio faded out");
+          resolve();
+        }
+      }, stepDuration);
+    });
+  }
+
+  fadeIn(duration = 500) {
+    return new Promise((resolve) => {
+      // Clear any existing fade
+      if (this.fadeInterval) {
+        clearInterval(this.fadeInterval);
+      }
+
+      this.audio.volume = 0;
+      this.audio.play().then(() => {
+        this.hasStarted = true;
+        const steps = 20;
+        const stepDuration = duration / steps;
+        const volumeStep = this.targetVolume / steps;
+        let currentStep = 0;
+
+        this.fadeInterval = setInterval(() => {
+          currentStep++;
+          const newVolume = Math.min(this.targetVolume, volumeStep * currentStep);
+          this.audio.volume = newVolume;
+
+          if (currentStep >= steps || newVolume >= this.targetVolume) {
+            clearInterval(this.fadeInterval);
+            this.fadeInterval = null;
+            this.audio.volume = this.targetVolume;
+            console.log("🎵 Audio faded in");
+            resolve();
+          }
+        }, stepDuration);
+      }).catch((error) => {
+        console.error("❌ Failed to play audio:", error);
+        resolve();
+      });
+    });
+  }
+
+  async toggle() {
+    this.isEnabled = !this.isEnabled;
+    if (this.volumeControl) {
+      this.volumeControl.classList.toggle("active", this.isEnabled);
+    }
+
+    if (this.isEnabled) {
+      await this.fadeIn();
+      console.log("🎵 Ambient audio enabled");
+    } else {
+      await this.fadeOut();
+      console.log("🔇 Ambient audio disabled");
+    }
+  }
+
+  async pause() {
+    if (this.audio.paused) return;
+    await this.fadeOut(300);
+  }
+
+  async resume() {
+    if (!this.isEnabled || !this.audio.paused) return;
+    await this.fadeIn(300);
+  }
+
+  setVolume(volume) {
+    this.targetVolume = Math.max(0, Math.min(1, volume));
+    if (this.audio && !this.fadeInterval) {
+      this.audio.volume = this.targetVolume;
+    }
+
+    // Update slider
+    if (this.volumeSlider) {
+      this.volumeSlider.value = this.targetVolume * 100;
+      this.updateSliderBackground();
+    }
+
+    // Update icon
+    this.updateVolumeIcon();
+  }
+
+  updateVolumeIcon() {
+    if (!this.volumeBtn) return;
+
+    const iconHigh = this.volumeBtn.querySelector(".volume-icon-high");
+    const iconLow = this.volumeBtn.querySelector(".volume-icon-low");
+    const iconMuted = this.volumeBtn.querySelector(".volume-icon-muted");
+
+    // Hide all icons
+    if (iconHigh) iconHigh.style.display = "none";
+    if (iconLow) iconLow.style.display = "none";
+    if (iconMuted) iconMuted.style.display = "none";
+
+    // Show appropriate icon based on enabled state and volume
+    if (!this.isEnabled || this.targetVolume === 0) {
+      if (iconMuted) iconMuted.style.display = "block";
+    } else if (this.targetVolume < 0.5) {
+      if (iconLow) iconLow.style.display = "block";
+    } else {
+      if (iconHigh) iconHigh.style.display = "block";
+    }
+  }
+
+  updateSliderBackground() {
+    if (!this.volumeSlider || !this.volumeControl) return;
+    const percent = this.targetVolume * 100;
+    this.volumeControl.style.setProperty("--volume-percent", `${percent}%`);
+  }
+}
+
 class AppController {
   constructor() {
     this.currentPeriod = "today";
@@ -13,6 +237,7 @@ class AppController {
     this.filtersManager = null;
     this.popupManager = null;
     this.webflowAPI = null;
+    this.audioManager = null;
 
     this.periodButtons = document.querySelectorAll(".period-btn");
     this.loadingOverlay = document.getElementById("loadingOverlay");
@@ -27,6 +252,7 @@ class AppController {
     this.filtersManager = new FiltersManager();
     this.popupManager = new PopupManager();
     this.webflowAPI = new WebflowAPI();
+    this.audioManager = new AudioManager();
 
     // Rendre le contrôleur accessible globalement
     window.appController = this;

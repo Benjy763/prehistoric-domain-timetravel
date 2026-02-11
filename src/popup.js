@@ -73,9 +73,26 @@ class PopupManager {
   }
 
   show(content) {
+    // Pause ambient audio with fade when opening video/3D content
+    const isVideoOr3D = content.type === "videos" || content.type === "3d";
+    if (isVideoOr3D && window.appController?.audioManager) {
+      window.appController.audioManager.pause();
+    }
+
     // Clear previous image to avoid flash of old content
     if (this.elements.image) {
       this.elements.image.src = "";
+    }
+
+    // IMPORTANT: Remove ALL previous event listeners by cloning imageLink
+    // This prevents old 3D tour listeners from interfering with new content
+    if (this.elements.imageLink) {
+      const newImageLink = this.elements.imageLink.cloneNode(true);
+      this.elements.imageLink.parentNode.replaceChild(newImageLink, this.elements.imageLink);
+      this.elements.imageLink = newImageLink;
+      // Re-reference child elements after cloning
+      this.elements.image = this.elements.imageLink.querySelector("img");
+      this.elements.playIcon = this.elements.imageLink.querySelector(".popup-play-icon");
     }
 
     // Remplir les informations
@@ -125,11 +142,6 @@ class PopupManager {
 
       // Pour les tours 3D, intercepter le clic sur l'image pour charger l'iframe
       if (is3DTour && this.elements.imageLink) {
-        // Remove previous listener if any
-        const newImageLink = this.elements.imageLink.cloneNode(true);
-        this.elements.imageLink.parentNode.replaceChild(newImageLink, this.elements.imageLink);
-        this.elements.imageLink = newImageLink;
-
         this.elements.imageLink.addEventListener("click", (e) => {
           e.preventDefault();
           console.log("🎮 Loading 3D tour in iframe:", content.pageUrl);
@@ -176,6 +188,11 @@ class PopupManager {
     this.popup.classList.remove("active");
     this.backdrop.classList.remove("active");
 
+    // Resume ambient audio with fade when closing popup
+    if (window.appController?.audioManager) {
+      window.appController.audioManager.resume();
+    }
+
     // Cacher l'overlay info et réinitialiser le bouton
     if (this.infoOverlay) {
       this.infoOverlay.classList.remove("active");
@@ -185,9 +202,16 @@ class PopupManager {
       infoBtn.classList.remove("active");
     }
 
-    // Arrêter la vidéo YouTube
+    // Arrêter la vidéo/iframe et réinitialiser les états d'affichage
     if (this.elements.video) {
       this.elements.video.src = "";
+      this.elements.video.style.display = "none";
+    }
+    if (this.elements.imageLink) {
+      this.elements.imageLink.style.display = "block";
+    }
+    if (this.elements.playIcon) {
+      this.elements.playIcon.style.display = "none";
     }
   }
 
