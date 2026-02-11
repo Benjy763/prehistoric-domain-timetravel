@@ -8,6 +8,8 @@ class PopupManager {
     this.popup = document.getElementById("contentPopup");
     this.backdrop = document.getElementById("popupBackdrop");
     this.closeBtn = document.getElementById("popupClose");
+    this.infoBtn = document.getElementById("popupInfoBtn");
+    this.infoOverlay = document.getElementById("popupInfoOverlay");
     this.elements = {
       image: document.getElementById("popupImage"),
       imageLink: document.getElementById("popupImageLink"),
@@ -25,14 +27,26 @@ class PopupManager {
   init() {
     this.closeBtn.addEventListener("click", () => this.hide());
 
+    // Info button to toggle overlay - using capture phase to intercept before stopPropagation
+    document.addEventListener("click", (e) => {
+      // Check if click is on info button or its children (SVG, span)
+      const infoBtn = e.target.closest("#popupInfoBtn");
+      if (infoBtn && this.popup.classList.contains("active")) {
+        console.log("🔵 Info button clicked!");
+        e.stopPropagation();
+        if (this.infoOverlay) {
+          this.infoOverlay.classList.toggle("active");
+          infoBtn.classList.toggle("active");
+          console.log("Overlay active:", this.infoOverlay.classList.contains("active"));
+        }
+      }
+    }, true); // ← CAPTURE PHASE: intercept before bubbling
+
     // Fermer en cliquant sur le backdrop
     if (this.backdrop) {
       this.backdrop.addEventListener("click", () => {
-        console.log("Backdrop clicked!");
         this.hide();
       });
-    } else {
-      console.error("Backdrop element not found!");
     }
 
     // Empêcher la propagation du clic sur la popup elle-même
@@ -125,6 +139,16 @@ class PopupManager {
   hide() {
     this.popup.classList.remove("active");
     this.backdrop.classList.remove("active");
+
+    // Cacher l'overlay info et réinitialiser le bouton
+    if (this.infoOverlay) {
+      this.infoOverlay.classList.remove("active");
+    }
+    const infoBtn = document.getElementById("popupInfoBtn");
+    if (infoBtn) {
+      infoBtn.classList.remove("active");
+    }
+
     // Arrêter la vidéo YouTube
     if (this.elements.video) {
       this.elements.video.src = "";

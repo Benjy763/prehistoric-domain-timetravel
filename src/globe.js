@@ -17,6 +17,7 @@ class GlobeManager {
     this.coastlines = null;
     this.continents = null; // Continent polygons
     this.caoLands = null; // Cao emerged lands overlay
+    this.clouds = null; // Animated clouds layer
 
     // Texture cache for periods
     this.textureCache = new Map();
@@ -160,62 +161,117 @@ class GlobeManager {
   }
 
   addLights() {
-    // Ambient light - stronger to see the globe better
-    const ambientLight = new THREE.AmbientLight(0xe6dac7, 0.8);
+    // Lower ambient for more contrast
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     this.scene.add(ambientLight);
 
-    // Main directional light
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
-    directionalLight.position.set(5, 3, 5);
+    // Single strong light - balanced between side and front, slightly brighter
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.15);
+    directionalLight.position.set(4, 2, 2);
     this.scene.add(directionalLight);
-
-    // Back light to see coastlines better
-    const backLight = new THREE.DirectionalLight(0xe6dac7, 0.4);
-    backLight.position.set(-5, -3, -5);
-    this.scene.add(backLight);
   }
 
   createGlobe() {
     const geometry = new THREE.SphereGeometry(2, 128, 128);
 
-    // Base material for globe - very dark ocean blue
-    const material = new THREE.MeshPhongMaterial({
-      color: 0x0a1929, // Very dark ocean blue
-      emissive: 0x050d15,
-      shininess: 30,
+    // Base material for globe - minimal reflections
+    const material = new THREE.MeshStandardMaterial({
+      color: 0x0a1929, // Very dark navy ocean
+      emissive: 0x050d15, // Very dark emission
+      emissiveIntensity: 0.05,
+      roughness: 0.8, // Much rougher - minimal reflections
+      metalness: 0.1, // Almost no metallic - minimal shine
       transparent: false,
       opacity: 1.0,
     });
 
     this.globe = new THREE.Mesh(geometry, material);
     this.scene.add(this.globe);
+  }
 
-    // Add atmosphere
-    this.addAtmosphere();
+  addClouds() {
+    // Generate procedural cloud texture with seamless wrapping
+    const canvas = document.createElement("canvas");
+    canvas.width = 2048;
+    canvas.height = 1024;
+    const ctx = canvas.getContext("2d");
+
+    // Transparent background
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Generate random cloud patches with better distribution
+    for (let i = 0; i < 600; i++) {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      const size = 15 + Math.random() * 60;
+      const opacity = 0.15 + Math.random() * 0.25; // More subtle
+
+      // Create gradient for soft clouds
+      const gradient = ctx.createRadialGradient(x, y, 0, x, y, size);
+      gradient.addColorStop(0, `rgba(255, 255, 255, ${opacity})`);
+      gradient.addColorStop(0.5, `rgba(255, 255, 255, ${opacity * 0.5})`);
+      gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    const cloudTexture = new THREE.CanvasTexture(canvas);
+    cloudTexture.wrapS = THREE.RepeatWrapping;
+    cloudTexture.wrapT = THREE.ClampToEdgeWrapping;
+    cloudTexture.needsUpdate = true;
+
+    // Create cloud sphere slightly above globe
+    const cloudGeometry = new THREE.SphereGeometry(2.03, 64, 64);
+    const cloudMaterial = new THREE.MeshStandardMaterial({
+      map: cloudTexture,
+      transparent: true,
+      opacity: 0.25, // More subtle
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    });
+
+    this.clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
+    this.scene.add(this.clouds);
   }
 
   addAtmosphere() {
-    // Subtle blue atmosphere halo
-    const atmosphereGeometry = new THREE.SphereGeometry(2.08, 64, 64);
-    const atmosphereMaterial = new THREE.MeshBasicMaterial({
-      color: 0x88ccff,
-      transparent: true,
-      opacity: 0.05,
+    // Very subtle Fresnel shader - only visible on edges
+    const atmosphereGeometry = new THREE.SphereGeometry(2.10, 64, 64);
+
+    // Fresnel shader material with minimal intensity
+    const atmosphereMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        c: { value: 0.1 }, // Very low intensity
+        p: { value: 6.5 }, // Very sharp falloff - only on extreme edges
+        glowColor: { value: new THREE.Color(0x88ccff) }, // Sky blue glow
+      },
+      vertexShader: `
+        varying vec3 vNormal;
+        void main() {
+          vNormal = normalize(normalMatrix * normal);
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 glowColor;
+        uniform float c;
+        uniform float p;
+        varying vec3 vNormal;
+        void main() {
+          float intensity = pow(c - dot(vNormal, vec3(0.0, 0.0, 1.0)), p);
+          gl_FragColor = vec4(glowColor, 1.0) * intensity;
+        }
+      `,
       side: THREE.BackSide,
+      blending: THREE.AdditiveBlending,
+      transparent: true,
     });
+
     const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
     this.scene.add(atmosphere);
-
-    // Very subtle outer glow
-    const glowGeometry = new THREE.SphereGeometry(2.12, 64, 64);
-    const glowMaterial = new THREE.MeshBasicMaterial({
-      color: 0x6699ff,
-      transparent: true,
-      opacity: 0.03,
-      side: THREE.BackSide,
-    });
-    const glow = new THREE.Mesh(glowGeometry, glowMaterial);
-    this.scene.add(glow);
   }
 
   addControls() {
@@ -495,7 +551,7 @@ class GlobeManager {
     canvas.height = height;
     const ctx = canvas.getContext("2d");
 
-    // Dark blue ocean background
+    // Very dark navy ocean background
     ctx.fillStyle = "#0a1929";
     ctx.fillRect(0, 0, width, height);
 
@@ -522,8 +578,8 @@ class GlobeManager {
     // Fond TRANSPARENT pour que les terres Cao soient visibles en dessous
     ctx.clearRect(0, 0, width, height);
 
-    // Dessiner coastlines en blanc temporairement pour la dilatation
-    ctx.fillStyle = "#FFFFFF";
+    // Dessiner coastlines en beige (moins blanc)
+    ctx.fillStyle = "#c8c8c0";
     ctx.strokeStyle = "#FFFFFF";
     ctx.lineWidth = 2; // Trait fin pour précision
 
@@ -580,6 +636,7 @@ class GlobeManager {
     return texture;
   }
 
+
   generateMullerTexture(data) {
     // Générer texture avec coastlines Muller 2022 en blanc plein
     const width = 4096;
@@ -589,12 +646,12 @@ class GlobeManager {
     canvas.height = height;
     const ctx = canvas.getContext("2d");
 
-    // Fond océan bleu foncé
+    // Fond océan navy très foncé
     ctx.fillStyle = "#0a1929";
     ctx.fillRect(0, 0, width, height);
 
-    // Dessiner coastlines en blanc plein
-    ctx.fillStyle = "#FFFFFF";
+    // Dessiner coastlines en beige (moins blanc)
+    ctx.fillStyle = "#c8c8c0";
     ctx.strokeStyle = "#FFFFFF";
     ctx.lineWidth = 4;
     ctx.lineJoin = "round";
@@ -623,7 +680,7 @@ class GlobeManager {
       });
     }
 
-    console.log("✅ Muller 2022 texture avec coastlines blanches");
+    console.log("✅ Muller 2022 texture avec coastlines");
 
     const texture = new THREE.CanvasTexture(canvas);
     texture.needsUpdate = true;
@@ -644,8 +701,8 @@ class GlobeManager {
     // Transparent background
     ctx.clearRect(0, 0, width, height);
 
-    // Dessiner terres émergées en blanc avec léger débordement pour fusion
-    ctx.fillStyle = "#FFFFFF";
+    // Dessiner terres émergées en beige (moins blanc) avec léger débordement pour fusion
+    ctx.fillStyle = "#c8c8c0";
     ctx.strokeStyle = "#FFFFFF";
     ctx.lineWidth = 6; // Débordement pour fusionner zones proches
     ctx.lineJoin = "round";
@@ -660,13 +717,14 @@ class GlobeManager {
       });
     }
 
-    // Binariser pour éliminer semi-transparence
+    // Binariser pour éliminer semi-transparence (utiliser beige pour cohérence)
     const imageData = ctx.getImageData(0, 0, width, height);
     for (let i = 0; i < imageData.data.length; i += 4) {
       if (imageData.data[i + 3] > 0) {
-        imageData.data[i] = 255;
-        imageData.data[i + 1] = 255;
-        imageData.data[i + 2] = 255;
+        // Use same beige color as Muller coastlines (#c8c8c0)
+        imageData.data[i] = 200;     // R: 0xc8 = 200
+        imageData.data[i + 1] = 200; // G: 0xc8 = 200
+        imageData.data[i + 2] = 192; // B: 0xc0 = 192
         imageData.data[i + 3] = 255;
       }
     }
@@ -674,8 +732,8 @@ class GlobeManager {
 
     console.log("✅ Cao texture with merged zones and sharp contours");
 
-    // Stocker pour extraction coastlines
-    this.caoImageData = imageData;
+    // Stocker pour extraction coastlines (after parchment)
+    this.caoImageData = ctx.getImageData(0, 0, width, height);
 
     const texture = new THREE.CanvasTexture(canvas);
     texture.needsUpdate = true;
@@ -720,8 +778,8 @@ class GlobeManager {
       ctx.drawImage(caoTexture.image, 0, 0);
 
       const texture = new THREE.CanvasTexture(canvas);
-      this.globe.material.map = texture;
-      this.globe.material.needsUpdate = true;
+      // Use applyTextureToGlobe for consistent rendering with bump mapping
+      this.applyTextureToGlobe(texture);
       return;
     }
 
@@ -731,19 +789,18 @@ class GlobeManager {
     canvas.height = 2048;
     const ctx = canvas.getContext("2d");
 
-    // 1. Fond océan bleu
+    // 1. Fond océan navy très foncé
     ctx.fillStyle = "#0a1929";
     ctx.fillRect(0, 0, 4096, 2048);
 
     // 2. Terres Cao en blanc
     ctx.drawImage(caoTexture.image, 0, 0);
 
-    // Appliquer texture combinée
+    // Appliquer texture combinée avec bump mapping pour le relief
     const combinedTexture = new THREE.CanvasTexture(canvas);
-    this.globe.material.map = combinedTexture;
-    this.globe.material.needsUpdate = true;
+    this.applyTextureToGlobe(combinedTexture);
 
-    console.log("✅ Terres Cao affichées en blanc");
+    console.log("✅ Terres Cao affichées avec bump mapping et relief");
   }
 
   drawLineOnCanvas(ctx, coordinates, width, height) {
@@ -879,19 +936,63 @@ class GlobeManager {
   }
 
   applyTextureToGlobe(texture) {
-    // Update globe material with texture - Phong for realistic reflections
-    const material = new THREE.MeshPhongMaterial({
-      color: 0xf9f9f9, // Off-white to not alter texture colors
+    // Generate subtle bump map for relief
+    const bumpMap = this.generateBumpMap(texture);
+
+    // Update globe material with subtle bump mapping for depth
+    const material = new THREE.MeshStandardMaterial({
+      color: 0xffffff, // Pure white to preserve texture colors
       emissive: 0x000000,
-      shininess: 10,
+      roughness: 0.9, // Very rough - no reflections
+      metalness: 0.0, // No metallic - completely matte
       map: texture, // Apply continent texture
+      bumpMap: bumpMap, // Subtle relief
+      bumpScale: 0.03, // Very subtle to avoid gradients
       transparent: false,
     });
 
     this.globe.material = material;
     this.globe.material.needsUpdate = true;
 
-    console.log("✅ Texture applied to globe");
+    console.log("✅ Texture applied to globe with subtle bump mapping for relief");
+  }
+
+  generateBumpMap(sourceTexture) {
+    // Create grayscale version of texture for bump mapping
+    const canvas = document.createElement("canvas");
+    canvas.width = sourceTexture.image.width;
+    canvas.height = sourceTexture.image.height;
+    const ctx = canvas.getContext("2d");
+
+    // Draw source texture
+    ctx.drawImage(sourceTexture.image, 0, 0);
+
+    // Convert to grayscale (land = white/high, ocean = black/low)
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+
+    for (let i = 0; i < data.length; i += 4) {
+      // Calculate grayscale based on color
+      // Lands (yellow/beige) → bright, Ocean (blue) → dark
+      const r = data[i];
+      const g = data[i + 1];
+      const b = data[i + 2];
+
+      // Check if it's land (more yellow/beige) or ocean (more blue)
+      const isLand = (r + g) > (b * 2);
+      const gray = isLand ? 220 : 30; // High for land, low for ocean
+
+      data[i] = gray;
+      data[i + 1] = gray;
+      data[i + 2] = gray;
+      // Keep alpha
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+
+    const bumpTexture = new THREE.CanvasTexture(canvas);
+    bumpTexture.needsUpdate = true;
+    return bumpTexture;
   }
 
   simplifyCoordinates(coordinates, tolerance = 5) {
@@ -1050,6 +1151,102 @@ class GlobeManager {
     return new THREE.Vector3(x, y, z);
   }
 
+  // Helper: Draw rounded square with dark fill and white border
+  drawRoundedBorder(ctx, cx, cy, size, radius) {
+    ctx.beginPath();
+    ctx.moveTo(cx - size/2 + radius, cy - size/2);
+    ctx.lineTo(cx + size/2 - radius, cy - size/2);
+    ctx.quadraticCurveTo(cx + size/2, cy - size/2, cx + size/2, cy - size/2 + radius);
+    ctx.lineTo(cx + size/2, cy + size/2 - radius);
+    ctx.quadraticCurveTo(cx + size/2, cy + size/2, cx + size/2 - radius, cy + size/2);
+    ctx.lineTo(cx - size/2 + radius, cy + size/2);
+    ctx.quadraticCurveTo(cx - size/2, cy + size/2, cx - size/2, cy + size/2 - radius);
+    ctx.lineTo(cx - size/2, cy - size/2 + radius);
+    ctx.quadraticCurveTo(cx - size/2, cy - size/2, cx - size/2 + radius, cy - size/2);
+    ctx.closePath();
+    // Dark fill
+    ctx.fillStyle = "#191f29";
+    ctx.fill();
+    // White border
+    ctx.strokeStyle = "#f9f9f9";
+    ctx.lineWidth = 3;
+    ctx.stroke();
+  }
+
+  // Large white icon helpers with rounded border
+  drawVideoIcon(ctx, cx, cy) {
+    // Rounded border
+    this.drawRoundedBorder(ctx, cx, cy, 44, 8);
+    // Play triangle (white, larger)
+    ctx.fillStyle = "#f9f9f9";
+    ctx.beginPath();
+    ctx.moveTo(cx - 10, cy - 12);
+    ctx.lineTo(cx - 10, cy + 12);
+    ctx.lineTo(cx + 12, cy);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  drawImageIcon(ctx, cx, cy) {
+    // Rounded border
+    this.drawRoundedBorder(ctx, cx, cy, 44, 8);
+    // Picture frame icon (white, larger)
+    ctx.strokeStyle = "#f9f9f9";
+    ctx.lineWidth = 3;
+    ctx.strokeRect(cx - 12, cy - 9, 24, 18);
+    // Mountain peak
+    ctx.fillStyle = "#f9f9f9";
+    ctx.beginPath();
+    ctx.moveTo(cx - 10, cy + 7);
+    ctx.lineTo(cx - 3, cy - 4);
+    ctx.lineTo(cx + 4, cy + 7);
+    ctx.closePath();
+    ctx.fill();
+    // Sun
+    ctx.beginPath();
+    ctx.arc(cx + 6, cy - 4, 3, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  draw3DIcon(ctx, cx, cy) {
+    // Rounded border
+    this.drawRoundedBorder(ctx, cx, cy, 44, 8);
+    // Cube icon (white outline, larger)
+    ctx.strokeStyle = "#f9f9f9";
+    ctx.lineWidth = 3;
+    // Front face
+    ctx.strokeRect(cx - 10, cy - 4, 14, 14);
+    // Back face offset
+    ctx.strokeRect(cx - 4, cy - 10, 14, 14);
+    // Connect corners
+    ctx.beginPath();
+    ctx.moveTo(cx - 10, cy - 4);
+    ctx.lineTo(cx - 4, cy - 10);
+    ctx.moveTo(cx + 4, cy - 4);
+    ctx.lineTo(cx + 10, cy - 10);
+    ctx.moveTo(cx - 10, cy + 10);
+    ctx.lineTo(cx - 4, cy + 4);
+    ctx.stroke();
+  }
+
+  drawNewIcon(ctx, cx, cy) {
+    // Rounded border
+    this.drawRoundedBorder(ctx, cx, cy, 44, 8);
+    // Star icon (white, larger)
+    ctx.fillStyle = "#f9f9f9";
+    ctx.beginPath();
+    for (let i = 0; i < 10; i++) {
+      const angle = (i * Math.PI) / 5 - Math.PI / 2;
+      const r = i % 2 === 0 ? 14 : 6;
+      const x = cx + r * Math.cos(angle);
+      const y = cy + r * Math.sin(angle);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fill();
+  }
+
   addPoint(lat, lon, data) {
     const position = this.latLonToVector3(lat, lon, 2.05);
 
@@ -1091,24 +1288,34 @@ class GlobeManager {
 
     const hexColor = "#" + pointColor.toString(16).padStart(6, "0");
 
-    // Outer ring
-    ctx.strokeStyle = hexColor;
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.arc(32, 32, 20, 0, Math.PI * 2);
-    ctx.stroke();
+    // Clear background (transparent)
+    ctx.clearRect(0, 0, 64, 64);
 
-    // Filled circle
-    ctx.fillStyle = hexColor;
-    ctx.beginPath();
-    ctx.arc(32, 32, 14, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Highlight
-    ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
-    ctx.beginPath();
-    ctx.arc(27, 27, 5, 0, Math.PI * 2);
-    ctx.fill();
+    // Draw simple black icon based on type (no colored background)
+    if (data.isNew) {
+      this.drawNewIcon(ctx, 32, 32);
+    } else {
+      switch (contentType) {
+        case "videos":
+        case "video":
+          this.drawVideoIcon(ctx, 32, 32);
+          break;
+        case "images":
+        case "image":
+          this.drawImageIcon(ctx, 32, 32);
+          break;
+        case "3d":
+          this.draw3DIcon(ctx, 32, 32);
+          break;
+        default:
+          // Fallback: simple black circle
+          ctx.fillStyle = "#000000";
+          ctx.beginPath();
+          ctx.arc(32, 32, 10, 0, Math.PI * 2);
+          ctx.fill();
+          break;
+      }
+    }
 
     const texture = new THREE.CanvasTexture(canvas);
     texture.minFilter = THREE.LinearFilter;
@@ -1192,8 +1399,9 @@ class GlobeManager {
 
     // Slow automatic rotation
     if (this.autoRotate && this.globe) {
-      this.globe.rotation.y += 0.001;
+      this.globe.rotation.y += 0.0005; // Reduced speed for smoother rotation
     }
+
 
     this.renderer.render(this.scene, this.camera);
   }

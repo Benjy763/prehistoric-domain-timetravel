@@ -89,7 +89,37 @@ Légende : `[ ]` à faire · `[~]` en cours · `[x]` fait
 
 ---
 
-## Phase 4 — Nettoyage code
+## Phase 4 — Moderniser le rendu du globe [DONE]
+
+**Objectif** : passer d'un style vintage/parchemin à un rendu moderne photoréaliste, inspiré de l'image de référence, tout en gardant de bonnes performances.
+
+### 4.1 Quick wins — Couleurs et textures modernes
+- [x] Retirer l'effet parchemin (`applyParchmentTexture`)
+- [x] Couleurs océan/terre réalistes (bleu profond #1a4d7a, terre verte #7a9b6f)
+- [x] Améliorer la luminosité des continents (moins sombres)
+- [x] Test visuel sur toutes les périodes
+
+### 4.2 Améliorer l'éclairage et les matériaux
+- [x] Remplacer `MeshPhongMaterial` par `MeshStandardMaterial` (PBR)
+- [x] Ajouter `DirectionalLight` pour simuler le soleil (déjà existant, optimisé)
+- [x] Paramètres roughness/metalness pour océan réaliste
+- [x] Spécularité de l'eau (reflets via PBR)
+
+### 4.3 Atmosphère moderne
+- [x] Gradient bleu atmosphérique (3 layers progressifs)
+- [x] Glow externe plus subtil et profond
+- [x] Transparence progressive vers l'extérieur
+
+### 4.4 Effets avancés [DONE]
+- [x] Bump mapping léger pour relief des continents
+- [x] Nuages subtils (texture overlay animée)
+- [x] Shader personnalisé Fresnel pour atmosphère
+- [ ] Améliorer les ombres (shadow map)
+- [ ] Post-processing bloom pour l'atmosphère
+
+---
+
+## Phase 5 — Nettoyage code
 
 **Objectif** : nettoyer le code restant.
 

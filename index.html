@@ -171,6 +171,7 @@
       <path d="M23 4v6h-6"></path>
       <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
     </svg>
+    <span class="auto-rotate-text">Auto Rotate</span>
   </button>
 
   <!-- Main globe area -->
@@ -193,36 +194,48 @@
   <div class="popup-backdrop" id="popupBackdrop"></div>
   <div class="content-popup" id="contentPopup">
     <button class="popup-close" id="popupClose">×</button>
+
+    <!-- Visual content (image/video) -->
     <div class="popup-content">
-      <div class="popup-preview">
-        <a href="#" id="popupImageLink" style="display: none;">
-          <img src="" alt="Preview" class="popup-image" id="popupImage">
-          <div class="popup-play-icon" id="popupPlayIcon" style="display: none;">
-            <svg width="60" height="60" viewBox="0 0 60 60">
-              <circle cx="30" cy="30" r="28" fill="rgba(230, 218, 199, 0.9)"/>
-              <polygon points="23,18 23,42 43,30" fill="#2c2013"/>
-            </svg>
-          </div>
-        </a>
-        <iframe id="popupVideo" class="popup-video" style="display: none; width: 100%; height: 100%; border: none;"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-      </div>
-      <div class="popup-info">
-        <h3 class="popup-title" id="popupTitle">T-REX HUNT - Gobi Desert</h3>
-        <p class="popup-description" id="popupDescription">
-          Discovery of a T-Rex in the Gobi Desert...
-        </p>
-        <div class="popup-meta">
-          <span class="popup-artist" id="popupArtist">
-            <strong>Artist:</strong> John Doe
-          </span>
+      <a href="#" id="popupImageLink" style="display: none;">
+        <img src="" alt="Preview" class="popup-image" id="popupImage">
+        <div class="popup-play-icon" id="popupPlayIcon" style="display: none;">
+          <svg width="80" height="80" viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="38" fill="rgba(255, 255, 255, 0.9)"/>
+            <polygon points="30,24 30,56 58,40" fill="#161b22"/>
+          </svg>
         </div>
-        <a href="#" class="popup-link buttons-item" id="popupLink">
-          VIEW MORE
-        </a>
-      </div>
+      </a>
+      <iframe id="popupVideo" class="popup-video" style="display: none; width: 100%; height: 100%; border: none;"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
     </div>
+
+    <!-- Info overlay (hidden by default) -->
+    <div class="popup-info-overlay" id="popupInfoOverlay">
+      <h3 class="popup-title" id="popupTitle">T-REX HUNT - Gobi Desert</h3>
+      <p class="popup-description" id="popupDescription">
+        Discovery of a T-Rex in the Gobi Desert...
+      </p>
+      <div class="popup-meta">
+        <span class="popup-artist" id="popupArtist">
+          <strong>Artist:</strong> John Doe
+        </span>
+      </div>
+      <a href="#" class="popup-link buttons-item" id="popupLink">
+        VIEW MORE
+      </a>
+    </div>
+
+    <!-- Info button -->
+    <button class="popup-info-btn" id="popupInfoBtn" title="Show info">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="16" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+      </svg>
+      <span class="popup-info-text">Info</span>
+    </button>
   </div>
 
   <!-- Layer Info Modal -->
