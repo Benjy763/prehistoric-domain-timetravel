@@ -235,6 +235,7 @@ class AppController {
     // Initialiser les managers
     this.globeManager = null;
     this.filtersManager = null;
+    this.favoritesManager = null;
     this.popupManager = null;
     this.webflowAPI = null;
     this.audioManager = null;
@@ -250,12 +251,18 @@ class AppController {
 
     // Initialiser les managers
     this.filtersManager = new FiltersManager();
+    this.favoritesManager = new FavoritesManager();
     this.popupManager = new PopupManager();
     this.webflowAPI = new WebflowAPI();
     this.audioManager = new AudioManager();
 
     // Rendre le contrôleur accessible globalement
     window.appController = this;
+
+    // Listen to favorites changes and refresh points
+    this.favoritesManager.onChange(() => {
+      this.updatePoints();
+    });
 
     // Charger les données
     await this.loadData();
@@ -489,16 +496,34 @@ class AppController {
 
     // Récupérer les filtres actifs
     const activeFilters = this.filtersManager.getActiveFilters();
+    const favoritesFilterActive = activeFilters.includes("favorites");
+    const newFilterActive = activeFilters.includes("new");
 
     // Filtrer les contenus
-    const filteredContents = this.webflowAPI.filterByPeriodAndType(
+    let filteredContents = this.webflowAPI.filterByPeriodAndType(
       this.currentPeriod,
-      activeFilters,
+      activeFilters.filter(f => f !== "favorites" && f !== "new"), // Remove exclusive filters from type filters
     );
 
-    console.log(
-      `Affichage de ${filteredContents.length} contenus pour la période ${this.currentPeriod}`,
-    );
+    // Si le filtre favorites est actif, ne garder QUE les favoris
+    if (favoritesFilterActive) {
+      const favoriteIds = this.favoritesManager.getAll();
+      filteredContents = filteredContents.filter(content => favoriteIds.includes(content.id));
+      console.log(
+        `💙 Affichage de ${filteredContents.length} favoris pour la période ${this.currentPeriod}`,
+      );
+    }
+    // Si le filtre new est actif, ne garder QUE les nouveaux items
+    else if (newFilterActive) {
+      filteredContents = filteredContents.filter(content => content.isNew === true);
+      console.log(
+        `⭐ Affichage de ${filteredContents.length} nouveaux contenus pour la période ${this.currentPeriod}`,
+      );
+    } else {
+      console.log(
+        `Affichage de ${filteredContents.length} contenus pour la période ${this.currentPeriod}`,
+      );
+    }
 
     // Ajouter les points au globe
     filteredContents.forEach((content) => {
@@ -511,7 +536,9 @@ class AppController {
 
       if (lat == null || lon == null) return;
 
-      this.globeManager.addPoint(lat, lon, content);
+      // Pass isFavorite flag to globe for blue highlight
+      const isFavorite = this.favoritesManager.isFavorite(content.id);
+      this.globeManager.addPoint(lat, lon, content, isFavorite);
     });
   }
 

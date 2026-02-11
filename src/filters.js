@@ -5,7 +5,8 @@
 
 class FiltersManager {
   constructor() {
-    this.activeFilters = new Set(["videos", "images", "3d", "new"]);
+    // Note: "favorites" and "new" are NOT active by default - user must enable them
+    this.activeFilters = new Set(["videos", "images", "3d"]);
     this.filterElements = document.querySelectorAll(".filter-item");
 
     this.init();
@@ -45,9 +46,14 @@ class FiltersManager {
   }
 
   reset() {
-    this.activeFilters = new Set(["videos", "images", "3d", "new"]);
+    this.activeFilters = new Set(["videos", "images", "3d"]);
     this.filterElements.forEach((element) => {
-      element.classList.add("active");
+      const isSwitch = element.classList.contains("filter-switch");
+      if (isSwitch) {
+        element.classList.remove("active");
+      } else {
+        element.classList.add("active");
+      }
     });
   }
 }

@@ -10,6 +10,8 @@ class PopupManager {
     this.closeBtn = document.getElementById("popupClose");
     this.infoBtn = document.getElementById("popupInfoBtn");
     this.infoOverlay = document.getElementById("popupInfoOverlay");
+    this.favoriteBtn = document.getElementById("popupFavoriteBtn");
+    this.currentContent = null; // Track current content for favorite toggle
     this.elements = {
       image: document.getElementById("popupImage"),
       imageLink: document.getElementById("popupImageLink"),
@@ -70,9 +72,26 @@ class PopupManager {
         console.log("✅ Access granted to 3D tour");
       }
     });
+
+    // Favorite button toggle
+    if (this.favoriteBtn) {
+      this.favoriteBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (!this.currentContent || !window.appController?.favoritesManager) return;
+
+        window.appController.favoritesManager.toggle(this.currentContent.id);
+        this.updateFavoriteButton(this.currentContent.id);
+      });
+    }
   }
 
   show(content) {
+    // Store current content
+    this.currentContent = content;
+
+    // Update favorite button state
+    this.updateFavoriteButton(content.id);
+
     // Pause ambient audio with fade when opening video/3D content
     const isVideoOr3D = content.type === "videos" || content.type === "3d";
     if (isVideoOr3D && window.appController?.audioManager) {
@@ -213,6 +232,19 @@ class PopupManager {
     if (this.elements.playIcon) {
       this.elements.playIcon.style.display = "none";
     }
+  }
+
+  updateFavoriteButton(contentId) {
+    if (!this.favoriteBtn || !window.appController?.favoritesManager) return;
+
+    const isFavorite = window.appController.favoritesManager.isFavorite(contentId);
+    const emptyIcon = this.favoriteBtn.querySelector(".favorite-icon-empty");
+    const filledIcon = this.favoriteBtn.querySelector(".favorite-icon-filled");
+
+    if (emptyIcon) emptyIcon.style.display = isFavorite ? "none" : "block";
+    if (filledIcon) filledIcon.style.display = isFavorite ? "block" : "none";
+
+    this.favoriteBtn.title = isFavorite ? "Remove from favorites" : "Add to favorites";
   }
 
   extractYouTubeId(url) {

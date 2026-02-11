@@ -1151,8 +1151,8 @@ class GlobeManager {
     return new THREE.Vector3(x, y, z);
   }
 
-  // Helper: Draw rounded square with dark fill and white border
-  drawRoundedBorder(ctx, cx, cy, size, radius) {
+  // Helper: Draw rounded square with dark fill and white/green border
+  drawRoundedBorder(ctx, cx, cy, size, radius, borderColor = "#f9f9f9") {
     ctx.beginPath();
     ctx.moveTo(cx - size/2 + radius, cy - size/2);
     ctx.lineTo(cx + size/2 - radius, cy - size/2);
@@ -1167,18 +1167,20 @@ class GlobeManager {
     // Dark fill
     ctx.fillStyle = "#191f29";
     ctx.fill();
-    // White border
-    ctx.strokeStyle = "#f9f9f9";
+    // Border (white or green for favorites)
+    ctx.strokeStyle = borderColor;
     ctx.lineWidth = 3;
     ctx.stroke();
   }
 
   // Large white icon helpers with rounded border
-  drawVideoIcon(ctx, cx, cy) {
+  // fillColor param for favorite highlight (default white, or green for favorites)
+  // borderColor param for outline (default white, or green for favorites)
+  drawVideoIcon(ctx, cx, cy, fillColor = "#f9f9f9", borderColor = "#f9f9f9") {
     // Rounded border
-    this.drawRoundedBorder(ctx, cx, cy, 44, 8);
-    // Play triangle (white, larger)
-    ctx.fillStyle = "#f9f9f9";
+    this.drawRoundedBorder(ctx, cx, cy, 44, 8, borderColor);
+    // Play triangle (white or green if favorite)
+    ctx.fillStyle = fillColor;
     ctx.beginPath();
     ctx.moveTo(cx - 10, cy - 12);
     ctx.lineTo(cx - 10, cy + 12);
@@ -1187,15 +1189,15 @@ class GlobeManager {
     ctx.fill();
   }
 
-  drawImageIcon(ctx, cx, cy) {
+  drawImageIcon(ctx, cx, cy, fillColor = "#f9f9f9", borderColor = "#f9f9f9") {
     // Rounded border
-    this.drawRoundedBorder(ctx, cx, cy, 44, 8);
-    // Picture frame icon (white, larger)
-    ctx.strokeStyle = "#f9f9f9";
+    this.drawRoundedBorder(ctx, cx, cy, 44, 8, borderColor);
+    // Picture frame icon (white or green if favorite)
+    ctx.strokeStyle = fillColor;
     ctx.lineWidth = 3;
     ctx.strokeRect(cx - 12, cy - 9, 24, 18);
     // Mountain peak
-    ctx.fillStyle = "#f9f9f9";
+    ctx.fillStyle = fillColor;
     ctx.beginPath();
     ctx.moveTo(cx - 10, cy + 7);
     ctx.lineTo(cx - 3, cy - 4);
@@ -1208,11 +1210,11 @@ class GlobeManager {
     ctx.fill();
   }
 
-  draw3DIcon(ctx, cx, cy) {
+  draw3DIcon(ctx, cx, cy, fillColor = "#f9f9f9", borderColor = "#f9f9f9") {
     // Rounded border
-    this.drawRoundedBorder(ctx, cx, cy, 44, 8);
-    // Cube icon (white outline, larger)
-    ctx.strokeStyle = "#f9f9f9";
+    this.drawRoundedBorder(ctx, cx, cy, 44, 8, borderColor);
+    // Cube icon (white or green if favorite)
+    ctx.strokeStyle = fillColor;
     ctx.lineWidth = 3;
     // Front face
     ctx.strokeRect(cx - 10, cy - 4, 14, 14);
@@ -1229,11 +1231,11 @@ class GlobeManager {
     ctx.stroke();
   }
 
-  drawNewIcon(ctx, cx, cy) {
+  drawNewIcon(ctx, cx, cy, fillColor = "#f9f9f9", borderColor = "#f9f9f9") {
     // Rounded border
-    this.drawRoundedBorder(ctx, cx, cy, 44, 8);
-    // Star icon (white, larger)
-    ctx.fillStyle = "#f9f9f9";
+    this.drawRoundedBorder(ctx, cx, cy, 44, 8, borderColor);
+    // Star icon (white or green if favorite)
+    ctx.fillStyle = fillColor;
     ctx.beginPath();
     for (let i = 0; i < 10; i++) {
       const angle = (i * Math.PI) / 5 - Math.PI / 2;
@@ -1247,37 +1249,33 @@ class GlobeManager {
     ctx.fill();
   }
 
-  addPoint(lat, lon, data) {
+  addPoint(lat, lon, data, isFavorite = false) {
     const position = this.latLonToVector3(lat, lon, 2.05);
 
     // Couleur selon le type de contenu (vérifier type ou category)
     const contentType = data.type || data.category;
 
     let pointColor;
-    // isNew flag overrides type color
-    if (data.isNew) {
-      pointColor = 0x00b894; // Vert turquoise pour nouveautés
-    } else {
-      switch (contentType) {
-        case "videos":
-        case "video":
-          pointColor = 0x6c5ce7; // Violet pour vidéos
-          break;
-        case "images":
-        case "image":
-          pointColor = 0xfdcb6e; // Jaune pour images
-          break;
-        case "3d":
-          pointColor = 0xfd79a8; // Rose pour 3D
-          break;
-        case "texts":
-        case "text":
-          pointColor = 0x58a6ff; // Bleu pour textes/articles
-          break;
-        default:
-          pointColor = 0xf9f9f9; // Blanc par défaut
-          break;
-      }
+    // Color based on content type (isNew is now just a highlight state, not a type)
+    switch (contentType) {
+      case "videos":
+      case "video":
+        pointColor = 0x6c5ce7; // Violet pour vidéos
+        break;
+      case "images":
+      case "image":
+        pointColor = 0xfdcb6e; // Jaune pour images
+        break;
+      case "3d":
+        pointColor = 0xfd79a8; // Rose pour 3D
+        break;
+      case "texts":
+      case "text":
+        pointColor = 0x58a6ff; // Bleu pour textes/articles
+        break;
+      default:
+        pointColor = 0xf9f9f9; // Blanc par défaut
+        break;
     }
 
     // Créer texture pinpoint avec ring + highlight
@@ -1291,30 +1289,38 @@ class GlobeManager {
     // Clear background (transparent)
     ctx.clearRect(0, 0, 64, 64);
 
-    // Draw simple black icon based on type (no colored background)
-    if (data.isNew) {
-      this.drawNewIcon(ctx, 32, 32);
-    } else {
-      switch (contentType) {
-        case "videos":
-        case "video":
-          this.drawVideoIcon(ctx, 32, 32);
-          break;
-        case "images":
-        case "image":
-          this.drawImageIcon(ctx, 32, 32);
-          break;
-        case "3d":
-          this.draw3DIcon(ctx, 32, 32);
-          break;
-        default:
-          // Fallback: simple black circle
-          ctx.fillStyle = "#000000";
-          ctx.beginPath();
-          ctx.arc(32, 32, 10, 0, Math.PI * 2);
-          ctx.fill();
-          break;
-      }
+    // Icon fill color: yellow (#ffaa00) if favorite, green (#02d8cb) if new, white otherwise
+    let iconFillColor = "#f9f9f9";
+    let iconBorderColor = "#f9f9f9";
+
+    if (isFavorite) {
+      iconFillColor = "#ffaa00";  // Yellow for favorites
+      iconBorderColor = "#ffaa00";
+    } else if (data.isNew) {
+      iconFillColor = "#02d8cb";  // Green for new items
+      iconBorderColor = "#02d8cb";
+    }
+
+    // Draw icon based on content type (not isNew state)
+    switch (contentType) {
+      case "videos":
+      case "video":
+        this.drawVideoIcon(ctx, 32, 32, iconFillColor, iconBorderColor);
+        break;
+      case "images":
+      case "image":
+        this.drawImageIcon(ctx, 32, 32, iconFillColor, iconBorderColor);
+        break;
+      case "3d":
+        this.draw3DIcon(ctx, 32, 32, iconFillColor, iconBorderColor);
+        break;
+      default:
+        // Fallback: simple circle with highlight color
+        ctx.fillStyle = iconFillColor;
+        ctx.beginPath();
+        ctx.arc(32, 32, 10, 0, Math.PI * 2);
+        ctx.fill();
+        break;
     }
 
     const texture = new THREE.CanvasTexture(canvas);

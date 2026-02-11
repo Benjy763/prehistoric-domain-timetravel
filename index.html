@@ -133,17 +133,17 @@
         <span class="filter-name">3D</span>
         <span class="filter-badge">●</span>
       </div>
-      <div class="filter-item active" data-filter="new">
-        <span class="filter-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-            </polygon>
-          </svg>
-        </span>
+      <div class="filter-item filter-switch" data-filter="new">
+        <div class="filter-switch-track">
+          <div class="filter-switch-thumb"></div>
+        </div>
         <span class="filter-name">New</span>
-        <span class="filter-badge">●</span>
+      </div>
+      <div class="filter-item filter-switch" data-filter="favorites">
+        <div class="filter-switch-track">
+          <div class="filter-switch-thumb"></div>
+        </div>
+        <span class="filter-name">Favorites</span>
       </div>
     </div>
 
@@ -151,15 +151,14 @@
     <div class="info-button-container">
       <button class="main-info-btn" id="layerInfoBtn">
         <span class="info-icon-wrapper">
-          <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="16" x2="12" y2="12"></line>
-            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <circle cx="12" cy="17" r="0.5" fill="currentColor"></circle>
           </svg>
         </span>
         <span class="info-text-wrapper">
           <span class="info-text">How does this work?</span>
-          <span class="info-subtitle">Learn about the geological models and data sources</span>
         </span>
       </button>
     </div>
@@ -168,23 +167,27 @@
   <!-- Volume control with play/pause -->
   <div class="volume-control active" id="volumeControl">
     <button class="volume-btn" id="volumeBtn" title="Adjust volume">
-      <svg class="volume-icon-high" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+      <svg class="volume-icon-high" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+        stroke-width="2">
         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
         <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
         <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
       </svg>
-      <svg class="volume-icon-low" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+      <svg class="volume-icon-low" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+        stroke-width="2" style="display: none;">
         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
         <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
       </svg>
-      <svg class="volume-icon-muted" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+      <svg class="volume-icon-muted" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+        stroke-width="2" style="display: none;">
         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
         <line x1="23" y1="9" x2="17" y2="15"></line>
         <line x1="17" y1="9" x2="23" y2="15"></line>
       </svg>
     </button>
     <div class="volume-slider-container" id="volumeSliderContainer">
-      <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50" orient="vertical">
+      <div class="volume-slider-track"></div>
+      <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
     </div>
   </div>
 
@@ -226,8 +229,8 @@
         <img src="" alt="Preview" class="popup-image" id="popupImage">
         <div class="popup-play-icon" id="popupPlayIcon" style="display: none;">
           <svg width="80" height="80" viewBox="0 0 80 80">
-            <circle cx="40" cy="40" r="38" fill="rgba(255, 255, 255, 0.9)"/>
-            <polygon points="30,24 30,56 58,40" fill="#161b22"/>
+            <circle cx="40" cy="40" r="38" fill="rgba(255, 255, 255, 0.9)" />
+            <polygon points="30,24 30,56 58,40" fill="#161b22" />
           </svg>
         </div>
       </a>
@@ -261,6 +264,23 @@
       </svg>
       <span class="popup-info-text">Info</span>
     </button>
+
+    <!-- Favorite button -->
+    <button class="popup-favorite-btn" id="popupFavoriteBtn" title="Add to favorites">
+      <svg class="favorite-icon-empty" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path
+          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+        </path>
+      </svg>
+      <svg class="favorite-icon-filled" width="20" height="20" viewBox="0 0 24 24" fill="#ffaa00" stroke="#ffaa00"
+        stroke-width="2" style="display: none;">
+        <path
+          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+        </path>
+      </svg>
+      <span class="popup-favorite-text">Favorite</span>
+    </button>
   </div>
 
   <!-- Layer Info Modal -->
@@ -271,12 +291,14 @@
 
       <div class="info-section">
         <h3>About the point locations</h3>
-        <p>Each point on the globe represents a piece of prehistoric life content (video, image, or 3D experience). The locations are determined by:</p>
+        <p>Each point on the globe represents a piece of prehistoric life content (video, image, or 3D experience). The
+          locations show <strong>where fossils were discovered</strong> and are reconstructed back in time following these scientific steps:</p>
         <ul>
-          <li><strong>Fossil occurrence data</strong> from the Paleobiology Database (PBDB), matched to the species mentioned in each content's tags</li>
-          <li><strong>Plate tectonic reconstruction</strong> using the GPlates API (Merdith et al. 2021 model) to reposition modern fossil coordinates to their ancient locations</li>
-          <li><strong>Land validation</strong> ensures terrestrial species are placed on land, not ocean, at each time period</li>
+          <li><strong>Modern fossil locations:</strong> Coordinates come from the Paleobiology Database (PBDB), matching species mentioned in each content's tags. These are the actual sites where fossils were found today.</li>
+          <li><strong>Paleogeographic reconstruction:</strong> Using the GPlates API with the Merdith et al. 2021 tectonic model, we reposition these modern coordinates back to their ancient locations, moving them along with the continents as they drifted over millions of years.</li>
+          <li><strong>Land validation:</strong> Terrestrial species are verified to be on land at each time period. Note that marine fossils (ancient ocean species) can be found on modern land because geological uplift has transformed ancient seafloors into mountains.</li>
         </ul>
+        <p class="info-note"><em>All positioning is based on peer-reviewed scientific data: PBDB fossil database + Merdith et al. 2021 plate reconstruction model.</em></p>
         <p class="info-note"><em>Points are only visible in the "Our Continents" view.</em></p>
       </div>
 
@@ -285,30 +307,39 @@
         <p>This view shows the outlines of <strong>today's continents</strong> repositioned to where they were located
           in the past. It helps you recognize familiar landmasses (Africa, South America, etc.) in their ancient
           positions.</p>
-        <p class="info-note"><em>Merdith et al. 2021 plate tectonic reconstruction, extending back to 1 billion years ago.</em></p>
+        <p class="info-note"><em>Merdith et al. 2021 plate tectonic reconstruction, extending back to 1 billion years
+            ago.</em></p>
       </div>
 
       <div class="info-section">
         <h3>Real Land View</h3>
-        <p>This view shows the <strong>actual emerged landmasses</strong> as they existed during each period &mdash; the real
+        <p>This view shows the <strong>actual emerged landmasses</strong> as they existed during each period &mdash; the
+          real
           ancient coastlines based on geological evidence. Sea levels were different, so the shapes differ
           significantly from modern continents.</p>
-        <p class="info-note"><em>Cao et al. 2017 paleogeographic reconstruction &mdash; available from Permian (~280 Ma) to Neogene (~6 Ma).</em></p>
+        <p class="info-note"><em>Cao et al. 2017 paleogeographic reconstruction &mdash; available from Permian (~280 Ma)
+            to Neogene (~6 Ma).</em></p>
       </div>
 
       <div class="info-section">
-        <h3>Point colors</h3>
+        <h3>Point icons and colors</h3>
+        <p>Each point displays an icon based on its content type:</p>
         <ul>
-          <li><span style="color:#6c5ce7;">&#9679;</span> Videos</li>
-          <li><span style="color:#fdcb6e;">&#9679;</span> Images</li>
-          <li><span style="color:#fd79a8;">&#9679;</span> 3D Experiences</li>
-          <li><span style="color:#00b894;">&#9679;</span> New content</li>
+          <li><strong>Videos</strong> — Play triangle icon</li>
+          <li><strong>Images</strong> — Picture frame with landscape icon</li>
+          <li><strong>3D Experiences</strong> — Cube icon</li>
+        </ul>
+        <p>Icon highlights indicate special status:</p>
+        <ul>
+          <li><span style="color:#ffaa00;">● Yellow</span> — Favorites (your saved content)</li>
+          <li><span style="color:#02d8cb;">● Green</span> — New content (recently added)</li>
         </ul>
       </div>
 
       <div class="info-section">
         <h3>Time Periods</h3>
-        <p>Each period button corresponds to the <strong>midpoint</strong> of that geological era. For example, "Jurassic"
+        <p>Each period button corresponds to the <strong>midpoint</strong> of that geological era. For example,
+          "Jurassic"
           shows approximately 160 million years ago (middle of the Jurassic, 201&ndash;145 Ma).</p>
       </div>
 
@@ -320,6 +351,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="src/globe.js"></script>
   <script src="src/filters.js"></script>
+  <script src="src/favorites.js"></script>
   <script src="src/popup.js"></script>
   <script src="src/webflow-api.js"></script>
   <script src="src/app.js"></script>
