@@ -5,7 +5,7 @@
 
 class FiltersManager {
   constructor() {
-    this.activeFilters = new Set(["videos", "images", "3d", "texts"]);
+    this.activeFilters = new Set(["videos", "images", "3d", "new"]);
     this.filterElements = document.querySelectorAll(".filter-item");
 
     this.init();
@@ -45,7 +45,7 @@ class FiltersManager {
   }
 
   reset() {
-    this.activeFilters = new Set(["videos", "images", "3d", "texts"]);
+    this.activeFilters = new Set(["videos", "images", "3d", "new"]);
     this.filterElements.forEach((element) => {
       element.classList.add("active");
     });
