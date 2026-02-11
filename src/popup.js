@@ -60,6 +60,16 @@ class PopupManager {
         this.hide();
       }
     });
+
+    // Listen for access requests from 3D tour iframes
+    window.addEventListener("message", (event) => {
+      if (event.data === "getAccess") {
+        console.log("🔑 Access request from 3D tour iframe");
+        // Send access token to the iframe
+        event.source.postMessage({ type: "v4j9kjxzwmjsrlnfbq2ndu68z" }, "*");
+        console.log("✅ Access granted to 3D tour");
+      }
+    });
   }
 
   show(content) {
@@ -76,8 +86,12 @@ class PopupManager {
     // Artiste
     this.elements.artist.innerHTML = `${content.artist || "Inconnu"}`;
 
-    // Afficher la vidéo YouTube embédée pour les vidéos
-    if (content.type === "videos" && content.youtubeUrl) {
+    // Déterminer le type de contenu à afficher
+    const is3DTour = content.type === "3d" && content.pageUrl && content.pageUrl.includes("tour.prehistoricdomain.com");
+    const isYouTubeVideo = content.type === "videos" && content.youtubeUrl;
+
+    // Afficher iframe YouTube directement
+    if (isYouTubeVideo) {
       const videoId = this.extractYouTubeId(content.youtubeUrl);
       if (videoId && this.elements.video) {
         this.elements.video.src = `https://www.youtube.com/embed/${videoId}`;
@@ -87,7 +101,7 @@ class PopupManager {
         }
       }
     } else {
-      // Pour les images et contenus 3D, afficher l'image
+      // Pour les images et contenus 3D, afficher l'image avec play icon
       if (this.elements.video) {
         this.elements.video.style.display = "none";
       }
@@ -108,23 +122,45 @@ class PopupManager {
           this.elements.playIcon.style.display = "none";
         }
       }
+
+      // Pour les tours 3D, intercepter le clic sur l'image pour charger l'iframe
+      if (is3DTour && this.elements.imageLink) {
+        // Remove previous listener if any
+        const newImageLink = this.elements.imageLink.cloneNode(true);
+        this.elements.imageLink.parentNode.replaceChild(newImageLink, this.elements.imageLink);
+        this.elements.imageLink = newImageLink;
+
+        this.elements.imageLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          console.log("🎮 Loading 3D tour in iframe:", content.pageUrl);
+
+          // Hide image and show iframe
+          this.elements.imageLink.style.display = "none";
+          if (this.elements.video) {
+            this.elements.video.src = content.pageUrl;
+            this.elements.video.style.display = "block";
+          }
+        });
+      }
     }
 
-    // For 3D items, pageUrl is the tour URL — use slug to build the Webflow page URL
+    // For 3D items, determine the appropriate link
+    // If it's a 3D tour shown in iframe, link to Webflow page
+    // Otherwise, use the pageUrl
     const webflowPageUrl = content.slug
       ? `https://www.prehistoricdomain.com/content/${content.slug}`
       : null;
-    const linkUrl =
-      content.type === "3d" && webflowPageUrl
-        ? webflowPageUrl
-        : content.pageUrl;
+    const linkUrl = is3DTour && webflowPageUrl
+      ? webflowPageUrl
+      : content.pageUrl;
 
     // Lien vers la page (nouvel onglet)
     if (linkUrl) {
       this.elements.link.href = linkUrl;
       this.elements.link.target = "_blank";
       this.elements.link.rel = "noopener noreferrer";
-      if (this.elements.imageLink) {
+      // Only set imageLink if not showing iframe
+      if (this.elements.imageLink && !is3DTour && !isYouTubeVideo) {
         this.elements.imageLink.href = linkUrl;
         this.elements.imageLink.target = "_blank";
         this.elements.imageLink.rel = "noopener noreferrer";
