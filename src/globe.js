@@ -19,6 +19,11 @@ class GlobeManager {
     this.caoLands = null; // Cao emerged lands overlay
     this.clouds = null; // Animated clouds layer
 
+    // Hover state for pinpoints
+    this.hoveredPoint = null;
+    this.basePointScale = 0.025;
+    this.hoverPointScale = 0.035;
+
     // Texture cache for periods
     this.textureCache = new Map();
     this.textureCache_muller = new Map();
@@ -296,6 +301,21 @@ class GlobeManager {
         x: e.clientX,
         y: e.clientY,
       };
+
+      // Hover detection on pinpoints
+      if (!isDragging && this.points.length > 0) {
+        const rect = this.container.getBoundingClientRect();
+        this.mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        this.mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        this.raycaster.setFromCamera(this.mouse, this.camera);
+        const intersects = this.raycaster.intersectObjects(this.points);
+
+        const newHovered = intersects.length > 0 ? intersects[0].object : null;
+        if (newHovered !== this.hoveredPoint) {
+          this.hoveredPoint = newHovered;
+          this.container.style.cursor = newHovered ? "pointer" : "grab";
+        }
+      }
     });
 
     this.container.addEventListener("mouseup", () => {
@@ -319,7 +339,7 @@ class GlobeManager {
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (this._lastTouchDistance != null) {
           const delta = (this._lastTouchDistance - dist) * 0.01;
-          this.camera.position.z = Math.max(2.5, Math.min(10, this.camera.position.z + delta));
+          this.camera.position.z = Math.max(2.2, Math.min(10, this.camera.position.z + delta));
         }
         this._lastTouchDistance = dist;
         isDragging = false;
@@ -343,7 +363,7 @@ class GlobeManager {
       const delta = e.deltaY * 0.001;
       this.camera.position.z += delta;
       this.camera.position.z = Math.max(
-        2.5,
+        2.2,
         Math.min(10, this.camera.position.z),
       );
     });
@@ -1408,6 +1428,15 @@ class GlobeManager {
       this.globe.rotation.y += 0.0005; // Reduced speed for smoother rotation
     }
 
+    // Smooth scale animation for hovered pinpoint
+    for (const point of this.points) {
+      const target = point === this.hoveredPoint ? this.hoverPointScale : this.basePointScale;
+      const current = point.scale.x;
+      if (Math.abs(current - target) > 0.0005) {
+        const newScale = current + (target - current) * 0.15;
+        point.scale.set(newScale, newScale, 1);
+      }
+    }
 
     this.renderer.render(this.scene, this.camera);
   }

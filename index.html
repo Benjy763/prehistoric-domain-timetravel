@@ -102,14 +102,8 @@
           <circle cx="11" cy="11" r="8"></circle>
           <path d="m21 21-4.35-4.35"></path>
         </svg>
-        <input
-          type="text"
-          id="searchInput"
-          class="search-input"
-          placeholder="Search contents..."
-          autocomplete="off"
-          spellcheck="false"
-        />
+        <input type="text" id="searchInput" class="search-input" placeholder="Search contents..." autocomplete="off"
+          spellcheck="false" />
         <button id="searchClearBtn" class="search-clear-btn" style="display: none;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -175,7 +169,8 @@
     <div class="info-button-container">
       <button class="main-info-btn" id="layerInfoBtn">
         <span class="info-icon-wrapper">
-          <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"></circle>
             <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
             <circle cx="12" cy="17" r="0.5" fill="currentColor"></circle>
@@ -319,13 +314,20 @@
       <div class="info-section">
         <h3>About the point locations</h3>
         <p>Each point on the globe represents a piece of prehistoric life content (video, image, or 3D experience). The
-          locations show <strong>where fossils may have been found</strong> and are reconstructed back in time following these scientific steps:</p>
+          locations show <strong>where fossils may have been found</strong> and are reconstructed back in time following
+          these scientific steps:</p>
         <ul>
-          <li><strong>Modern fossil locations:</strong> Coordinates come from the Paleobiology Database (PBDB), matching species mentioned in each content's tags. These are the actual sites where fossils were found today.</li>
-          <li><strong>Paleogeographic reconstruction:</strong> Using the GPlates API with the Merdith et al. 2021 tectonic model, we reposition these modern coordinates back to their ancient locations, moving them along with the continents as they drifted over millions of years.</li>
-          <li><strong>Land validation:</strong> Terrestrial species are verified to be on land at each time period. Note that marine fossils (ancient ocean species) can be found on modern land because geological uplift has transformed ancient seafloors into mountains.</li>
+          <li><strong>Modern fossil locations:</strong> Coordinates come from the Paleobiology Database (PBDB), matching
+            species mentioned in each content's tags. These are the actual sites where fossils were found today.</li>
+          <li><strong>Paleogeographic reconstruction:</strong> Using the GPlates API with the Merdith et al. 2021
+            tectonic model, we reposition these modern coordinates back to their ancient locations, moving them along
+            with the continents as they drifted over millions of years.</li>
+          <li><strong>Land validation:</strong> Terrestrial species are verified to be on land at each time period. Note
+            that marine fossils (ancient ocean species) can be found on modern land because geological uplift has
+            transformed ancient seafloors into mountains.</li>
         </ul>
-        <p class="info-note"><em>All positioning is based on peer-reviewed scientific data: PBDB fossil database + Merdith et al. 2021 plate reconstruction model.</em></p>
+        <p class="info-note"><em>All positioning is based on peer-reviewed scientific data: PBDB fossil database +
+            Merdith et al. 2021 plate reconstruction model.</em></p>
         <p class="info-note"><em>Points are only visible in the "Our Continents" view.</em></p>
       </div>
 
@@ -358,8 +360,8 @@
         </ul>
         <p>Icon highlights indicate special status:</p>
         <ul>
-          <li><span style="color:#ffaa00;">● Yellow</span> — Favorites (your saved content)</li>
-          <li><span style="color:#02d8cb;">● Green</span> — New content (recently added)</li>
+          <li><span style="color:#ffaa00;">● Favorites</span> — your saved content</li>
+          <li><span style="color:#02d8cb;">● New content</span> — recently added</li>
         </ul>
       </div>
 
