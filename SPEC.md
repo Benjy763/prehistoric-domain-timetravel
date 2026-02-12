@@ -42,10 +42,18 @@ Le site Webflow contient un CMS de "Contents" : des vidéos, images et expérien
   - **Video** : iframe YouTube embedded
   - **Image/3D** : image de preview cliquable (avec icône play pour 3D)
   - Titre, description (tronquée), crédit artiste
+  - **Free tags** : affichés sous forme de badges dorés (chips)
   - Bouton "VIEW MORE" → page content du site Webflow
+- Texte indicatif : "The locations show where fossils may have been found" (nuance intentionnelle)
 - Fermeture : clic backdrop, bouton X, touche Escape
 
-### 2.6 Outil de placement manuel (à implémenter)
+### 2.6 Favoris
+- Stockage local (localStorage) des items favoris par utilisateur
+- Icône cœur dans la popup pour ajouter/retirer des favoris
+- Filtre "Favorites" dans la sidebar pour afficher uniquement les favoris
+- Persistance entre sessions
+
+### 2.7 Outil de placement manuel (à implémenter)
 - Page web dédiée (`placement.html`) réutilisant le globe existant
 - Affiche le globe à la période de l'item avec la carte Merdith
 - Montre le pinpoint actuel (position calculée) en surbrillance

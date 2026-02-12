@@ -5,7 +5,8 @@ Les contenus du CMS Webflow sont projetés comme pinpoints sur un globe navigabl
 
 ## Stack
 
-- **Frontend** : HTML/CSS/JS vanilla, Three.js r128, aucun bundler
+- **Frontend** : HTML/CSS/JS vanilla, Three.js r128
+- **Build** : Vite (production uniquement : minification + file hashing)
 - **CMS** : Webflow API v2 (site ID: `609e6b701730a329c6f67850`, collection "Contents": `679d148479ad083f33c518a1`)
 - **Scripts** : Node.js natif (0 dépendances npm), `fetch` natif (Node 18+)
 - **APIs** : PBDB (géocodage fossiles), GPlates MERDITH2021 (reconstruction paléo, limite 410 Ma)
@@ -32,7 +33,8 @@ index.html     → Point d'entrée
 ## Conventions
 
 - **Langue** : code et commentaires en anglais, docs en français
-- **Pas de bundler** : tout est chargé via `<script>` dans index.html
+- **Développement** : pas de bundler, chargement via `<script>` dans index.html
+- **Production** : Vite pour minification et file hashing (cache-busting)
 - **Données** : le frontend charge `assets/data/content-data.json` (statique), jamais l'API Webflow directement
 - **Format des clés de période** : `"100"` (nombre en string, jamais `"100Ma"`)
 - **Éligibilité globe** : `display-on-app = true` ET `free-tags` non vide
@@ -48,6 +50,20 @@ index.html     → Point d'entrée
 - Mode "Real Land" (Cao 2017) = observation seule, pas de pinpoints (décision actée)
 - Le sync incrémental est le mode par défaut, le rebuild complet (`--all`) est réservé aux cas exceptionnels
 - Volume cible : 1000-2000 items, mises à jour plusieurs fois par semaine
+
+## Scripts npm principaux
+
+| Script | Commande | Usage |
+|--------|----------|-------|
+| **sync** | `npm run sync` | Sync incrémental (défaut) |
+| **sync:all** | `npm run sync:all` | Rebuild complet CMS |
+| **validate** | `npm run validate` | Valider structure content-data.json |
+| **validate:tags** | `npm run validate:tags` | Qualité free-tags |
+| **placement** | `npm run placement` | Outil de placement manuel (localhost:8080) |
+| **dev** | `npm run dev` | Serveur de développement Vite (localhost:8000) |
+| **build** | `npm run build` | Build de production (→ dist/) |
+| **preview** | `npm run preview` | Preview du build local |
+| **deploy:prep** | `npm run deploy:prep` | Sync + build en une commande |
 
 ## Commandes custom (Claude Code)
 
@@ -67,3 +83,4 @@ index.html     → Point d'entrée
 | `TASKS.md` | Plan d'exécution actif |
 | `TASKS_ARCHIVE.md` | Tâches terminées |
 | `ARCHITECTURE.md` | Architecture technique, data workflow, décisions |
+| `DEPLOY.md` | Guide de build et déploiement sur Hostinger |

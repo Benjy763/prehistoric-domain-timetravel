@@ -4,7 +4,9 @@
   "description": "Globe 3D interactif pour explorer les contenus préhistoriques",
   "main": "index.html",
   "scripts": {
-    "dev": "python3 -m http.server 8000",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "sync": "node scripts/sync-contents.js",
     "sync:all": "node scripts/sync-contents.js --all",
     "sync:dry": "node scripts/sync-contents.js --dry-run",
@@ -12,6 +14,7 @@
     "validate:tags": "node scripts/validate-free-tags.js",
     "validate:tags:errors": "node scripts/validate-free-tags.js --only-errors",
     "placement": "node scripts/placement-server.js",
+    "deploy:prep": "npm run sync:all && npm run build",
     "help": "bash scripts/help.sh"
   },
   "keywords": [
@@ -23,6 +26,7 @@
   ],
   "author": "PrehistoricDomain.com",
   "license": "UNLICENSED",
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "vite": "^6.4.1"
+  }
 }

@@ -4,8 +4,9 @@
 
 | Composant | Technologie |
 |-----------|------------|
-| Globe 3D | Three.js r128 (vanilla, pas de bundler) |
+| Globe 3D | Three.js r128 (vanilla en dev) |
 | Frontend | HTML/CSS/JS vanilla, pas de framework |
+| Build | Vite (production uniquement, file hashing pour cache-busting) |
 | CMS | Webflow API v2 |
 | Scripts | Node.js natif (0 dépendances npm, fetch natif Node 18+) |
 | Géocodage | PBDB API (paleobiodb.org) |
@@ -26,6 +27,7 @@
 │   ├── placement.js            → Contrôleur placement (PlacementController)
 │   ├── popup.js                → Popup contenu (PopupManager)
 │   ├── filters.js              → Filtres type (FiltersManager)
+│   ├── favorites.js            → Gestion favoris (FavoritesManager)
 │   └── webflow-api.js          → Chargeur de données (WebflowAPI)
 ├── scripts/
 │   ├── sync-contents.js        → Orchestrateur principal (point d'entrée)
@@ -223,8 +225,8 @@ Pour : changement de modèle, correction de bug dans les scripts, reset après m
 | Format clé période | `"100"` (string) | Compatible parseInt du frontend |
 | Mode "Real Land" | Sans pinpoints | Observation seule (décidé) |
 | Sync par défaut | Incrémental | Volume cible 1000-2000 items |
-| Dépendances npm | Aucune | Simplicité, Node 18+ natif suffisant |
-| Bundler | Aucun | App légère, chargement `<script>` suffisant |
+| Dépendances npm | Aucune pour scripts | Simplicité, Node 18+ natif suffisant |
+| Bundler | Vite (production only) | File hashing pour cache-busting, minification, pas de bundler en dev |
 
 ---
 
@@ -296,3 +298,53 @@ npm run placement  # → http://localhost:8080/placement.html
 | `node scripts/test-webflow-token.js` | Test token Webflow | ~2s |
 | `node scripts/placement-server.js` | Outil de placement interactif | - |
 | `python3 -m http.server 8000` | Serveur local | - |
+
+---
+
+## 11. Build et Déploiement
+
+### Build de production
+
+Le projet utilise **Vite** uniquement pour les builds de production (pas en développement).
+
+```bash
+# Synchroniser les données CMS
+npm run sync:all
+
+# Builder pour la production (minification + file hashing)
+npm run build
+
+# Preview du build local
+npm run preview
+
+# Tout en une commande
+npm run deploy:prep
+```
+
+### Structure du build
+
+Le dossier `dist/` contient :
+- `index.html` avec références hashées automatiques
+- `assets/js/[name].[hash].js` — JS minifié avec Terser
+- `assets/css/[name].[hash].css` — CSS minifié
+- `assets/data/content-data.json` — Données CMS
+- `assets/geojson/` — Fichiers GeoJSON (13 périodes)
+- `assets/sound/` — Audio ambiant
+
+### Cache-busting
+
+Les fichiers sont hashés automatiquement (`app.a1b2c3d4.js`), ce qui force le navigateur à télécharger les nouvelles versions sans intervention manuelle.
+
+### Déploiement sur Hostinger
+
+Voir [DEPLOY.md](./DEPLOY.md) pour le guide complet :
+1. Préparer le build : `npm run deploy:prep`
+2. Uploader le contenu de `dist/` vers `public_html/` via FTP/SFTP
+3. Vérifier l'URL en production
+
+**Checklist de déploiement** :
+- [ ] `npm run sync:all` exécuté avec succès
+- [ ] `npm run build` sans erreur
+- [ ] Dossier `dist/` généré
+- [ ] Upload complet sur Hostinger
+- [ ] Test fonctionnel (filtres, recherche, popup, favoris)
