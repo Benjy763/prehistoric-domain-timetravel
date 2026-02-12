@@ -115,6 +115,20 @@
 
     <h2 class="filters-title">Content Filters</h2>
     <div class="filter-list">
+      <div class="filter-item active" data-filter="3d">
+        <span class="filter-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+            </path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </span>
+        <span class="filter-name">Immersive</span>
+        <span class="filter-badge">●</span>
+      </div>
       <div class="filter-item active" data-filter="videos">
         <span class="filter-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -135,20 +149,6 @@
           </svg>
         </span>
         <span class="filter-name">Images</span>
-        <span class="filter-badge">●</span>
-      </div>
-      <div class="filter-item active" data-filter="3d">
-        <span class="filter-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path
-              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-            </path>
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-            <line x1="12" y1="22.08" x2="12" y2="12"></line>
-          </svg>
-        </span>
-        <span class="filter-name">3D</span>
         <span class="filter-badge">●</span>
       </div>
       <div class="filter-item filter-switch" data-filter="new">
@@ -356,7 +356,7 @@
         <ul>
           <li><strong>Videos</strong> — Play triangle icon</li>
           <li><strong>Images</strong> — Picture frame with landscape icon</li>
-          <li><strong>3D Experiences</strong> — Cube icon</li>
+          <li><strong>Immersive Experiences</strong> — Cube icon</li>
         </ul>
         <p>Icon highlights indicate special status:</p>
         <ul>
@@ -378,13 +378,7 @@
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="src/globe.js"></script>
-  <script src="src/filters.js"></script>
-  <script src="src/favorites.js"></script>
-  <script src="src/popup.js"></script>
-  <script src="src/webflow-api.js"></script>
-  <script src="src/premium.js"></script>
-  <script src="src/app.js"></script>
+  <script type="module" src="src/main.js"></script>
 </body>
 
 </html>

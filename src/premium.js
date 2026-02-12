@@ -105,3 +105,5 @@ class PremiumManager {
     }
   }
 }
+
+window.PremiumManager = PremiumManager;

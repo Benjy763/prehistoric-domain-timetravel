@@ -127,3 +127,5 @@ class FiltersManager {
     }
   }
 }
+
+window.FiltersManager = FiltersManager;

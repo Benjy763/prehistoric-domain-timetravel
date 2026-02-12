@@ -1172,7 +1172,7 @@ class GlobeManager {
   }
 
   // Helper: Draw rounded square with dark fill and white/green border
-  drawRoundedBorder(ctx, cx, cy, size, radius, borderColor = "#f9f9f9") {
+  drawRoundedBorder(ctx, cx, cy, size, radius, borderColor = "#ebebeb") {
     ctx.beginPath();
     ctx.moveTo(cx - size/2 + radius, cy - size/2);
     ctx.lineTo(cx + size/2 - radius, cy - size/2);
@@ -1185,7 +1185,7 @@ class GlobeManager {
     ctx.quadraticCurveTo(cx - size/2, cy - size/2, cx - size/2 + radius, cy - size/2);
     ctx.closePath();
     // Dark fill
-    ctx.fillStyle = "#191f29";
+    ctx.fillStyle = "#0d1117f2";
     ctx.fill();
     // Border (white or green for favorites)
     ctx.strokeStyle = borderColor;
@@ -1196,7 +1196,7 @@ class GlobeManager {
   // Large white icon helpers with rounded border
   // fillColor param for favorite highlight (default white, or green for favorites)
   // borderColor param for outline (default white, or green for favorites)
-  drawVideoIcon(ctx, cx, cy, fillColor = "#f9f9f9", borderColor = "#f9f9f9") {
+  drawVideoIcon(ctx, cx, cy, fillColor = "#ebebeb", borderColor = "#ebebeb") {
     // Rounded border
     this.drawRoundedBorder(ctx, cx, cy, 44, 8, borderColor);
     // Play triangle (white or green if favorite)
@@ -1209,7 +1209,7 @@ class GlobeManager {
     ctx.fill();
   }
 
-  drawImageIcon(ctx, cx, cy, fillColor = "#f9f9f9", borderColor = "#f9f9f9") {
+  drawImageIcon(ctx, cx, cy, fillColor = "#ebebeb", borderColor = "#ebebeb") {
     // Rounded border
     this.drawRoundedBorder(ctx, cx, cy, 44, 8, borderColor);
     // Picture frame icon (white or green if favorite)
@@ -1230,7 +1230,7 @@ class GlobeManager {
     ctx.fill();
   }
 
-  draw3DIcon(ctx, cx, cy, fillColor = "#f9f9f9", borderColor = "#f9f9f9") {
+  draw3DIcon(ctx, cx, cy, fillColor = "#ebebeb", borderColor = "#ebebeb") {
     // Rounded border
     this.drawRoundedBorder(ctx, cx, cy, 44, 8, borderColor);
     // Cube icon (white or green if favorite)
@@ -1251,7 +1251,7 @@ class GlobeManager {
     ctx.stroke();
   }
 
-  drawNewIcon(ctx, cx, cy, fillColor = "#f9f9f9", borderColor = "#f9f9f9") {
+  drawNewIcon(ctx, cx, cy, fillColor = "#ebebeb", borderColor = "#ebebeb") {
     // Rounded border
     this.drawRoundedBorder(ctx, cx, cy, 44, 8, borderColor);
     // Star icon (white or green if favorite)
@@ -1310,8 +1310,8 @@ class GlobeManager {
     ctx.clearRect(0, 0, 64, 64);
 
     // Icon fill color: yellow (#ffaa00) if favorite, green (#02d8cb) if new, white otherwise
-    let iconFillColor = "#f9f9f9";
-    let iconBorderColor = "#f9f9f9";
+    let iconFillColor = "#ebebeb";
+    let iconBorderColor = "#ebebeb";
 
     if (isFavorite) {
       iconFillColor = "#ffaa00";  // Yellow for favorites
@@ -1441,3 +1441,5 @@ class GlobeManager {
     this.renderer.render(this.scene, this.camera);
   }
 }
+
+window.GlobeManager = GlobeManager;

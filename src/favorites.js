@@ -63,3 +63,5 @@ class FavoritesManager {
     this.listeners.forEach((callback) => callback());
   }
 }
+
+window.FavoritesManager = FavoritesManager;

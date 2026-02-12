@@ -607,6 +607,9 @@ class AppController {
   }
 }
 
+window.AudioManager = AudioManager;
+window.AppController = AppController;
+
 // Initialiser l'application quand le DOM est prêt
 document.addEventListener("DOMContentLoaded", () => {
   new AppController();

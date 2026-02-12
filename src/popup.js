@@ -284,3 +284,5 @@ class PopupManager {
     return match && match[7].length === 11 ? match[7] : null;
   }
 }
+
+window.PopupManager = PopupManager;

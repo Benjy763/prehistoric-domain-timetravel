@@ -37,14 +37,8 @@ export default defineConfig({
       }
     },
 
-    // Minify for production
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: false, // Keep console logs for debugging
-        drop_debugger: true
-      }
-    },
+    // Minify for production (esbuild is built-in, no extra dependency)
+    minify: 'esbuild',
 
     // Chunk size warning limit
     chunkSizeWarningLimit: 1000
@@ -56,8 +50,9 @@ export default defineConfig({
     open: '/?premium=true'
   },
 
-  // Copy public assets as-is
-  publicDir: 'assets',
+  // Disable publicDir — CSS/audio are processed by Vite from HTML tags,
+  // JSON data files are copied via the build script (see package.json)
+  publicDir: false,
 
   // Optimize dependencies
   optimizeDeps: {
