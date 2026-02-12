@@ -53,7 +53,7 @@ export default defineConfig({
   // Server config for dev
   server: {
     port: 8000,
-    open: true
+    open: '/?premium=true'
   },
 
   // Copy public assets as-is

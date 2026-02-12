@@ -17,7 +17,12 @@ class FiltersManager {
   init() {
     this.filterElements.forEach((element) => {
       element.addEventListener("click", () => {
-        this.toggleFilter(element);
+        const pm = window.appController?.premiumManager;
+        if (pm) {
+          pm.gate(() => this.toggleFilter(element));
+        } else {
+          this.toggleFilter(element);
+        }
       });
     });
 
@@ -26,6 +31,14 @@ class FiltersManager {
     this.searchClearBtn = document.getElementById("searchClearBtn");
 
     if (this.searchInput) {
+      // Block focus for non-premium users
+      this.searchInput.addEventListener("focus", (e) => {
+        const pm = window.appController?.premiumManager;
+        if (pm && !pm.isPremium) {
+          e.target.blur();
+          pm.redirectToPlans();
+        }
+      });
       this.searchInput.addEventListener("input", (e) => {
         this.handleSearchInput(e.target.value);
       });

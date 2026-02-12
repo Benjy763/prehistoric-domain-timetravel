@@ -1155,6 +1155,16 @@ body {
 }
 
 /* ========================================
+   PREMIUM / PAYWALL
+   ======================================== */
+
+.is-free-user .layer-selector,
+.is-free-user .search-container,
+.is-free-user .filter-list {
+  opacity: 0.15;
+}
+
+/* ========================================
    RESPONSIVE
    ======================================== */
 

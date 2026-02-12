@@ -239,6 +239,7 @@ class AppController {
     this.popupManager = null;
     this.webflowAPI = null;
     this.audioManager = null;
+    this.premiumManager = null;
 
     this.periodButtons = document.querySelectorAll(".period-btn");
     this.loadingOverlay = document.getElementById("loadingOverlay");
@@ -255,6 +256,7 @@ class AppController {
     this.popupManager = new PopupManager();
     this.webflowAPI = new WebflowAPI();
     this.audioManager = new AudioManager();
+    this.premiumManager = new PremiumManager();
 
     // Rendre le contrôleur accessible globalement
     window.appController = this;
@@ -325,11 +327,11 @@ class AppController {
       });
     });
 
-    // Boutons de sélection de couche
+    // Boutons de sélection de couche (premium)
     const layerButtons = document.querySelectorAll(".layer-btn");
     layerButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
-        this.onLayerChange(btn);
+        this.premiumManager.gate(() => this.onLayerChange(btn));
       });
     });
 
