@@ -304,7 +304,7 @@ body {
 }
 
 .main-info-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: flex-start;
   gap: 5px;
@@ -318,7 +318,6 @@ body {
   cursor: pointer;
   transition: all 0.2s;
   text-transform: uppercase;
-  width: 100%;
   white-space: nowrap;
 }
 
@@ -398,8 +397,17 @@ body {
 
 .info-modal-content h2 {
   color: var(--text-primary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   font-size: 1.5rem;
+}
+
+.info-preamble {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 1.05rem;
 }
 
 .info-modal-content h3 {
@@ -743,6 +751,7 @@ body {
 #globe-canvas {
   width: 100%;
   height: 100%;
+  touch-action: none;
 }
 
 /* Loading overlay */
@@ -891,6 +900,27 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.popup-mobile-block {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #ebebeb;
+  z-index: 10;
+}
+
+.popup-mobile-block p {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
 }
 
 #popupImageLink {
@@ -1192,6 +1222,10 @@ body {
 }
 
 @media (max-width: 768px) {
+  .controls-hint {
+    display: none;
+  }
+
   .filters-sidebar {
     width: 60px;
     padding: 20px 10px;

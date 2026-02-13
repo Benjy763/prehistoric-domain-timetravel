@@ -21,8 +21,8 @@ class GlobeManager {
 
     // Hover state for pinpoints
     this.hoveredPoint = null;
-    this.basePointScale = 0.025;
-    this.hoverPointScale = 0.035;
+    this.basePointScale = 0.03;
+    this.hoverPointScale = 0.04;
 
     // Texture cache for periods
     this.textureCache = new Map();
@@ -322,16 +322,23 @@ class GlobeManager {
       isDragging = false;
     });
 
-    // Touch events for mobile
+    // Touch events for mobile — passive: false to allow preventDefault
+    let touchStartPos = null;
+    let touchMoved = false;
+
     this.container.addEventListener("touchstart", (e) => {
+      e.preventDefault();
       if (e.touches.length === 1) {
         isDragging = true;
+        touchMoved = false;
+        touchStartPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
         previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
       }
       this._lastTouchDistance = null;
-    }, { passive: true });
+    }, { passive: false });
 
     this.container.addEventListener("touchmove", (e) => {
+      e.preventDefault();
       if (e.touches.length === 2) {
         // Pinch to zoom
         const dx = e.touches[0].clientX - e.touches[1].clientX;
@@ -343,19 +350,28 @@ class GlobeManager {
         }
         this._lastTouchDistance = dist;
         isDragging = false;
+        touchMoved = true;
       } else if (e.touches.length === 1 && isDragging) {
         const deltaX = e.touches[0].clientX - previousMousePosition.x;
         const deltaY = e.touches[0].clientY - previousMousePosition.y;
+        if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) touchMoved = true;
         this.globe.rotation.y += deltaX * 0.005;
         this.globe.rotation.x += deltaY * 0.005;
         previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
       }
-    }, { passive: true });
+    }, { passive: false });
 
-    this.container.addEventListener("touchend", () => {
+    this.container.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      // Detect tap (no significant movement) → trigger pinpoint click
+      if (!touchMoved && touchStartPos) {
+        this.onMouseClick({ clientX: touchStartPos.x, clientY: touchStartPos.y });
+      }
       isDragging = false;
+      touchMoved = false;
+      touchStartPos = null;
       this._lastTouchDistance = null;
-    }, { passive: true });
+    }, { passive: false });
 
     // Zoom with mouse wheel
     this.container.addEventListener("wheel", (e) => {

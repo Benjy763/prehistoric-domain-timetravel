@@ -3,6 +3,10 @@
  * Gestion de la popup de contenu
  */
 
+function isMobile() {
+  return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
 class PopupManager {
   constructor() {
     this.popup = document.getElementById("contentPopup");
@@ -17,6 +21,7 @@ class PopupManager {
       imageLink: document.getElementById("popupImageLink"),
       playIcon: document.getElementById("popupPlayIcon"),
       video: document.getElementById("popupVideo"),
+      mobileBlock: document.getElementById("popupMobileBlock"),
       title: document.getElementById("popupTitle"),
       description: document.getElementById("popupDescription"),
       artist: document.getElementById("popupArtist"),
@@ -152,6 +157,12 @@ class PopupManager {
     // Déterminer le type de contenu à afficher
     const is3DTour = content.type === "3d" && content.pageUrl && content.pageUrl.includes("tour.prehistoricdomain.com");
     const isYouTubeVideo = content.type === "videos" && content.youtubeUrl;
+    const isImmersiveOnMobile = content.type === "3d" && isMobile();
+
+    // Hide mobile block by default
+    if (this.elements.mobileBlock) {
+      this.elements.mobileBlock.style.display = "none";
+    }
 
     // Afficher iframe YouTube directement
     if (isYouTubeVideo) {
@@ -186,8 +197,16 @@ class PopupManager {
         }
       }
 
-      // Pour les tours 3D, intercepter le clic sur l'image pour charger l'iframe
-      if (is3DTour && this.elements.imageLink) {
+      // Block immersive content on mobile
+      if (isImmersiveOnMobile && this.elements.mobileBlock) {
+        this.elements.mobileBlock.style.display = "flex";
+        if (this.elements.playIcon) {
+          this.elements.playIcon.style.display = "none";
+        }
+      }
+
+      // Pour les tours 3D, intercepter le clic sur l'image pour charger l'iframe (desktop only)
+      if (is3DTour && !isImmersiveOnMobile && this.elements.imageLink) {
         this.elements.imageLink.addEventListener("click", (e) => {
           e.preventDefault();
           console.log("🎮 Loading 3D tour in iframe:", content.pageUrl);

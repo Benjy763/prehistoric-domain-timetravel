@@ -256,6 +256,13 @@
       <iframe id="popupVideo" class="popup-video" style="display: none; width: 100%; height: 100%; border: none;"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
+      <div class="popup-mobile-block" id="popupMobileBlock" style="display: none;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="5" y="2" width="14" height="20" rx="2" />
+          <line x1="12" y1="18" x2="12" y2="18.01" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <p>Available on desktop and VR devices</p>
+      </div>
     </div>
 
     <!-- Info overlay (hidden by default) -->
@@ -311,11 +318,13 @@
       <button class="info-modal-close" id="closeLayerInfo">&times;</button>
       <h2>Understanding the Globe Views</h2>
 
+      <p class="info-preamble">This interactive globe combines <strong>scientific data</strong> with an <strong>accessible and immersive experience</strong>, letting you explore prehistoric life across time and space.</p>
+
       <div class="info-section">
         <h3>About the point locations</h3>
-        <p>Each point on the globe represents a piece of prehistoric life content (video, image, or 3D experience). The
+        <p>Each point on the globe represents a piece of prehistoric life content (video, image, or immersive experience). The
           locations show <strong>where fossils may have been found</strong> and are reconstructed back in time following
-          these scientific steps:</p>
+          these steps:</p>
         <ul>
           <li><strong>Modern fossil locations:</strong> Coordinates come from the Paleobiology Database (PBDB), matching
             species mentioned in each content's tags. These are the actual sites where fossils were found today.</li>
@@ -326,7 +335,7 @@
             that marine fossils (ancient ocean species) can be found on modern land because geological uplift has
             transformed ancient seafloors into mountains.</li>
         </ul>
-        <p class="info-note"><em>All positioning is based on peer-reviewed scientific data: PBDB fossil database +
+        <p class="info-note"><em>All positioning is based on peer-reviewed data: PBDB fossil database +
             Merdith et al. 2021 plate reconstruction model.</em></p>
         <p class="info-note"><em>Points are only visible in the "Our Continents" view.</em></p>
       </div>
