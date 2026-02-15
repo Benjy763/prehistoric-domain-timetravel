@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "generated": "2026-02-10T17:40:03.949Z",
-    "totalItems": 184,
-    "sourceItems": 234,
-    "eligibleItems": 182,
-    "reconstructedItems": 37,
+    "generated": "2026-02-13T20:59:33.366Z",
+    "totalItems": 183,
+    "sourceItems": 236,
+    "eligibleItems": 195,
+    "reconstructedItems": 14,
     "mode": "incremental",
     "periods": [
       {
@@ -4940,106 +4940,6 @@
       }
     },
     {
-      "id": "683098ddaaeb82e57816aec2",
-      "name": "River Of Giants - Trailer",
-      "slug": "river-of-giants---trailer",
-      "description": "Official trailer of River Of Giants.",
-      "creditsLine": "Created by Mesozoic Life Project – via Kickstarter",
-      "creatorLink": "https://www.kickstarter.com/projects/mesozoiclifeproject/mesozoic-life-stories-river-of-giants",
-      "category": "videos",
-      "isNew": false,
-      "displayOnApp": true,
-      "geologicalPeriod": "cretaceous",
-      "contentLink": null,
-      "youtubeId": "Hdwj3rKDS4I",
-      "lastUpdated": "2026-02-10T17:26:43.351Z",
-      "youtubeUrl": "https://www.youtube.com/watch?v=Hdwj3rKDS4I",
-      "backgroundImage": null,
-      "galleryImage": null,
-      "preview": "https://img.youtube.com/vi/Hdwj3rKDS4I/maxresdefault.jpg",
-      "pageUrl": "https://www.prehistoricdomain.com/content/river-of-giants---trailer",
-      "freeTags": "Late Cretaceous, Spinosaurus",
-      "modernLat": 30.9,
-      "modernLon": -3.8,
-      "estimatedAge": 66,
-      "location": "Unknown (PBDB)",
-      "confidence": "medium",
-      "paleoValidation": "on_land",
-      "periods": {
-        "100": {
-          "lat": 21.754,
-          "lon": 7.3481,
-          "validationStatus": "on_land"
-        }
-      }
-    },
-    {
-      "id": "68288439d8c30949b28df93d",
-      "name": "Flamboyant Flyers",
-      "slug": "flamboyant-flyers",
-      "description": "Why would a flying reptile have a large and cumbersome, yet remarkable, head crest?",
-      "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "videos",
-      "isNew": false,
-      "displayOnApp": true,
-      "geologicalPeriod": "cretaceous",
-      "contentLink": null,
-      "youtubeId": "IH5IGhi2Pu8",
-      "lastUpdated": "2026-02-10T17:26:43.353Z",
-      "youtubeUrl": "https://www.youtube.com/watch?v=IH5IGhi2Pu8",
-      "backgroundImage": null,
-      "galleryImage": null,
-      "preview": "https://img.youtube.com/vi/IH5IGhi2Pu8/maxresdefault.jpg",
-      "pageUrl": "https://www.prehistoricdomain.com/content/flamboyant-flyers",
-      "freeTags": "North Africa, Late Cretaceous, Barbaridactylus",
-      "modernLat": 32.88,
-      "modernLon": -6.62,
-      "estimatedAge": 66,
-      "location": "Unknown (PBDB)",
-      "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
-      "periods": {
-        "100": {
-          "lat": 17.971072459079878,
-          "lon": 9.83140405003623,
-          "validationStatus": "corrected_to_land"
-        }
-      }
-    },
-    {
-      "id": "68287eb03a36b46cd2307a84",
-      "name": "How Did Dinosaurs Get So Big?",
-      "slug": "how-did-dinosaurs-get-so-big",
-      "description": "Prehistoric size had very few limits.",
-      "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "videos",
-      "isNew": false,
-      "displayOnApp": true,
-      "geologicalPeriod": "cretaceous",
-      "contentLink": null,
-      "youtubeId": "Cf6hqJeOQGo",
-      "lastUpdated": "2026-02-10T17:26:43.367Z",
-      "youtubeUrl": "https://www.youtube.com/watch?v=Cf6hqJeOQGo",
-      "backgroundImage": null,
-      "galleryImage": null,
-      "preview": "https://img.youtube.com/vi/Cf6hqJeOQGo/maxresdefault.jpg",
-      "pageUrl": "https://www.prehistoricdomain.com/content/how-did-dinosaurs-get-so-big",
-      "freeTags": "South America, Late Cretaceous, Dreadnoughtus",
-      "modernLat": -49.92,
-      "modernLon": -72.02,
-      "estimatedAge": 66,
-      "location": "Unknown (PBDB)",
-      "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
-      "periods": {
-        "100": {
-          "lat": -48.36616730847837,
-          "lon": -42.19472816046013,
-          "validationStatus": "corrected_to_land"
-        }
-      }
-    },
-    {
       "id": "692ae8b61fab07d46ee509fd",
       "name": "Patagonia",
       "slug": "patagonia",
@@ -6248,6 +6148,72 @@
         "100": {
           "lat": 53.0543,
           "lon": -64.0188,
+          "validationStatus": "on_land"
+        }
+      }
+    },
+    {
+      "id": "698f8c25933e9a5a4be2e28a",
+      "name": "Prehistoric Planet: Ice Age — Spa Time",
+      "slug": "prehistoric-planet-ice-age-spa-time",
+      "description": "Prehistoric primates share social secrets while relaxing at natural hot springs during the Pleistocene Ice Age.",
+      "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by Tom Hiddleston.",
+      "category": "videos",
+      "isNew": true,
+      "displayOnApp": true,
+      "geologicalPeriod": "quaternary",
+      "contentLink": null,
+      "youtubeId": "LoWWf2xrW6I",
+      "lastUpdated": "2026-02-13T20:48:31.138Z",
+      "youtubeUrl": "https://www.youtube.com/watch?v=LoWWf2xrW6I",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/LoWWf2xrW6I/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/prehistoric-planet-ice-age-spa-time",
+      "freeTags": "Asia, Pleistocene, Macaca fuscata",
+      "modernLat": 44.83,
+      "modernLon": 142.51,
+      "estimatedAge": 1,
+      "location": "Unknown (PBDB)",
+      "confidence": "medium",
+      "paleoValidation": "corrected_to_land",
+      "periods": {
+        "2": {
+          "lat": 42.27812392466623,
+          "lon": 142.7184457284652,
+          "validationStatus": "corrected_to_land"
+        }
+      }
+    },
+    {
+      "id": "698f8c222e5a0d2dd55a6062",
+      "name": "Prehistoric Planet: Ice Age — Rhinos Are Fast Runners",
+      "slug": "prehistoric-planet-ice-age-rhinos-are-fast-runners",
+      "description": "Woolly rhinos prove they're surprisingly fast runners, with even grandma reaching 20 mph across the frozen Pleistocene landscape.",
+      "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by Tom Hiddleston.",
+      "category": "videos",
+      "isNew": true,
+      "displayOnApp": true,
+      "geologicalPeriod": "quaternary",
+      "contentLink": null,
+      "youtubeId": "vFZALymDmD4",
+      "lastUpdated": "2026-02-13T20:48:31.108Z",
+      "youtubeUrl": "https://www.youtube.com/watch?v=vFZALymDmD4",
+      "backgroundImage": null,
+      "galleryImage": null,
+      "preview": "https://img.youtube.com/vi/vFZALymDmD4/maxresdefault.jpg",
+      "pageUrl": "https://www.prehistoricdomain.com/content/prehistoric-planet-ice-age-rhinos-are-fast-runners",
+      "freeTags": "Eurasia, Pleistocene, Coelodonta antiquitatis",
+      "modernLat": 40.66,
+      "modernLon": 110,
+      "estimatedAge": 1,
+      "location": "Unknown (PBDB)",
+      "confidence": "medium",
+      "paleoValidation": "on_land",
+      "periods": {
+        "2": {
+          "lat": 41.0469,
+          "lon": 109.3291,
           "validationStatus": "on_land"
         }
       }

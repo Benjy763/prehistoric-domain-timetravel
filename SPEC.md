@@ -76,7 +76,7 @@ Collection "Contents" (~288 items actuellement, cible 1000-2000) avec les champs
 - `content-link` : lien vers le contenu (immersion 3D, etc.)
 
 ### Règle d'éligibilité
-Un item est affiché sur le globe uniquement si `display-on-app = true` ET `free-tags` non vide.
+Un item est affiché sur le globe si `free-tags` non vide ET catégorie ≠ Behind The Scenes (texts). Le pipeline sync auto-active `display-on-app` pour les items éligibles.
 
 ---
 

@@ -37,7 +37,6 @@
 │   ├── validate-content-data.js → Validation structure JSON
 │   ├── validate-free-tags.js    → Validation qualité free-tags
 │   ├── test-webflow-token.js    → Test connexion Webflow
-│   ├── sync-display-on-app.js   → Sync du flag display-on-app
 │   ├── fetch-merdith2021.py     → Téléchargement coastlines (one-shot, archivé)
 │   ├── placement-server.js      → Serveur HTTP pour l'outil de placement
 │   ├── help.sh                  → Aide rapide (npm run help)
@@ -63,6 +62,8 @@ WEBFLOW CMS
 ┌──────────────────────────────────────────────────┐
 │ sync-contents.js (orchestrateur)                 │
 │ Détecte new/modifié/supprimé via lastUpdated     │
+│ Filtre BTS (texts) : exclus de l'auto-activation │
+│ Auto-active display-on-app pour items éligibles  │
 │ Options: --all, --slugs=x,y, --dry-run           │
 └──────────────┬───────────────────────────────────┘
                ▼
@@ -163,10 +164,11 @@ node scripts/sync-contents.js
 ```
 1. Récupère tous les items CMS (Webflow API, paginé)
 2. Compare `lastUpdated` CMS vs `metadata.generated` local
-3. Identifie : nouveaux, modifiés, supprimés/désactivés
-4. Ne géocode + reconstruit que les items changés
-5. Merge dans `content-data.json` existant
-6. Coordonnées manuelles toujours réappliquées
+3. Identifie : nouveaux (éligibles), modifiés, supprimés/désactivés
+4. Auto-active `display-on-app` pour les nouveaux items éligibles (pas BTS)
+5. Ne géocode + reconstruit que les items changés
+6. Merge dans `content-data.json` existant
+7. Coordonnées manuelles toujours réappliquées
 
 ### Ciblé
 ```bash
@@ -193,10 +195,11 @@ Pour : changement de modèle, correction de bug dans les scripts, reset après m
 ## 7. Data workflow opérationnel
 
 ### Ajouter un contenu
-1. Créer dans Webflow CMS (name, slug, category, geological-period, free-tags, display-on-app)
-2. `node scripts/sync-contents.js --slugs=mon-slug`
-3. `node scripts/validate-content-data.js`
-4. Test visuel local : `python3 -m http.server 8000`
+1. Via `/add-content` (Claude Code) : crée le draft bilingue EN+FR dans Webflow
+2. Publier le draft dans Webflow (EN et FR séparément)
+3. `node scripts/sync-contents.js` (le sync auto-active `display-on-app` pour les items éligibles)
+4. `node scripts/validate-content-data.js`
+5. Test visuel local : `npm run dev`
 
 ### Modifier un contenu
 - Métadonnées : modifier dans Webflow → sync ciblé

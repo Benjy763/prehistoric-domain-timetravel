@@ -32,12 +32,12 @@ index.html     → Point d'entrée
 
 ## Conventions
 
-- **Langue** : code et commentaires en anglais, docs en français
+- **Langue** : code, commentaires et JSDoc en anglais ; docs en français
 - **Développement** : pas de bundler, chargement via `<script>` dans index.html
 - **Production** : Vite pour minification et file hashing (cache-busting)
 - **Données** : le frontend charge `assets/data/content-data.json` (statique), jamais l'API Webflow directement
 - **Format des clés de période** : `"100"` (nombre en string, jamais `"100Ma"`)
-- **Éligibilité globe** : `display-on-app = true` ET `free-tags` non vide
+- **Éligibilité globe** : `free-tags` non vide ET catégorie ≠ BTS (texts). Le sync auto-active `display-on-app` pour les items éligibles
 - **Modèle géologique** : MERDITH2021 partout (pas MATTHEWS2016)
 - **13 périodes** : Today(0), Quaternary(2), Neogene(15), Paleogene(50), Cretaceous(100), Jurassic(160), Triassic(220), Permian(280), Carboniferous(320), Devonian(380), Silurian(410), Ordovician(450), Cambrian(500)
 
@@ -73,6 +73,7 @@ index.html     → Point d'entrée
 | `/task` | Reprendre la tâche en cours depuis TASKS.md |
 | `/review` | Revue de code des changements récents |
 | `/doc` | Mettre à jour la documentation projet |
+| `/add-content` | Ajouter des vidéos/images au CMS en batch (draft) |
 
 ## Documentation
 

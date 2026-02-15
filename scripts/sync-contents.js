@@ -17,6 +17,7 @@ const path = require("path");
 const { execSync } = require("child_process");
 
 const COLLECTION_ID = "679d148479ad083f33c518a1";
+const BTS_CATEGORY_ID = "5b90531d7e27d60e0d1f4e226449b55e"; // texts / Behind The Scenes
 
 function readToken() {
   if (process.env.WEBFLOW_TOKEN) return process.env.WEBFLOW_TOKEN;
@@ -86,7 +87,7 @@ function findNewItems(cmsItems, options = {}) {
   const toRemove = [];
   const toDisable = [];
 
-  // 1. Créer un Set des IDs du CMS avec display-on-app = true
+  // 1. Build a Set of active CMS IDs (display-on-app = true)
   const cmsActiveIds = new Set();
   const cmsAllIds = new Set();
 
@@ -98,28 +99,36 @@ function findNewItems(cmsItems, options = {}) {
     const isArchived = !!item.isArchived;
     const isDraft = !!item.isDraft;
 
-    // Items actifs : ont free-tags ET display-on-app ET pas archivés/draft
+    // Active items: have free-tags AND display-on-app AND not archived/draft
     if (hasFreeTags && displayOnApp && !isArchived && !isDraft) {
       cmsActiveIds.add(item.id);
     }
 
-    // Items complètement nouveaux (pas encore dans content-data.json)
-    if (!existingIds.has(item.id) && hasFreeTags && !isArchived && !isDraft) {
+    const isBTS = item.fieldData["top-category"] === BTS_CATEGORY_ID;
+
+    // Brand new eligible items (not BTS, have free-tags)
+    // → will be auto-activated display-on-app by the pipeline
+    if (
+      !existingIds.has(item.id) &&
+      hasFreeTags &&
+      !isBTS &&
+      !isArchived &&
+      !isDraft
+    ) {
       newItems.push(item);
     }
 
-    // Items avec free-tags mais pas affichés
+    // Items not yet eligible: BTS with free-tags, or non-BTS without free-tags (info only)
     else if (
-      hasFreeTags &&
-      !displayOnApp &&
+      !existingIds.has(item.id) &&
       !isArchived &&
       !isDraft &&
-      !existingIds.has(item.id)
+      (isBTS || !hasFreeTags)
     ) {
       readyToDisplay.push(item);
     }
 
-    // Items récemment modifiés (vérifier lastUpdated)
+    // Recently modified items (check lastUpdated)
     else if (
       existingIds.has(item.id) &&
       hasFreeTags &&
@@ -130,8 +139,8 @@ function findNewItems(cmsItems, options = {}) {
       const existingItem = existingData.items.find((i) => i.id === item.id);
       const cmsUpdated = new Date(item.lastUpdated);
 
-      // Comparer avec la date de dernière mise à jour de l'item dans content-data
-      // ou la date de génération globale si l'item n'a pas de lastUpdated
+      // Compare with item's lastUpdated in content-data,
+      // or the global generation date as fallback
       let lastProcessed;
       if (existingItem && existingItem.lastUpdated) {
         lastProcessed = new Date(existingItem.lastUpdated);
@@ -144,7 +153,7 @@ function findNewItems(cmsItems, options = {}) {
       }
     }
 
-    // Items désactivés dans le CMS (display-on-app = false)
+    // Items disabled in CMS (display-on-app = false, archived, or draft)
     else if (
       existingIds.has(item.id) &&
       (!displayOnApp || isArchived || isDraft)
@@ -153,17 +162,17 @@ function findNewItems(cmsItems, options = {}) {
     }
   }
 
-  // 2. Détecter items supprimés du CMS (dans content-data mais plus dans CMS)
+  // 2. Detect items deleted from CMS (in content-data but no longer in CMS)
   for (const existingItem of existingData.items) {
     if (!cmsAllIds.has(existingItem.id)) {
       toRemove.push(existingItem);
     }
   }
 
-  // 3. Détecter items dans content-data mais désactivés dans CMS
+  // 3. Detect items in content-data but disabled in CMS
   for (const existingItem of existingData.items) {
     if (cmsAllIds.has(existingItem.id) && !cmsActiveIds.has(existingItem.id)) {
-      // Vérifier si pas déjà dans toDisable
+      // Skip if already in toDisable
       if (!toDisable.find((i) => i.id === existingItem.id)) {
         toDisable.push(existingItem);
       }
@@ -215,7 +224,7 @@ function displaySummary(result) {
     return;
   }
 
-  // Afficher détails
+  // Show details
   if (result.newItems.length > 0) {
     console.log("\n🆕 NOUVEAUX ITEMS:\n");
     result.newItems.forEach((item, index) => {
@@ -265,49 +274,8 @@ function displaySummary(result) {
   console.log();
 }
 
-async function updateDisplayOnApp(token, itemIds) {
-  if (itemIds.length === 0) return;
-
-  console.log(
-    `\n🔄 Activation de display-on-app pour ${itemIds.length} items...\n`,
-  );
-
-  // Batch de 100
-  for (let i = 0; i < itemIds.length; i += 100) {
-    const batch = itemIds.slice(i, i + 100);
-
-    const updates = batch.map((id) => ({
-      id,
-      fieldData: { "display-on-app": true },
-    }));
-
-    const response = await fetch(
-      `https://api.webflow.com/v2/collections/${COLLECTION_ID}/items`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ items: updates }),
-      },
-    );
-
-    if (!response.ok) {
-      const error = await response.text();
-      throw new Error(
-        `Erreur API (update): ${response.status} ${response.statusText} - ${error}`,
-      );
-    }
-  }
-
-  console.log("✅ display-on-app activé\n");
-}
-
 /**
- * Désactive les items dont la géocodification a échoué
- * (set display-on-app = false)
+ * Disable items that failed geocoding (set display-on-app = false).
  */
 async function disableFailedItems(token, failedItemIds) {
   if (failedItemIds.length === 0) return;
@@ -316,7 +284,7 @@ async function disableFailedItems(token, failedItemIds) {
     `\n⏸️  Désactivation de ${failedItemIds.length} items échoués (display-on-app = false)...\n`,
   );
 
-  // Batch de 100
+  // Batch by 100
   for (let i = 0; i < failedItemIds.length; i += 100) {
     const batch = failedItemIds.slice(i, i + 100);
 
@@ -349,6 +317,50 @@ async function disableFailedItems(token, failedItemIds) {
   console.log(`✅ ${failedItemIds.length} items désactivés\n`);
 }
 
+/**
+ * Auto-activate display-on-app for eligible new items (not BTS).
+ * Non-blocking: logs errors but does not throw.
+ */
+async function updateDisplayOnApp(token, items) {
+  console.log(
+    `\n🔛 Auto-activation display-on-app pour ${items.length} item(s) éligible(s)...\n`,
+  );
+
+  let activatedCount = 0;
+
+  for (let i = 0; i < items.length; i += 100) {
+    const batch = items.slice(i, i + 100);
+    const updates = batch.map((item) => ({
+      id: item.id,
+      fieldData: { "display-on-app": true },
+    }));
+
+    const response = await fetch(
+      `https://api.webflow.com/v2/collections/${COLLECTION_ID}/items`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ items: updates }),
+      },
+    );
+
+    if (response.ok) {
+      activatedCount += batch.length;
+    } else {
+      const error = await response.text();
+      console.error(
+        `⚠️  Erreur auto-activation: ${response.status} - ${error}`,
+      );
+    }
+  }
+
+  console.log(`✅ ${activatedCount}/${items.length} item(s) activé(s)\n`);
+}
+
 async function runPipeline(
   token,
   incremental = false,
@@ -359,7 +371,7 @@ async function runPipeline(
   console.log("─".repeat(80));
 
   try {
-    // Étape 1: Géocodage
+    // Step 1: Geocoding
     console.log("\n▶️  Géocodage automatique...\n");
     let geocodeCmd = `node ${path.join(__dirname, "import-cms-items.js")}`;
     if (slugs && slugs.length > 0) {
@@ -370,7 +382,7 @@ async function runPipeline(
     execSync(geocodeCmd, { stdio: "inherit" });
     console.log("\n✅ Géocodage terminé\n");
 
-    // Étape 2: Désactiver les items échoués (nouveauté)
+    // Step 2: Disable failed items
     const geocodingResultsFile = path.join(__dirname, "../geocoded-items.json");
     if (fs.existsSync(geocodingResultsFile)) {
       const geocodingResults = JSON.parse(
@@ -395,7 +407,7 @@ async function runPipeline(
       }
     }
 
-    // Étape 3: Reconstruction (incrémentale ou complète)
+    // Step 3: Reconstruction (incremental or full)
     if (incremental) {
       console.log(
         "\n▶️  Reconstruction paléogéographique INCRÉMENTALE (nouveaux/modifiés seulement)...\n",
@@ -421,7 +433,7 @@ async function runPipeline(
     }
     console.log("\n✅ Reconstruction terminée\n");
 
-    // Nettoyer les fichiers temporaires
+    // Clean up temporary files
     const tempFiles = [path.join(__dirname, "../geocoded-items.json")];
 
     for (const tempFile of tempFiles) {
@@ -499,10 +511,10 @@ async function main() {
     console.log(`   Slugs: ${options.slugs.join(", ")}\n`);
   }
 
-  // 1. Récupérer tous les items
+  // 1. Fetch all CMS items
   let allItems = await fetchAllItems(token);
 
-  // Filtrer par slugs si spécifié
+  // Filter by slugs if specified
   if (options.slugs && options.slugs.length > 0) {
     const beforeFilter = allItems.length;
     allItems = allItems.filter((item) =>
@@ -512,7 +524,7 @@ async function main() {
       `✅ ${allItems.length} item(s) trouvé(s) sur ${beforeFilter} (filtré par slug)\n`,
     );
 
-    // Vérifier slugs non trouvés
+    // Check for missing slugs
     const foundSlugs = allItems.map((item) => item.fieldData.slug);
     const notFound = options.slugs.filter((slug) => !foundSlugs.includes(slug));
     if (notFound.length > 0) {
@@ -520,7 +532,7 @@ async function main() {
     }
   }
 
-  //  2. Analyser les changements
+  // 2. Analyze changes
   const result =
     options.all || options.slugs
       ? {
@@ -545,7 +557,7 @@ async function main() {
         }
       : findNewItems(allItems);
 
-  // Appliquer la limite si spécifiée
+  // Apply limit if specified
   if (options.limit && result.newItems.length > options.limit) {
     console.log(
       `⚠️  Limitation à ${options.limit} items sur ${result.newItems.length} trouvés\n`,
@@ -554,14 +566,14 @@ async function main() {
     result.total = options.limit;
   }
 
-  // 3. Afficher résumé
+  // 3. Display summary
   displaySummary(result);
 
   if (result.total === 0) {
     process.exit(0);
   }
 
-  // 4. Lancer le pipeline
+  // 4. Launch pipeline
   if (!options.dryRun) {
     console.log(`\n▶️  Traitement de ${result.total} changement(s)...\n`);
   }
@@ -571,19 +583,19 @@ async function main() {
     process.exit(0);
   }
 
-  // 5. Activer display-on-app pour les items prêts/nouveaux
-  const itemsToActivate = [
-    ...result.newItems.map((i) => i.id),
-    ...result.readyToDisplay.map((i) => i.id),
-  ];
-
-  if (itemsToActivate.length > 0) {
-    await updateDisplayOnApp(token, itemsToActivate);
+  // 5. Auto-activate display-on-app for eligible items (not BTS)
+  if (result.newItems.length > 0) {
+    const itemsToActivate = result.newItems.filter(
+      (item) => !item.fieldData["display-on-app"],
+    );
+    if (itemsToActivate.length > 0) {
+      await updateDisplayOnApp(token, itemsToActivate);
+    }
   }
 
-  // 6. Lancer le pipeline
-  // Mode incrémental si seulement quelques items nouveaux/modifiés
-  // Mode complet si --all ou si beaucoup de changements (> 50% des items)
+  // 6. Run pipeline
+  // Incremental if only a few new/modified items
+  // Full if --all or many changes (> 50% of items)
   if (
     result.newItems.length > 0 ||
     result.updatedItems.length > 0 ||
@@ -612,7 +624,7 @@ async function main() {
     await runPipeline(token, useIncremental, options.limit, options.slugs);
   }
 
-  // 7. Nettoyer APRÈS si besoin (items supprimés ou désactivés)
+  // 7. Clean up content-data.json (removed or disabled items)
   if (result.toRemove.length > 0 || result.toDisable.length > 0) {
     console.log("\n🗑️  Nettoyage de content-data.json...\n");
 
@@ -644,7 +656,7 @@ async function main() {
     console.log(`✅ ${idsToRemove.size} items retirés de content-data.json\n`);
   }
 
-  // 7. Afficher résultat final
+  // 8. Display final result
   const contentData = JSON.parse(
     fs.readFileSync(
       path.join(__dirname, "../assets/data/content-data.json"),
