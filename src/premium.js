@@ -8,8 +8,9 @@
 
 class PremiumManager {
   constructor() {
-    this.isPremium = false;
-    this.isResolved = false;
+    // Premium features disabled — all content is free and accessible
+    this.isPremium = true;
+    this.isResolved = true;
     this.PLANS_URL = "https://www.prehistoricdomain.com/plans";
     this.TIMEOUT_MS = 3000;
 
@@ -17,37 +18,9 @@ class PremiumManager {
   }
 
   init() {
-    // Check URL bypass first (?premium=true or ?premium=false)
-    const params = new URLSearchParams(window.location.search);
-    const bypass = params.get("premium");
-    if (bypass !== null) {
-      console.log(`Premium: URL bypass → ${bypass}`);
-      this.resolve(bypass === "true");
-      return;
-    }
-
-    // Not in iframe → resolve immediately as non-premium
-    if (window.self === window.top) {
-      console.log("Premium: not in iframe, defaulting to non-premium");
-      this.resolve(false);
-      return;
-    }
-
-    // Listen for parent response
-    window.addEventListener("message", (event) => {
-      this.handleMessage(event);
-    });
-
-    // Request access info from parent
-    this.requestAccess();
-
-    // Timeout fallback
-    this.timeoutId = setTimeout(() => {
-      if (!this.isResolved) {
-        console.log("Premium: no response from parent, defaulting to non-premium");
-        this.resolve(false);
-      }
-    }, this.TIMEOUT_MS);
+    // All features are now accessible to everyone
+    console.log("Premium: all features accessible (premium disabled)");
+    this.resolve(true);
   }
 
   requestAccess() {

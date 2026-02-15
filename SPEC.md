@@ -53,7 +53,29 @@ Le site Webflow contient un CMS de "Contents" : des vidéos, images et expérien
 - Filtre "Favorites" dans la sidebar pour afficher uniquement les favoris
 - Persistance entre sessions
 
-### 2.7 Outil de placement manuel (à implémenter)
+### 2.7 Page Browse — Catalogue de recherche
+- Page dédiée (`browse.html`) affichant TOUS les contenus CMS (éligibles + non-éligibles)
+- Interface de recherche centrée initialement :
+  - Titre "Find Your Way" centré verticalement
+  - Input de recherche + bouton
+  - Au premier clic ou Enter : animation fluide vers le haut de la page (500ms)
+  - Pour les recherches suivantes : header reste en haut
+- Recherche sur Enter ou clic bouton (pas de temps réel) :
+  - Nom, description, free-tags, crédits, catégorie, période géologique
+- Grille responsive de cards :
+  - 4 colonnes (desktop large ≥1400px)
+  - 3 colonnes (desktop ≥1024px)
+  - 2 colonnes (tablette ≥768px)
+  - Adaptatif (mobile)
+- Cards avec :
+  - Image preview (16:9) avec hover scale + border
+  - Badge de type (Video, Image, 3D Immersion, Behind The Scenes)
+  - Titre du contenu
+  - Clic → ouvre la page Webflow du content
+- Auto-détection de catégorie pour les items "unknown" (basée sur présence de youtubeId ou images)
+- Affichage de tous les résultats d'un coup (pas de pagination)
+
+### 2.8 Outil de placement manuel (à implémenter)
 - Page web dédiée (`placement.html`) réutilisant le globe existant
 - Affiche le globe à la période de l'item avec la carte Merdith
 - Montre le pinpoint actuel (position calculée) en surbrillance

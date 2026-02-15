@@ -28,9 +28,12 @@ class WebflowAPI {
         console.warn("⚠️  Aucun item trouvé dans content-data.json");
       }
 
-      this.contents = items.map((item) => this.normalizeItem(item));
+      // Filter: only items with displayOnApp = true (eligible for globe)
+      const eligibleItems = items.filter((item) => item.displayOnApp === true);
+
+      this.contents = eligibleItems.map((item) => this.normalizeItem(item));
       console.log(
-        `✅ ${this.contents.length} contenus chargés depuis le fichier local`,
+        `✅ ${this.contents.length} contenus chargés (${items.length} total dans le fichier)`,
       );
       return this.contents;
     } catch (error) {

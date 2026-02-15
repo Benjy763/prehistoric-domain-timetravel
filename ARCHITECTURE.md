@@ -20,10 +20,12 @@
 
 ```
 ├── index.html                  → Point d'entrée globe principal
+├── browse.html                 → Page de recherche/catalogue de contenus
 ├── placement.html              → Outil de placement manuel interactif
 ├── src/
 │   ├── app.js                  → Contrôleur principal (AppController)
 │   ├── globe.js                → Globe Three.js (GlobeManager)
+│   ├── browse.js               → Page Browse (BrowseManager)
 │   ├── placement.js            → Contrôleur placement (PlacementController)
 │   ├── popup.js                → Popup contenu (PopupManager)
 │   ├── filters.js              → Filtres type (FiltersManager)
@@ -31,6 +33,7 @@
 │   └── webflow-api.js          → Chargeur de données (WebflowAPI)
 ├── scripts/
 │   ├── sync-contents.js        → Orchestrateur principal (point d'entrée)
+│   ├── cms-helpers.js          → Utilitaires CMS partagés (categories, previews)
 │   ├── import-cms-items.js     → Géocodage moderne (PBDB + free-tags)
 │   ├── paleo-reconstruction.js → Module central de reconstruction (partagé)
 │   ├── reconstruct-paleogeography.js          → Reconstruction (complète ou --incremental)
@@ -131,7 +134,50 @@ WEBFLOW CMS
 
 ---
 
-## 5. Stratégie de géocodage
+## 5. Pages frontend
+
+### index.html — Globe 3D principal
+- Application Three.js interactive avec sélecteur de périodes, filtres et popup de contenu
+- Charge `content-data.json` pour afficher uniquement les items éligibles (avec coords paléo)
+- Intégré en iframe dans prehistoricdomain.com
+
+### browse.html — Catalogue de recherche
+- Page de recherche affichant TOUS les contenus CMS (éligibles + non-éligibles)
+- Architecture :
+  - **BrowseManager** : gestion du chargement, recherche et affichage
+  - Chargement de `content-data.json` (tous les items fusionnés par sync-contents.js)
+  - Recherche client-side multi-champs sur Enter/clic bouton
+  - Grille responsive (4/3/2 colonnes)
+- Fonctionnalités :
+  - Interface centrée initialement avec animation vers le haut au premier search (500ms)
+  - Recherche sur name, description, free-tags, credits-line, category, geological-period
+  - Loader affiché pendant l'animation première recherche, puis 150ms pour recherches suivantes
+  - Auto-détection de catégorie pour items "unknown" (basée sur youtubeId, galleryImage, backgroundImage)
+  - Affichage de tous les résultats à la fois (pas de pagination)
+  - Cards cliquables → ouverture de la page Webflow du content (noopener,noreferrer)
+- Champs d'images Webflow utilisés :
+  - `background` (slug Webflow, pas "background-image")
+  - `gallery-low-quality-image` (slug Webflow, pas "gallery-image")
+  - Thumbnails YouTube pour les vidéos (hqdefault.jpg avec fallback sddefault.jpg)
+
+### placement.html — Outil de placement manuel
+- Interface de correction manuelle des coordonnées
+- Affiche le globe à la période de l'item avec position actuelle
+- Permet de cliquer pour définir de nouvelles coordonnées
+- Sauvegarde dans `manual-coordinate-fixes.json`
+
+### Module cms-helpers.js
+
+Module CommonJS partagé pour éviter la duplication de code entre scripts :
+- `CATEGORY_IDS` : mapping des IDs Webflow vers noms de catégories (videos, images, 3D, texts)
+- `getCategoryName(categoryId)` : conversion ID → nom de catégorie
+- `getPreviewUrl(item, category)` : extraction de l'URL preview (YouTube thumbnail, background image, gallery image)
+
+**Note** : L'ID de la catégorie "texts" (Behind The Scenes) est actuellement un placeholder (`PLACEHOLDER_TEXTS_ID`) et doit être remplacé par le vrai ID Webflow via MCP.
+
+---
+
+## 6. Stratégie de géocodage
 
 Cascade pour obtenir les coordonnées modernes d'un item :
 
@@ -246,18 +292,27 @@ node scripts/validate-free-tags.js --only-errors  # Qualité free-tags
 
 ### Frontend
 ```bash
-python3 -m http.server 8000  # → http://localhost:8000
+npm run dev  # → http://localhost:8000 (Vite dev server)
 ```
 
 Checklist manuelle :
-- Globe s'affiche (étoiles, atmosphère)
-- Pinpoints visibles pour la période sélectionnée
-- Changement de période → pinpoints se repositionnent
-- Clic pinpoint → popup avec bon contenu
-- Video : player YouTube fonctionne
-- Image/3D : preview + lien "VIEW MORE"
-- Filtres masquent/affichent les types
-- "Real Land" sans pinpoints, retour "Our Continents" → pinpoints réapparaissent
+- **Globe (index.html)** :
+  - Globe s'affiche (étoiles, atmosphère)
+  - Pinpoints visibles pour la période sélectionnée
+  - Changement de période → pinpoints se repositionnent
+  - Clic pinpoint → popup avec bon contenu
+  - Video : player YouTube fonctionne
+  - Image/3D : preview + lien "VIEW MORE"
+  - Filtres masquent/affichent les types
+  - "Real Land" sans pinpoints, retour "Our Continents" → pinpoints réapparaissent
+- **Browse (browse.html)** :
+  - Page centrée avec titre "Find Your Way" et input de recherche
+  - Premier clic/Enter → animation vers le haut + affichage résultats
+  - Recherche fonctionne (name, description, free-tags, etc.)
+  - Cards affichent image, catégorie, titre
+  - Hover card → scale + border
+  - Clic card → ouvre page Webflow
+  - Responsive : 4/3/2 colonnes selon viewport
 
 ### Idempotence du sync
 ```bash

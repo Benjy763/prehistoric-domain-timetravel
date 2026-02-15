@@ -15,6 +15,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
+const { getCategoryName, getPreviewUrl } = require("./cms-helpers.js");
 
 const COLLECTION_ID = "679d148479ad083f33c518a1";
 const BTS_CATEGORY_ID = "5b90531d7e27d60e0d1f4e226449b55e"; // texts / Behind The Scenes
@@ -457,6 +458,98 @@ async function runPipeline(
   }
 }
 
+/**
+ * Merge ALL CMS items into content-data.json
+ * - Eligible items: keep full data with paleo coords (from pipeline)
+ * - Non-eligible items: add basic metadata only (no coords)
+ */
+async function mergeAllCMSItems(token) {
+  console.log("\n🔄 Fusion de TOUS les items CMS dans content-data.json...\n");
+
+  // 1. Load current content-data.json (contains eligible items with paleo coords)
+  const contentDataPath = path.join(__dirname, "../assets/data/content-data.json");
+  const contentData = loadExistingContentData();
+  const eligibleItemsMap = new Map(contentData.items.map(item => [item.id, item]));
+
+  // 2. Fetch ALL items from CMS
+  const allCMSItems = await fetchAllItems(token);
+
+  // 3. Build merged items array
+  const mergedItems = [];
+
+  for (const cmsItem of allCMSItems) {
+    // Skip archived and draft items entirely
+    if (cmsItem.isArchived || cmsItem.isDraft) {
+      continue;
+    }
+
+    const itemId = cmsItem.id;
+    const freeTags = cmsItem.fieldData["free-tags"] || "";
+    const hasFreeTags = freeTags.trim().length > 0;
+    const displayOnApp = !!cmsItem.fieldData["display-on-app"];
+    const isEligible = hasFreeTags && displayOnApp;
+
+    if (eligibleItemsMap.has(itemId)) {
+      // Eligible item with full paleo data → keep it
+      mergedItems.push(eligibleItemsMap.get(itemId));
+    } else {
+      // Non-eligible item → add basic metadata only
+      const category = getCategoryName(cmsItem.fieldData["top-category"]);
+      const preview = getPreviewUrl(cmsItem, category);
+
+      mergedItems.push({
+        id: itemId,
+        name: cmsItem.fieldData.name || "",
+        slug: cmsItem.fieldData.slug || "",
+        description: cmsItem.fieldData.description || "",
+        creditsLine: cmsItem.fieldData["credits-line"] || "",
+        category,
+        isNew: !!cmsItem.fieldData.new,
+        displayOnApp,
+        geologicalPeriod: cmsItem.fieldData["geological-period"] || null,
+        contentLink: cmsItem.fieldData["content-link"] || null,
+        youtubeId: cmsItem.fieldData["youtube-video-id"] || null,
+        lastUpdated: cmsItem.lastUpdated,
+        youtubeUrl: cmsItem.fieldData["youtube-video-id"]
+          ? `https://www.youtube.com/watch?v=${cmsItem.fieldData["youtube-video-id"]}`
+          : null,
+        backgroundImage: cmsItem.fieldData["background"]?.url || null,
+        galleryImage: cmsItem.fieldData["gallery-low-quality-image"]?.url || null,
+        preview,
+        pageUrl: `https://www.prehistoricdomain.com/content/${cmsItem.fieldData.slug}`,
+        freeTags: freeTags,
+        // NO paleo coords for non-eligible items
+        modernLat: null,
+        modernLon: null,
+        estimatedAge: null,
+        location: null,
+        confidence: null,
+        paleoValidation: null,
+        periods: {}
+      });
+    }
+  }
+
+  // 4. Update content-data.json with all items
+  const updatedData = {
+    ...contentData,
+    metadata: {
+      ...contentData.metadata,
+      totalItems: mergedItems.length,
+      sourceItems: allCMSItems.length,
+      eligibleItems: eligibleItemsMap.size,
+      generated: new Date().toISOString()
+    },
+    items: mergedItems
+  };
+
+  fs.writeFileSync(contentDataPath, JSON.stringify(updatedData, null, 2));
+
+  console.log(`✅ ${mergedItems.length} items au total dans content-data.json`);
+  console.log(`   ├─ ${eligibleItemsMap.size} items éligibles (avec coords paléo)`);
+  console.log(`   └─ ${mergedItems.length - eligibleItemsMap.size} items non-éligibles (métadonnées uniquement)\n`);
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const options = {
@@ -656,7 +749,10 @@ async function main() {
     console.log(`✅ ${idsToRemove.size} items retirés de content-data.json\n`);
   }
 
-  // 8. Display final result
+  // 8. Merge ALL CMS items (eligible + non-eligible)
+  await mergeAllCMSItems(token);
+
+  // 9. Display final result
   const contentData = JSON.parse(
     fs.readFileSync(
       path.join(__dirname, "../assets/data/content-data.json"),

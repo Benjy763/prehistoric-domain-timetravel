@@ -1,0 +1,301 @@
+/**
+ * PREHISTORIC DOMAIN - Browse Page
+ * Page de recherche/catalogue de tous les contenus CMS
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: #0e1118;
+  color: #ebebeb;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.browse-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================================
+   Header & Search
+   ======================================== */
+
+.browse-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.browse-header.at-top {
+  min-height: auto;
+  margin-bottom: 48px;
+  padding-top: 0;
+}
+
+.browse-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 32px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.browse-header.at-top .browse-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 24px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto 16px;
+}
+
+.search-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.search-wrapper:focus-within {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ebebeb;
+  font-size: 1rem;
+  font-family: inherit;
+  padding: 18px 16px 18px 44px;
+  width: 100%;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  opacity: 0.6;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  width: 16px;
+  height: 16px;
+  color: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+
+.search-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 18px 24px;
+  color: #ebebeb;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.search-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.search-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.results-count {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 12px;
+  transition: opacity 0.3s ease;
+}
+
+.browse-header:not(.at-top) .results-count {
+  opacity: 0;
+}
+
+/* ========================================
+   Grid
+   ======================================== */
+
+.browse-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+/* Responsive grid columns */
+@media (min-width: 768px) {
+  .browse-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .browse-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1400px) {
+  .browse-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ========================================
+   Card
+   ======================================== */
+
+.content-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.content-card:hover .card-image {
+  transform: scale(1.03);
+  border-color: #ebebeb;
+}
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 4px solid #3f3f3f;
+  border-radius: 20px;
+  margin-bottom: 5px;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.card-content {
+  padding: 0;
+}
+
+.card-category {
+  font-size: 16px;
+  font-weight: 400;
+  color: #aeaeae;
+  margin-bottom: 4px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 120%;
+  color: #ebebeb;
+  text-transform: capitalize;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+/* ========================================
+   States
+   ======================================== */
+
+.loading,
+.no-results {
+  text-align: center;
+  padding: 80px 24px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #ebebeb;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.no-results-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  opacity: 0.4;
+}
+
+.no-results h2 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  color: #ebebeb;
+}
+
+.no-results p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.hidden {
+  display: none;
+}
+
+/* ========================================
+   Apple TV Logo Badge (optionnel)
+   ======================================== */
+
+.apple-tv-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.apple-tv-badge svg {
+  width: 28px;
+  height: 28px;
+  fill: #ebebeb;
+}

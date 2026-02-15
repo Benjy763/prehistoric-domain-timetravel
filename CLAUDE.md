@@ -17,8 +17,10 @@ Les contenus du CMS Webflow sont projetés comme pinpoints sur un globe navigabl
 
 ```
 src/           → Frontend (app.js, globe.js, popup.js, filters.js, webflow-api.js)
+                          browse.js (page Browse - recherche/catalogue)
 scripts/       → Pipeline données :
                    sync-contents.js              — Orchestrateur (point d'entrée unique)
+                   cms-helpers.js                — Utilitaires partagés (categories, previews)
                    import-cms-items.js           — Géocodage moderne (PBDB + free-tags)
                    paleo-reconstruction.js       — Module GPlates partagé + isPointOnLand
                    reconstruct-paleogeography.js — Reconstruction (full ou --incremental)
@@ -26,8 +28,10 @@ scripts/       → Pipeline données :
                    validate-free-tags.js         — Validation qualité free-tags
                    manual-coordinate-fixes.json  — Corrections manuelles (priorité absolue)
 assets/data/   → content-data.json (généré)
+assets/css/    → browse.css (styles page Browse)
 assets/        → GeoJSON : merdith2021-coastlines/ (34), cao-paleogeography/ (24), geojson/ (13)
 index.html     → Point d'entrée
+browse.html    → Page recherche/catalogue de tous les contenus
 ```
 
 ## Conventions
@@ -37,7 +41,8 @@ index.html     → Point d'entrée
 - **Production** : Vite pour minification et file hashing (cache-busting)
 - **Données** : le frontend charge `assets/data/content-data.json` (statique), jamais l'API Webflow directement
 - **Format des clés de période** : `"100"` (nombre en string, jamais `"100Ma"`)
-- **Éligibilité globe** : `free-tags` non vide ET catégorie ≠ BTS (texts). Le sync auto-active `display-on-app` pour les items éligibles
+- **Éligibilité globe** : `free-tags` non vide ET `display-on-app: true` ET catégorie ≠ BTS (texts). Le sync auto-active `display-on-app` pour les items éligibles
+- **Page Browse** : affiche TOUS les items CMS (éligibles + non-éligibles) pour recherche/navigation
 - **Modèle géologique** : MERDITH2021 partout (pas MATTHEWS2016)
 - **13 périodes** : Today(0), Quaternary(2), Neogene(15), Paleogene(50), Cretaceous(100), Jurassic(160), Triassic(220), Permian(280), Carboniferous(320), Devonian(380), Silurian(410), Ordovician(450), Cambrian(500)
 

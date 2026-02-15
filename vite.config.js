@@ -13,6 +13,11 @@ export default defineConfig({
 
     // Asset file naming with hash for cache-busting
     rollupOptions: {
+      input: {
+        main: './index.html',
+        placement: './placement.html',
+        browse: './browse.html'
+      },
       output: {
         entryFileNames: 'assets/js/[name].[hash].js',
         chunkFileNames: 'assets/js/[name].[hash].js',

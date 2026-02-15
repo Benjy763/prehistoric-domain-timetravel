@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Your Way | Prehistoric Domain</title>
+    <link rel="stylesheet" href="assets/css/browse.css" />
+  </head>
+  <body>
+    <div class="browse-container">
+      <!-- Header -->
+      <header class="browse-header" id="browseHeader">
+        <h1 class="browse-title">Find Your Way</h1>
+        <div class="search-container">
+          <div class="search-wrapper">
+            <input
+              type="text"
+              id="searchInput"
+              class="search-input"
+              placeholder="Search for animals, periods, locations, artists, projects..."
+              autocomplete="off"
+              aria-label="Search prehistoric contents"
+            />
+            <div class="search-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </div>
+          </div>
+          <button class="search-button" id="searchButton" aria-label="Search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="results-count" id="resultsCount">
+          Loading...
+        </div>
+      </header>
+
+      <!-- Grid -->
+      <main class="browse-grid" id="browseGrid">
+        <!-- Cards will be inserted here dynamically -->
+      </main>
+
+      <!-- Loading State -->
+      <div class="loading" id="loadingState">
+        <div class="loading-spinner"></div>
+        <p>Loading contents...</p>
+      </div>
+
+      <!-- No Results State -->
+      <div class="no-results hidden" id="noResultsState">
+        <div class="no-results-icon">🔍</div>
+        <h2>No results found</h2>
+        <p>Try adjusting your search or browse all content</p>
+      </div>
+    </div>
+
+    <script type="module" src="src/browse.js"></script>
+  </body>
+</html>

@@ -128,3 +128,75 @@ Tâches terminées, déplacées depuis `TASKS.md`.
 - [x] Tap detection (seuil 3px) pour restaurer clics pinpoints
 - [x] Masquer "drag to rotate" sur mobile
 - [x] Bloquer contenu immersif sur mobile (isMobile() + message "Available on desktop and VR devices")
+
+---
+
+## Phase 12 — Automatisation CMS (ajout de contenus)
+
+### 12.1 Préparer le workflow `/add-content`
+
+- [x] Analyser la structure CMS Webflow (champs, catégories, périodes)
+- [x] Documenter les IDs et formats dans `memory/cms-fields.md`
+- [x] Créer la commande `.claude/commands/add-content.md`
+- [x] Vérifier le schéma CMS réel via MCP Webflow → fix `release-date-2`, schema complet documenté
+
+### 12.2 Valider le workflow end-to-end
+
+- [x] Tester `/add-content` avec 1 vidéo YouTube → draft créé (slug: prehistoric-planet-ice-age-rhinos-are-fast-runners)
+- [x] Tester `/add-content` avec 1 image → 2 drafts bilingues créés (slugs: the-edmonton-valley, jurassic-patrol)
+- [x] Vérifier le draft créé dans Webflow → 4 items OK (vidéos publiées, images en draft)
+- [x] Publier le draft, lancer `npm run sync`, vérifier le globe → 2 vidéos PP:Ice Age synchées (195 items total)
+
+---
+
+## Phase 13 — Page Browse (recherche/catalogue de contenus)
+
+### 13.1 Data Pipeline — Inclure tous les items CMS
+
+- [x] Modifier `sync-contents.js` pour récupérer les 302 items du CMS (pas seulement display-on-app: true)
+- [x] Items éligibles (free-tags + display-on-app: true) → géocodage + reconstruction paléo (comportement actuel inchangé)
+- [x] Items non-éligibles → métadonnées de base uniquement (pas de periods, modernLat, modernLon)
+- [x] Vérifier metadata.totalItems = 302, eligibleItems = 207
+- [x] Tester `npm run sync` — fonctionne ✅
+- [x] Vérifier que le globe filtre sur displayOnApp === true (WebflowAPI modifié) ✅
+
+### 13.2 Page Browse — Structure HTML
+
+- [x] Créer `browse.html` avec header "Find Your Way"
+- [x] Input de recherche : placeholder "Search for animals, periods, locations, artists, projects..."
+- [x] Container de grille responsive
+- [x] Template de carte : image preview, badge type, titre
+
+### 13.3 Page Browse — Styles CSS
+
+- [x] Créer `assets/css/browse.css`
+- [x] Fond sombre cohérent avec le globe
+- [x] Grille CSS responsive : 4 cols (large) → 3 cols (medium) → 2 cols (mobile)
+- [x] Cards avec image, badge type, titre
+- [x] Badge couleurs : videos (violet), images (jaune), 3D (rose), texts (gris)
+- [x] Hover effects sur les cards
+
+### 13.4 Page Browse — JavaScript
+
+- [x] Créer `src/browse.js`
+- [x] Charger `content-data.json`
+- [x] Fonction de recherche fuzzy (titre, description, freeTags, creditsLine)
+- [x] Rendu dynamique des cardes dans la grille
+- [x] Gestion du clic sur card → ouvrir pageUrl
+- [x] Debounce de l'input de recherche (300ms)
+- [x] Afficher compteur de résultats
+
+### 13.5 Intégration & Tests
+
+- [x] Ajouter `browse.html` au config Vite
+- [x] Tester `npm run build` — Build réussi ✅
+- [x] Lancer `npm run preview` — Serveur démarré sur http://localhost:4173 ✅
+- [x] Tests fonctionnels : recherche, responsive, liens Webflow (à tester manuellement)
+- [x] Tests de non-régression : globe affiche toujours les items correctement
+- [x] Performance : vérifier fluidité avec 302 items
+
+### 13.6 Documentation
+
+- [x] Mettre à jour ARCHITECTURE.md (nouveau format content-data.json avec 260 items)
+- [x] Mettre à jour SPEC.md (section Page Browse)
+- [x] Mettre à jour CLAUDE.md (structure projet)
