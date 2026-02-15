@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "generated": "2026-02-15T15:23:48.967Z",
-    "totalItems": 302,
-    "sourceItems": 314,
-    "eligibleItems": 245,
+    "generated": "2026-02-15T16:43:07.905Z",
+    "totalItems": 300,
+    "sourceItems": 313,
+    "eligibleItems": 243,
     "reconstructedItems": 207,
     "mode": "full",
     "periods": [
@@ -555,72 +555,6 @@
         "2": {
           "lat": -13.765692001739346,
           "lon": -60.03327537976427,
-          "validationStatus": "on_land"
-        }
-      }
-    },
-    {
-      "id": "6991b4dc54ac0e38bbae1af0",
-      "name": "Baby Mammoth Takes First Steps",
-      "slug": "baby-mammoth-takes-first-steps",
-      "description": "A baby woolly mammoth takes its first steps in the snow.",
-      "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by Tom Hiddleston.",
-      "category": "videos",
-      "isNew": false,
-      "displayOnApp": true,
-      "geologicalPeriod": "quaternary",
-      "contentLink": null,
-      "youtubeId": "3p9hnm7im64",
-      "lastUpdated": "2026-02-15T12:40:48.445Z",
-      "youtubeUrl": "https://www.youtube.com/watch?v=3p9hnm7im64",
-      "backgroundImage": null,
-      "galleryImage": null,
-      "preview": "https://img.youtube.com/vi/3p9hnm7im64/maxresdefault.jpg",
-      "pageUrl": "https://www.prehistoricdomain.com/content/baby-mammoth-takes-first-steps",
-      "freeTags": "North America, Pleistocene, Mammuthus primigenius",
-      "modernLat": 42.52,
-      "modernLon": -111,
-      "estimatedAge": 1,
-      "location": "Unknown (PBDB)",
-      "confidence": "medium",
-      "paleoValidation": "on_land",
-      "periods": {
-        "2": {
-          "lat": 42.9462,
-          "lon": -109.5619,
-          "validationStatus": "on_land"
-        }
-      }
-    },
-    {
-      "id": "6991b4dc54ac0e38bbae1aed",
-      "name": "This Baby Elephant Was 12 Inches Tall!",
-      "slug": "this-baby-elephant-was-12-inches-tall",
-      "description": "Meet the tiny Palaeoloxodon falconeri, the world's smallest elephant.",
-      "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by Tom Hiddleston.",
-      "category": "videos",
-      "isNew": false,
-      "displayOnApp": true,
-      "geologicalPeriod": "quaternary",
-      "contentLink": null,
-      "youtubeId": "ZogUJ8cMIes",
-      "lastUpdated": "2026-02-15T12:40:48.440Z",
-      "youtubeUrl": "https://www.youtube.com/watch?v=ZogUJ8cMIes",
-      "backgroundImage": null,
-      "galleryImage": null,
-      "preview": "https://img.youtube.com/vi/ZogUJ8cMIes/maxresdefault.jpg",
-      "pageUrl": "https://www.prehistoricdomain.com/content/this-baby-elephant-was-12-inches-tall",
-      "freeTags": "Europe, Pleistocene, Palaeoloxodon falconeri",
-      "modernLat": 50,
-      "modernLon": 15,
-      "estimatedAge": 1,
-      "location": "europe (continent center)",
-      "confidence": "low",
-      "paleoValidation": "on_land",
-      "periods": {
-        "2": {
-          "lat": 49.1017,
-          "lon": 14.7138,
           "validationStatus": "on_land"
         }
       }
