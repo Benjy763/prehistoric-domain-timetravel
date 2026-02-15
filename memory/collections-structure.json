@@ -1,0 +1,69 @@
+{
+  "timestamp": "2026-02-15T10:20:40.605Z",
+  "targetCollections": {
+    "Contents": "679d148479ad083f33c518a1",
+    "Artists": "67fbcb77cad347c39362ef1b",
+    "Projects": "6828cef91872740b3f3c76ce",
+    "Portfolio": null
+  },
+  "allCollections": [
+    {
+      "id": "63dd1ddce766b1be3051147e",
+      "displayName": "Animals",
+      "slug": "animals"
+    },
+    {
+      "id": "63dd1ddce766b117a651147f",
+      "displayName": "Articles",
+      "slug": "articles"
+    },
+    {
+      "id": "63dd1ddce766b17693511480",
+      "displayName": "Blogs",
+      "slug": "blog"
+    },
+    {
+      "id": "66e9dda5771e867f93635314",
+      "displayName": "Categories",
+      "slug": "category"
+    },
+    {
+      "id": "66e9dda5771e867f93635318",
+      "displayName": "Products",
+      "slug": "product"
+    },
+    {
+      "id": "66e9dda5771e867f93635319",
+      "displayName": "SKUs",
+      "slug": "sku"
+    },
+    {
+      "id": "679d148479ad083f33c518a1",
+      "displayName": "Contents",
+      "slug": "content"
+    },
+    {
+      "id": "67fbcb77cad347c39362ef1b",
+      "displayName": "Artists",
+      "slug": "artist"
+    },
+    {
+      "id": "6828cef91872740b3f3c76ce",
+      "displayName": "Projects",
+      "slug": "projects"
+    },
+    {
+      "id": "68cc444c824073630fdf0310",
+      "displayName": "Video Parts",
+      "slug": "video-parts"
+    }
+  ],
+  "exampleItem": {
+    "id": "695fecefdad0a9fd6e395e1d",
+    "name": "Jurassic Wild - Episode 1 | Journey for Survival",
+    "slug": "jurassic-wild-episode-1",
+    "filterFeatured": [
+      "692744c0926e0c14ccef0e01"
+    ]
+  }
+}

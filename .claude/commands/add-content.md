@@ -4,17 +4,20 @@ Lis le fichier `memory/cms-fields.md` dans le dossier mémoire Claude pour les I
 
 ### Collecte des infos
 
-Poser UNE SEULE question via AskUserQuestion avec les 3 infos necessaires en parallele :
+Poser UNE SEULE question via AskUserQuestion avec les 4 infos necessaires en parallele :
 
 ```
 questions: [
   { question: "Type de contenu ?", header: "Type", options: [Video YouTube, Image, Immersion, Behind The Scenes] },
-  { question: "Artiste ou producteur ?", header: "Artiste", options: [(artistes frequents du CMS)] },
+  { question: "Artiste(s) ? (separés par virgule si plusieurs)", header: "Artistes", options: [(artistes frequents du CMS)] },
+  { question: "Projet/Serie ? (optionnel, ex: T-Rex, Prehistoric Planet)", header: "Projet", options: [(projets frequents du CMS), Aucun] },
   { question: "IDs YouTube ou titres d'images ? (pour images: Titre | description | YYYY optionnels)", header: "Contenus", options: [(placeholder pour forcer Other/texte libre)] }
 ]
 ```
 
 Si l'utilisateur a deja fourni des infos dans $ARGUMENTS, ne PAS reposer les questions correspondantes. Parser directement.
+
+**Important** : Pour les artistes, demander aussi l'URL de leur portfolio/Instagram (sera stocké dans la collection Artists).
 
 ### Traitement automatique
 
@@ -67,7 +70,37 @@ Pour chaque item, traduire en francais :
 - `description` : description traduite
 - `credits-line` : version francaise (ex: "Created by X." → "Cree par X.", "Produced by X." → "Produit par X.")
 
-#### Etape 5 — Tableau recap pour validation
+#### Etape 5 — Gestion des Artists et Projects
+
+**Etape 5a — Verifier et creer les Artists**
+
+Pour chaque artiste mentionne :
+1. Chercher dans la collection Artists (`67fbcb77cad347c39362ef1b`) si un item avec ce nom existe deja
+2. Si NON → creer l'item Artist :
+   ```json
+   {
+     "name": "Nom de l'artiste",
+     "slug": "nom-de-l-artiste",
+     "portfolio": "https://instagram.com/...",
+     "activated": true
+   }
+   ```
+3. Recuperer l'ID de l'artiste (existant ou nouvellement cree)
+
+**Etape 5b — Verifier et creer le Project (optionnel)**
+
+Si un projet/serie est mentionne :
+1. Chercher dans la collection Projects (`6828cef91872740b3f3c76ce`) si un item avec ce nom existe
+2. Si NON → creer l'item Project :
+   ```json
+   {
+     "name": "Nom du projet",
+     "slug": "nom-du-projet"
+   }
+   ```
+3. Recuperer l'ID du projet
+
+#### Etape 6 — Tableau recap pour validation
 Presenter un tableau COMPLET avec tous les champs EN + FR qui seront envoyes :
 
 | Champ | EN | FR |
@@ -81,6 +114,9 @@ Presenter un tableau COMPLET avec tous les champs EN + FR qui seront envoyes :
 | credits-line | ... | ... |
 | release-date-2 | ... (si dispo) | (meme) |
 | duration | ... (format "MM:SS") | (meme) |
+| **artists (tags)** | [ID1, ID2] (noms affichés) | (meme) |
+| **portfolio (test-artist)** | ID1 (nom affiché) | (meme) |
+| **project (filter-featured)** | [ID] (nom affiché) | (meme, optionnel) |
 | new | true | (meme) |
 | display-on-app | true | (meme) |
 
@@ -89,11 +125,11 @@ Attendre validation. L'utilisateur peut :
 - Corriger des champs specifiques ("free-tags: changer X en Y", "FR name: corriger Z")
 - Supprimer un item ("retirer 2")
 
-#### Etape 6 — Creation des drafts bilingues via MCP Webflow
+#### Etape 7 — Creation des drafts bilingues via MCP Webflow
 
 Appeler `create_collection_items` sur la collection `679d148479ad083f33c518a1`.
 
-**Etape 6a — Creer l'item EN + FR en un seul appel :**
+**Etape 7a — Creer l'item EN + FR en un seul appel :**
 
 Creer en mode **isDraft: true, isArchived: false**.
 Ajouter **les deux locales** : `cmsLocaleIds: ["653ad75ae882f528b344a8f1", "680fa104090846c25c1b32c9"]`
@@ -113,6 +149,9 @@ Ne PAS remplir `geological-period` (infere automatiquement par le pipeline sync)
   "description": "description EN",
   "duration": "MM:SS",
   "release-date-2": "date ISO",
+  "tags": ["artist-id-1", "artist-id-2"],
+  "test-artist": "artist-id-1",
+  "filter-featured": ["project-id"],
   "new": true,
   "display-on-app": true
 }
@@ -128,17 +167,20 @@ Ne PAS remplir `geological-period` (infere automatiquement par le pipeline sync)
   "credits-line": "credits EN",
   "description": "description EN",
   "release-date-2": "date ISO (si fournie)",
+  "tags": ["artist-id-1"],
+  "test-artist": "artist-id-1",
+  "filter-featured": ["project-id"],
   "new": true,
   "display-on-app": true
 }
 ```
 
-**Etape 6b — Mettre a jour la version FR :**
+**Etape 7b — Mettre a jour la version FR :**
 
 Appeler `update_collection_items` avec le `cmsLocaleId` FR pour chaque item cree :
 ```json
 {
-  "id": "ITEM_ID (retourne par l'etape 6a)",
+  "id": "ITEM_ID (retourne par l'etape 7a)",
   "cmsLocaleId": "680fa104090846c25c1b32c9",
   "fieldData": {
     "name": "titre FR",
@@ -148,9 +190,9 @@ Appeler `update_collection_items` avec le `cmsLocaleId` FR pour chaque item cree
 }
 ```
 
-Seuls `name`, `description` et `credits-line` sont traduits. Les autres champs (slug, free-tags, duration, etc.) restent identiques.
+Seuls `name`, `description` et `credits-line` sont traduits. Les autres champs (slug, free-tags, duration, artists, project, etc.) restent identiques.
 
-#### Etape 7 — Recap final
+#### Etape 8 — Recap final
 Tableau des items crees avec leur slug Webflow et statut EN/FR.
 
 Message de cloture :
