@@ -165,7 +165,7 @@ class BrowseManager {
       card.addEventListener("click", () => {
         const url = card.dataset.url;
         if (url) {
-          window.open(url, "_blank", "noopener,noreferrer");
+          window.location.href = url;
         }
       });
     });
