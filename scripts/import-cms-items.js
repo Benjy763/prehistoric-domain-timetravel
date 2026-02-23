@@ -851,6 +851,7 @@ async function geocodeItems(allItems, { log = true } = {}) {
         contentLink,
         youtubeId,
         lastUpdated: item.lastUpdated || null,
+        createdOn: item.createdOn || null,
         backgroundImage,
         galleryImage,
         freeTags,

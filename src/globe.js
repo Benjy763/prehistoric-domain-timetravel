@@ -836,7 +836,7 @@ class GlobeManager {
     const combinedTexture = new THREE.CanvasTexture(canvas);
     this.applyTextureToGlobe(combinedTexture);
 
-    console.log("✅ Terres Cao affichées avec bump mapping et relief");
+    console.log("✅ Cao landmasses displayed with bump mapping and relief");
   }
 
   drawLineOnCanvas(ctx, coordinates, width, height) {
@@ -1292,7 +1292,7 @@ class GlobeManager {
     const contentType = data.type || data.category;
 
     let pointColor;
-    // Color based on content type (isNew is now just a highlight state, not a type)
+    // Color based on content type
     switch (contentType) {
       case "videos":
       case "video":
@@ -1325,16 +1325,13 @@ class GlobeManager {
     // Clear background (transparent)
     ctx.clearRect(0, 0, 64, 64);
 
-    // Icon fill color: yellow (#ffaa00) if favorite, green (#02d8cb) if new, white otherwise
+    // Icon fill color: yellow (#ffaa00) if favorite, white otherwise
     let iconFillColor = "#ebebeb";
     let iconBorderColor = "#ebebeb";
 
     if (isFavorite) {
       iconFillColor = "#ffaa00";  // Yellow for favorites
       iconBorderColor = "#ffaa00";
-    } else if (data.isNew) {
-      iconFillColor = "#02d8cb";  // Green for new items
-      iconBorderColor = "#02d8cb";
     }
 
     // Draw icon based on content type (not isNew state)

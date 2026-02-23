@@ -86,6 +86,7 @@ async function reconstructClosestPeriod(
     contentLink: item.contentLink || null,
     youtubeId: item.youtubeId || null,
     lastUpdated: item.lastUpdated || null,
+    createdOn: item.createdOn || null,
     youtubeUrl: derivedFields.youtubeUrl,
     backgroundImage: item.backgroundImage,
     galleryImage: item.galleryImage,

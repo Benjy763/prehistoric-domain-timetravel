@@ -463,7 +463,7 @@ async function runPipeline(
  * - Eligible items: keep full data with paleo coords (from pipeline)
  * - Non-eligible items: add basic metadata only (no coords)
  */
-async function mergeAllCMSItems(token) {
+async function mergeAllCMSItems(allCMSItems) {
   console.log("\n🔄 Fusion de TOUS les items CMS dans content-data.json...\n");
 
   // 1. Load current content-data.json (contains eligible items with paleo coords)
@@ -471,8 +471,7 @@ async function mergeAllCMSItems(token) {
   const contentData = loadExistingContentData();
   const eligibleItemsMap = new Map(contentData.items.map(item => [item.id, item]));
 
-  // 2. Fetch ALL items from CMS
-  const allCMSItems = await fetchAllItems(token);
+  // 2. Use already-fetched CMS items (passed as parameter)
 
   // 3. Build merged items array
   const mergedItems = [];
@@ -510,6 +509,7 @@ async function mergeAllCMSItems(token) {
         contentLink: cmsItem.fieldData["content-link"] || null,
         youtubeId: cmsItem.fieldData["youtube-video-id"] || null,
         lastUpdated: cmsItem.lastUpdated,
+        createdOn: cmsItem.createdOn || null,
         youtubeUrl: cmsItem.fieldData["youtube-video-id"]
           ? `https://www.youtube.com/watch?v=${cmsItem.fieldData["youtube-video-id"]}`
           : null,
@@ -750,7 +750,7 @@ async function main() {
   }
 
   // 8. Merge ALL CMS items (eligible + non-eligible)
-  await mergeAllCMSItems(token);
+  await mergeAllCMSItems(allItems);
 
   // 9. Display final result
   const contentData = JSON.parse(

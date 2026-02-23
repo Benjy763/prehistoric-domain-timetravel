@@ -116,6 +116,8 @@ WEBFLOW CMS
     "slug": "t-rex-hunt",
     "category": "videos",
     "geologicalPeriod": "cretaceous",
+    "createdOn": "2026-01-15T10:30:00.000Z",
+    "lastUpdated": "2026-01-20T14:22:00.000Z",
     "modernLat": 51.9,
     "modernLon": -113.0,
     "paleoValidation": "on_land",
@@ -131,6 +133,11 @@ WEBFLOW CMS
 ```
 
 **Convention clés de période** : nombre en string (`"100"`), jamais `"100Ma"`.
+
+**Dates de publication** :
+- `createdOn` : date de création immuable de l'item dans le CMS (utilisée pour le filtre "Recent")
+- `lastUpdated` : dernière modification de l'item (peut changer lors d'éditions mineures)
+- Le filtre "Recent" affiche les 50 derniers items de la période géologique sélectionnée, triés par `createdOn` décroissant
 
 ---
 

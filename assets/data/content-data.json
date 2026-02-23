@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "generated": "2026-02-15T16:43:07.905Z",
+    "generated": "2026-02-23T11:44:33.718Z",
     "totalItems": 300,
-    "sourceItems": 313,
-    "eligibleItems": 243,
-    "reconstructedItems": 207,
+    "sourceItems": 312,
+    "eligibleItems": 205,
+    "reconstructedItems": 205,
     "mode": "full",
     "periods": [
       {
@@ -77,6 +77,7 @@
       "contentLink": null,
       "youtubeId": "6eQn4mpjNvk",
       "lastUpdated": "2026-02-15T12:40:48.598Z",
+      "createdOn": "2026-02-15T12:00:15.927Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=6eQn4mpjNvk",
       "backgroundImage": null,
       "galleryImage": null,
@@ -110,6 +111,7 @@
       "contentLink": null,
       "youtubeId": "KXM46NoFSgY",
       "lastUpdated": "2026-02-15T12:40:48.574Z",
+      "createdOn": "2026-02-15T12:00:15.927Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=KXM46NoFSgY",
       "backgroundImage": null,
       "galleryImage": null,
@@ -143,6 +145,7 @@
       "contentLink": null,
       "youtubeId": "IbXRuTmNJsQ",
       "lastUpdated": "2026-02-15T12:40:48.571Z",
+      "createdOn": "2026-02-15T12:00:15.927Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=IbXRuTmNJsQ",
       "backgroundImage": null,
       "galleryImage": null,
@@ -157,8 +160,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": 41.45337865786046,
-          "lon": -95.89633733138257,
+          "lat": 46.823750354703385,
+          "lon": -96.24455159763393,
           "validationStatus": "on_land"
         }
       }
@@ -176,6 +179,7 @@
       "contentLink": null,
       "youtubeId": "ChKGiyK1OB8",
       "lastUpdated": "2026-02-15T12:40:48.567Z",
+      "createdOn": "2026-02-15T11:59:57.757Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=ChKGiyK1OB8",
       "backgroundImage": null,
       "galleryImage": null,
@@ -209,6 +213,7 @@
       "contentLink": null,
       "youtubeId": "W4sGgON82H8",
       "lastUpdated": "2026-02-15T12:40:48.552Z",
+      "createdOn": "2026-02-15T11:59:57.757Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=W4sGgON82H8",
       "backgroundImage": null,
       "galleryImage": null,
@@ -242,6 +247,7 @@
       "contentLink": null,
       "youtubeId": "bdAnmG_bfi8",
       "lastUpdated": "2026-02-15T12:40:48.547Z",
+      "createdOn": "2026-02-15T11:59:57.757Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=bdAnmG_bfi8",
       "backgroundImage": null,
       "galleryImage": null,
@@ -275,6 +281,7 @@
       "contentLink": null,
       "youtubeId": "3wWilaIKE_s",
       "lastUpdated": "2026-02-15T12:40:48.542Z",
+      "createdOn": "2026-02-15T11:59:57.757Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=3wWilaIKE_s",
       "backgroundImage": null,
       "galleryImage": null,
@@ -308,6 +315,7 @@
       "contentLink": null,
       "youtubeId": "gV-yPueuDKE",
       "lastUpdated": "2026-02-15T12:40:48.538Z",
+      "createdOn": "2026-02-15T11:59:57.757Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=gV-yPueuDKE",
       "backgroundImage": null,
       "galleryImage": null,
@@ -341,6 +349,7 @@
       "contentLink": null,
       "youtubeId": "sSrNYy9zu3A",
       "lastUpdated": "2026-02-15T12:40:48.508Z",
+      "createdOn": "2026-02-15T11:59:02.683Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=sSrNYy9zu3A",
       "backgroundImage": null,
       "galleryImage": null,
@@ -374,6 +383,7 @@
       "contentLink": null,
       "youtubeId": "h7tPVAkxTdU",
       "lastUpdated": "2026-02-15T12:40:48.504Z",
+      "createdOn": "2026-02-15T11:59:02.683Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=h7tPVAkxTdU",
       "backgroundImage": null,
       "galleryImage": null,
@@ -407,6 +417,7 @@
       "contentLink": null,
       "youtubeId": "UtwaeGNNx6s",
       "lastUpdated": "2026-02-15T12:40:48.513Z",
+      "createdOn": "2026-02-15T11:59:02.683Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=UtwaeGNNx6s",
       "backgroundImage": null,
       "galleryImage": null,
@@ -440,6 +451,7 @@
       "contentLink": null,
       "youtubeId": "ylOrTF4V5og",
       "lastUpdated": "2026-02-15T12:40:48.484Z",
+      "createdOn": "2026-02-15T11:59:02.683Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=ylOrTF4V5og",
       "backgroundImage": null,
       "galleryImage": null,
@@ -454,8 +466,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": -18.102787083928476,
-          "lon": -60.50659353051181,
+          "lat": -15.276526151748913,
+          "lon": -61.79039585861899,
           "validationStatus": "on_land"
         }
       }
@@ -473,6 +485,7 @@
       "contentLink": null,
       "youtubeId": "AhKMMo5caRY",
       "lastUpdated": "2026-02-15T12:40:48.480Z",
+      "createdOn": "2026-02-15T11:59:02.683Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=AhKMMo5caRY",
       "backgroundImage": null,
       "galleryImage": null,
@@ -506,6 +519,7 @@
       "contentLink": null,
       "youtubeId": "PSJAkAFgSDM",
       "lastUpdated": "2026-02-15T12:40:48.488Z",
+      "createdOn": "2026-02-15T11:58:20.099Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=PSJAkAFgSDM",
       "backgroundImage": null,
       "galleryImage": null,
@@ -520,8 +534,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": -18.43756414064933,
-          "lon": -55.67050804461876,
+          "lat": -21.68635564486969,
+          "lon": -58.89507669843152,
           "validationStatus": "on_land"
         }
       }
@@ -539,6 +553,7 @@
       "contentLink": null,
       "youtubeId": "xBXrSoYqcyk",
       "lastUpdated": "2026-02-15T12:40:48.449Z",
+      "createdOn": "2026-02-15T11:58:20.099Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=xBXrSoYqcyk",
       "backgroundImage": null,
       "galleryImage": null,
@@ -553,8 +568,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": -13.765692001739346,
-          "lon": -60.03327537976427,
+          "lat": -17.76005440919035,
+          "lon": -58.03062979757468,
           "validationStatus": "on_land"
         }
       }
@@ -572,6 +587,7 @@
       "contentLink": null,
       "youtubeId": "FX0Gfn2WFWo",
       "lastUpdated": "2026-02-15T12:40:48.433Z",
+      "createdOn": "2026-02-15T11:57:57.442Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=FX0Gfn2WFWo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -605,6 +621,7 @@
       "contentLink": null,
       "youtubeId": "F3Gc3tWCptw",
       "lastUpdated": "2026-02-15T12:40:48.429Z",
+      "createdOn": "2026-02-15T11:57:57.442Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=F3Gc3tWCptw",
       "backgroundImage": null,
       "galleryImage": null,
@@ -638,6 +655,7 @@
       "contentLink": null,
       "youtubeId": "yz7bSfKsyso",
       "lastUpdated": "2026-02-15T12:40:48.425Z",
+      "createdOn": "2026-02-15T11:57:57.442Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=yz7bSfKsyso",
       "backgroundImage": null,
       "galleryImage": null,
@@ -652,8 +670,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": -36.53882960789421,
-          "lon": 148.60736547701217,
+          "lat": -34.820975736392946,
+          "lon": 147.07938709406247,
           "validationStatus": "on_land"
         }
       }
@@ -671,6 +689,7 @@
       "contentLink": null,
       "youtubeId": "qdSDOdahue8",
       "lastUpdated": "2026-02-15T12:40:48.419Z",
+      "createdOn": "2026-02-15T11:57:57.442Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=qdSDOdahue8",
       "backgroundImage": null,
       "galleryImage": null,
@@ -704,6 +723,7 @@
       "contentLink": null,
       "youtubeId": "tJjVTGzpQkc",
       "lastUpdated": "2026-02-15T12:40:48.414Z",
+      "createdOn": "2026-02-15T11:52:10.825Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=tJjVTGzpQkc",
       "backgroundImage": null,
       "galleryImage": null,
@@ -737,6 +757,7 @@
       "contentLink": null,
       "youtubeId": "2yCBSbsFii8",
       "lastUpdated": "2026-02-15T12:40:48.411Z",
+      "createdOn": "2026-02-15T11:52:10.825Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=2yCBSbsFii8",
       "backgroundImage": null,
       "galleryImage": null,
@@ -751,8 +772,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": 48.671910556340926,
-          "lon": -97.29928331930384,
+          "lat": 49.39243673006437,
+          "lon": -99.89034268953522,
           "validationStatus": "on_land"
         }
       }
@@ -770,6 +791,7 @@
       "contentLink": null,
       "youtubeId": "NqY_x5s1zXc",
       "lastUpdated": "2026-02-15T12:40:48.406Z",
+      "createdOn": "2026-02-15T11:01:59.167Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=NqY_x5s1zXc",
       "backgroundImage": null,
       "galleryImage": null,
@@ -803,6 +825,7 @@
       "contentLink": null,
       "youtubeId": "LoWWf2xrW6I",
       "lastUpdated": "2026-02-15T12:13:09.764Z",
+      "createdOn": "2026-02-13T20:40:05.682Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=LoWWf2xrW6I",
       "backgroundImage": null,
       "galleryImage": null,
@@ -817,8 +840,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "2": {
-          "lat": 50.4971875943231,
-          "lon": 139.59121371659316,
+          "lat": 48.69422034566837,
+          "lon": 137.51972821104874,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -836,6 +859,7 @@
       "contentLink": null,
       "youtubeId": "vFZALymDmD4",
       "lastUpdated": "2026-02-15T12:13:00.249Z",
+      "createdOn": "2026-02-13T20:40:02.709Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=vFZALymDmD4",
       "backgroundImage": null,
       "galleryImage": null,
@@ -869,6 +893,7 @@
       "contentLink": null,
       "youtubeId": "w3oKrw1upls",
       "lastUpdated": "2026-02-10T15:53:47.623Z",
+      "createdOn": "2026-01-08T17:44:15.594Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=w3oKrw1upls",
       "backgroundImage": null,
       "galleryImage": null,
@@ -883,8 +908,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 45.75907499830819,
-          "lon": 132.25692923659884,
+          "lat": 50.34607694572449,
+          "lon": 130.22686072771526,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -902,6 +927,7 @@
       "contentLink": null,
       "youtubeId": "LHszQL-kxfQ",
       "lastUpdated": "2026-01-31T18:59:36.456Z",
+      "createdOn": "2025-12-18T17:01:03.642Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=LHszQL-kxfQ",
       "backgroundImage": null,
       "galleryImage": null,
@@ -930,6 +956,7 @@
       "contentLink": null,
       "youtubeId": "zkwBYgI5KNA",
       "lastUpdated": "2026-02-10T15:53:47.603Z",
+      "createdOn": "2025-12-08T18:38:32.921Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=zkwBYgI5KNA",
       "backgroundImage": null,
       "galleryImage": null,
@@ -944,8 +971,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -42.26526419430024,
-          "lon": -36.594784731481965,
+          "lat": -40.44420384036388,
+          "lon": -33.88035702218183,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -964,6 +991,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.662Z",
+      "createdOn": "2025-11-29T12:38:24.699Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb774a93d08f9b506f9_692ae938825b6b42e36d2a49_Tyrannosaurus_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb774a93d08f9b506f5_692ae92cdf042459a4c54c7e_Tyrannosaurus_resultat.avif",
@@ -998,6 +1026,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.837Z",
+      "createdOn": "2025-11-29T12:37:15.920Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea76e2d6ecc2fbd527b_692ae8d1746ae62d8de1572a_Pteranodon_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb1e7117fcff54019ef_692ae8d5b5a7f34172bc33ce_Pteranodon_resultat.avif",
@@ -1032,6 +1061,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.813Z",
+      "createdOn": "2025-11-29T12:36:06.652Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb08d8129b0e5dc8789_6931a97922afffaacaa69580_Patagonia_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb08d8129b0e5dc8785_6931a973586b6279d4c631fb_Patagonia_resultat.avif",
@@ -1066,6 +1096,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:19.012Z",
+      "createdOn": "2025-11-29T12:34:02.685Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb01ebd069f1d0ab0a7_692ae830549666c089395aef_Oxalaia_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb01ebd069f1d0ab0a3_692ae82a453550d51ef05d46_Oxalaia_resultat.avif",
@@ -1100,6 +1131,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.838Z",
+      "createdOn": "2025-11-29T12:32:37.652Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf13e05afd44747c6a_692ae73f9fb22197745dd286_Niobrara_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf13e05afd44747c65_692ae748882020a833319d82_Niobrara_resultat.avif",
@@ -1134,6 +1166,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.724Z",
+      "createdOn": "2025-11-29T12:24:32.667Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf0a48e32c27ae11ca_692ae5e2b875fc9ea4909be8_Morrison_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf0a48e32c27ae11cf_692ae5da9e5df6fe6c84dbbc_Morrison_resultat.avif",
@@ -1168,6 +1201,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.640Z",
+      "createdOn": "2025-11-29T12:23:19.799Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaee16b576b19678ccd_692ae4212d7b98e2b61c27e0_Mamenchisaurus_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaee16b576b19678cc9_692ae4259ee06264d5253403_Mamenchisaurus_resultat.avif",
@@ -1201,6 +1235,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-01-31T18:59:36.727Z",
+      "createdOn": "2025-11-29T12:14:40.718Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eae4210db396925c5eb_692ae37ac27701c510c0b84b_Macrauchenia_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eae4210db396925c5e8_692ae3800f8e5803ff19f33d_Macrauchenia_resultat.avif",
@@ -1229,6 +1264,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.789Z",
+      "createdOn": "2025-11-29T12:12:23.251Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eada268bb5c643c0bb4_692ae3c367ce35fbf31e0ff5_Irritator_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eada268bb5c643c0bae_692ae3bcb5a7f34172bba741_Irritator_resultat.avif",
@@ -1263,6 +1299,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.589Z",
+      "createdOn": "2025-11-29T12:05:27.747Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaca60731fee47eb145_692ae1214717ab70ad14b0dd_Homotherium_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaca60731fee47eb141_692ae3e4135604dcbec287b6_Homotherium_resultat.avif",
@@ -1296,6 +1333,7 @@
       "contentLink": null,
       "youtubeId": "hHq6Nm54ciY",
       "lastUpdated": "2026-01-31T18:59:36.565Z",
+      "createdOn": "2025-11-26T18:19:06.319Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=hHq6Nm54ciY",
       "backgroundImage": null,
       "galleryImage": null,
@@ -1324,6 +1362,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.731Z",
+      "createdOn": "2025-11-17T17:06:11.677Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb613e05afd44747de9_691b55f9951f74c285eb109d_IMG_6365_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb613e05afd44747dee_691b55f2e92a0c6600bd6d59_IMG_6365_resultat.avif",
@@ -1358,6 +1397,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.636Z",
+      "createdOn": "2025-11-17T17:04:52.850Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaa84fb0770640f689c_691b558a1b3101cf33755537_IMG_6360_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaa84fb0770640f68a3_691b558fd9408000dfc2cb96_IMG_6360_resultat.avif",
@@ -1392,6 +1432,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.795Z",
+      "createdOn": "2025-11-17T17:03:17.905Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea6e63b4610ce26a07f_691b5540283dc37fc1d57e99_IMG_4714_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea6e63b4610ce26a07a_691b553ad1cf5cbcff667d05_IMG_4714_resultat.avif",
@@ -1406,8 +1447,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -10.279961615818891,
-          "lon": 0.1376832438495894,
+          "lat": -6.458479289300807,
+          "lon": -3.602800456979073,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -1426,6 +1467,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.600Z",
+      "createdOn": "2025-11-17T17:01:41.895Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb3975b02bc78bdaf56_691b54dfc34437d876fb5d60_IMG_6381_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb3975b02bc78bdaf51_691b54e6be2cf5938a8a407e_IMG_6381_resultat.avif",
@@ -1460,6 +1502,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.716Z",
+      "createdOn": "2025-11-17T17:00:44.619Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea751ec098552b4fee4_691b54a88ef99f19ceb57932_IMG_6368_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea751ec098552b4ff03_691b53b732c64580050b5d0c_IMG_6368_resultat.avif",
@@ -1494,6 +1537,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.675Z",
+      "createdOn": "2025-11-17T16:59:23.760Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eacc702b657b2d9cbdd_691b54024cdc275f2123185a_IMG_6359_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eacc702b657b2d9cbe0_691b540751fefb89c95faef9_IMG_6359_resultat.avif",
@@ -1528,6 +1572,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.825Z",
+      "createdOn": "2025-11-17T16:57:11.284Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead049e8f6fb4d0f249_691b53c4818838b7ddbd31e5_IMG_6380_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead049e8f6fb4d0f24d_691b53bf500d8e2e9983b569_IMG_6380_resultat.avif",
@@ -1542,8 +1587,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 55.278301380543084,
-          "lon": -57.191296802779426,
+          "lat": 55.90075677391346,
+          "lon": -59.04448541044393,
           "validationStatus": "on_land"
         }
       }
@@ -1562,6 +1607,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.628Z",
+      "createdOn": "2025-11-17T16:55:06.484Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead0a48e32c27ae1111_691b4f0cf9864600ba384a7a_IMG_6435_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead0a48e32c27ae1115_691b4f15f57bc5c350091feb_IMG_6435_resultat.avif",
@@ -1576,8 +1622,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 47.97400528422041,
-          "lon": -54.214254096410315,
+          "lat": 48.77705118145868,
+          "lon": -55.81402414420266,
           "validationStatus": "on_land"
         }
       }
@@ -1596,6 +1642,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.985Z",
+      "createdOn": "2025-11-17T16:51:31.469Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2298b797811d3d7a9_691b526763489e6decb826ed_IMG_6434_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2298b797811d3d7a4_691b526183f4b633a9f495b5_IMG_6434_resultat.avif",
@@ -1610,8 +1657,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 46.593354908688966,
-          "lon": -52.52734273749301,
+          "lat": 47.109715526492245,
+          "lon": -50.67231650279314,
           "validationStatus": "on_land"
         }
       }
@@ -1630,6 +1677,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.776Z",
+      "createdOn": "2025-11-17T16:37:03.757Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf4a48e65990609204_6925ee3d8746535d57c9b4a9_IMG_6433_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf4a48e65990609207_6925ee44574f8e9fe93aa8bc_IMG_6433_resultat.avif",
@@ -1644,8 +1692,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 32.84978868768974,
-          "lon": -34.58772582545456,
+          "lat": 28.5016782926983,
+          "lon": -32.73994164652816,
           "validationStatus": "on_land"
         }
       }
@@ -1663,6 +1711,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-01-31T18:59:36.570Z",
+      "createdOn": "2025-11-15T17:44:38.314Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea8499901bd38d70fe1_6919a270ccd7c46fc1caa2c7_captured%2520in%2520time.jpeg",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea8499901bd38d70fe1_6919a270ccd7c46fc1caa2c7_captured%2520in%2520time.jpeg",
@@ -1690,6 +1739,7 @@
       "contentLink": null,
       "youtubeId": "yVBtO5LlAyw",
       "lastUpdated": "2026-01-31T18:59:36.352Z",
+      "createdOn": "2025-11-12T19:36:39.766Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=yVBtO5LlAyw",
       "backgroundImage": null,
       "galleryImage": null,
@@ -1717,6 +1767,7 @@
       "contentLink": null,
       "youtubeId": "Du4oq-2i_r8",
       "lastUpdated": "2026-01-31T18:59:35.242Z",
+      "createdOn": "2025-11-12T19:35:23.388Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Du4oq-2i_r8",
       "backgroundImage": null,
       "galleryImage": null,
@@ -1744,6 +1795,7 @@
       "contentLink": null,
       "youtubeId": "f7kvwp9aIyM",
       "lastUpdated": "2026-01-31T18:59:36.684Z",
+      "createdOn": "2025-11-09T08:08:23.960Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=f7kvwp9aIyM",
       "backgroundImage": null,
       "galleryImage": null,
@@ -1771,6 +1823,7 @@
       "contentLink": null,
       "youtubeId": "xBCNFHqXU30",
       "lastUpdated": "2026-01-31T18:59:36.050Z",
+      "createdOn": "2025-11-08T16:00:57.894Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=xBCNFHqXU30",
       "backgroundImage": null,
       "galleryImage": null,
@@ -1798,6 +1851,7 @@
       "contentLink": null,
       "youtubeId": "kv4c7n1jDG0",
       "lastUpdated": "2026-02-13T20:48:31.123Z",
+      "createdOn": "2025-10-30T19:51:07.128Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=kv4c7n1jDG0",
       "backgroundImage": null,
       "galleryImage": null,
@@ -1825,6 +1879,7 @@
       "contentLink": null,
       "youtubeId": "gFlbqEC7M0Y",
       "lastUpdated": "2026-01-31T18:59:36.405Z",
+      "createdOn": "2025-10-30T19:37:52.514Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=gFlbqEC7M0Y",
       "backgroundImage": null,
       "galleryImage": null,
@@ -1852,6 +1907,7 @@
       "contentLink": null,
       "youtubeId": "n-xucFnccQE",
       "lastUpdated": "2026-01-31T18:59:36.286Z",
+      "createdOn": "2025-10-30T08:19:37.942Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=n-xucFnccQE",
       "backgroundImage": null,
       "galleryImage": null,
@@ -1878,13 +1934,14 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "UcLgG4yjRAE",
-      "lastUpdated": "2026-01-31T18:59:36.621Z",
+      "lastUpdated": "2026-02-20T16:58:16.923Z",
+      "createdOn": "2025-10-28T18:01:51.128Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=UcLgG4yjRAE",
       "backgroundImage": null,
       "galleryImage": null,
       "preview": "https://img.youtube.com/vi/UcLgG4yjRAE/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/flying-out-in-the-carboniferous",
-      "freeTags": "",
+      "freeTags": "Carboniferous, Arthropleura",
       "modernLat": null,
       "modernLon": null,
       "estimatedAge": null,
@@ -1906,6 +1963,7 @@
       "contentLink": null,
       "youtubeId": "vGcsiJaz9kU",
       "lastUpdated": "2026-02-13T20:48:31.114Z",
+      "createdOn": "2025-10-28T18:00:50.828Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=vGcsiJaz9kU",
       "backgroundImage": null,
       "galleryImage": null,
@@ -1934,6 +1992,7 @@
       "contentLink": null,
       "youtubeId": "rVHPlJZ9Y-E",
       "lastUpdated": "2026-02-10T15:53:47.625Z",
+      "createdOn": "2025-10-28T17:59:29.944Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=rVHPlJZ9Y-E",
       "backgroundImage": null,
       "galleryImage": null,
@@ -1948,8 +2007,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "410": {
-          "lat": -42.93818618392235,
-          "lon": -72.90955100884541,
+          "lat": -41.18284982280351,
+          "lon": -72.86132160041286,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -1968,14 +2027,15 @@
       "contentLink": null,
       "youtubeId": "ynHJbkBbbQo",
       "lastUpdated": "2026-02-10T15:53:47.678Z",
+      "createdOn": "2025-10-28T17:58:15.508Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=ynHJbkBbbQo",
       "backgroundImage": null,
       "galleryImage": null,
       "preview": "https://img.youtube.com/vi/ynHJbkBbbQo/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/mothra-radiodont",
       "freeTags": "Global Oceans, Cambrian, Radiodont, “Mothra”",
-      "modernLat": -2.92,
-      "modernLon": -28.42,
+      "modernLat": -41.99,
+      "modernLon": 137.92,
       "estimatedAge": 500,
       "location": "global oceans",
       "confidence": "medium",
@@ -2002,6 +2062,7 @@
       "contentLink": null,
       "youtubeId": "ZdPTYamnqQA",
       "lastUpdated": "2026-02-10T17:32:18.910Z",
+      "createdOn": "2025-10-28T17:56:54.895Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=ZdPTYamnqQA",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2016,8 +2077,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "410": {
-          "lat": -28.795712819828736,
-          "lon": -71.898602416608,
+          "lat": -25.90332588724819,
+          "lon": -71.72666454112657,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -2036,6 +2097,7 @@
       "contentLink": null,
       "youtubeId": "AtjcmHAW83c",
       "lastUpdated": "2026-02-10T15:53:47.852Z",
+      "createdOn": "2025-10-28T17:55:25.825Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=AtjcmHAW83c",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2070,6 +2132,7 @@
       "contentLink": null,
       "youtubeId": "WpA23XqUnq0",
       "lastUpdated": "2026-02-10T15:53:47.690Z",
+      "createdOn": "2025-10-24T12:44:48.967Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=WpA23XqUnq0",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2084,8 +2147,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 27.753785992743225,
-          "lon": -42.79647251829875,
+          "lat": 27.75057260781368,
+          "lon": -39.31471191765084,
           "validationStatus": "on_land"
         }
       }
@@ -2103,6 +2166,7 @@
       "contentLink": null,
       "youtubeId": "g0uiR1Sb7aM",
       "lastUpdated": "2026-01-31T18:59:36.676Z",
+      "createdOn": "2025-10-18T17:51:12.543Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=g0uiR1Sb7aM",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2131,6 +2195,7 @@
       "contentLink": null,
       "youtubeId": "LDY_8hUSJe0",
       "lastUpdated": "2026-02-10T15:53:47.699Z",
+      "createdOn": "2025-10-18T17:47:57.974Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=LDY_8hUSJe0",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2165,6 +2230,7 @@
       "contentLink": null,
       "youtubeId": "tRL5L3V9X0g",
       "lastUpdated": "2026-02-10T15:53:47.800Z",
+      "createdOn": "2025-10-18T17:42:05.797Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=tRL5L3V9X0g",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2199,6 +2265,7 @@
       "contentLink": null,
       "youtubeId": "9i0Re9vWqBE",
       "lastUpdated": "2026-02-10T15:53:47.894Z",
+      "createdOn": "2025-10-16T18:21:44.141Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=9i0Re9vWqBE",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2233,6 +2300,7 @@
       "contentLink": null,
       "youtubeId": "eB9JdjNCiiA",
       "lastUpdated": "2026-02-10T15:53:47.672Z",
+      "createdOn": "2025-10-15T16:44:00.869Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=eB9JdjNCiiA",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2247,8 +2315,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 44.65260531219413,
-          "lon": 132.75091957852072,
+          "lat": 45.9104,
+          "lon": 131.0103,
           "validationStatus": "on_land"
         }
       }
@@ -2267,6 +2335,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.858Z",
+      "createdOn": "2025-10-14T18:00:23.916Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea71c30d173d823f207_68ee8f9551ebde00de144d60_66_Million_Years_Ago_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea71c30d173d823f259_68ee8f9fedd9769d822be4c2_66_Million_Years_Ago_resultat.avif",
@@ -2301,6 +2370,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.612Z",
+      "createdOn": "2025-10-14T17:58:40.499Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb86ddaddf1ae72d7ca_68ee8f4d2d088fc1ec0beef3_Tyrannotitan__resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb86ddaddf1ae72d7c6_68ee8f483da8227728ca3bb1_Tyrannotitan__resultat.avif",
@@ -2315,8 +2385,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -43.06970697795579,
-          "lon": -38.70674809758947,
+          "lat": -42.07741929775572,
+          "lon": -30.502256539112544,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -2335,6 +2405,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.759Z",
+      "createdOn": "2025-10-14T17:57:39.825Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb233712eb03a3250c6_68ee8ef40ad73f70ab1939ac_Patagotitan_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb233712eb03a3250bb_68ee8ef948913abd5a0b0e02_Patagotitan_resultat.avif",
@@ -2349,8 +2420,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -39.572698764151895,
-          "lon": -32.61819283097639,
+          "lat": -40.55376957817193,
+          "lon": -37.37271016534027,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -2368,6 +2439,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.855Z",
+      "createdOn": "2025-10-14T17:56:20.651Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea98da5f5591bc7d129_68ee8e8ebcf37dabc1bfc78b_Climbing%2520up%2520the%2520Dune_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea88da5f5591bc7d124_68ee8e89ecef671091125c9c_Climbing%2520up%2520the%2520Dune_resultat.avif",
@@ -2382,8 +2454,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 47.718002935059666,
-          "lon": 106.53975819563483,
+          "lat": 43.62762935261102,
+          "lon": 108.26747269553991,
           "validationStatus": "on_land"
         }
       }
@@ -2401,6 +2473,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.921Z",
+      "createdOn": "2025-10-14T17:54:31.749Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb3ebe3964b4bdd6438_68ee8e3f4879a35ac513c807_Star_Touched__resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb3ebe3964b4bdd6433_68ee8e4524b64f113e0f1a17_Star_Touched__resultat.avif",
@@ -2415,8 +2488,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 23.771341558204128,
-          "lon": 112.09388771101555,
+          "lat": 30.455421275385238,
+          "lon": 120.63063825490241,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -2435,6 +2508,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.657Z",
+      "createdOn": "2025-10-14T17:53:18.360Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb0782a34bcfd158bad_68ee8df4419623d0435c9d7d_Paranoia_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb0782a34bcfd158ba0_68ee8def9c6987b5a3ad46e8_Paranoia_resultat.avif",
@@ -2469,6 +2543,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.910Z",
+      "createdOn": "2025-10-14T17:50:20.437Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea98d8129b0e5dc85ae_68ee8d302a0b999d247be1a1_Claw_Of_The_Desert_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea98d8129b0e5dc85b2_68ee8d34c9daa8157faae597_Claw_Of_The_Desert_resultat.avif",
@@ -2483,8 +2558,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 45.875253502757616,
-          "lon": 108.1747160581805,
+          "lat": 47.32545409783875,
+          "lon": 112.45656819475106,
           "validationStatus": "on_land"
         }
       }
@@ -2503,6 +2578,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.968Z",
+      "createdOn": "2025-10-14T17:48:17.212Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea9a3b6da00c0346a69_68ee8ca63fdbd9a73e09b7b0_Dance_Of_The_Kinnaree_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea9a3b6da00c0346a51_68ee8cacd406bcca9629e0b7_Dance_Of_The_Kinnaree_resultat.avif",
@@ -2517,8 +2593,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 24.23695882631435,
-          "lon": 114.1970257708172,
+          "lat": 17.503224459417677,
+          "lon": 110.29815902792342,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -2537,6 +2613,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.955Z",
+      "createdOn": "2025-10-14T17:46:19.734Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb0e11828a7a0455648_68ee8c0f66f323e5d86a42ff_One_Wing_Butterfly_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb0e11828a7a045563e_68ee8c0966f323e5d86a41c6_One_Wing_Butterfly_resultat.avif",
@@ -2551,8 +2628,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -18.093605632438504,
-          "lon": -25.15051671142253,
+          "lat": -16.259890673631475,
+          "lon": -25.813897424388273,
           "validationStatus": "on_land"
         }
       }
@@ -2571,6 +2648,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.786Z",
+      "createdOn": "2025-10-14T17:43:25.017Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb72efc18ca8c847828_68ee8b5604c0435e67305c06_Tyrannosaurus_rex_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb72efc18ca8c847824_68ee8b5df8f7ea9f521172f3_Tyrannosaurus_rex_resultat.avif",
@@ -2585,8 +2663,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 51.360854019000676,
-          "lon": -54.523887258382636,
+          "lat": 50.73097718155635,
+          "lon": -51.62433307218808,
           "validationStatus": "on_land"
         }
       }
@@ -2604,6 +2682,7 @@
       "contentLink": null,
       "youtubeId": "BYCjeNQvISM",
       "lastUpdated": "2026-01-31T18:59:35.652Z",
+      "createdOn": "2025-10-10T17:56:29.551Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=BYCjeNQvISM",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2632,6 +2711,7 @@
       "contentLink": null,
       "youtubeId": "vJOF2nqSpiY",
       "lastUpdated": "2026-02-10T15:53:47.756Z",
+      "createdOn": "2025-10-08T17:47:58.167Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=vJOF2nqSpiY",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2646,8 +2726,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 53.90496923324484,
-          "lon": -55.58119581545085,
+          "lat": 53.95315218060597,
+          "lon": -58.04980382985327,
           "validationStatus": "on_land"
         }
       }
@@ -2666,6 +2746,7 @@
       "contentLink": null,
       "youtubeId": "Ife9NB8oYZY",
       "lastUpdated": "2026-02-10T15:53:47.667Z",
+      "createdOn": "2025-10-08T17:46:03.615Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Ife9NB8oYZY",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2680,8 +2761,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 52.9383,
-          "lon": -50.7554,
+          "lat": 53.85295143127443,
+          "lon": -51.09813627331981,
           "validationStatus": "on_land"
         }
       }
@@ -2700,6 +2781,7 @@
       "contentLink": null,
       "youtubeId": "Kb76y7-YPII",
       "lastUpdated": "2026-02-10T15:53:47.621Z",
+      "createdOn": "2025-10-08T17:44:30.279Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Kb76y7-YPII",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2714,8 +2796,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 17.756287439921266,
-          "lon": 9.66998916786882,
+          "lat": 19.26604784654432,
+          "lon": 7.071018268395003,
           "validationStatus": "on_land"
         }
       }
@@ -2734,6 +2816,7 @@
       "contentLink": null,
       "youtubeId": "rGSei36hzpg",
       "lastUpdated": "2026-02-10T15:53:47.904Z",
+      "createdOn": "2025-10-08T17:42:00.221Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=rGSei36hzpg",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2748,8 +2831,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 47.115229646762735,
-          "lon": -57.127264880069,
+          "lat": 49.27723244080861,
+          "lon": -56.8118519401938,
           "validationStatus": "on_land"
         }
       }
@@ -2768,6 +2851,7 @@
       "contentLink": null,
       "youtubeId": "odnzXO8LUjQ",
       "lastUpdated": "2026-02-10T17:32:18.974Z",
+      "createdOn": "2025-10-06T17:56:51.112Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=odnzXO8LUjQ",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2782,8 +2866,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 42.430518611635314,
-          "lon": -48.96839242719237,
+          "lat": 42.33981317827046,
+          "lon": -52.433001380347,
           "validationStatus": "on_land"
         }
       }
@@ -2802,6 +2886,7 @@
       "contentLink": null,
       "youtubeId": "yt1vLRG3x14",
       "lastUpdated": "2026-02-10T15:53:47.839Z",
+      "createdOn": "2025-10-06T17:54:16.312Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=yt1vLRG3x14",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2816,8 +2901,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -40.15114492461383,
-          "lon": -35.0152899664413,
+          "lat": -41.878702550271285,
+          "lon": -37.356383667790574,
           "validationStatus": "on_land"
         }
       }
@@ -2835,6 +2920,7 @@
       "contentLink": null,
       "youtubeId": "fxZ6ixiDAPY",
       "lastUpdated": "2026-01-31T18:59:35.455Z",
+      "createdOn": "2025-10-01T12:22:32.068Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=fxZ6ixiDAPY",
       "backgroundImage": null,
       "galleryImage": null,
@@ -2863,22 +2949,23 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.912Z",
+      "createdOn": "2025-09-30T18:25:13.908Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eae3adf1f17bbfb2088_68dc2082cc710f0f7722b4b0_MirasaurusHalftone_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eae3adf1f17bbfb2085_68dc207e66cdfa15c8fdbfca_MirasaurusHalftone_resultat.avif",
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eae3adf1f17bbfb2088_68dc2082cc710f0f7722b4b0_MirasaurusHalftone_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/mirasaura",
       "freeTags": "Europe, Middle Triassic, Mirasaura",
-      "modernLat": 49.03,
-      "modernLon": 16.52,
+      "modernLat": 50,
+      "modernLon": 15,
       "estimatedAge": 235,
       "location": "europe (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land",
       "periods": {
         "220": {
-          "lat": 36.3145,
-          "lon": 26.8376,
+          "lat": 36.2816,
+          "lon": 25.1212,
           "validationStatus": "on_land"
         }
       }
@@ -2897,6 +2984,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.595Z",
+      "createdOn": "2025-09-30T18:22:45.783Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb6ed9199c7f1acb7ed_68dc1febca5bf98ef2fb3c79_tyrannotitanMaster2_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb6ed9199c7f1acb7dd_68dc1ff10ae09672d4ce5d3e_tyrannotitanMaster2_resultat.avif",
@@ -2911,8 +2999,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -39.839638185576476,
-          "lon": -33.503046458218016,
+          "lat": -40.14631464098337,
+          "lon": -35.98917898547619,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -2931,6 +3019,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.568Z",
+      "createdOn": "2025-09-30T18:21:09.459Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb7e5b9ab24511c9276_68dc1f911d86c4c33ca8cfef_Two%2520Of%2520Swords%2520A3_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb7e5b9ab24511c9273_68dc1f8a079b29c41cc4f452_Two%2520Of%2520Swords%2520A3_resultat.avif",
@@ -2945,8 +3034,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 55.704425576357174,
-          "lon": -57.72387152185885,
+          "lat": 55.500827655320656,
+          "lon": -58.36294111563277,
           "validationStatus": "on_land"
         }
       }
@@ -2965,6 +3054,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.664Z",
+      "createdOn": "2025-09-30T18:19:10.745Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb4466d1424a75724c6_68dc1efed9e240ff911c5d43_Taurus%2520Season%2520A4_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb4466d1424a75724c1_68dc1ef2693fa05b78aad2f6_Taurus%2520Season%2520A4_resultat.avif",
@@ -2979,8 +3069,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -42.95746687167941,
-          "lon": -32.18222124415081,
+          "lat": -43.40043428461416,
+          "lon": -32.23131157158178,
           "validationStatus": "on_land"
         }
       }
@@ -2999,6 +3089,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.936Z",
+      "createdOn": "2025-09-30T18:17:00.986Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eac8d8129b0e5dc8613_68dc1f3bdd83fc9abcae1666_RapetoGeminiSeasonFull_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eac8d8129b0e5dc8610_68dc1f4bfc9c3a3fcc28f9ed_RapetoGeminiSeasonFull_resultat.avif",
@@ -3033,6 +3124,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.695Z",
+      "createdOn": "2025-09-30T18:14:00.230Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead1744669df8ec3cba_68dc1dad5ee1bddc2bec3e08_LeoSeasonJPG3_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead1744669df8ec3cbe_68dc1db1f97ff20ecbdcdc5c_LeoSeasonJPG3_resultat.avif",
@@ -3047,8 +3139,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 29.093122287642224,
-          "lon": -35.77473905453335,
+          "lat": 29.378451480686355,
+          "lon": -36.474543030075374,
           "validationStatus": "on_land"
         }
       }
@@ -3067,6 +3159,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.923Z",
+      "createdOn": "2025-09-30T18:11:59.990Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb50a4a260388f86398_68dc1d53fc9c3a3fcc282856_GT%2520Master_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb50a4a260388f86395_68dc1d3c1f5aa7ce5040ce9c_GT%2520Master_resultat.avif",
@@ -3081,8 +3174,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 42.85284570620036,
-          "lon": 107.80301001493605,
+          "lat": 37.48375150692058,
+          "lon": 110.42681529474665,
           "validationStatus": "on_land"
         }
       }
@@ -3101,6 +3194,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.687Z",
+      "createdOn": "2025-09-30T18:09:54.556Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eac415ffd151005d367_68dc1ccff97ff20ecbdc8b11_Four%2520Of%2520Wands%2520A3_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eac415ffd151005d35b_68dc1cd24e2db86e08df8d13_Four%2520Of%2520Wands%2520A3_resultat.avif",
@@ -3115,8 +3209,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 57.45249164102042,
-          "lon": -58.365945340294424,
+          "lat": 55.620777377458055,
+          "lon": -59.0813705100442,
           "validationStatus": "on_land"
         }
       }
@@ -3135,6 +3229,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.970Z",
+      "createdOn": "2025-09-30T18:07:12.123Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea725a291e9f4ac41d2_68dc1c28923ed516b780a82e_DiliphotumorHigh_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea725a291e9f4ac41cd_68dc1c0dfc536350d541a675_DiliphotumorHigh_resultat.avif",
@@ -3169,6 +3264,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.634Z",
+      "createdOn": "2025-09-30T18:04:58.731Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea87b800aaaecfd2d5c_68dc1b9140c36f91f934d94d_Capricorn%2520SeasonReJPG_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea87b800aaaecfd2d58_68dc1b9598b0a0ea42fe57ed_Capricorn%2520SeasonReJPG_resultat.avif",
@@ -3183,8 +3279,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 20.054841007631396,
-          "lon": 108.75507599035114,
+          "lat": 27.26169842577628,
+          "lon": 109.65320665370245,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -3203,6 +3299,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.940Z",
+      "createdOn": "2025-09-30T17:40:41.678Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb7049e8f6fb4d0f475_68dc15e7e78e5c3958089d26_Tyrannosaurus%2520Rex_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb7049e8f6fb4d0f479_68dc15e2a28f53a0a98cc0e9_Tyrannosaurus%2520Rex_resultat.avif",
@@ -3217,8 +3314,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 52.44580692868514,
-          "lon": -55.90023227993509,
+          "lat": 53.933,
+          "lon": -54.3962,
           "validationStatus": "on_land"
         }
       }
@@ -3237,6 +3334,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.832Z",
+      "createdOn": "2025-09-30T17:38:33.990Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf3ccfb1e5e0f650a0_68dc15373e35840a374715b4_Moschops_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf3ccfb1e5e0f650a4_68dc1533a410e16ce6307001_Moschops_resultat.avif",
@@ -3271,6 +3369,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.728Z",
+      "createdOn": "2025-09-30T17:32:42.209Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea975fe348c59c55380_68dc140b16c8d2ad82084a05_Cryodrakon_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea975fe348c59c55384_68dc100d0eb00879eb78ad46_Cryodrakon_resultat.png",
@@ -3285,8 +3384,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 54.09555664492212,
-          "lon": -61.64671111010909,
+          "lat": 57.086184601109274,
+          "lon": -62.445061497606694,
           "validationStatus": "on_land"
         }
       }
@@ -3305,6 +3404,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.834Z",
+      "createdOn": "2025-09-30T17:11:45.759Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb8f283875e63d13f44_68dc148d3ea9e4aca3aec159_Xiphactinus_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb9f283875e63d13f51_68dc0f0ab613c8c68407c721_Xiphactinus_resultat.jpeg",
@@ -3319,8 +3419,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 43.79031256206164,
-          "lon": -51.85741899121799,
+          "lat": 41.24401670205603,
+          "lon": -49.830752956538106,
           "validationStatus": "on_land"
         }
       }
@@ -3338,6 +3438,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.779Z",
+      "createdOn": "2025-09-30T17:09:44.491Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb8f4658f638a88731a_68dc149b3ea9e4aca3aec6d5_Tyrannotitan_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb8f4658f638a88731e_68dc0e9325a3368593ee880f_Tyrannotitan_resultat.jpeg",
@@ -3352,8 +3453,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -40.51519239857156,
-          "lon": -40.53672408337643,
+          "lat": -41.6871482160852,
+          "lon": -37.113840346453415,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -3372,6 +3473,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.863Z",
+      "createdOn": "2025-09-30T17:07:52.039Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb26f136f04b843a9ad_68dc14a7719e18ca7f9524d8_Shringasaurus_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb26f136f04b843a9a4_68dc0de012cee39f743e6371_Shringasaurus_resultat.jpeg",
@@ -3386,8 +3488,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "220": {
-          "lat": -30.1346819451975,
-          "lon": 51.18162049942259,
+          "lat": -34.230822355171824,
+          "lon": 52.179338567994314,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -3406,6 +3508,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.866Z",
+      "createdOn": "2025-09-30T17:02:54.456Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead32cf6974d80f046e_68dc14b172486c26365b0079_Inostrancevia_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead32cf6974d80f049c_68dc0c95cc3fcd96dec9f221_Inostrancevia_resultat.jpeg",
@@ -3440,6 +3543,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.966Z",
+      "createdOn": "2025-09-30T16:59:01.256Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eac58d4eef88884d5c7_68dc14bc6a104223f621d996_Hibbertopterus_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68dc0b5eb7f839a4b2e33816_Hibbertopterus_resultat.avif",
@@ -3474,6 +3578,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.631Z",
+      "createdOn": "2025-09-30T16:46:23.205Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaaad553a27dc7520e1_68dc14c61ba51432f5740970_Dimetrodon_resultat.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaaad553a27dc7520e5_68dc086596efd5baac950cf4_Dimetrodon_resultat.jpeg",
@@ -3508,6 +3613,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.929Z",
+      "createdOn": "2025-09-23T17:40:29.084Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68d2db4b7d1d1b4ad15453c0_Trex%20Portrait-min.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68d2db2ee49c91f8f69e9a37_Trex%20Portrait_resultat.avif",
@@ -3522,8 +3628,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 53.71571762320362,
-          "lon": -59.31521674039544,
+          "lat": 49.31045447669214,
+          "lon": -60.648586012424936,
           "validationStatus": "on_land"
         }
       }
@@ -3542,6 +3648,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.769Z",
+      "createdOn": "2025-09-23T17:37:56.637Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb66f9ddc9e7d48c552_68d2da8dfaa40ba386d3be78_Torvosaurus%2520Portrait-min.png",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb66f9ddc9e7d48c53e_68d2da66b13b0428fe54d097_Torvosaurus%2520Portrait_resultat.jpeg",
@@ -3556,8 +3663,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 30.385331746952133,
-          "lon": -35.42504188166857,
+          "lat": 34.61009849417307,
+          "lon": -36.6132632873474,
           "validationStatus": "on_land"
         }
       }
@@ -3576,6 +3683,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.901Z",
+      "createdOn": "2025-09-23T17:33:50.320Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68d2d9b36176b7189139df02_The%20Tyrant%20Lizard%20King_Default%20with%20pattern-min%20(1).avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68d2d926a6c451e8c58b432c_The%20Tyrant%20Lizard%20King_Default%20with%20pattern_resultat.avif",
@@ -3590,8 +3698,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 55.24516854212365,
-          "lon": -50.048371056722736,
+          "lat": 57.54376712557139,
+          "lon": -51.01197540824329,
           "validationStatus": "on_land"
         }
       }
@@ -3610,6 +3718,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.885Z",
+      "createdOn": "2025-09-23T17:29:21.375Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68d2d897383507b6efe0dc40_Spinosaurus_Final.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68d2d894383507b6efe0dbaa_Spinosaurus_Final_resultat.avif",
@@ -3624,8 +3733,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 19.875831469638282,
-          "lon": 3.6481407820077747,
+          "lat": 19.47266105773419,
+          "lon": 6.869385334138474,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -3644,6 +3753,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.914Z",
+      "createdOn": "2025-09-23T17:26:58.408Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea8320270600e524789_68d2d821c67cb07ff8033c27_Carcha_Final-min.png",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea8320270600e524784_68d2d8242dc940b51f7899bb_Carcha_Final_resultat.png",
@@ -3658,8 +3768,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 21.943916268317373,
-          "lon": 20.069095610132386,
+          "lat": 21.735078564969793,
+          "lon": 19.178331269950803,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -3678,6 +3788,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.969Z",
+      "createdOn": "2025-09-23T17:22:09.876Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea72f305a3b6b29eff8_68d2d659b638e4efbf47e21a_Allo%2520With%2520Background.jpeg",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea72f305a3b6b29eff4_68d2d65f8abacdcf6b0bb807_Allo%2520With%2520Background_resultat.jpeg",
@@ -3692,8 +3803,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 34.71955128025101,
-          "lon": -39.21920315970141,
+          "lat": 31.860603595548227,
+          "lon": -36.80990040187781,
           "validationStatus": "on_land"
         }
       }
@@ -3711,6 +3822,7 @@
       "contentLink": null,
       "youtubeId": "iGycRl17fZs",
       "lastUpdated": "2026-01-31T18:59:34.500Z",
+      "createdOn": "2025-09-23T16:34:31.783Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=iGycRl17fZs",
       "backgroundImage": null,
       "galleryImage": null,
@@ -3738,6 +3850,7 @@
       "contentLink": null,
       "youtubeId": "UhfNN3NayZM",
       "lastUpdated": "2026-01-31T18:59:35.376Z",
+      "createdOn": "2025-09-19T16:56:51.391Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=UhfNN3NayZM",
       "backgroundImage": null,
       "galleryImage": null,
@@ -3765,6 +3878,7 @@
       "contentLink": null,
       "youtubeId": "-LYzXDTDgaA",
       "lastUpdated": "2026-02-10T15:53:47.697Z",
+      "createdOn": "2025-09-19T16:54:59.070Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=-LYzXDTDgaA",
       "backgroundImage": null,
       "galleryImage": null,
@@ -3779,8 +3893,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 23.85462282148984,
-          "lon": 17.435540230534958,
+          "lat": 26.33754726373459,
+          "lon": 12.423392248037644,
           "validationStatus": "on_land"
         }
       }
@@ -3798,6 +3912,7 @@
       "contentLink": null,
       "youtubeId": "8ea3aYlKy9o",
       "lastUpdated": "2026-02-10T17:32:19.026Z",
+      "createdOn": "2025-09-09T18:26:16.951Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=8ea3aYlKy9o",
       "backgroundImage": null,
       "galleryImage": null,
@@ -3812,8 +3927,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -18.372876782869362,
-          "lon": -26.562824340189426,
+          "lat": -17.089767073122587,
+          "lon": -21.957356433784703,
           "validationStatus": "on_land"
         }
       }
@@ -3832,6 +3947,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.660Z",
+      "createdOn": "2025-09-01T17:22:17.717Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d6953e521f2c5f2e2f09_gaelle-seguillon-gaelle-seguillon-dino-swamp-close-up-print.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb3281159f79ee68df2_68c887576859f9f8e2fe3996_68b5d6953e521f2c5f2e2f09_gaelle-seguillon-gaelle-seguillon-dino-swamp-close-up-print_resultat.avif",
@@ -3846,8 +3962,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 54.79130847542541,
-          "lon": -60.913283609604626,
+          "lat": 52.77723726186715,
+          "lon": -59.515203872758924,
           "validationStatus": "on_land"
         }
       }
@@ -3865,6 +3981,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-01-31T18:59:35.247Z",
+      "createdOn": "2025-09-01T17:16:35.901Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d56efc7e786bb086c52f_Gaelle-Seguillon-WorldFrozenInTime_large_print.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb84803abbbbab11933_68c88765a74ec1036edee7cb_68b5d56efc7e786bb086c52f_Gaelle-Seguillon-WorldFrozenInTime_large_print_resultat.avif",
@@ -3893,6 +4010,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.817Z",
+      "createdOn": "2025-09-01T17:10:19.512Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d4938ef63fd78f75aa26_gaelle-seguillon-gaelle-seguillon-nanuqsaurus-mating-display-print-min.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68c8879347d708de3994103e_gaelle-seguillon-gaelle-seguillon-nanuqsaurus-mating-display-print-min-p-3200_resultat.avif",
@@ -3907,8 +4025,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 78.55835484051812,
-          "lon": -92.220019586997,
+          "lat": 78.23750647753594,
+          "lon": -91.5464761440593,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -3927,6 +4045,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.948Z",
+      "createdOn": "2025-09-01T17:02:27.856Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d23ef6772f7899fae595_gaelle-seguillon-dino-swamp-demo-007-print.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb787ce485a0871d8b7_68c8879f5c2c53050ea7e2a2_68b5d23ef6772f7899fae595_gaelle-seguillon-dino-swamp-demo-007-print_resultat.avif",
@@ -3941,8 +4060,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 52.09121511531251,
-          "lon": -57.672416015306545,
+          "lat": 55.70317101718192,
+          "lon": -53.95535638921888,
           "validationStatus": "on_land"
         }
       }
@@ -3961,22 +4080,23 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.907Z",
+      "createdOn": "2025-09-01T17:00:38.243Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d13d52b78aa1c56846c6_Gaelle_Seguillon_a_spring_night_004_print.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb0a43d51d32a8e8c46_68c887aaa5c988a4fc0655a6_68b5d13d52b78aa1c56846c6_Gaelle_Seguillon_a_spring_night_004_print_resultat.avif",
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d13d52b78aa1c56846c6_Gaelle_Seguillon_a_spring_night_004_print.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/on-a-spring-night-66-million-years-ago-part-4",
       "freeTags": "Europe, Late Cretaceous, Balaur Bondoc",
-      "modernLat": 52.03,
-      "modernLon": 14.46,
+      "modernLat": 49.03,
+      "modernLon": 16.52,
       "estimatedAge": 66,
       "location": "europe (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 44.4305,
-          "lon": 29.1841,
+          "lat": 41.5453,
+          "lon": 31.2976,
           "validationStatus": "on_land"
         }
       }
@@ -3995,22 +4115,23 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.843Z",
+      "createdOn": "2025-09-01T16:58:13.402Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d0d92f3c4d0c91cf3477_Gaelle-Seguillon_Balaur-bondoc_strange-stars_009_print.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf04634c977f9c7db5_68c887fb9753dde91f882727_68b5d0d92f3c4d0c91cf3477_Gaelle-Seguillon_Balaur-bondoc_strange-stars_009_print_resultat.avif",
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d0d92f3c4d0c91cf3477_Gaelle-Seguillon_Balaur-bondoc_strange-stars_009_print.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/on-a-spring-night-66-million-years-ago-part-3",
       "freeTags": "Europe, Late Cretaceous, Balaur Bondoc",
-      "modernLat": 47.87,
-      "modernLon": 13.89,
+      "modernLat": 52.03,
+      "modernLon": 14.46,
       "estimatedAge": 66,
       "location": "europe (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 33.6516,
-          "lon": 29.0297,
+          "lat": 44.4305,
+          "lon": 29.1841,
           "validationStatus": "on_land"
         }
       }
@@ -4029,22 +4150,23 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.867Z",
+      "createdOn": "2025-09-01T16:55:57.987Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d0610a093a88388bf411_gaelle-seguillon-gaelle-seguillon-balaur-bondoc-waterfall-print.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb0c702b657b2d9cd37_68c888154cf63c9754ac7054__gaelle-seguillon-gaelle-seguillon-balaur-bondoc-waterfall-print_resultat.avif",
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d0610a093a88388bf411_gaelle-seguillon-gaelle-seguillon-balaur-bondoc-waterfall-print.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/on-a-spring-night-66-million-years-ago-part-2",
       "freeTags": "Europe, Late Cretaceous, Balaur Bondoc",
-      "modernLat": 50.92,
-      "modernLon": 17.54,
+      "modernLat": 47.87,
+      "modernLon": 13.89,
       "estimatedAge": 66,
       "location": "europe (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 44.1633284273351,
-          "lon": 31.19376333782381,
+          "lat": 33.6516,
+          "lon": 29.0297,
           "validationStatus": "on_land"
         }
       }
@@ -4057,11 +4179,12 @@
       "creditsLine": "Created by PaleoEdits. based on material from BBC Studios’ Prehistoric Planet for Apple TV+Life in the Cretaceous: Extremes",
       "category": "videos",
       "isNew": false,
-      "displayOnApp": true,
+      "displayOnApp": false,
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "mzIEBagCC_0",
-      "lastUpdated": "2026-02-15T13:35:58.299Z",
+      "lastUpdated": "2026-02-23T11:38:40.471Z",
+      "createdOn": "2025-08-22T13:21:08.390Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=mzIEBagCC_0",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4084,11 +4207,12 @@
       "creditsLine": "Created by PaleoEdits. based on material from BBC Studios’ Prehistoric Planet for Apple TV+Life in the Cretaceous: Extremes",
       "category": "videos",
       "isNew": false,
-      "displayOnApp": true,
+      "displayOnApp": false,
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "3BiEsrdVfG0",
-      "lastUpdated": "2026-02-15T13:35:58.302Z",
+      "lastUpdated": "2026-02-23T11:38:40.455Z",
+      "createdOn": "2025-08-22T13:19:38.911Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=3BiEsrdVfG0",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4111,11 +4235,12 @@
       "creditsLine": "Created by PaleoEdits. based on material from BBC Studios’ Prehistoric Planet for Apple TV+.",
       "category": "videos",
       "isNew": false,
-      "displayOnApp": true,
+      "displayOnApp": false,
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "sRA5Ak_ajqo",
-      "lastUpdated": "2026-02-15T13:35:58.307Z",
+      "lastUpdated": "2026-02-23T11:38:40.469Z",
+      "createdOn": "2025-08-22T13:17:37.159Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=sRA5Ak_ajqo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4138,11 +4263,12 @@
       "creditsLine": "Created by PaleoEdits. based on material from BBC Studios’ Prehistoric Planet for Apple TV+.",
       "category": "videos",
       "isNew": false,
-      "displayOnApp": true,
+      "displayOnApp": false,
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "dF-NkXYeEF8",
-      "lastUpdated": "2026-02-15T13:35:58.308Z",
+      "lastUpdated": "2026-02-23T11:38:40.457Z",
+      "createdOn": "2025-08-22T13:13:50.242Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=dF-NkXYeEF8",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4165,11 +4291,12 @@
       "creditsLine": "Created by PaleoEdits. based on material from BBC Studios’ Prehistoric Planet for Apple TV+.",
       "category": "videos",
       "isNew": false,
-      "displayOnApp": true,
+      "displayOnApp": false,
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "rra42f4jAYo",
-      "lastUpdated": "2026-02-15T13:35:58.310Z",
+      "lastUpdated": "2026-02-23T11:38:40.459Z",
+      "createdOn": "2025-08-22T13:13:49.210Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=rra42f4jAYo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4197,6 +4324,7 @@
       "contentLink": null,
       "youtubeId": "6Ojagf3S0Qo",
       "lastUpdated": "2026-01-31T18:59:56.239Z",
+      "createdOn": "2025-08-22T11:04:15.231Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=6Ojagf3S0Qo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4219,11 +4347,12 @@
       "creditsLine": "Created by PaleoEdits. based on material from BBC Studios’ Prehistoric Planet for Apple TV+.",
       "category": "videos",
       "isNew": false,
-      "displayOnApp": true,
+      "displayOnApp": false,
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "PjryN2F6fF0",
-      "lastUpdated": "2026-02-15T13:35:58.303Z",
+      "lastUpdated": "2026-02-23T11:38:40.472Z",
+      "createdOn": "2025-08-22T10:36:46.316Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=PjryN2F6fF0",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4251,6 +4380,7 @@
       "contentLink": null,
       "youtubeId": "ED_AzSB0BtU",
       "lastUpdated": "2026-01-31T18:59:57.047Z",
+      "createdOn": "2025-08-21T12:11:46.915Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=ED_AzSB0BtU",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4278,6 +4408,7 @@
       "contentLink": null,
       "youtubeId": "OH57rtnKCEM",
       "lastUpdated": "2026-02-13T20:48:31.128Z",
+      "createdOn": "2025-08-21T12:05:54.955Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=OH57rtnKCEM",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4305,6 +4436,7 @@
       "contentLink": null,
       "youtubeId": "JTnOFY7V2Vg",
       "lastUpdated": "2026-02-10T15:53:47.827Z",
+      "createdOn": "2025-08-20T18:23:22.423Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=JTnOFY7V2Vg",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4319,8 +4451,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 43.04043890323407,
-          "lon": -59.832464142658864,
+          "lat": 44.693916507331025,
+          "lon": -63.98304000145528,
           "validationStatus": "on_land"
         }
       }
@@ -4338,6 +4470,7 @@
       "contentLink": null,
       "youtubeId": "Sx1fto0547Y",
       "lastUpdated": "2026-02-10T15:53:47.945Z",
+      "createdOn": "2025-08-20T18:21:51.409Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Sx1fto0547Y",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4352,8 +4485,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 59.61839956337304,
-          "lon": -59.98226799080041,
+          "lat": 56.309932279374074,
+          "lon": -60.424024392704446,
           "validationStatus": "on_land"
         }
       }
@@ -4371,6 +4504,7 @@
       "contentLink": null,
       "youtubeId": "9kuzY3_HD08",
       "lastUpdated": "2026-02-10T15:53:47.763Z",
+      "createdOn": "2025-08-20T18:18:47.399Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=9kuzY3_HD08",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4385,8 +4519,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 59.5806499096129,
-          "lon": -63.18344848343183,
+          "lat": 58.1953004037213,
+          "lon": -63.24930561608309,
           "validationStatus": "on_land"
         }
       }
@@ -4404,10 +4538,11 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-13T20:48:31.136Z",
+      "createdOn": "2025-08-20T17:22:18.782Z",
       "youtubeUrl": null,
-      "backgroundImage": null,
-      "galleryImage": null,
-      "preview": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68a60468a73e9b2763f1302f_Smilodon_Knight.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb26742b1c35c724d71_68c886d0c24b2c7988aee09b_68a60468a73e9b2763f1302f_Smilodon_Knight_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68a60468a73e9b2763f1302f_Smilodon_Knight.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/smilodon",
       "freeTags": "America, Pléistocène, Smilodon, Saber-Toothed Tiger",
       "modernLat": null,
@@ -4431,6 +4566,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.822Z",
+      "createdOn": "2025-08-20T17:19:03.266Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68a603b674009d3a983b68bf_Laelaps-Charles_Knight-1897.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead833f792d522f3122_68c886da9a68ffee8db32ff5_68a603b674009d3a983b68bf_Laelaps-Charles_Knight-1897_resultat.avif",
@@ -4445,8 +4581,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 42.11406757235969,
-          "lon": -54.81512940167055,
+          "lat": 45.80537203538329,
+          "lon": -53.963387465135256,
           "validationStatus": "on_land"
         }
       }
@@ -4464,6 +4600,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.989Z",
+      "createdOn": "2025-08-20T17:15:16.864Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68a602b909a23d15e4958bc2_Pasta-Brontosaurus.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea8c806cb955e3f653e_68c886e8de144a394c664422_68a602b909a23d15e4958bc2_Pasta-Brontosaurus_resultat.avif",
@@ -4478,8 +4615,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 28.556802566974017,
-          "lon": -35.19125866031665,
+          "lat": 30.121614557706817,
+          "lon": -36.009795285007385,
           "validationStatus": "on_land"
         }
       }
@@ -4497,6 +4634,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T17:32:18.946Z",
+      "createdOn": "2025-08-20T17:13:19.385Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68a6024265cfc203108d20cc_Wooly_Mammoths.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb8822621098df2a59c_68c886f32f12b3278597817f_68a6024265cfc203108d20cc_Wooly_Mammoths_resultat.avif",
@@ -4530,6 +4668,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.591Z",
+      "createdOn": "2025-08-20T17:08:48.604Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68a60192ffa9bc0346c12642_DimetrodonKnight.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaaad0fcc53bac9bb66_68c88704bd238c5a7b62b6a0_68a60192ffa9bc0346c12642_DimetrodonKnight_resultat.avif",
@@ -4544,8 +4683,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "280": {
-          "lat": 4.069930096182422,
-          "lon": -26.62944265303459,
+          "lat": 4.922210049854611,
+          "lon": -28.80379408255937,
           "validationStatus": "on_land"
         }
       }
@@ -4563,6 +4702,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.829Z",
+      "createdOn": "2025-08-20T17:02:19.901Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68a600955a84e020ae653301_Triceratops_and_Tyrannosaurus_by_Knight.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb48beb8257b76ff288_68c8871bcced445c79f2e646_68a600955a84e020ae653301_Triceratops_and_Tyrannosaurus_by_Knight_resultat.avif",
@@ -4577,8 +4717,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 48.95047564062247,
-          "lon": -53.45177977838569,
+          "lat": 48.87910205781245,
+          "lon": -51.075381969349905,
           "validationStatus": "on_land"
         }
       }
@@ -4596,6 +4736,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-01-31T18:59:57.156Z",
+      "createdOn": "2025-08-20T16:57:11.801Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68a5fe8b7d7aaae259a7227c_Duria_Antiquior.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eab3adf1f17bbfb1feb_68c8872536b6c6570f29a1ec_68a5fe8b7d7aaae259a7227c_Duria_Antiquior_resultat.avif",
@@ -4623,6 +4764,7 @@
       "contentLink": null,
       "youtubeId": "WfmLXPpRQaA",
       "lastUpdated": "2026-01-31T18:59:58.139Z",
+      "createdOn": "2025-08-20T15:33:02.245Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=WfmLXPpRQaA",
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea80f77a93b67655145_68a5eaf214d64a7c9cf41442_poster.jpeg",
       "galleryImage": null,
@@ -4651,6 +4793,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.819Z",
+      "createdOn": "2025-08-06T17:45:21.768Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6894961704aa5fefbc16c1c0_diplocaulus2-min.avif",
       "galleryImage": null,
@@ -4665,8 +4808,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "280": {
-          "lat": 2.470175970670884,
-          "lon": -28.741165770196556,
+          "lat": 0.5039400697461582,
+          "lon": -28.9898071389651,
           "validationStatus": "on_land"
         }
       }
@@ -4685,6 +4828,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.806Z",
+      "createdOn": "2025-08-06T17:39:48.356Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2c3ca10d6e8b1f480_68b6f0d344f99a75f9a08b4c_agentinosaurus-min.jpeg",
       "galleryImage": null,
@@ -4699,8 +4843,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -40.85909496020554,
-          "lon": -38.72953281276864,
+          "lat": -36.21057315818373,
+          "lon": -35.8143831998195,
           "validationStatus": "on_land"
         }
       }
@@ -4719,6 +4863,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.907Z",
+      "createdOn": "2025-08-06T17:35:45.199Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/689392b2a0712fa9dcfe45ed_trice%20final-min.avif",
       "galleryImage": null,
@@ -4733,8 +4878,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 49.32035845095743,
-          "lon": -55.74418731455025,
+          "lat": 45.389434965428066,
+          "lon": -54.21895721265352,
           "validationStatus": "on_land"
         }
       }
@@ -4753,6 +4898,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.692Z",
+      "createdOn": "2025-08-06T17:31:48.074Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/689391fa00845c485017b479_trex-min.avif",
       "galleryImage": null,
@@ -4767,8 +4913,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 52.32120934458805,
-          "lon": -54.917055793746705,
+          "lat": 50.44798946249107,
+          "lon": -50.709153336402984,
           "validationStatus": "on_land"
         }
       }
@@ -4786,6 +4932,7 @@
       "contentLink": null,
       "youtubeId": "hlaXIRTjNfo",
       "lastUpdated": "2026-02-13T20:48:31.145Z",
+      "createdOn": "2025-07-13T19:45:46.519Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=hlaXIRTjNfo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4813,6 +4960,7 @@
       "contentLink": null,
       "youtubeId": "vlXQJHZJuv8",
       "lastUpdated": "2026-02-13T20:48:31.116Z",
+      "createdOn": "2025-07-13T19:43:58.344Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=vlXQJHZJuv8",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4835,11 +4983,12 @@
       "creditsLine": "Produced by RKO Radio Pictures, featuring stop-motion animation by Willis O’Brien.",
       "category": "videos",
       "isNew": false,
-      "displayOnApp": true,
+      "displayOnApp": false,
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "yvD3X3RcK3Y",
-      "lastUpdated": "2026-02-15T13:35:58.297Z",
+      "lastUpdated": "2026-02-23T11:38:40.464Z",
+      "createdOn": "2025-07-13T19:42:08.400Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=yvD3X3RcK3Y",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4867,6 +5016,7 @@
       "contentLink": null,
       "youtubeId": "fIDJ-Y-_Dxs",
       "lastUpdated": "2026-02-13T20:48:31.141Z",
+      "createdOn": "2025-07-13T19:39:02.381Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=fIDJ-Y-_Dxs",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4894,6 +5044,7 @@
       "contentLink": null,
       "youtubeId": "_bcexfqQJ7A",
       "lastUpdated": "2026-02-13T20:48:31.179Z",
+      "createdOn": "2025-07-13T19:33:45.456Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=_bcexfqQJ7A",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4921,6 +5072,7 @@
       "contentLink": null,
       "youtubeId": "wCwgteg_kss",
       "lastUpdated": "2026-02-13T20:48:31.163Z",
+      "createdOn": "2025-07-13T19:30:14.583Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=wCwgteg_kss",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4948,6 +5100,7 @@
       "contentLink": null,
       "youtubeId": "W2bgeq6hAlU",
       "lastUpdated": "2026-02-13T20:48:31.121Z",
+      "createdOn": "2025-07-13T19:11:09.242Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=W2bgeq6hAlU",
       "backgroundImage": null,
       "galleryImage": null,
@@ -4975,6 +5128,7 @@
       "contentLink": null,
       "youtubeId": "_KmaTwwRAwA",
       "lastUpdated": "2026-02-13T20:48:31.139Z",
+      "createdOn": "2025-07-13T18:43:25.518Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=_KmaTwwRAwA",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5002,6 +5156,7 @@
       "contentLink": null,
       "youtubeId": "C7kbVvpOGdQ",
       "lastUpdated": "2026-02-13T20:48:31.201Z",
+      "createdOn": "2025-07-13T18:41:31.897Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=C7kbVvpOGdQ",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5029,6 +5184,7 @@
       "contentLink": null,
       "youtubeId": "eVoEh483th4",
       "lastUpdated": "2026-02-13T20:48:31.134Z",
+      "createdOn": "2025-07-13T18:33:21.574Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=eVoEh483th4",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5056,6 +5212,7 @@
       "contentLink": null,
       "youtubeId": "jiw0TcGV7Hk",
       "lastUpdated": "2026-02-13T20:48:31.119Z",
+      "createdOn": "2025-07-13T18:31:50.774Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=jiw0TcGV7Hk",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5083,6 +5240,7 @@
       "contentLink": null,
       "youtubeId": "DbjR4szHGDQ",
       "lastUpdated": "2026-02-13T20:48:31.199Z",
+      "createdOn": "2025-07-13T18:29:00.246Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=DbjR4szHGDQ",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5110,6 +5268,7 @@
       "contentLink": null,
       "youtubeId": "z0nKCSY5UK4",
       "lastUpdated": "2026-02-13T20:48:31.210Z",
+      "createdOn": "2025-06-30T15:50:20.019Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=z0nKCSY5UK4",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5137,6 +5296,7 @@
       "contentLink": null,
       "youtubeId": "NN9N9g2_5Lc",
       "lastUpdated": "2026-02-13T20:48:31.126Z",
+      "createdOn": "2025-06-30T15:48:18.022Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=NN9N9g2_5Lc",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5164,6 +5324,7 @@
       "contentLink": null,
       "youtubeId": "KMJ38FXWxRU",
       "lastUpdated": "2026-02-13T20:48:31.131Z",
+      "createdOn": "2025-06-30T15:43:45.205Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=KMJ38FXWxRU",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5191,6 +5352,7 @@
       "contentLink": null,
       "youtubeId": "LYN9USd9Gpg",
       "lastUpdated": "2026-02-13T20:48:31.189Z",
+      "createdOn": "2025-06-30T15:26:40.685Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=LYN9USd9Gpg",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5218,6 +5380,7 @@
       "contentLink": null,
       "youtubeId": "uu_wnVcQ0h0",
       "lastUpdated": "2026-02-13T20:48:31.207Z",
+      "createdOn": "2025-06-30T15:24:24.062Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=uu_wnVcQ0h0",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5245,6 +5408,7 @@
       "contentLink": null,
       "youtubeId": "Rc_i5TKdmhs",
       "lastUpdated": "2026-02-13T20:48:31.169Z",
+      "createdOn": "2025-06-30T15:22:43.336Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Rc_i5TKdmhs",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5272,6 +5436,7 @@
       "contentLink": null,
       "youtubeId": "GjqjVzKzIQg",
       "lastUpdated": "2026-02-13T20:48:31.195Z",
+      "createdOn": "2025-06-30T15:19:47.474Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=GjqjVzKzIQg",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5299,6 +5464,7 @@
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/gallery/",
       "youtubeId": null,
       "lastUpdated": "2026-01-31T18:59:55.770Z",
+      "createdOn": "2025-06-17T17:09:45.679Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea76e2d6ecc2fbd527b_692ae8d1746ae62d8de1572a_Pteranodon_resultat.avif",
       "galleryImage": null,
@@ -5326,8 +5492,9 @@
       "contentLink": null,
       "youtubeId": "G35Iy1yZarg",
       "lastUpdated": "2026-02-13T20:48:31.111Z",
+      "createdOn": "2025-06-17T16:30:43.608Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=G35Iy1yZarg",
-      "backgroundImage": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb5bdec07120bef1308_685198dd716aed66e823c1e7_thelostworld.jpeg",
       "galleryImage": null,
       "preview": "https://img.youtube.com/vi/G35Iy1yZarg/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-lost-world-1925",
@@ -5353,10 +5520,11 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-13T20:48:31.212Z",
+      "createdOn": "2025-06-12T18:47:22.696Z",
       "youtubeUrl": null,
-      "backgroundImage": null,
-      "galleryImage": null,
-      "preview": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5ceb58e9c73b76c64c291_gaelle-seguillon-gaelle-seguillon-balaur-bondoc-portrait-print.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf6742b1c35c724ca9_68c88be1d6693ad331c8056a__gaelle-seguillon-gaelle-seguillon-balaur-bondoc-portrait-print_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5ceb58e9c73b76c64c291_gaelle-seguillon-gaelle-seguillon-balaur-bondoc-portrait-print.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/on-a-spring-night-66-million-years-ago-part-1",
       "freeTags": "North America, Tyrannosaurus rex, T.rex, Edmontosaurus",
       "modernLat": null,
@@ -5380,6 +5548,7 @@
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/spino/",
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.912Z",
+      "createdOn": "2025-06-08T16:37:40.422Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eba5031bfbfc228b244_6845bd0c4a1ab9413aed24ea_Sans%2520titre-1.jpeg",
       "galleryImage": null,
@@ -5394,8 +5563,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 18.805942128274875,
-          "lon": 5.881264516821464,
+          "lat": 22.03201538224736,
+          "lon": 7.87914818962591,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -5413,6 +5582,7 @@
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/sarco/",
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.983Z",
+      "createdOn": "2025-06-08T16:31:19.986Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb6c3793250e5d1388e_6846b151b975075fade84559_sarco.jpeg",
       "galleryImage": null,
@@ -5446,6 +5616,7 @@
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/quetza/",
       "youtubeId": null,
       "lastUpdated": "2026-02-13T21:02:45.649Z",
+      "createdOn": "2025-06-08T16:23:57.593Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2aa4b2d7791d86596_6845b9fa8657fd035baa86f7_Quetza.jpeg",
       "galleryImage": null,
@@ -5479,6 +5650,7 @@
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/lagoon/",
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:48.002Z",
+      "createdOn": "2025-06-08T16:15:44.646Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb549c52c7a3ecbd618_6845b786e04c328c642f125a_meg.jpeg",
       "galleryImage": null,
@@ -5493,8 +5665,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "15": {
-          "lat": 44.2772453348763,
-          "lon": 14.631689049678418,
+          "lat": 43.68335767528727,
+          "lon": 14.319710754842257,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -5512,6 +5684,7 @@
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/cretaceous-lagoon/",
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.976Z",
+      "createdOn": "2025-06-08T16:07:34.434Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea9ab1d2df98415b7aa_6845b5ff153a9f31378a4226_Ichthyosaurus.jpeg",
       "galleryImage": null,
@@ -5545,6 +5718,7 @@
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/edmon/",
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.832Z",
+      "createdOn": "2025-06-08T15:54:14.057Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eabab1d2df98415b7f1_6845b2f6fa10c2acc2a37039_Edmon.jpeg",
       "galleryImage": null,
@@ -5578,6 +5752,7 @@
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/dimetrodon/",
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.891Z",
+      "createdOn": "2025-06-08T15:46:34.723Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaa7bc291cb41807071_6855adb349b8866681860432_dimetrodon.jpeg",
       "galleryImage": null,
@@ -5592,8 +5767,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "280": {
-          "lat": 5.630916126143585,
-          "lon": -25.79236017234942,
+          "lat": 4.744854410122868,
+          "lon": -25.087450865488396,
           "validationStatus": "on_land"
         }
       }
@@ -5611,6 +5786,7 @@
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/deino/",
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:47.938Z",
+      "createdOn": "2025-06-08T15:41:57.372Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaa832c81efb7be61f6_68b6f51d4221a824166bea64_Deinonychus.jpeg",
       "galleryImage": null,
@@ -5644,6 +5820,7 @@
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/deinocheirus/",
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:50.604Z",
+      "createdOn": "2025-06-08T15:16:29.432Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6845a9c9153a9f313785061d_Deinocheirus.avif",
       "galleryImage": null,
@@ -5658,8 +5835,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 43.04206349932918,
-          "lon": 111.83242535297299,
+          "lat": 47.52175844061398,
+          "lon": 111.3334584649191,
           "validationStatus": "on_land"
         }
       }
@@ -5677,6 +5854,7 @@
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/aviary/",
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:50.762Z",
+      "createdOn": "2025-06-02T17:26:00.823Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2415ffd151005d451_683ddf0eeb0989da514f0c4a_Ptera%2520Concept%2520Art.jpeg",
       "galleryImage": null,
@@ -5691,8 +5869,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 39.71268357637565,
-          "lon": -56.26081315706056,
+          "lat": 41.031919186848036,
+          "lon": -53.059418790759594,
           "validationStatus": "on_land"
         }
       }
@@ -5710,6 +5888,7 @@
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/trex/",
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:50.967Z",
+      "createdOn": "2025-06-02T17:07:12.843Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68618c815cafcdc938ec32d5_PD%20Concept%20Art.avif",
       "galleryImage": null,
@@ -5724,8 +5903,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 51.63809255273191,
-          "lon": -55.92838612590442,
+          "lat": 50.025628712699245,
+          "lon": -51.05427518533071,
           "validationStatus": "on_land"
         }
       }
@@ -5744,6 +5923,7 @@
       "contentLink": null,
       "youtubeId": "MSoImbo8Yr8",
       "lastUpdated": "2026-02-10T17:32:19.028Z",
+      "createdOn": "2025-06-02T16:57:30.368Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=MSoImbo8Yr8",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5758,8 +5938,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 41.01792901921812,
-          "lon": 111.05299893676549,
+          "lat": 44.71565459874204,
+          "lon": 115.12764318009557,
           "validationStatus": "on_land"
         }
       }
@@ -5777,6 +5957,7 @@
       "contentLink": null,
       "youtubeId": "WZzJgGHmAB4",
       "lastUpdated": "2026-02-10T15:53:50.589Z",
+      "createdOn": "2025-06-02T16:54:01.871Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=WZzJgGHmAB4",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5791,8 +5972,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 19.04951750868029,
-          "lon": 5.811272176662156,
+          "lat": 19.24682461121214,
+          "lon": 2.16130190367093,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -5810,6 +5991,7 @@
       "contentLink": null,
       "youtubeId": "Sl04mpJhS_8",
       "lastUpdated": "2026-02-10T15:53:50.674Z",
+      "createdOn": "2025-06-02T16:51:37.121Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Sl04mpJhS_8",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5824,8 +6006,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 21.099817334512373,
-          "lon": 6.981557662273145,
+          "lat": 18.744876385028302,
+          "lon": 5.960012331851644,
           "validationStatus": "on_land"
         }
       }
@@ -5844,6 +6026,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:50.764Z",
+      "createdOn": "2025-05-28T18:41:44.620Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5cf9cab676362649996d2_Gaelle-Seguillon_Struthiosaurus-waterfall_008_print.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb3782a34bcfd158cc6_68c8883c627d5f6be4db7406_68b5cf9cab676362649996d2_Gaelle-Seguillon_Struthiosaurus-waterfall_008_print_resultat.avif",
@@ -5858,8 +6041,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 34.58035778948949,
-          "lon": 36.02799586653145,
+          "lat": 34.29986362454412,
+          "lon": 27.918900011969473,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -5878,6 +6061,7 @@
       "contentLink": null,
       "youtubeId": null,
       "lastUpdated": "2026-02-10T15:53:50.976Z",
+      "createdOn": "2025-05-28T18:12:08.779Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d010bc6a5bee68995e49_Gaelle_Seguillon_Therisinosaurus_004_print-min.avif",
       "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb6a4beb5f911d3a082_68c8886c49c827b296dcd33f_68b5d010bc6a5bee68995e49_Gaelle_Seguillon_Therisinosaurus_004_print-min_resultat.avif",
@@ -5892,8 +6076,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 46.13035909764451,
-          "lon": 110.75460776861541,
+          "lat": 47.80662900290589,
+          "lon": 111.35993585353913,
           "validationStatus": "on_land"
         }
       }
@@ -5912,6 +6096,7 @@
       "contentLink": null,
       "youtubeId": "8bF5I8sKS80",
       "lastUpdated": "2026-02-10T17:32:18.982Z",
+      "createdOn": "2025-05-28T17:35:28.684Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=8bF5I8sKS80",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5946,6 +6131,7 @@
       "contentLink": null,
       "youtubeId": "BoGqMnDosvc",
       "lastUpdated": "2026-02-10T15:53:50.661Z",
+      "createdOn": "2025-05-28T17:32:02.786Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=BoGqMnDosvc",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5960,8 +6146,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 44.50881507194409,
-          "lon": 108.30881260546236,
+          "lat": 44.4350568511507,
+          "lon": 112.22752947635897,
           "validationStatus": "on_land"
         }
       }
@@ -5980,6 +6166,7 @@
       "contentLink": null,
       "youtubeId": "vQSFnHEmHVs",
       "lastUpdated": "2026-02-10T15:53:51.036Z",
+      "createdOn": "2025-05-28T17:29:34.327Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=vQSFnHEmHVs",
       "backgroundImage": null,
       "galleryImage": null,
@@ -5994,8 +6181,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 9.689207619421193,
-          "lon": 37.050484884135045,
+          "lat": 7.158774353414427,
+          "lon": 38.35832418990875,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6014,6 +6201,7 @@
       "contentLink": null,
       "youtubeId": "YuHDXTfjbzU",
       "lastUpdated": "2026-02-10T15:53:50.834Z",
+      "createdOn": "2025-05-28T17:26:34.064Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=YuHDXTfjbzU",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6028,8 +6216,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 43.08204038258876,
-          "lon": 131.92002434963726,
+          "lat": 46.87636476269056,
+          "lon": 127.8249419228458,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6048,6 +6236,7 @@
       "contentLink": null,
       "youtubeId": "1cLTeER71ug",
       "lastUpdated": "2026-02-10T15:53:51.031Z",
+      "createdOn": "2025-05-28T17:24:56.257Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=1cLTeER71ug",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6062,8 +6251,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 31.40347632365958,
-          "lon": 18.819659193710205,
+          "lat": 32.92828440600163,
+          "lon": 20.603204353876105,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6082,6 +6271,7 @@
       "contentLink": null,
       "youtubeId": "ZKsk0EGuQw4",
       "lastUpdated": "2026-02-10T15:53:51.033Z",
+      "createdOn": "2025-05-28T17:22:16.856Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=ZKsk0EGuQw4",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6096,8 +6286,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "280": {
-          "lat": 5.7859058011729445,
-          "lon": -26.305312059533392,
+          "lat": 3.5136303854806212,
+          "lon": -27.03272405908549,
           "validationStatus": "on_land"
         }
       }
@@ -6116,6 +6306,7 @@
       "contentLink": null,
       "youtubeId": "f-BAte84wOQ",
       "lastUpdated": "2026-02-10T15:53:51.025Z",
+      "createdOn": "2025-05-28T17:19:29.628Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=f-BAte84wOQ",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6130,8 +6321,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 21.628113444657526,
-          "lon": 4.341318683000971,
+          "lat": 20.695497785565262,
+          "lon": 5.7057933876962155,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6150,6 +6341,7 @@
       "contentLink": null,
       "youtubeId": "OXRaMYY3RCI",
       "lastUpdated": "2026-02-10T15:53:50.783Z",
+      "createdOn": "2025-05-28T17:16:55.168Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=OXRaMYY3RCI",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6184,6 +6376,7 @@
       "contentLink": null,
       "youtubeId": "EGVe3ZUyQuU",
       "lastUpdated": "2026-02-10T15:53:50.760Z",
+      "createdOn": "2025-05-28T17:14:40.974Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=EGVe3ZUyQuU",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6198,8 +6391,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 36.961611072708536,
-          "lon": 33.9853708564932,
+          "lat": 35.233292095205826,
+          "lon": 36.70872787158422,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6217,6 +6410,7 @@
       "contentLink": null,
       "youtubeId": "zHshnmdcBH4",
       "lastUpdated": "2026-02-10T15:53:51.030Z",
+      "createdOn": "2025-05-28T17:08:06.633Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=zHshnmdcBH4",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6231,8 +6425,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 34.988127887722584,
-          "lon": 10.209572248273055,
+          "lat": 38.10073414262211,
+          "lon": 10.041719451141574,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6251,6 +6445,7 @@
       "contentLink": null,
       "youtubeId": "XKSWWUGOuCQ",
       "lastUpdated": "2026-02-10T15:53:50.794Z",
+      "createdOn": "2025-05-28T17:05:42.700Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=XKSWWUGOuCQ",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6265,8 +6460,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -36.33060304999062,
-          "lon": -32.75364172581553,
+          "lat": -40.819627559674146,
+          "lon": -35.42506369894932,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6285,6 +6480,7 @@
       "contentLink": null,
       "youtubeId": "weOl4UCt2J0",
       "lastUpdated": "2026-02-10T15:53:50.683Z",
+      "createdOn": "2025-05-28T17:02:37.568Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=weOl4UCt2J0",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6299,8 +6495,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 47.7592,
-          "lon": 115.4154,
+          "lat": 45.520793583915264,
+          "lon": 114.25747995178237,
           "validationStatus": "on_land"
         }
       }
@@ -6319,6 +6515,7 @@
       "contentLink": null,
       "youtubeId": "exDudUOCzpI",
       "lastUpdated": "2026-02-10T15:53:50.700Z",
+      "createdOn": "2025-05-28T16:57:29.949Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=exDudUOCzpI",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6333,8 +6530,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -39.07617640785526,
-          "lon": -36.143946381988286,
+          "lat": -36.7852792591061,
+          "lon": -39.94467770561748,
           "validationStatus": "on_land"
         }
       }
@@ -6353,6 +6550,7 @@
       "contentLink": null,
       "youtubeId": "cXgdUYb9V2c",
       "lastUpdated": "2026-02-10T15:53:50.978Z",
+      "createdOn": "2025-05-28T16:54:50.700Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=cXgdUYb9V2c",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6367,8 +6565,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -39.74199319181745,
-          "lon": -28.391176272340708,
+          "lat": -34.22523633551603,
+          "lon": -34.864673023711745,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6387,6 +6585,7 @@
       "contentLink": null,
       "youtubeId": "qSbDzmmyGsE",
       "lastUpdated": "2026-02-10T17:32:18.925Z",
+      "createdOn": "2025-05-28T16:51:27.752Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=qSbDzmmyGsE",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6401,8 +6600,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -14.104457557908457,
-          "lon": -26.543435585838544,
+          "lat": -12.659770277633891,
+          "lon": -27.06388611695784,
           "validationStatus": "on_land"
         }
       }
@@ -6421,6 +6620,7 @@
       "contentLink": null,
       "youtubeId": "97mxOnrUEOY",
       "lastUpdated": "2026-02-10T15:53:50.781Z",
+      "createdOn": "2025-05-28T16:47:33.862Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=97mxOnrUEOY",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6435,8 +6635,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -45.515869475363786,
-          "lon": -42.41831135408978,
+          "lat": -39.92998992792166,
+          "lon": -42.10403418495436,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6455,6 +6655,7 @@
       "contentLink": null,
       "youtubeId": "qqAAy0vTfr0",
       "lastUpdated": "2026-02-10T17:32:19.053Z",
+      "createdOn": "2025-05-28T16:44:44.239Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=qqAAy0vTfr0",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6469,8 +6670,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -16.669928329475397,
-          "lon": -30.29255258577348,
+          "lat": -15.706714667847972,
+          "lon": -29.852820247138627,
           "validationStatus": "on_land"
         }
       }
@@ -6489,6 +6690,7 @@
       "contentLink": null,
       "youtubeId": "g-wEULArBUo",
       "lastUpdated": "2026-02-10T17:32:19.057Z",
+      "createdOn": "2025-05-28T16:39:44.586Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=g-wEULArBUo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6503,8 +6705,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -19.26464650530679,
-          "lon": -24.186159635547057,
+          "lat": -16.71636095087586,
+          "lon": -19.004756495829636,
           "validationStatus": "on_land"
         }
       }
@@ -6523,6 +6725,7 @@
       "contentLink": null,
       "youtubeId": "XITWI0-vxqk",
       "lastUpdated": "2026-02-10T15:53:50.606Z",
+      "createdOn": "2025-05-28T16:33:47.203Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=XITWI0-vxqk",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6537,8 +6740,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 48.44514494051895,
-          "lon": -55.88135818507555,
+          "lat": 51.42800889008399,
+          "lon": -56.5335635884723,
           "validationStatus": "on_land"
         }
       }
@@ -6557,6 +6760,7 @@
       "contentLink": null,
       "youtubeId": "HayWXfx33cA",
       "lastUpdated": "2026-02-10T17:32:18.814Z",
+      "createdOn": "2025-05-27T18:05:51.089Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=HayWXfx33cA",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6571,8 +6775,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -11.352678636315812,
-          "lon": -29.878810233323932,
+          "lat": -10.980198381784717,
+          "lon": -25.92409077543185,
           "validationStatus": "on_land"
         }
       }
@@ -6591,6 +6795,7 @@
       "contentLink": null,
       "youtubeId": "lvXhQpoO-RQ",
       "lastUpdated": "2026-02-10T15:53:50.779Z",
+      "createdOn": "2025-05-27T18:03:25.528Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=lvXhQpoO-RQ",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6605,8 +6810,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 19.106099027119388,
-          "lon": 3.793609560923579,
+          "lat": 18.834663977346214,
+          "lon": 4.115799248856525,
           "validationStatus": "on_land"
         }
       }
@@ -6625,6 +6830,7 @@
       "contentLink": null,
       "youtubeId": "7LqB_G4l2CM",
       "lastUpdated": "2026-02-10T15:53:51.047Z",
+      "createdOn": "2025-05-27T18:01:17.845Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=7LqB_G4l2CM",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6659,6 +6865,7 @@
       "contentLink": null,
       "youtubeId": "m68SODil6w0",
       "lastUpdated": "2026-02-10T15:53:51.022Z",
+      "createdOn": "2025-05-27T17:58:44.170Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=m68SODil6w0",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6673,8 +6880,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 46.2895,
-          "lon": -64.4628,
+          "lat": 48.621030159310784,
+          "lon": -62.082835474987334,
           "validationStatus": "on_land"
         }
       }
@@ -6692,6 +6899,7 @@
       "contentLink": null,
       "youtubeId": "Q0sRoC_k80g",
       "lastUpdated": "2026-02-13T20:48:31.197Z",
+      "createdOn": "2025-05-27T17:55:09.960Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Q0sRoC_k80g",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6720,6 +6928,7 @@
       "contentLink": null,
       "youtubeId": "qmFB4phQj8Q",
       "lastUpdated": "2026-02-10T17:32:19.044Z",
+      "createdOn": "2025-05-27T17:46:45.702Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=qmFB4phQj8Q",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6753,6 +6962,7 @@
       "contentLink": null,
       "youtubeId": "RMikduGzXT0",
       "lastUpdated": "2026-02-13T20:48:31.184Z",
+      "createdOn": "2025-05-27T17:44:53.816Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=RMikduGzXT0",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6781,6 +6991,7 @@
       "contentLink": null,
       "youtubeId": "cJwNwhVPMz8",
       "lastUpdated": "2026-02-10T15:53:50.569Z",
+      "createdOn": "2025-05-27T17:32:37.492Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=cJwNwhVPMz8",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6795,8 +7006,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 13.548570625280727,
-          "lon": 17.22745302751987,
+          "lat": 17.99430372657591,
+          "lon": 11.271554062712747,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6815,6 +7026,7 @@
       "contentLink": null,
       "youtubeId": "gymuVlTDvY0",
       "lastUpdated": "2026-02-10T15:53:50.934Z",
+      "createdOn": "2025-05-27T17:30:18.460Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=gymuVlTDvY0",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6849,6 +7061,7 @@
       "contentLink": null,
       "youtubeId": "3xgz6djUr9U",
       "lastUpdated": "2026-02-10T15:53:50.677Z",
+      "createdOn": "2025-05-27T17:27:51.657Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=3xgz6djUr9U",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6863,8 +7076,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 14.76373235871694,
-          "lon": 7.983196970956918,
+          "lat": 15.516599797934806,
+          "lon": 7.054332901662036,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6883,6 +7096,7 @@
       "contentLink": null,
       "youtubeId": "q-YsgSsFTeI",
       "lastUpdated": "2026-02-10T15:53:50.681Z",
+      "createdOn": "2025-05-27T17:25:48.241Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=q-YsgSsFTeI",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6897,8 +7111,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 20.047660985208253,
-          "lon": 0.19711170781505283,
+          "lat": 30.857838561507403,
+          "lon": 6.201630908221738,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6911,11 +7125,12 @@
       "creditsLine": "Created by Julian Johnson-Mortimer & Robert Fabiani.",
       "category": "videos",
       "isNew": false,
-      "displayOnApp": true,
+      "displayOnApp": false,
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "W2-G8svWs58",
-      "lastUpdated": "2026-02-15T13:35:58.305Z",
+      "lastUpdated": "2026-02-23T11:38:40.454Z",
+      "createdOn": "2025-05-27T17:04:42.863Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=W2-G8svWs58",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6944,6 +7159,7 @@
       "contentLink": null,
       "youtubeId": "iFEb36lMYjo",
       "lastUpdated": "2026-02-10T15:53:50.791Z",
+      "createdOn": "2025-05-27T17:00:26.434Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=iFEb36lMYjo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -6958,8 +7174,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "15": {
-          "lat": 43.8356267764948,
-          "lon": 9.0556056322221,
+          "lat": 45.692196063201735,
+          "lon": 15.284275287903355,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6978,6 +7194,7 @@
       "contentLink": null,
       "youtubeId": "BZnVzS7RDOY",
       "lastUpdated": "2026-02-10T15:53:50.767Z",
+      "createdOn": "2025-05-27T16:57:55.235Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=BZnVzS7RDOY",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7012,6 +7229,7 @@
       "contentLink": null,
       "youtubeId": "MEIiCc4_vjo",
       "lastUpdated": "2026-02-10T15:53:50.698Z",
+      "createdOn": "2025-05-27T15:39:20.080Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=MEIiCc4_vjo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7026,8 +7244,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "15": {
-          "lat": -30.995321810866997,
-          "lon": -64.47869301355306,
+          "lat": -35.64093377535395,
+          "lon": -63.68120892979334,
           "validationStatus": "on_land"
         }
       }
@@ -7045,6 +7263,7 @@
       "contentLink": null,
       "youtubeId": "XV2c3kvfwxg",
       "lastUpdated": "2026-02-10T15:53:51.004Z",
+      "createdOn": "2025-05-27T14:25:49.722Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=XV2c3kvfwxg",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7059,8 +7278,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 52.70358579379488,
-          "lon": -50.976290194054066,
+          "lat": 51.14711417746891,
+          "lon": -51.97505225392442,
           "validationStatus": "on_land"
         }
       }
@@ -7078,6 +7297,7 @@
       "contentLink": null,
       "youtubeId": "yzOCwbbCaKo",
       "lastUpdated": "2026-01-31T18:59:56.159Z",
+      "createdOn": "2025-05-25T17:05:57.698Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=yzOCwbbCaKo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7105,6 +7325,7 @@
       "contentLink": null,
       "youtubeId": "-fyxUxGdrns",
       "lastUpdated": "2026-02-10T17:32:19.030Z",
+      "createdOn": "2025-05-25T17:03:07.274Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=-fyxUxGdrns",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7119,8 +7340,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 41.638795569035445,
-          "lon": 132.96779851885648,
+          "lat": 43.235371658035554,
+          "lon": 133.5663053810302,
           "validationStatus": "on_land"
         }
       }
@@ -7138,6 +7359,7 @@
       "contentLink": null,
       "youtubeId": "8-jpuywa6lg",
       "lastUpdated": "2026-02-10T17:32:18.998Z",
+      "createdOn": "2025-05-25T17:00:07.704Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=8-jpuywa6lg",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7152,8 +7374,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 43.74254789038006,
-          "lon": 134.87401126737214,
+          "lat": 42.27816963331948,
+          "lon": 129.35301615299576,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -7171,6 +7393,7 @@
       "contentLink": null,
       "youtubeId": "xO8BjI3L3yg",
       "lastUpdated": "2026-02-10T15:53:51.009Z",
+      "createdOn": "2025-05-25T16:58:09.902Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=xO8BjI3L3yg",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7185,8 +7408,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 57.87105464315329,
-          "lon": -55.28767531251544,
+          "lat": 58.885333371448866,
+          "lon": -58.15052713339891,
           "validationStatus": "on_land"
         }
       }
@@ -7204,22 +7427,23 @@
       "contentLink": null,
       "youtubeId": "54acHHUqObM",
       "lastUpdated": "2026-02-10T17:32:18.930Z",
+      "createdOn": "2025-05-25T16:55:37.342Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=54acHHUqObM",
       "backgroundImage": null,
       "galleryImage": null,
       "preview": "https://img.youtube.com/vi/54acHHUqObM/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/predator-x-hunts-in-deep-waters",
       "freeTags": "Northern Europe, Jurassic, Predator X, Pliosaurus funkei",
-      "modernLat": 53.43,
-      "modernLon": 16.08,
+      "modernLat": 50.92,
+      "modernLon": 17.54,
       "estimatedAge": 160,
       "location": "europe (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 40.5488,
-          "lon": 36.5005,
+          "lat": 38.6035,
+          "lon": 38.8637,
           "validationStatus": "on_land"
         }
       }
@@ -7237,23 +7461,24 @@
       "contentLink": null,
       "youtubeId": "u8HKr9sG5kQ",
       "lastUpdated": "2026-02-10T17:32:19.058Z",
+      "createdOn": "2025-05-25T16:53:59.128Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=u8HKr9sG5kQ",
       "backgroundImage": null,
       "galleryImage": null,
       "preview": "https://img.youtube.com/vi/u8HKr9sG5kQ/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/what-is-the-predator-x",
       "freeTags": "Northern Europe, Jurassic, Predator X, Pliosaurus funkei",
-      "modernLat": 48.05,
-      "modernLon": 11.62,
+      "modernLat": 53.43,
+      "modernLon": 16.08,
       "estimatedAge": 160,
       "location": "europe (continent center)",
       "confidence": "low",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 30.595139691944983,
-          "lon": 40.173990996800114,
-          "validationStatus": "corrected_to_land"
+          "lat": 40.5488,
+          "lon": 36.5005,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7270,6 +7495,7 @@
       "contentLink": null,
       "youtubeId": "CpaZkVqQAFA",
       "lastUpdated": "2026-02-10T15:53:50.837Z",
+      "createdOn": "2025-05-25T16:51:10.496Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=CpaZkVqQAFA",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7284,8 +7510,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -38.95973589150549,
-          "lon": -31.355559678865195,
+          "lat": -35.522350947262645,
+          "lon": -34.76694712748703,
           "validationStatus": "on_land"
         }
       }
@@ -7303,6 +7529,7 @@
       "contentLink": null,
       "youtubeId": "3QUK8gN1oSY",
       "lastUpdated": "2026-02-10T15:53:50.856Z",
+      "createdOn": "2025-05-25T16:48:16.678Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=3QUK8gN1oSY",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7317,8 +7544,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -41.07055024027503,
-          "lon": -39.73868179530763,
+          "lat": -43.80487820709661,
+          "lon": -36.44014645051837,
           "validationStatus": "on_land"
         }
       }
@@ -7336,6 +7563,7 @@
       "contentLink": null,
       "youtubeId": "TtOfCaYhjzk",
       "lastUpdated": "2026-02-10T17:32:18.944Z",
+      "createdOn": "2025-05-25T16:45:51.158Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=TtOfCaYhjzk",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7350,8 +7578,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 43.7623,
-          "lon": 115.2879,
+          "lat": 42.112415966466386,
+          "lon": 113.90307805855593,
           "validationStatus": "on_land"
         }
       }
@@ -7369,6 +7597,7 @@
       "contentLink": null,
       "youtubeId": "0iuRGYB9QLQ",
       "lastUpdated": "2026-02-10T15:53:50.835Z",
+      "createdOn": "2025-05-25T16:42:51.218Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=0iuRGYB9QLQ",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7402,6 +7631,7 @@
       "contentLink": null,
       "youtubeId": "Qqs8uRBD56A",
       "lastUpdated": "2026-02-10T15:53:50.771Z",
+      "createdOn": "2025-05-25T16:34:15.825Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Qqs8uRBD56A",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7416,8 +7646,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -39.08981522188667,
-          "lon": 45.75455350168246,
+          "lat": -38.130498242078936,
+          "lon": 45.28310797393186,
           "validationStatus": "on_land"
         }
       }
@@ -7435,6 +7665,7 @@
       "contentLink": null,
       "youtubeId": "Wv6hEuODrLg",
       "lastUpdated": "2026-02-13T20:48:31.167Z",
+      "createdOn": "2025-05-25T16:31:18.193Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Wv6hEuODrLg",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7462,6 +7693,7 @@
       "contentLink": null,
       "youtubeId": "VTzfaY2kx0U",
       "lastUpdated": "2026-02-10T15:53:51.008Z",
+      "createdOn": "2025-05-25T16:11:00.980Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=VTzfaY2kx0U",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7476,8 +7708,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 18.686509720272237,
-          "lon": 10.349179829128634,
+          "lat": 28.044713267056665,
+          "lon": 15.945824816277238,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -7495,6 +7727,7 @@
       "contentLink": null,
       "youtubeId": "jRXB67fcXZA",
       "lastUpdated": "2026-01-31T19:00:12.072Z",
+      "createdOn": "2025-05-23T15:51:37.927Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=jRXB67fcXZA",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7522,6 +7755,7 @@
       "contentLink": null,
       "youtubeId": "Hdwj3rKDS4I",
       "lastUpdated": "2026-02-10T17:30:56.752Z",
+      "createdOn": "2025-05-23T15:48:45.482Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Hdwj3rKDS4I",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7549,6 +7783,7 @@
       "contentLink": null,
       "youtubeId": "pY_4ekCHUbA",
       "lastUpdated": "2026-02-10T15:53:51.034Z",
+      "createdOn": "2025-05-21T20:51:31.777Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=pY_4ekCHUbA",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7563,8 +7798,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 51.635994519698365,
-          "lon": -51.11663878358059,
+          "lat": 47.48200417023123,
+          "lon": -51.417694063485285,
           "validationStatus": "on_land"
         }
       }
@@ -7582,6 +7817,7 @@
       "contentLink": null,
       "youtubeId": "v7iLJnNod-M",
       "lastUpdated": "2026-02-10T15:53:51.051Z",
+      "createdOn": "2025-05-19T19:42:31.213Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=v7iLJnNod-M",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7596,8 +7832,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 48.15683726299324,
-          "lon": -53.1324909525268,
+          "lat": 50.98225788187927,
+          "lon": -53.26751931623686,
           "validationStatus": "on_land"
         }
       }
@@ -7615,6 +7851,7 @@
       "contentLink": null,
       "youtubeId": "nDKY4xSdtyk",
       "lastUpdated": "2026-01-31T19:00:11.786Z",
+      "createdOn": "2025-05-19T19:15:20.643Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=nDKY4xSdtyk",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7642,6 +7879,7 @@
       "contentLink": null,
       "youtubeId": "qom1PKSqR1Y",
       "lastUpdated": "2026-01-31T19:00:11.771Z",
+      "createdOn": "2025-05-19T19:14:01.258Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=qom1PKSqR1Y",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7669,6 +7907,7 @@
       "contentLink": null,
       "youtubeId": "brXbomOKEJg",
       "lastUpdated": "2026-01-31T19:00:12.998Z",
+      "createdOn": "2025-05-19T19:12:47.984Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=brXbomOKEJg",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7696,6 +7935,7 @@
       "contentLink": null,
       "youtubeId": "Wdm0EyTRBMQ",
       "lastUpdated": "2026-01-31T19:00:11.981Z",
+      "createdOn": "2025-05-19T19:07:42.367Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Wdm0EyTRBMQ",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7723,6 +7963,7 @@
       "contentLink": null,
       "youtubeId": "HfRgVQJ_n1Y",
       "lastUpdated": "2026-01-31T19:00:13.123Z",
+      "createdOn": "2025-05-19T19:06:06.026Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=HfRgVQJ_n1Y",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7750,6 +7991,7 @@
       "contentLink": null,
       "youtubeId": "n6zGgQgxijo",
       "lastUpdated": "2026-01-31T19:00:12.718Z",
+      "createdOn": "2025-05-19T19:04:33.935Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=n6zGgQgxijo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7777,6 +8019,7 @@
       "contentLink": null,
       "youtubeId": "sHLsRV_F-NM",
       "lastUpdated": "2026-02-10T15:53:50.861Z",
+      "createdOn": "2025-05-19T19:00:31.418Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=sHLsRV_F-NM",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7791,8 +8034,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 32.04147554761653,
-          "lon": -32.64369701323672,
+          "lat": 33.883886032256726,
+          "lon": -35.913079260822244,
           "validationStatus": "on_land"
         }
       }
@@ -7810,6 +8053,7 @@
       "contentLink": null,
       "youtubeId": "r1yv7Pi78Og",
       "lastUpdated": "2026-02-10T15:53:50.854Z",
+      "createdOn": "2025-05-19T18:57:55.608Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=r1yv7Pi78Og",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7824,8 +8068,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 33.980780534494166,
-          "lon": -34.25071873276832,
+          "lat": 31.855522955106757,
+          "lon": -33.09622274714104,
           "validationStatus": "on_land"
         }
       }
@@ -7843,6 +8087,7 @@
       "contentLink": null,
       "youtubeId": "i9IjL2RCFoI",
       "lastUpdated": "2026-02-10T15:53:50.688Z",
+      "createdOn": "2025-05-19T18:56:07.512Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=i9IjL2RCFoI",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7857,8 +8102,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 29.61456716977759,
-          "lon": -33.916803370225985,
+          "lat": 32.84960634605521,
+          "lon": -32.08943477876358,
           "validationStatus": "on_land"
         }
       }
@@ -7876,6 +8121,7 @@
       "contentLink": null,
       "youtubeId": "tjrvnlHkcBc",
       "lastUpdated": "2026-02-10T15:53:50.858Z",
+      "createdOn": "2025-05-19T18:46:10.630Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=tjrvnlHkcBc",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7909,6 +8155,7 @@
       "contentLink": null,
       "youtubeId": "7uX5lk5HhzU",
       "lastUpdated": "2026-02-10T15:53:50.801Z",
+      "createdOn": "2025-05-19T18:44:53.733Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=7uX5lk5HhzU",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7942,6 +8189,7 @@
       "contentLink": null,
       "youtubeId": "wbLhhYgN9ic",
       "lastUpdated": "2026-02-10T15:53:50.862Z",
+      "createdOn": "2025-05-19T18:43:11.709Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=wbLhhYgN9ic",
       "backgroundImage": null,
       "galleryImage": null,
@@ -7956,8 +8204,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 40.303163196999215,
-          "lon": 16.59850897395495,
+          "lat": 41.79590234651079,
+          "lon": 20.997065601286288,
           "validationStatus": "on_land"
         }
       }
@@ -7975,6 +8223,7 @@
       "contentLink": null,
       "youtubeId": "eg_V1__kaYM",
       "lastUpdated": "2026-02-10T15:53:51.013Z",
+      "createdOn": "2025-05-19T18:41:50.548Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=eg_V1__kaYM",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8008,6 +8257,7 @@
       "contentLink": null,
       "youtubeId": "-SQiLu83uGc",
       "lastUpdated": "2026-02-10T17:32:18.869Z",
+      "createdOn": "2025-05-19T18:40:10.348Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=-SQiLu83uGc",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8041,6 +8291,7 @@
       "contentLink": null,
       "youtubeId": "_110j8kB_vc",
       "lastUpdated": "2026-02-10T15:53:50.896Z",
+      "createdOn": "2025-05-19T18:32:57.176Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=_110j8kB_vc",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8074,6 +8325,7 @@
       "contentLink": null,
       "youtubeId": "-mv_v4ltSrY",
       "lastUpdated": "2026-02-10T15:53:50.880Z",
+      "createdOn": "2025-05-19T18:28:29.574Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=-mv_v4ltSrY",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8088,8 +8340,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 30.675139752688782,
-          "lon": -33.31078596736559,
+          "lat": 33.415987620391604,
+          "lon": -34.70065984160857,
           "validationStatus": "on_land"
         }
       }
@@ -8107,6 +8359,7 @@
       "contentLink": null,
       "youtubeId": "2YQNbP1WkJY",
       "lastUpdated": "2026-02-10T15:53:50.963Z",
+      "createdOn": "2025-05-19T18:25:01.027Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=2YQNbP1WkJY",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8121,8 +8374,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 49.517,
-          "lon": -60.1671,
+          "lat": 49.08649820160139,
+          "lon": -62.4416425269398,
           "validationStatus": "on_land"
         }
       }
@@ -8140,6 +8393,7 @@
       "contentLink": null,
       "youtubeId": "lIo7cG0Mt4s",
       "lastUpdated": "2026-02-10T15:53:51.021Z",
+      "createdOn": "2025-05-19T18:23:24.987Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=lIo7cG0Mt4s",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8154,8 +8408,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 47.79005032870105,
-          "lon": -52.90063168862497,
+          "lat": 51.57673573443524,
+          "lon": -51.962470036162856,
           "validationStatus": "on_land"
         }
       }
@@ -8173,6 +8427,7 @@
       "contentLink": null,
       "youtubeId": "jzPoUkBNXdU",
       "lastUpdated": "2026-02-10T15:53:51.019Z",
+      "createdOn": "2025-05-19T18:21:20.165Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=jzPoUkBNXdU",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8206,6 +8461,7 @@
       "contentLink": null,
       "youtubeId": "LPjN9FEptus",
       "lastUpdated": "2026-02-10T15:53:50.848Z",
+      "createdOn": "2025-05-19T18:15:35.552Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=LPjN9FEptus",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8220,8 +8476,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 32.07795498887822,
-          "lon": -32.47289966232842,
+          "lat": 31.229942249656744,
+          "lon": -36.550180878671554,
           "validationStatus": "on_land"
         }
       }
@@ -8239,6 +8495,7 @@
       "contentLink": null,
       "youtubeId": "Pa4KQAOzq1U",
       "lastUpdated": "2026-01-31T19:00:12.642Z",
+      "createdOn": "2025-05-19T18:06:24.254Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Pa4KQAOzq1U",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8266,6 +8523,7 @@
       "contentLink": null,
       "youtubeId": "nKRP2Zc6udA",
       "lastUpdated": "2026-01-31T19:00:11.790Z",
+      "createdOn": "2025-05-19T18:05:00.858Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=nKRP2Zc6udA",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8293,6 +8551,7 @@
       "contentLink": null,
       "youtubeId": "yPrdLSfxuFo",
       "lastUpdated": "2026-02-13T20:48:31.148Z",
+      "createdOn": "2025-05-19T18:03:02.241Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=yPrdLSfxuFo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8320,6 +8579,7 @@
       "contentLink": null,
       "youtubeId": "QP-c5WgG2DU",
       "lastUpdated": "2026-01-31T19:00:12.836Z",
+      "createdOn": "2025-05-19T18:01:19.807Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=QP-c5WgG2DU",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8347,6 +8607,7 @@
       "contentLink": null,
       "youtubeId": "Y4qqoyIcERU",
       "lastUpdated": "2026-02-13T20:48:31.176Z",
+      "createdOn": "2025-05-18T14:49:39.071Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Y4qqoyIcERU",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8374,6 +8635,7 @@
       "contentLink": null,
       "youtubeId": "J4ydTuem8Ls",
       "lastUpdated": "2026-02-10T15:53:51.006Z",
+      "createdOn": "2025-05-18T14:30:58.472Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=J4ydTuem8Ls",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8388,8 +8650,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 48.05542357021779,
-          "lon": -52.943227756433956,
+          "lat": 51.1930755995281,
+          "lon": -55.83016078574349,
           "validationStatus": "on_land"
         }
       }
@@ -8407,6 +8669,7 @@
       "contentLink": null,
       "youtubeId": "fjVrfgoXNKA",
       "lastUpdated": "2026-02-10T17:32:19.002Z",
+      "createdOn": "2025-05-18T14:27:29.113Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=fjVrfgoXNKA",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8421,8 +8684,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": -21.656875944952656,
-          "lon": -58.11969826602439,
+          "lat": -18.80480287692964,
+          "lon": -58.034865904845525,
           "validationStatus": "on_land"
         }
       }
@@ -8440,6 +8703,7 @@
       "contentLink": null,
       "youtubeId": "vZwYXc8pV6Y",
       "lastUpdated": "2026-02-13T20:48:31.209Z",
+      "createdOn": "2025-05-17T17:17:47.447Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=vZwYXc8pV6Y",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8467,6 +8731,7 @@
       "contentLink": null,
       "youtubeId": "4VLzWgwTJkE",
       "lastUpdated": "2026-01-31T19:00:12.141Z",
+      "createdOn": "2025-05-17T17:16:32.049Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=4VLzWgwTJkE",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8494,6 +8759,7 @@
       "contentLink": null,
       "youtubeId": "Y3BQHCvUESo",
       "lastUpdated": "2026-01-31T19:00:12.912Z",
+      "createdOn": "2025-05-17T17:15:10.712Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Y3BQHCvUESo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8521,6 +8787,7 @@
       "contentLink": null,
       "youtubeId": "kU_TuVGxc2E",
       "lastUpdated": "2026-01-31T19:00:11.992Z",
+      "createdOn": "2025-05-17T17:13:10.461Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=kU_TuVGxc2E",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8548,6 +8815,7 @@
       "contentLink": null,
       "youtubeId": "24nLoBeBx-Q",
       "lastUpdated": "2026-01-31T19:00:11.793Z",
+      "createdOn": "2025-05-17T17:11:19.502Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=24nLoBeBx-Q",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8575,6 +8843,7 @@
       "contentLink": null,
       "youtubeId": "yGWGHhqDUds",
       "lastUpdated": "2026-01-31T19:00:12.579Z",
+      "createdOn": "2025-05-17T17:00:45.901Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=yGWGHhqDUds",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8602,6 +8871,7 @@
       "contentLink": null,
       "youtubeId": "_pYiN8kuKaY",
       "lastUpdated": "2026-01-31T19:00:12.833Z",
+      "createdOn": "2025-05-17T16:59:07.077Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=_pYiN8kuKaY",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8629,6 +8899,7 @@
       "contentLink": null,
       "youtubeId": "eQah4McU2ww",
       "lastUpdated": "2026-02-10T15:53:50.831Z",
+      "createdOn": "2025-05-17T16:42:02.003Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=eQah4McU2ww",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8643,8 +8914,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 78.61105124019646,
-          "lon": -92.95025885618581,
+          "lat": 80.40021033851316,
+          "lon": -87.94864687229563,
           "validationStatus": "on_land"
         }
       }
@@ -8662,6 +8933,7 @@
       "contentLink": null,
       "youtubeId": "jBZGvAP9IF8",
       "lastUpdated": "2026-02-10T15:53:51.015Z",
+      "createdOn": "2025-05-17T16:39:20.185Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=jBZGvAP9IF8",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8676,8 +8948,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -82.6892179776602,
-          "lon": -147.24268270739978,
+          "lat": -86.02362626806064,
+          "lon": -167.4819440779391,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -8695,6 +8967,7 @@
       "contentLink": null,
       "youtubeId": "0856EwWjaCk",
       "lastUpdated": "2026-02-10T15:53:50.993Z",
+      "createdOn": "2025-05-17T16:30:18.916Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=0856EwWjaCk",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8709,8 +8982,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 48.25662555510708,
-          "lon": 104.81055210363095,
+          "lat": 46.3904,
+          "lon": 107.0724,
           "validationStatus": "on_land"
         }
       }
@@ -8728,6 +9001,7 @@
       "contentLink": null,
       "youtubeId": "fCC4ZJJg5Lc",
       "lastUpdated": "2026-02-10T15:53:50.788Z",
+      "createdOn": "2025-05-17T16:27:54.387Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=fCC4ZJJg5Lc",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8742,8 +9016,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 49.3003,
-          "lon": 110.8537,
+          "lat": 51.388941873567205,
+          "lon": 110.17452655850222,
           "validationStatus": "on_land"
         }
       }
@@ -8761,6 +9035,7 @@
       "contentLink": null,
       "youtubeId": "Jk4ZlVEtjsc",
       "lastUpdated": "2026-02-10T15:53:51.024Z",
+      "createdOn": "2025-05-17T15:43:25.627Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Jk4ZlVEtjsc",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8775,8 +9050,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 56.30375233712764,
-          "lon": -59.33738703451817,
+          "lat": 58.43294676118611,
+          "lon": -62.93509766331301,
           "validationStatus": "on_land"
         }
       }
@@ -8794,6 +9069,7 @@
       "contentLink": null,
       "youtubeId": "IH5IGhi2Pu8",
       "lastUpdated": "2026-02-10T17:30:56.754Z",
+      "createdOn": "2025-05-17T12:42:33.451Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=IH5IGhi2Pu8",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8821,6 +9097,7 @@
       "contentLink": null,
       "youtubeId": "xcRxwi0x5ig",
       "lastUpdated": "2026-02-13T20:54:35.387Z",
+      "createdOn": "2025-05-17T12:41:06.714Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=xcRxwi0x5ig",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8848,6 +9125,7 @@
       "contentLink": null,
       "youtubeId": "INUw2sRhtZ4",
       "lastUpdated": "2026-02-13T20:54:35.394Z",
+      "createdOn": "2025-05-17T12:37:42.851Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=INUw2sRhtZ4",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8875,6 +9153,7 @@
       "contentLink": null,
       "youtubeId": "FIeCzBCLJww",
       "lastUpdated": "2026-02-13T20:54:35.391Z",
+      "createdOn": "2025-05-17T12:35:58.280Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=FIeCzBCLJww",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8902,6 +9181,7 @@
       "contentLink": null,
       "youtubeId": "75ECu8GFLME",
       "lastUpdated": "2026-02-13T20:54:35.386Z",
+      "createdOn": "2025-05-17T12:34:03.549Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=75ECu8GFLME",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8929,6 +9209,7 @@
       "contentLink": null,
       "youtubeId": "jtwXiLblJtw",
       "lastUpdated": "2026-02-13T20:54:35.392Z",
+      "createdOn": "2025-05-17T12:31:44.895Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=jtwXiLblJtw",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8956,6 +9237,7 @@
       "contentLink": null,
       "youtubeId": "Qf7QRoJ3qWk",
       "lastUpdated": "2026-02-13T20:54:35.389Z",
+      "createdOn": "2025-05-17T12:27:04.291Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Qf7QRoJ3qWk",
       "backgroundImage": null,
       "galleryImage": null,
@@ -8982,7 +9264,8 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "-qcZdtwpemA",
-      "lastUpdated": "2026-02-15T12:52:37.837Z",
+      "lastUpdated": "2026-02-23T11:38:40.483Z",
+      "createdOn": "2025-05-17T12:23:28.491Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=-qcZdtwpemA",
       "backgroundImage": null,
       "galleryImage": null,
@@ -9010,6 +9293,7 @@
       "contentLink": null,
       "youtubeId": "Cf6hqJeOQGo",
       "lastUpdated": "2026-02-10T17:30:56.781Z",
+      "createdOn": "2025-05-17T12:18:56.354Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Cf6hqJeOQGo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -9036,7 +9320,8 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "Hl6Lj2fAuGM",
-      "lastUpdated": "2026-02-15T12:52:37.818Z",
+      "lastUpdated": "2026-02-23T11:38:40.465Z",
+      "createdOn": "2025-05-17T11:56:59.847Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Hl6Lj2fAuGM",
       "backgroundImage": null,
       "galleryImage": null,
@@ -9064,6 +9349,7 @@
       "contentLink": null,
       "youtubeId": "_AZbmwGAODc",
       "lastUpdated": "2026-02-13T20:54:38.491Z",
+      "createdOn": "2025-05-17T11:53:39.456Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=_AZbmwGAODc",
       "backgroundImage": null,
       "galleryImage": null,
@@ -9090,7 +9376,8 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "t5NIua_Dveo",
-      "lastUpdated": "2026-02-15T12:52:37.821Z",
+      "lastUpdated": "2026-02-23T11:38:40.482Z",
+      "createdOn": "2025-05-16T22:15:37.546Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=t5NIua_Dveo",
       "backgroundImage": null,
       "galleryImage": null,
@@ -9118,6 +9405,7 @@
       "contentLink": null,
       "youtubeId": "7mtaXP2Nar0",
       "lastUpdated": "2026-02-13T20:54:38.500Z",
+      "createdOn": "2025-05-16T21:53:52.179Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=7mtaXP2Nar0",
       "backgroundImage": null,
       "galleryImage": null,
@@ -9146,6 +9434,7 @@
       "contentLink": null,
       "youtubeId": "2za5RwplXdI",
       "lastUpdated": "2026-02-10T15:53:50.846Z",
+      "createdOn": "2025-05-16T21:37:55.673Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=2za5RwplXdI",
       "backgroundImage": null,
       "galleryImage": null,
@@ -9160,8 +9449,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 52.834957471301834,
-          "lon": -55.00416655838741,
+          "lat": 48.49136081922759,
+          "lon": -53.31398890259448,
           "validationStatus": "on_land"
         }
       }
@@ -9180,6 +9469,7 @@
       "contentLink": null,
       "youtubeId": "WHzX5T5PjBE",
       "lastUpdated": "2026-02-10T15:53:50.936Z",
+      "createdOn": "2025-05-16T21:31:19.550Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=WHzX5T5PjBE",
       "backgroundImage": null,
       "galleryImage": null,
@@ -9194,8 +9484,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 43.82699949510041,
-          "lon": -62.683437350548544,
+          "lat": 40.43217232404892,
+          "lon": -63.034103194429505,
           "validationStatus": "on_land"
         }
       }
@@ -9214,6 +9504,7 @@
       "contentLink": null,
       "youtubeId": "tamPoLLiEew",
       "lastUpdated": "2026-02-10T15:53:50.946Z",
+      "createdOn": "2025-05-16T20:53:53.964Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=tamPoLLiEew",
       "backgroundImage": null,
       "galleryImage": null,
@@ -9228,8 +9519,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 57.511266838968886,
-          "lon": -52.82567077021192,
+          "lat": 59.02747714205798,
+          "lon": -55.54823557484706,
           "validationStatus": "on_land"
         }
       }
@@ -9248,6 +9539,7 @@
       "contentLink": null,
       "youtubeId": "_4SQ2mWxnEc",
       "lastUpdated": "2026-02-10T17:06:34.565Z",
+      "createdOn": "2025-05-16T20:42:28.687Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=_4SQ2mWxnEc",
       "backgroundImage": null,
       "galleryImage": null,
@@ -9262,8 +9554,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 54.180130454326374,
-          "lon": -63.32485686770585,
+          "lat": 51.04205614303495,
+          "lon": -66.01203068024643,
           "validationStatus": "on_land"
         }
       }
@@ -9282,6 +9574,7 @@
       "contentLink": null,
       "youtubeId": "uQJWcrjC_OY",
       "lastUpdated": "2026-02-10T15:53:50.901Z",
+      "createdOn": "2025-05-16T18:30:56.124Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=uQJWcrjC_OY",
       "backgroundImage": null,
       "galleryImage": null,
@@ -9296,8 +9589,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 53.626113432161894,
-          "lon": -61.93052891018254,
+          "lat": 53.3482013752974,
+          "lon": -66.4319877597066,
           "validationStatus": "on_land"
         }
       }
@@ -9315,6 +9608,7 @@
       "contentLink": null,
       "youtubeId": "jXI-FdCZBM4",
       "lastUpdated": "2026-02-13T20:54:38.502Z",
+      "createdOn": "2025-05-13T21:26:28.456Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=jXI-FdCZBM4",
       "backgroundImage": null,
       "galleryImage": null,
@@ -9342,6 +9636,7 @@
       "contentLink": null,
       "youtubeId": "NkEU6fC_nhY",
       "lastUpdated": "2026-02-10T15:53:50.895Z",
+      "createdOn": "2025-05-08T21:26:23.468Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=NkEU6fC_nhY",
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/681d216e304a7f7e7d7504fc_hqdefault%20(4).avif",
       "galleryImage": null,
@@ -9356,8 +9651,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 49.765862840893185,
-          "lon": -56.394007488380126,
+          "lat": 52.79577683663621,
+          "lon": -50.90814165870157,
           "validationStatus": "on_land"
         }
       }
@@ -9375,6 +9670,7 @@
       "contentLink": null,
       "youtubeId": "eL8lbCW1yn0",
       "lastUpdated": "2026-02-13T20:54:38.495Z",
+      "createdOn": "2025-04-11T15:32:54.345Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=eL8lbCW1yn0",
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb8049e8f6fb4d0f4ca_67f935f2d6e9bfa20d2e20f5_hqdefault%2520(3).jpeg",
       "galleryImage": null,
@@ -9402,6 +9698,7 @@
       "contentLink": null,
       "youtubeId": "TgHritshrq0",
       "lastUpdated": "2026-02-13T20:54:38.494Z",
+      "createdOn": "2025-04-11T15:31:36.578Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=TgHritshrq0",
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/67f935be33375aa258b3cda0_hqdefault%20(2).avif",
       "galleryImage": null,
@@ -9429,6 +9726,7 @@
       "contentLink": null,
       "youtubeId": "NmosCtNCJSs",
       "lastUpdated": "2026-02-13T20:54:38.498Z",
+      "createdOn": "2025-04-11T15:26:12.954Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=NmosCtNCJSs",
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea9742cc5fa43b79831_67f9347659d2d97b77dfb265_hqdefault%2520(1).jpeg",
       "galleryImage": null,
@@ -9456,6 +9754,7 @@
       "contentLink": null,
       "youtubeId": "rgv2bvdIv1A",
       "lastUpdated": "2026-02-10T15:53:50.876Z",
+      "createdOn": "2025-04-08T19:14:59.354Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=rgv2bvdIv1A",
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/67f929c875c5d0c3b1a2e133_hqdefault.avif",
       "galleryImage": null,
@@ -9470,8 +9769,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 51.65157151960396,
-          "lon": -54.79505412264048,
+          "lat": 50.69453642033262,
+          "lon": -50.56148605663577,
           "validationStatus": "on_land"
         }
       }
@@ -9489,6 +9788,7 @@
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/mammoth/",
       "youtubeId": "nT0PBq9K5hk",
       "lastUpdated": "2026-02-10T17:32:19.008Z",
+      "createdOn": "2025-01-31T18:25:43.555Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=nT0PBq9K5hk",
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/67b207ab18675f682032a0fd_mammoth.avif",
       "galleryImage": null,
@@ -9503,8 +9803,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": 38.846497151146586,
-          "lon": -95.9776222275567,
+          "lat": 41.1221,
+          "lon": -94.5186,
           "validationStatus": "on_land"
         }
       }

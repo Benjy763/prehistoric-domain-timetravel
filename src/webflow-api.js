@@ -25,7 +25,7 @@ class WebflowAPI {
       const items = data.items || [];
 
       if (items.length === 0) {
-        console.warn("⚠️  Aucun item trouvé dans content-data.json");
+        console.warn("⚠️  No items found in content-data.json");
       }
 
       // Filter: only items with displayOnApp = true (eligible for globe)
@@ -69,9 +69,14 @@ class WebflowAPI {
       displayOnApp: !!item.displayOnApp,
       freeTags: item.freeTags || "",
       location: item.location || "",
+      createdOn: item.createdOn || null,
     };
   }
 
+
+  getAllContents() {
+    return this.contents;
+  }
 
   filterByPeriod(period) {
     return this.contents.filter((content) => content.period === period);
@@ -83,12 +88,9 @@ class WebflowAPI {
   }
 
   filterByPeriodAndType(period, types) {
-    const hasNewFilter = types.includes("new");
     return this.contents.filter((content) => {
       if (content.period !== period) return false;
-      const matchesType = types.includes(content.type);
-      const matchesNew = hasNewFilter && content.isNew;
-      return matchesType || matchesNew;
+      return types.includes(content.type);
     });
   }
 }

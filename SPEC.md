@@ -24,14 +24,15 @@ Le site Webflow contient un CMS de "Contents" : des vidéos, images et expérien
 - Périodes : Today, Quaternary, Neogene, Paleogene, Cretaceous, Jurassic, Triassic, Permian, Carboniferous, Devonian, Silurian, Ordovician, Cambrian
 
 ### 2.3 Filtres par type de contenu
-- Sidebar gauche avec 4 filtres : Videos, Images, 3D, New
-- Chaque filtre a un badge coloré correspondant à la couleur du pinpoint
+- Sidebar gauche avec 4 filtres : Videos, Images, 3D, Recent
+- Recent affiche les 50 derniers items publiés de la période géologique sélectionnée (basé sur `createdOn`)
+- Chaque filtre a un badge coloré (indicateur visuel dans la sidebar)
 - Toggle on/off pour masquer/afficher les types
 - Désactivés en mode "Real Land"
 
 ### 2.4 Pinpoints (marqueurs)
 - Sprites Three.js positionnés sur le globe selon les coordonnées paléogéographiques
-- Code couleur : violet (videos), jaune (images), rose (3D), turquoise (new)
+- Code couleur : jaune (favoris), blanc (défaut)
 - Animation de pulsation
 - Taille proportionnelle au zoom
 - Cliquables via raycasting

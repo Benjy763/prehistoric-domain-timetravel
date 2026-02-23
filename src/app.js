@@ -248,7 +248,7 @@ class AppController {
   }
 
   async init() {
-    console.log("🌍 Initialisation de l'application Time Travel Globe...\n");
+    console.log("🌍 Initializing Time Travel Globe application...\n");
 
     // Initialiser les managers
     this.filtersManager = new FiltersManager();
@@ -271,7 +271,7 @@ class AppController {
 
     // Initialiser le globe (après un court délai pour laisser le DOM se charger)
     setTimeout(() => {
-      console.log("🎨 Initialisation du globe 3D...");
+      console.log("🎨 Initializing 3D globe...");
       this.globeManager = new GlobeManager("globe-canvas");
       // Définir la couche par défaut pour "today"
       this.globeManager.currentLayer = "muller2022";
@@ -296,7 +296,7 @@ class AppController {
         "contenus",
       );
     } catch (error) {
-      console.error("Erreur lors du chargement des données:", error);
+      console.error("Error loading data:", error);
     }
   }
 
@@ -405,7 +405,7 @@ class AppController {
       this.updateGlobe();
     }
 
-    console.log(`🔄 Couche changée vers: ${layer}`);
+    console.log(`🔄 Layer changed to: ${layer}`);
   }
 
   async onPeriodChange(button) {
@@ -477,7 +477,7 @@ class AppController {
       // Filtrer et afficher les points
       this.updatePoints();
     } catch (error) {
-      console.error("Erreur lors de la mise à jour du globe:", error);
+      console.error("Error updating globe:", error);
     } finally {
       // Masquer le loading
       setTimeout(() => this.hideLoading(), 500);
@@ -492,7 +492,7 @@ class AppController {
 
     // Ne pas afficher les points en Real Land view
     if (this.globeManager.currentLayer === "cao2017") {
-      console.log("⚪ Points masqués en Real Land view");
+      console.log("⚪ Points hidden in Real Land view");
       return;
     }
 
@@ -507,15 +507,16 @@ class AppController {
       activeFilters.filter(f => f !== "favorites" && f !== "new"), // Remove exclusive filters from type filters
     );
 
-    // Appliquer les filtres exclusifs (favorites et/ou new)
+    // Appliquer les filtres exclusifs (favorites et/ou recent)
     if (favoritesFilterActive && newFilterActive) {
-      // Les DEUX filtres actifs → afficher favoris OU nouveaux
+      // Les DEUX filtres actifs → afficher favoris OU récents
       const favoriteIds = this.favoritesManager.getAll();
+      const recentIds = this.getRecentItemsForPeriod(this.currentPeriod, 50);
       filteredContents = filteredContents.filter(content =>
-        favoriteIds.includes(content.id) || content.isNew === true
+        favoriteIds.includes(content.id) || recentIds.has(content.id)
       );
       console.log(
-        `💙⭐ Affichage de ${filteredContents.length} favoris ou nouveaux pour la période ${this.currentPeriod}`,
+        `💙⭐ Affichage de ${filteredContents.length} favoris ou récents pour la période ${this.currentPeriod}`,
       );
     } else if (favoritesFilterActive) {
       // Seulement favoris
@@ -525,10 +526,11 @@ class AppController {
         `💙 Affichage de ${filteredContents.length} favoris pour la période ${this.currentPeriod}`,
       );
     } else if (newFilterActive) {
-      // Seulement nouveaux
-      filteredContents = filteredContents.filter(content => content.isNew === true);
+      // Seulement récents (50 derniers de la période)
+      const recentIds = this.getRecentItemsForPeriod(this.currentPeriod, 50);
+      filteredContents = filteredContents.filter(content => recentIds.has(content.id));
       console.log(
-        `⭐ Affichage de ${filteredContents.length} nouveaux contenus pour la période ${this.currentPeriod}`,
+        `⭐ Affichage de ${filteredContents.length} contenus récents pour la période ${this.currentPeriod}`,
       );
     } else {
       console.log(
@@ -565,6 +567,49 @@ class AppController {
     });
   }
 
+  /**
+   * Get the most recent items for a given period
+   * @param {string} period - Geological period name (e.g., "quaternary")
+   * @param {number} limit - Max number of items (default 50)
+   * @returns {Set<string>} Set of item IDs
+   */
+  getRecentItemsForPeriod(period, limit = 50) {
+    // DEBUG: Verify PERIOD_TO_AGE_MAP is loaded
+    if (!window.PERIOD_TO_AGE_MAP) {
+      console.error("⚠️ window.PERIOD_TO_AGE_MAP not loaded! Check constants.js import.");
+      return new Set();
+    }
+
+    const ageKey = window.PERIOD_TO_AGE_MAP[period];
+
+    if (!ageKey) {
+      console.warn(`Unknown period: ${period}`);
+      return new Set();
+    }
+
+    // Filter items for this geological period
+    const periodItems = this.webflowAPI.getAllContents().filter(item => {
+      if (!item.periods || !item.displayOnApp) return false;
+      return item.periods.hasOwnProperty(ageKey);
+    });
+
+    // Sort by createdOn descending (most recent first)
+    // Handle invalid dates explicitly
+    const sorted = periodItems.sort((a, b) => {
+      const dateA = a.createdOn ? new Date(a.createdOn) : new Date(0);
+      const dateB = b.createdOn ? new Date(b.createdOn) : new Date(0);
+
+      // Fallback to epoch (0) for invalid dates
+      const timeA = isNaN(dateA.getTime()) ? 0 : dateA.getTime();
+      const timeB = isNaN(dateB.getTime()) ? 0 : dateB.getTime();
+
+      return timeB - timeA;
+    });
+
+    // Return top N item IDs as a Set
+    return new Set(sorted.slice(0, limit).map(item => item.id));
+  }
+
   matchesSearch(item, searchQuery) {
     if (!searchQuery) return true;
 
@@ -585,12 +630,12 @@ class AppController {
   }
 
   onFiltersChanged(activeFilters) {
-    console.log("Filtres actifs:", activeFilters);
+    console.log("Active filters:", activeFilters);
     this.updatePoints();
   }
 
   showContentPopup(contentData) {
-    console.log("Affichage du contenu:", contentData);
+    console.log("Displaying content:", contentData);
     this.popupManager.show(contentData);
   }
 

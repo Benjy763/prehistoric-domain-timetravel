@@ -4,6 +4,7 @@
  * Imports all modules in correct dependency order
  */
 
+import "./constants.js";
 import "./globe.js";
 import "./filters.js";
 import "./favorites.js";
