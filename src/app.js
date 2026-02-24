@@ -640,9 +640,10 @@ class AppController {
   }
 
   showLoading() {
-    if (this.loadingOverlay) {
-      this.loadingOverlay.classList.remove("hidden");
-    }
+    // Keep overlay hidden to see holographic globe loading effect
+    // if (this.loadingOverlay) {
+    //   this.loadingOverlay.classList.remove("hidden");
+    // }
   }
 
   hideLoading() {

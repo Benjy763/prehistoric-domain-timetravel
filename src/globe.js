@@ -12,12 +12,15 @@ class GlobeManager {
     this.globe = null;
     this.controls = null;
     this.points = [];
+    this.loadingProgress = 0; // 0 to 1 for holographic loading effect
+    this.isLoading = false;
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
     this.coastlines = null;
     this.continents = null; // Continent polygons
     this.caoLands = null; // Cao emerged lands overlay
     this.clouds = null; // Animated clouds layer
+    this.atmosphere = null; // Glow atmosphere (for dynamic scaling)
 
     // Hover state for pinpoints
     this.hoveredPoint = null;
@@ -28,6 +31,12 @@ class GlobeManager {
     this.textureCache = new Map();
     this.textureCache_muller = new Map();
     this.isPreloading = false;
+
+    // Track last loaded time to avoid unnecessary loading animations
+    this.lastLoadedContinentsTime = null;
+
+    // Loading ID to cancel outdated loading operations
+    this.currentLoadingId = 0;
 
     // Cao period mapping (loaded from period-mapping.json)
     this.caoMapping = null;
@@ -166,32 +175,32 @@ class GlobeManager {
   }
 
   addLights() {
-    // Lower ambient for more contrast
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    // Moderate ambient light
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2.5);
     this.scene.add(ambientLight);
 
-    // Single strong light - balanced between side and front, slightly brighter
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.15);
-    directionalLight.position.set(4, 2, 2);
+    // Strong directional from top-right corner
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
+    const lightPosition = new THREE.Vector3(5, 2, 3);
+    directionalLight.position.copy(lightPosition);
     this.scene.add(directionalLight);
   }
 
   createGlobe() {
     const geometry = new THREE.SphereGeometry(2, 128, 128);
 
-    // Base material for globe - minimal reflections
-    const material = new THREE.MeshStandardMaterial({
-      color: 0x0a1929, // Very dark navy ocean
-      emissive: 0x050d15, // Very dark emission
-      emissiveIntensity: 0.05,
-      roughness: 0.8, // Much rougher - minimal reflections
-      metalness: 0.1, // Almost no metallic - minimal shine
-      transparent: false,
-      opacity: 1.0,
+    // Transparent globe with subtle glow
+    const material = new THREE.MeshLambertMaterial({
+      color: 0x0a1929, // Dark navy blue
+      transparent: true,
+      opacity: 0.7, // Translucent
     });
 
     this.globe = new THREE.Mesh(geometry, material);
     this.scene.add(this.globe);
+
+    // Add subtle external glow
+    this.addAtmosphere();
   }
 
   addClouds() {
@@ -243,15 +252,15 @@ class GlobeManager {
   }
 
   addAtmosphere() {
-    // Very subtle Fresnel shader - only visible on edges
-    const atmosphereGeometry = new THREE.SphereGeometry(2.10, 64, 64);
+    // Subtle glow halo around globe
+    const atmosphereGeometry = new THREE.SphereGeometry(2.165, 64, 64);
 
-    // Fresnel shader material with minimal intensity
+    // Fresnel shader material for visible hologram glow
     const atmosphereMaterial = new THREE.ShaderMaterial({
       uniforms: {
-        c: { value: 0.1 }, // Very low intensity
-        p: { value: 6.5 }, // Very sharp falloff - only on extreme edges
-        glowColor: { value: new THREE.Color(0x88ccff) }, // Sky blue glow
+        c: { value: 0.9 }, // Stronger glow for visibility
+        p: { value: 3.5 }, // Broader falloff
+        glowColor: { value: new THREE.Color(0x4488ff) }, // Brighter blue for visibility
       },
       vertexShader: `
         varying vec3 vNormal;
@@ -275,8 +284,8 @@ class GlobeManager {
       transparent: true,
     });
 
-    const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
-    this.scene.add(atmosphere);
+    this.atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
+    this.scene.add(this.atmosphere);
   }
 
   addControls() {
@@ -326,52 +335,76 @@ class GlobeManager {
     let touchStartPos = null;
     let touchMoved = false;
 
-    this.container.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      if (e.touches.length === 1) {
-        isDragging = true;
-        touchMoved = false;
-        touchStartPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-        previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-      }
-      this._lastTouchDistance = null;
-    }, { passive: false });
-
-    this.container.addEventListener("touchmove", (e) => {
-      e.preventDefault();
-      if (e.touches.length === 2) {
-        // Pinch to zoom
-        const dx = e.touches[0].clientX - e.touches[1].clientX;
-        const dy = e.touches[0].clientY - e.touches[1].clientY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (this._lastTouchDistance != null) {
-          const delta = (this._lastTouchDistance - dist) * 0.01;
-          this.camera.position.z = Math.max(2.2, Math.min(10, this.camera.position.z + delta));
+    this.container.addEventListener(
+      "touchstart",
+      (e) => {
+        e.preventDefault();
+        if (e.touches.length === 1) {
+          isDragging = true;
+          touchMoved = false;
+          touchStartPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+          previousMousePosition = {
+            x: e.touches[0].clientX,
+            y: e.touches[0].clientY,
+          };
         }
-        this._lastTouchDistance = dist;
-        isDragging = false;
-        touchMoved = true;
-      } else if (e.touches.length === 1 && isDragging) {
-        const deltaX = e.touches[0].clientX - previousMousePosition.x;
-        const deltaY = e.touches[0].clientY - previousMousePosition.y;
-        if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) touchMoved = true;
-        this.globe.rotation.y += deltaX * 0.005;
-        this.globe.rotation.x += deltaY * 0.005;
-        previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-      }
-    }, { passive: false });
+        this._lastTouchDistance = null;
+      },
+      { passive: false },
+    );
 
-    this.container.addEventListener("touchend", (e) => {
-      e.preventDefault();
-      // Detect tap (no significant movement) → trigger pinpoint click
-      if (!touchMoved && touchStartPos) {
-        this.onMouseClick({ clientX: touchStartPos.x, clientY: touchStartPos.y });
-      }
-      isDragging = false;
-      touchMoved = false;
-      touchStartPos = null;
-      this._lastTouchDistance = null;
-    }, { passive: false });
+    this.container.addEventListener(
+      "touchmove",
+      (e) => {
+        e.preventDefault();
+        if (e.touches.length === 2) {
+          // Pinch to zoom
+          const dx = e.touches[0].clientX - e.touches[1].clientX;
+          const dy = e.touches[0].clientY - e.touches[1].clientY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (this._lastTouchDistance != null) {
+            const delta = (this._lastTouchDistance - dist) * 0.01;
+            this.camera.position.z = Math.max(
+              2.2,
+              Math.min(10, this.camera.position.z + delta),
+            );
+          }
+          this._lastTouchDistance = dist;
+          isDragging = false;
+          touchMoved = true;
+        } else if (e.touches.length === 1 && isDragging) {
+          const deltaX = e.touches[0].clientX - previousMousePosition.x;
+          const deltaY = e.touches[0].clientY - previousMousePosition.y;
+          if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) touchMoved = true;
+          this.globe.rotation.y += deltaX * 0.005;
+          this.globe.rotation.x += deltaY * 0.005;
+          previousMousePosition = {
+            x: e.touches[0].clientX,
+            y: e.touches[0].clientY,
+          };
+        }
+      },
+      { passive: false },
+    );
+
+    this.container.addEventListener(
+      "touchend",
+      (e) => {
+        e.preventDefault();
+        // Detect tap (no significant movement) → trigger pinpoint click
+        if (!touchMoved && touchStartPos) {
+          this.onMouseClick({
+            clientX: touchStartPos.x,
+            clientY: touchStartPos.y,
+          });
+        }
+        isDragging = false;
+        touchMoved = false;
+        touchStartPos = null;
+        this._lastTouchDistance = null;
+      },
+      { passive: false },
+    );
 
     // Zoom with mouse wheel
     this.container.addEventListener("wheel", (e) => {
@@ -475,6 +508,9 @@ class GlobeManager {
         this.applyCaoOverlay(caoTexture);
       }
 
+      // Track the loaded time for Cao as well
+      this.lastLoadedContinentsTime = projectTime;
+
       return true;
     } catch (error) {
       console.error("❌ Error loading Cao lands:", error);
@@ -483,97 +519,131 @@ class GlobeManager {
   }
 
   async loadContinents(time) {
-    // Check cache first
-    if (this.textureCache.has(time)) {
-      console.log(`📦 Using cached texture for ${time} Ma`);
-      this.applyTextureToGlobe(this.textureCache.get(time));
-      return true;
-    }
+    console.log(`🔵 CLICK ${time} - progress AVANT reset: ${this.loadingProgress}`);
 
-    // Load from local GeoJSON files instead of API
-    const url = `assets/geojson/${time}Ma.json`;
+    // Increment loading ID and store it locally - this cancels all previous loading operations
+    this.currentLoadingId++;
+    const myLoadingId = this.currentLoadingId;
+    console.log(`   🆔 Loading ID: ${myLoadingId}`);
 
-    console.log(`🗺️  Loading continents for ${time} Ma from local file...`);
+    // FORCE complete reset
+    this.isLoading = false;
+    this.loadingProgress = 0;
+    this.startLoadingEffect();
+
+    console.log(`   APRÈS reset: progress=${this.loadingProgress}, isLoading=${this.isLoading}`);
+    console.log(`   ⏱️ Timer 500ms START`);
+
+    // 0.5s delay and texture load in PARALLEL
+    const delay = new Promise(resolve => {
+      setTimeout(() => {
+        console.log(`   ✅ Timer 500ms DONE (ID ${myLoadingId})`);
+        resolve();
+      }, 500);
+    });
+
+    const loadTex = async () => {
+      if (this.textureCache.has(time)) return this.textureCache.get(time);
+      const url = `assets/geojson/${time}Ma.json`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      const texture = this.generateContinentTexture(data);
+      this.textureCache.set(time, texture);
+      return texture;
+    };
 
     try {
-      const response = await fetch(url);
+      const [_, texture] = await Promise.all([delay, loadTex()]);
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      // Only apply if this is still the current loading operation
+      if (myLoadingId !== this.currentLoadingId) {
+        console.log(`   🚫 CANCELLED (ID ${myLoadingId}, current is ${this.currentLoadingId})`);
+        return false;
       }
 
-      const data = await response.json();
-      console.log(`✅ Data loaded: ${data.features?.length || 0} features`);
-
-      // Generate texture with continents
-      const texture = this.generateContinentTexture(data);
-
-      // Cache the texture
-      this.textureCache.set(time, texture);
-
-      // Apply texture to globe
+      console.log(`   🎯 Applying texture (ID ${myLoadingId})`);
       this.applyTextureToGlobe(texture);
-
+      this.isLoading = false;
       return true;
     } catch (error) {
-      console.error("❌ Error loading continents:", error);
-      console.warn("⚠️  Globe will be displayed without continents");
+      console.error("❌ Error:", error);
+      this.isLoading = false;
       return false;
     }
   }
 
   async loadContinentsOnly(time) {
-    // Couche Merdith 2021 : charger depuis fichiers locaux
-    // Trouver le fichier le plus proche disponible
+    console.log(`🔵 CLICK CONTINENTS ONLY ${time} - progress AVANT reset: ${this.loadingProgress}`);
+
     const availableTimes = [
       2, 6, 14, 22, 33, 45, 53, 76, 90, 100, 105, 126, 140, 152, 160, 169, 195,
       218, 220, 232, 255, 277, 280, 287, 302, 320, 328, 348, 368, 380, 396, 410,
       450, 500,
     ];
-
-    // Trouver le temps le plus proche
     let closestTime = availableTimes.reduce((prev, curr) =>
       Math.abs(curr - time) < Math.abs(prev - time) ? curr : prev,
     );
 
-    console.log(
-      `🔍 Requested ${time} Ma, using closest available: ${closestTime} Ma`,
-    );
+    // Check if this is the SAME period (e.g., switching from Real Land to Our Continents)
+    const isSamePeriod = this.lastLoadedContinentsTime === time;
+    this.lastLoadedContinentsTime = time;
 
-    if (this.textureCache_muller.has(closestTime)) {
-      console.log(`📦 Using cached Merdith texture for ${closestTime} Ma`);
-      this.applyTextureToGlobe(this.textureCache_muller.get(closestTime));
+    if (isSamePeriod && this.textureCache_muller.has(closestTime)) {
+      console.log(`   ⚡ SAME PERIOD - No loading, instant apply`);
+      const texture = this.textureCache_muller.get(closestTime);
+      this.applyTextureToGlobe(texture);
       return true;
     }
 
-    const url = `assets/merdith2021-coastlines/${closestTime}Ma.json`;
-    console.log(
-      `🗺️  Loading Merdith 2021 coastlines for ${closestTime} Ma from local file...`,
-    );
+    // Increment loading ID and store it locally - this cancels all previous loading operations
+    this.currentLoadingId++;
+    const myLoadingId = this.currentLoadingId;
+    console.log(`   🆔 Loading ID: ${myLoadingId}`);
+
+    // FORCE complete reset
+    this.isLoading = false;
+    this.loadingProgress = 0;
+    this.startLoadingEffect();
+
+    console.log(`   APRÈS reset: progress=${this.loadingProgress}, isLoading=${this.isLoading}`);
+    console.log(`   ⏱️ Timer 500ms START`);
+
+    // 0.5s delay and texture load in PARALLEL
+    const delay = new Promise(resolve => {
+      setTimeout(() => {
+        console.log(`   ✅ Timer 500ms DONE (ID ${myLoadingId})`);
+        resolve();
+      }, 500);
+    });
+
+    const loadTex = async () => {
+      if (this.textureCache_muller.has(closestTime)) return this.textureCache_muller.get(closestTime);
+      const url = `assets/merdith2021-coastlines/${closestTime}Ma.json`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      const texture = this.generateMullerTexture(data);
+      this.textureCache_muller.set(closestTime, texture);
+      return texture;
+    };
 
     try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      const [_, texture] = await Promise.all([delay, loadTex()]);
+
+      // Only apply if this is still the current loading operation
+      if (myLoadingId !== this.currentLoadingId) {
+        console.log(`   🚫 CANCELLED (ID ${myLoadingId}, current is ${this.currentLoadingId})`);
+        return false;
       }
 
-      const data = await response.json();
-      console.log(
-        `✅ Merdith coastlines loaded: ${data.features?.length || 0} features`,
-      );
-
-      // Generate texture avec coastlines blanches pleines
-      const texture = this.generateMullerTexture(data);
-
-      // Cache
-      this.textureCache_muller.set(closestTime, texture);
-
-      // Apply
+      console.log(`   🎯 Applying texture (ID ${myLoadingId})`);
       this.applyTextureToGlobe(texture);
-
+      this.isLoading = false;
       return true;
     } catch (error) {
-      console.error("❌ Error loading Merdith coastlines:", error);
+      console.error("❌ Error:", error);
+      this.isLoading = false;
       return false;
     }
   }
@@ -672,7 +742,6 @@ class GlobeManager {
     return texture;
   }
 
-
   generateMullerTexture(data) {
     // Générer texture avec coastlines Muller 2022 en blanc plein
     const width = 4096;
@@ -758,7 +827,7 @@ class GlobeManager {
     for (let i = 0; i < imageData.data.length; i += 4) {
       if (imageData.data[i + 3] > 0) {
         // Use same beige color as Muller coastlines (#c8c8c0)
-        imageData.data[i] = 200;     // R: 0xc8 = 200
+        imageData.data[i] = 200; // R: 0xc8 = 200
         imageData.data[i + 1] = 200; // G: 0xc8 = 200
         imageData.data[i + 2] = 192; // B: 0xc0 = 192
         imageData.data[i + 3] = 255;
@@ -971,26 +1040,89 @@ class GlobeManager {
     }
   }
 
-  applyTextureToGlobe(texture) {
-    // Generate subtle bump map for relief
-    const bumpMap = this.generateBumpMap(texture);
+  startLoadingEffect() {
+    this.isLoading = true;
+    this.loadingProgress = 0;
 
-    // Update globe material with subtle bump mapping for depth
-    const material = new THREE.MeshStandardMaterial({
+    // Apply static/noise loading shader
+    const loadingMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        progress: { value: 0 },
+        time: { value: 0 },
+        baseColor: { value: new THREE.Color(0x0a1929) },
+        glowColor: { value: new THREE.Color(0x4488ff) }, // Blue instead of cyan
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        varying vec3 vPosition;
+        void main() {
+          vUv = uv;
+          vPosition = position;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform float progress;
+        uniform float time;
+        uniform vec3 baseColor;
+        uniform vec3 glowColor;
+        varying vec2 vUv;
+        varying vec3 vPosition;
+
+        // Simple noise function
+        float random(vec2 st) {
+          return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
+        }
+
+        void main() {
+          // Keep noise full until very end of loading (95%), then quick fade
+          float clarity = smoothstep(0.95, 1.0, progress);
+
+          // TV static/noise that diminishes
+          float noise = random(vUv * 100.0 + time * 5.0);
+          noise *= (1.0 - clarity);
+
+          // Horizontal scan lines interference
+          float scanLines = sin(vUv.y * 800.0 + time * 10.0) * 0.5 + 0.5;
+          scanLines = smoothstep(0.7, 1.0, scanLines) * (1.0 - clarity) * 0.3;
+
+          // Vertical interference bands
+          float bands = sin(vUv.x * 30.0 + time * 2.0) * 0.5 + 0.5;
+          bands = smoothstep(0.8, 1.0, bands) * (1.0 - clarity) * 0.2;
+
+          // Color shift (chromatic aberration)
+          vec3 color = baseColor;
+          color += glowColor * (noise * 0.4 + scanLines + bands);
+
+          // Subtle glow on edges during loading
+          float edgeGlow = (1.0 - clarity) * 0.3;
+
+          gl_FragColor = vec4(color, 0.7 + edgeGlow);
+        }
+      `,
+      transparent: true,
+    });
+
+    this.globe.material = loadingMaterial;
+    this.globe.material.needsUpdate = true;
+  }
+
+  applyTextureToGlobe(texture) {
+    // Stop loading effect
+    this.isLoading = false;
+
+    // Transparent material with subtle glow
+    const material = new THREE.MeshLambertMaterial({
       color: 0xffffff, // Pure white to preserve texture colors
-      emissive: 0x000000,
-      roughness: 0.9, // Very rough - no reflections
-      metalness: 0.0, // No metallic - completely matte
       map: texture, // Apply continent texture
-      bumpMap: bumpMap, // Subtle relief
-      bumpScale: 0.03, // Very subtle to avoid gradients
-      transparent: false,
+      transparent: true,
+      opacity: 0.7, // Translucent
     });
 
     this.globe.material = material;
     this.globe.material.needsUpdate = true;
 
-    console.log("✅ Texture applied to globe with subtle bump mapping for relief");
+    console.log("✅ Texture applied to globe with transparent effect");
   }
 
   generateBumpMap(sourceTexture) {
@@ -1015,7 +1147,7 @@ class GlobeManager {
       const b = data[i + 2];
 
       // Check if it's land (more yellow/beige) or ocean (more blue)
-      const isLand = (r + g) > (b * 2);
+      const isLand = r + g > b * 2;
       const gray = isLand ? 220 : 30; // High for land, low for ocean
 
       data[i] = gray;
@@ -1187,26 +1319,34 @@ class GlobeManager {
     return new THREE.Vector3(x, y, z);
   }
 
-  // Helper: Draw rounded square with dark fill and white/green border
+  // Helper: Draw circular background with subtle glow
   drawRoundedBorder(ctx, cx, cy, size, radius, borderColor = "#ebebeb") {
+    const circleRadius = size / 2;
+
+    // Save context state
+    ctx.save();
+
+    // Subtle glow effect (reduced from 12 to 4)
+    ctx.shadowColor = borderColor;
+    ctx.shadowBlur = 4;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+
+    // Dark fill circle with opacity
+    ctx.globalAlpha = 0.75;
     ctx.beginPath();
-    ctx.moveTo(cx - size/2 + radius, cy - size/2);
-    ctx.lineTo(cx + size/2 - radius, cy - size/2);
-    ctx.quadraticCurveTo(cx + size/2, cy - size/2, cx + size/2, cy - size/2 + radius);
-    ctx.lineTo(cx + size/2, cy + size/2 - radius);
-    ctx.quadraticCurveTo(cx + size/2, cy + size/2, cx + size/2 - radius, cy + size/2);
-    ctx.lineTo(cx - size/2 + radius, cy + size/2);
-    ctx.quadraticCurveTo(cx - size/2, cy + size/2, cx - size/2, cy + size/2 - radius);
-    ctx.lineTo(cx - size/2, cy - size/2 + radius);
-    ctx.quadraticCurveTo(cx - size/2, cy - size/2, cx - size/2 + radius, cy - size/2);
-    ctx.closePath();
-    // Dark fill
-    ctx.fillStyle = "#0d1117f2";
+    ctx.arc(cx, cy, circleRadius, 0, Math.PI * 2);
+    ctx.fillStyle = "#0d1117";
     ctx.fill();
-    // Border (white or green for favorites)
+
+    // Border with subtle glow
+    ctx.globalAlpha = 0.82;
     ctx.strokeStyle = borderColor;
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 2.5;
     ctx.stroke();
+
+    // Restore context state
+    ctx.restore();
   }
 
   // Large white icon helpers with rounded border
@@ -1330,7 +1470,7 @@ class GlobeManager {
     let iconBorderColor = "#ebebeb";
 
     if (isFavorite) {
-      iconFillColor = "#ffaa00";  // Yellow for favorites
+      iconFillColor = "#ffaa00"; // Yellow for favorites
       iconBorderColor = "#ffaa00";
     }
 
@@ -1436,18 +1576,76 @@ class GlobeManager {
   animate() {
     requestAnimationFrame(() => this.animate());
 
+    // Holographic loading effect
+    if (this.isLoading && this.globe.material.uniforms) {
+      // Progress synced to 0.5s delay (500ms / 60fps = 30 frames, 1.0/30 = 0.0333)
+      this.loadingProgress = Math.min(this.loadingProgress + 0.0333, 1.0);
+      this.globe.material.uniforms.progress.value = this.loadingProgress;
+      this.globe.material.uniforms.time.value += 0.016; // ~60fps
+    }
+
     // Slow automatic rotation
     if (this.autoRotate && this.globe) {
       this.globe.rotation.y += 0.0005; // Reduced speed for smoother rotation
     }
 
+    // Dynamic atmosphere thickness compensation for perspective
+    if (this.atmosphere) {
+      const distance = this.camera.position.length();
+      const baseDistance = 5;
+      const distanceRatio = distance / baseDistance;
+
+      // Inverse proportional scaling to compensate perspective
+      // Closer = thicker glow, Further = thinner glow
+      const globeRadius = 2;
+      const baseThickness = 0.165;
+      const adjustedThickness = baseThickness / distanceRatio;
+      const newRadius = globeRadius + adjustedThickness;
+      const scale = newRadius / 2.165;
+
+      this.atmosphere.scale.set(scale, scale, scale);
+    }
+
     // Smooth scale animation for hovered pinpoint
     for (const point of this.points) {
-      const target = point === this.hoveredPoint ? this.hoverPointScale : this.basePointScale;
+      // Hide all icons during loading transition
+      if (this.isLoading) {
+        if (point.material) {
+          point.material.opacity = 0;
+        }
+        continue;
+      }
+
+      const target =
+        point === this.hoveredPoint
+          ? this.hoverPointScale
+          : this.basePointScale;
       const current = point.scale.x;
       if (Math.abs(current - target) > 0.0005) {
         const newScale = current + (target - current) * 0.15;
         point.scale.set(newScale, newScale, 1);
+      }
+
+      // Adjust sprite opacity based on position relative to camera
+      // Get world position of sprite
+      const spriteWorldPos = new THREE.Vector3();
+      point.getWorldPosition(spriteWorldPos);
+
+      // Calculate if sprite is facing the camera
+      const spriteDir = spriteWorldPos.clone().normalize();
+      const cameraDir = this.camera.position.clone().normalize();
+      const dotProduct = spriteDir.dot(cameraDir);
+
+      // Map dot product to opacity
+      // dotProduct = 1 (facing camera) → opacity = 1
+      // dotProduct = 0 (edge) → opacity = 0.3
+      // dotProduct = -1 (behind) → opacity = 0.1
+      const opacity = dotProduct > 0
+        ? 1.0
+        : 0.1 + (dotProduct + 1) * 0.2; // 0.1 to 0.3 range
+
+      if (point.material) {
+        point.material.opacity = opacity;
       }
     }
 
