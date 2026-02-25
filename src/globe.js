@@ -1586,7 +1586,7 @@ class GlobeManager {
 
     // Slow automatic rotation
     if (this.autoRotate && this.globe) {
-      this.globe.rotation.y += 0.0005; // Reduced speed for smoother rotation
+      this.globe.rotation.y += 0.0003; // Even slower rotation speed
     }
 
     // Dynamic atmosphere thickness compensation for perspective

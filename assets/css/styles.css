@@ -698,12 +698,12 @@ body {
 }
 
 .filter-item[data-filter="new"].active .filter-switch-track {
-  background: #02d8cb;
-  border-color: #02d8cb;
+  background: #44aacc;
+  border-color: #44aacc;
 }
 
 .filter-item[data-filter="new"]:hover .filter-switch-track {
-  border-color: #02d8cb;
+  border-color: #44aacc;
 }
 
 /* Sidebar warning */
@@ -1364,8 +1364,8 @@ body {
 
 .volume-control.active .volume-btn,
 .auto-rotate-btn.active {
-  color: #02d8cb;
-  border-color: #02d8cb;
+  color: #44aacc;
+  border-color: #44aacc;
 }
 
 /* Volume slider */
@@ -1414,7 +1414,7 @@ body {
   top: 50%;
   width: 100px;
   height: 6px;
-  background: linear-gradient(to right, #02d8cb 0%, #02d8cb var(--volume-percent, 50%), var(--border-color) var(--volume-percent, 50%), var(--border-color) 100%);
+  background: linear-gradient(to right, #44aacc 0%, #44aacc var(--volume-percent, 50%), var(--border-color) var(--volume-percent, 50%), var(--border-color) 100%);
   border-radius: 3px;
   pointer-events: none;
   z-index: 0;
@@ -1459,7 +1459,7 @@ body {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #02d8cb;
+  background: #44aacc;
   cursor: pointer;
   border: none;
   box-shadow: 0 0 0 2px var(--bg-primary), 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -1470,7 +1470,7 @@ body {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #02d8cb;
+  background: #44aacc;
   cursor: pointer;
   border: none;
   box-shadow: 0 0 0 2px var(--bg-primary), 0 2px 4px rgba(0, 0, 0, 0.3);

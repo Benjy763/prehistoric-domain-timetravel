@@ -4,11 +4,6 @@
     "lon": -113,
     "reason": "Default T.rex location - Alberta Canada"
   },
-  "riojavenatrix-lacustris": {
-    "lat": 42.3,
-    "lon": -2.5,
-    "reason": "Fossil from La Rioja, Spain (CMS tag says S. America but fossil is European)"
-  },
   "claw-of-the-desert": {
     "lat": 43.5,
     "lon": 100.5,
@@ -28,5 +23,10 @@
     "lat": 46,
     "lon": -104,
     "reason": "Hatzegopteryx content but tagged N. America - Hell Creek context"
+  },
+  "spinosaurus-fishing": {
+    "lat": 25.0,
+    "lon": 5.0,
+    "reason": "Spinosaurus - central Sahara (Algeria/Libya border) to ensure land placement at 100 Ma"
   }
 }

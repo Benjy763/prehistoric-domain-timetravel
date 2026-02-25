@@ -605,9 +605,10 @@ async function main() {
   }
 
   // 1. Fetch all CMS items
-  let allItems = await fetchAllItems(token);
+  const allCMSItems = await fetchAllItems(token);
+  let allItems = allCMSItems;
 
-  // Filter by slugs if specified
+  // Filter by slugs if specified (for pipeline processing)
   if (options.slugs && options.slugs.length > 0) {
     const beforeFilter = allItems.length;
     allItems = allItems.filter((item) =>
@@ -714,7 +715,21 @@ async function main() {
       `   Mode: ${useIncremental ? "INCRÉMENTAL ⚡" : "COMPLET 🔄"}\n`,
     );
 
-    await runPipeline(token, useIncremental, options.limit, options.slugs);
+    // In incremental mode without manual --slugs, extract slugs from detected changes
+    let slugsToProcess = options.slugs;
+    if (useIncremental && !options.slugs) {
+      const changedSlugs = [
+        ...result.newItems.map(item => item.fieldData.slug),
+        ...result.updatedItems.map(item => item.fieldData.slug),
+        ...result.readyToDisplay.map(item => item.fieldData.slug),
+      ];
+      slugsToProcess = changedSlugs.length > 0 ? changedSlugs : null;
+      if (slugsToProcess) {
+        console.log(`   🎯 Traitement ciblé: ${slugsToProcess.length} slug(s)\n`);
+      }
+    }
+
+    await runPipeline(token, useIncremental, options.limit, slugsToProcess);
   }
 
   // 7. Clean up content-data.json (removed or disabled items)
@@ -750,7 +765,8 @@ async function main() {
   }
 
   // 8. Merge ALL CMS items (eligible + non-eligible)
-  await mergeAllCMSItems(allItems);
+  // IMPORTANT: Always pass ALL CMS items, not filtered by slugs
+  await mergeAllCMSItems(allCMSItems);
 
   // 9. Display final result
   const contentData = JSON.parse(

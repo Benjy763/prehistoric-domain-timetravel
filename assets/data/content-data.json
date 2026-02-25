@@ -1,11 +1,11 @@
 {
   "metadata": {
-    "generated": "2026-02-23T11:44:33.718Z",
+    "generated": "2026-02-25T16:49:20.158Z",
     "totalItems": 300,
     "sourceItems": 312,
-    "eligibleItems": 205,
-    "reconstructedItems": 205,
-    "mode": "full",
+    "eligibleItems": 235,
+    "reconstructedItems": 1,
+    "mode": "incremental",
     "periods": [
       {
         "time": 0,
@@ -65,24 +65,24 @@
   },
   "items": [
     {
-      "id": "6991b54fc0d4faa04f8d8074",
+      "id": "699f275d996a7a0ffdaf359e",
       "name": "Saber Tooth Ache",
-      "slug": "saber-tooth-ache",
-      "description": "A Smilodon struggles with a broken saber tooth.",
-      "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by Tom Hiddleston.",
+      "slug": "saber-tooth-ache-t6jyz",
+      "description": "A young female Smilodon experiences growing pains as she develops her iconic saber teeth. From Prehistoric Planet: Ice Age, the latest season exploring the Pleistocene era.",
+      "creditsLine": "Produced by BBC Studios for Apple TV+.",
       "category": "videos",
-      "isNew": false,
+      "isNew": true,
       "displayOnApp": true,
       "geologicalPeriod": "quaternary",
       "contentLink": null,
       "youtubeId": "6eQn4mpjNvk",
-      "lastUpdated": "2026-02-15T12:40:48.598Z",
-      "createdOn": "2026-02-15T12:00:15.927Z",
+      "lastUpdated": "2026-02-25T16:49:07.741Z",
+      "createdOn": "2026-02-25T16:46:21.676Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=6eQn4mpjNvk",
       "backgroundImage": null,
       "galleryImage": null,
       "preview": "https://img.youtube.com/vi/6eQn4mpjNvk/maxresdefault.jpg",
-      "pageUrl": "https://www.prehistoricdomain.com/content/saber-tooth-ache",
+      "pageUrl": "https://www.prehistoricdomain.com/content/saber-tooth-ache-t6jyz",
       "freeTags": "North America, Pleistocene, Smilodon fatalis",
       "modernLat": 33.75,
       "modernLon": -93.2,
@@ -157,12 +157,12 @@
       "estimatedAge": 1,
       "location": "north america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": 46.823750354703385,
-          "lon": -96.24455159763393,
-          "validationStatus": "on_land"
+          "lat": 45.325830649801844,
+          "lon": -98.89046639913951,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -463,12 +463,12 @@
       "estimatedAge": 1,
       "location": "south america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": -15.276526151748913,
-          "lon": -61.79039585861899,
-          "validationStatus": "on_land"
+          "lat": -14.802814229279456,
+          "lon": -62.271015979328375,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -531,12 +531,12 @@
       "estimatedAge": 1,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": -21.68635564486969,
-          "lon": -58.89507669843152,
-          "validationStatus": "on_land"
+          "lat": -21.306125067663604,
+          "lon": -56.46714636026036,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -565,12 +565,12 @@
       "estimatedAge": 1,
       "location": "south america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": -17.76005440919035,
-          "lon": -58.03062979757468,
-          "validationStatus": "on_land"
+          "lat": -17.59041618177266,
+          "lon": -59.79680572893165,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -667,12 +667,12 @@
       "estimatedAge": 1,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": -34.820975736392946,
-          "lon": 147.07938709406247,
-          "validationStatus": "on_land"
+          "lat": -31.469321006716306,
+          "lon": 148.69360610886955,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -769,12 +769,12 @@
       "estimatedAge": 1,
       "location": "north america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": 49.39243673006437,
-          "lon": -99.89034268953522,
-          "validationStatus": "on_land"
+          "lat": 49.20162497862901,
+          "lon": -101.00001904045548,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -840,8 +840,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "2": {
-          "lat": 48.69422034566837,
-          "lon": 137.51972821104874,
+          "lat": 45.977853390593275,
+          "lon": 141.70954660940671,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -908,8 +908,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 50.34607694572449,
-          "lon": 130.22686072771526,
+          "lat": 45.990846609406724,
+          "lon": 132.17964660940672,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -971,8 +971,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -40.44420384036388,
-          "lon": -33.88035702218183,
+          "lat": -42.2561,
+          "lon": -33.9444,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -1447,8 +1447,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -6.458479289300807,
-          "lon": -3.602800456979073,
+          "lat": -7.566886437626905,
+          "lon": -3.4137864376269054,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -1584,12 +1584,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 55.90075677391346,
-          "lon": -59.04448541044393,
-          "validationStatus": "on_land"
+          "lat": 55.22035935401169,
+          "lon": -56.83746613199941,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -1619,12 +1619,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 48.77705118145868,
-          "lon": -55.81402414420266,
-          "validationStatus": "on_land"
+          "lat": 49.284745921022655,
+          "lon": -56.83311516600183,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -1654,12 +1654,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 47.109715526492245,
-          "lon": -50.67231650279314,
-          "validationStatus": "on_land"
+          "lat": 49.049036125520466,
+          "lon": -52.21932345131733,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -1689,12 +1689,12 @@
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 28.5016782926983,
-          "lon": -32.73994164652816,
-          "validationStatus": "on_land"
+          "lat": 28.40595664663382,
+          "lon": -31.304714528902856,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2007,8 +2007,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "410": {
-          "lat": -41.18284982280351,
-          "lon": -72.86132160041286,
+          "lat": -37.2503,
+          "lon": -74.82556189432334,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -2034,8 +2034,8 @@
       "preview": "https://img.youtube.com/vi/ynHJbkBbbQo/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/mothra-radiodont",
       "freeTags": "Global Oceans, Cambrian, Radiodont, “Mothra”",
-      "modernLat": -41.99,
-      "modernLon": 137.92,
+      "modernLat": 2.73,
+      "modernLon": -157.94,
       "estimatedAge": 500,
       "location": "global oceans",
       "confidence": "medium",
@@ -2077,8 +2077,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "410": {
-          "lat": -25.90332588724819,
-          "lon": -71.72666454112657,
+          "lat": -31.189873384457524,
+          "lon": -74.00995434629829,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -2144,12 +2144,12 @@
       "estimatedAge": 190,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 27.75057260781368,
-          "lon": -39.31471191765084,
-          "validationStatus": "on_land"
+          "lat": 28.026069459593636,
+          "lon": -41.75844774168104,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2312,12 +2312,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 45.9104,
-          "lon": 131.0103,
-          "validationStatus": "on_land"
+          "lat": 47.12519561526872,
+          "lon": 130.91439893278027,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -2382,12 +2382,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": -42.07741929775572,
-          "lon": -30.502256539112544,
-          "validationStatus": "corrected_to_land"
+          "lat": -42.51582779683392,
+          "lon": -34.93481536235642,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -2417,12 +2417,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": -40.55376957817193,
-          "lon": -37.37271016534027,
-          "validationStatus": "corrected_to_land"
+          "lat": -42.27242694983032,
+          "lon": -33.76467856745922,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -2451,12 +2451,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 43.62762935261102,
-          "lon": 108.26747269553991,
-          "validationStatus": "on_land"
+          "lat": 47.00516091843555,
+          "lon": 106.9579508309391,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2488,8 +2488,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 30.455421275385238,
-          "lon": 120.63063825490241,
+          "lat": 22.52606128806451,
+          "lon": 112.58065887838708,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -2552,15 +2552,15 @@
       "freeTags": "India, Late Cretaceous, Shri rapax",
       "modernLat": 43.5,
       "modernLon": 100.5,
-      "estimatedAge": 0,
+      "estimatedAge": null,
       "location": "Therizinosaurus - Nemegt Formation, Mongolia (tag says India but fossil is Asian)",
       "confidence": "high",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 47.32545409783875,
-          "lon": 112.45656819475106,
-          "validationStatus": "on_land"
+          "lat": 46.59797094883198,
+          "lon": 113.10863083058057,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2590,12 +2590,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 17.503224459417677,
-          "lon": 110.29815902792342,
-          "validationStatus": "corrected_to_land"
+          "lat": 21.622113716712303,
+          "lon": 112.67363183130773,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -2625,12 +2625,12 @@
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -16.259890673631475,
-          "lon": -25.813897424388273,
-          "validationStatus": "on_land"
+          "lat": -17.169300841823826,
+          "lon": -29.837564120749242,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2660,12 +2660,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 50.73097718155635,
-          "lon": -51.62433307218808,
-          "validationStatus": "on_land"
+          "lat": 53.67224241579284,
+          "lon": -51.28969584287048,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2723,12 +2723,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 53.95315218060597,
-          "lon": -58.04980382985327,
-          "validationStatus": "on_land"
+          "lat": 53.12268544412055,
+          "lon": -53.78695987879725,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2758,12 +2758,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 53.85295143127443,
-          "lon": -51.09813627331981,
-          "validationStatus": "on_land"
+          "lat": 52.89022580378739,
+          "lon": -48.63610261952935,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2793,12 +2793,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 19.26604784654432,
-          "lon": 7.071018268395003,
-          "validationStatus": "on_land"
+          "lat": 18.02219677482907,
+          "lon": 9.393572240457864,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -2828,12 +2828,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 49.27723244080861,
-          "lon": -56.8118519401938,
-          "validationStatus": "on_land"
+          "lat": 48.619326612395454,
+          "lon": -55.48176390789349,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2863,12 +2863,12 @@
       "estimatedAge": 66,
       "location": "north america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 42.33981317827046,
-          "lon": -52.433001380347,
-          "validationStatus": "on_land"
+          "lat": 47.81161058674159,
+          "lon": -49.15782830342133,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2898,12 +2898,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -41.878702550271285,
-          "lon": -37.356383667790574,
-          "validationStatus": "on_land"
+          "lat": -40.14187711371365,
+          "lon": -37.79838608859548,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2999,8 +2999,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -40.14631464098337,
-          "lon": -35.98917898547619,
+          "lat": -43.80858643762691,
+          "lon": -38.22751356237309,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -3031,12 +3031,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 55.500827655320656,
-          "lon": -58.36294111563277,
-          "validationStatus": "on_land"
+          "lat": 52.3390758671486,
+          "lon": -57.689253068170835,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3066,12 +3066,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -43.40043428461416,
-          "lon": -32.23131157158178,
-          "validationStatus": "on_land"
+          "lat": -40.72730792032553,
+          "lon": -35.11455868492461,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3136,12 +3136,12 @@
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 29.378451480686355,
-          "lon": -36.474543030075374,
-          "validationStatus": "on_land"
+          "lat": 29.936662351037764,
+          "lon": -34.15790385612124,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3171,12 +3171,12 @@
       "estimatedAge": 66,
       "location": "asia (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 37.48375150692058,
-          "lon": 110.42681529474665,
-          "validationStatus": "on_land"
+          "lat": 38.901918583193336,
+          "lon": 110.82981197554123,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3206,12 +3206,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 55.620777377458055,
-          "lon": -59.0813705100442,
-          "validationStatus": "on_land"
+          "lat": 58.52867145558856,
+          "lon": -58.230586043009275,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3276,12 +3276,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 27.26169842577628,
-          "lon": 109.65320665370245,
-          "validationStatus": "corrected_to_land"
+          "lat": 21.41687425982742,
+          "lon": 112.7367460094908,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -3311,12 +3311,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 53.933,
-          "lon": -54.3962,
-          "validationStatus": "on_land"
+          "lat": 56.248560569215215,
+          "lon": -52.294640785772785,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3381,12 +3381,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 57.086184601109274,
-          "lon": -62.445061497606694,
-          "validationStatus": "on_land"
+          "lat": 56.48241894490192,
+          "lon": -62.29989112014455,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3419,8 +3419,8 @@
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 41.24401670205603,
-          "lon": -49.830752956538106,
+          "lat": 41.7705,
+          "lon": -49.6452,
           "validationStatus": "on_land"
         }
       }
@@ -3450,12 +3450,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -41.6871482160852,
-          "lon": -37.113840346453415,
-          "validationStatus": "corrected_to_land"
+          "lat": -41.72732313535703,
+          "lon": -38.48473929990698,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3488,8 +3488,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "220": {
-          "lat": -34.230822355171824,
-          "lon": 52.179338567994314,
+          "lat": -30.7672,
+          "lon": 52.6563,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -3625,12 +3625,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 49.31045447669214,
-          "lon": -60.648586012424936,
-          "validationStatus": "on_land"
+          "lat": 48.322238822448796,
+          "lon": -61.379317840613574,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3660,12 +3660,12 @@
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 34.61009849417307,
-          "lon": -36.6132632873474,
-          "validationStatus": "on_land"
+          "lat": 29.904504177260993,
+          "lon": -37.37441924799354,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3695,12 +3695,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 57.54376712557139,
-          "lon": -51.01197540824329,
-          "validationStatus": "on_land"
+          "lat": 57.826912874308306,
+          "lon": -48.17543875701102,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3730,12 +3730,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 19.47266105773419,
-          "lon": 6.869385334138474,
-          "validationStatus": "corrected_to_land"
+          "lat": 21.815942587323708,
+          "lon": 5.815742919064501,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -3768,8 +3768,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 21.735078564969793,
-          "lon": 19.178331269950803,
+          "lat": 15.596872875253808,
+          "lon": 12.54327287525381,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -3800,12 +3800,12 @@
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 31.860603595548227,
-          "lon": -36.80990040187781,
-          "validationStatus": "on_land"
+          "lat": 33.6677795718815,
+          "lon": -35.90379171799338,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3890,12 +3890,12 @@
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 26.33754726373459,
-          "lon": 12.423392248037644,
-          "validationStatus": "on_land"
+          "lat": 24.57743700281787,
+          "lon": 12.795845138898127,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3924,12 +3924,12 @@
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -17.089767073122587,
-          "lon": -21.957356433784703,
-          "validationStatus": "on_land"
+          "lat": -18.77922525025405,
+          "lon": -24.454266546806664,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3959,12 +3959,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 52.77723726186715,
-          "lon": -59.515203872758924,
-          "validationStatus": "on_land"
+          "lat": 52.641781964784315,
+          "lon": -62.52642323370088,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4025,8 +4025,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 78.23750647753594,
-          "lon": -91.5464761440593,
+          "lat": 79.6933,
+          "lon": -91.2622,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -4057,12 +4057,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 55.70317101718192,
-          "lon": -53.95535638921888,
-          "validationStatus": "on_land"
+          "lat": 52.590984865906634,
+          "lon": -54.40036810186554,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4183,7 +4183,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "mzIEBagCC_0",
-      "lastUpdated": "2026-02-23T11:38:40.471Z",
+      "lastUpdated": "2026-02-25T16:32:19.528Z",
       "createdOn": "2025-08-22T13:21:08.390Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=mzIEBagCC_0",
       "backgroundImage": null,
@@ -4211,7 +4211,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "3BiEsrdVfG0",
-      "lastUpdated": "2026-02-23T11:38:40.455Z",
+      "lastUpdated": "2026-02-25T16:32:19.537Z",
       "createdOn": "2025-08-22T13:19:38.911Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=3BiEsrdVfG0",
       "backgroundImage": null,
@@ -4239,7 +4239,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "sRA5Ak_ajqo",
-      "lastUpdated": "2026-02-23T11:38:40.469Z",
+      "lastUpdated": "2026-02-25T16:32:19.538Z",
       "createdOn": "2025-08-22T13:17:37.159Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=sRA5Ak_ajqo",
       "backgroundImage": null,
@@ -4267,7 +4267,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "dF-NkXYeEF8",
-      "lastUpdated": "2026-02-23T11:38:40.457Z",
+      "lastUpdated": "2026-02-25T16:32:19.541Z",
       "createdOn": "2025-08-22T13:13:50.242Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=dF-NkXYeEF8",
       "backgroundImage": null,
@@ -4295,7 +4295,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "rra42f4jAYo",
-      "lastUpdated": "2026-02-23T11:38:40.459Z",
+      "lastUpdated": "2026-02-25T16:32:19.548Z",
       "createdOn": "2025-08-22T13:13:49.210Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=rra42f4jAYo",
       "backgroundImage": null,
@@ -4351,7 +4351,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "PjryN2F6fF0",
-      "lastUpdated": "2026-02-23T11:38:40.472Z",
+      "lastUpdated": "2026-02-25T16:32:19.546Z",
       "createdOn": "2025-08-22T10:36:46.316Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=PjryN2F6fF0",
       "backgroundImage": null,
@@ -4448,12 +4448,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 44.693916507331025,
-          "lon": -63.98304000145528,
-          "validationStatus": "on_land"
+          "lat": 46.83388602907231,
+          "lon": -64.72706556367926,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4482,12 +4482,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 56.309932279374074,
-          "lon": -60.424024392704446,
-          "validationStatus": "on_land"
+          "lat": 55.945256948423506,
+          "lon": -61.16932735609516,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4516,12 +4516,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 58.1953004037213,
-          "lon": -63.24930561608309,
-          "validationStatus": "on_land"
+          "lat": 56.680920089005866,
+          "lon": -62.89228767518942,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4578,12 +4578,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 45.80537203538329,
-          "lon": -53.963387465135256,
-          "validationStatus": "on_land"
+          "lat": 46.972169161007756,
+          "lon": -55.77362977477692,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4612,12 +4612,12 @@
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 30.121614557706817,
-          "lon": -36.009795285007385,
-          "validationStatus": "on_land"
+          "lat": 26.090252461025777,
+          "lon": -33.91691726580491,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4680,12 +4680,12 @@
       "estimatedAge": 280,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "280": {
-          "lat": 4.922210049854611,
-          "lon": -28.80379408255937,
-          "validationStatus": "on_land"
+          "lat": 5.7624182679649305,
+          "lon": -28.800261286321298,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4714,12 +4714,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 48.87910205781245,
-          "lon": -51.075381969349905,
-          "validationStatus": "on_land"
+          "lat": 47.5177298167855,
+          "lon": -55.143827132236304,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4805,12 +4805,12 @@
       "estimatedAge": 280,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "280": {
-          "lat": 0.5039400697461582,
-          "lon": -28.9898071389651,
-          "validationStatus": "on_land"
+          "lat": 1.717285385105652,
+          "lon": -29.88739328862678,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4840,12 +4840,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -36.21057315818373,
-          "lon": -35.8143831998195,
-          "validationStatus": "on_land"
+          "lat": -37.851873071318636,
+          "lon": -34.41106715227833,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4875,12 +4875,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 45.389434965428066,
-          "lon": -54.21895721265352,
-          "validationStatus": "on_land"
+          "lat": 44.465061849079,
+          "lon": -53.20882478476001,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4910,12 +4910,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 50.44798946249107,
-          "lon": -50.709153336402984,
-          "validationStatus": "on_land"
+          "lat": 50.24557730812304,
+          "lon": -55.135494467807106,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4987,7 +4987,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "yvD3X3RcK3Y",
-      "lastUpdated": "2026-02-23T11:38:40.464Z",
+      "lastUpdated": "2026-02-25T16:32:19.535Z",
       "createdOn": "2025-07-13T19:42:08.400Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=yvD3X3RcK3Y",
       "backgroundImage": null,
@@ -5560,12 +5560,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 22.03201538224736,
-          "lon": 7.87914818962591,
-          "validationStatus": "corrected_to_land"
+          "lat": 21.123950039896425,
+          "lon": 10.373732740545028,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -5665,8 +5665,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "15": {
-          "lat": 43.68335767528727,
-          "lon": 14.319710754842257,
+          "lat": 41.1478,
+          "lon": 11.3998,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -5730,12 +5730,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 46.1545,
-          "lon": -61.3413,
-          "validationStatus": "on_land"
+          "lat": 47.988403886301015,
+          "lon": -64.17231437797282,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -5764,12 +5764,12 @@
       "estimatedAge": 280,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "280": {
-          "lat": 4.744854410122868,
-          "lon": -25.087450865488396,
-          "validationStatus": "on_land"
+          "lat": 6.6063840028561325,
+          "lon": -28.807996026175893,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -5798,12 +5798,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 51.2966,
-          "lon": -64.0402,
-          "validationStatus": "on_land"
+          "lat": 50.926066532019135,
+          "lon": -65.72767560782916,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -5832,12 +5832,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 47.52175844061398,
-          "lon": 111.3334584649191,
-          "validationStatus": "on_land"
+          "lat": 43.0288639742677,
+          "lon": 114.01787929803656,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -5866,12 +5866,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 41.031919186848036,
-          "lon": -53.059418790759594,
-          "validationStatus": "on_land"
+          "lat": 41.78193783175053,
+          "lon": -58.37952463393739,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -5900,12 +5900,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 50.025628712699245,
-          "lon": -51.05427518533071,
-          "validationStatus": "on_land"
+          "lat": 51.55467490837274,
+          "lon": -51.61697793406653,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -5935,12 +5935,12 @@
       "estimatedAge": 66,
       "location": "asia (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 44.71565459874204,
-          "lon": 115.12764318009557,
-          "validationStatus": "on_land"
+          "lat": 42.4849247484233,
+          "lon": 110.68682822165835,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -5969,12 +5969,12 @@
       "estimatedAge": 100,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 19.24682461121214,
-          "lon": 2.16130190367093,
-          "validationStatus": "corrected_to_land"
+          "lat": 22.141035370057125,
+          "lon": 5.499974728156947,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -6003,12 +6003,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 18.744876385028302,
-          "lon": 5.960012331851644,
-          "validationStatus": "on_land"
+          "lat": 15.732831999085922,
+          "lon": 7.505418328317412,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6038,12 +6038,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 34.29986362454412,
-          "lon": 27.918900011969473,
-          "validationStatus": "corrected_to_land"
+          "lat": 33.76708670871983,
+          "lon": 31.12500382720661,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6073,12 +6073,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 47.80662900290589,
-          "lon": 111.35993585353913,
-          "validationStatus": "on_land"
+          "lat": 50.47942692061009,
+          "lon": 109.11984070699654,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6143,12 +6143,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 44.4350568511507,
-          "lon": 112.22752947635897,
-          "validationStatus": "on_land"
+          "lat": 44.92045405491763,
+          "lon": 109.73285445502951,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6181,8 +6181,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 7.158774353414427,
-          "lon": 38.35832418990875,
+          "lat": 11.31094286469244,
+          "lon": 37.86882252113279,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6213,12 +6213,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 46.87636476269056,
-          "lon": 127.8249419228458,
-          "validationStatus": "corrected_to_land"
+          "lat": 48.453301732984684,
+          "lon": 128.150724954579,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6251,8 +6251,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 32.92828440600163,
-          "lon": 20.603204353876105,
+          "lat": 32.288361894323344,
+          "lon": 16.5241,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6283,12 +6283,12 @@
       "estimatedAge": 280,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "280": {
-          "lat": 3.5136303854806212,
-          "lon": -27.03272405908549,
-          "validationStatus": "on_land"
+          "lat": 2.7244788989000566,
+          "lon": -23.90603379752071,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6313,17 +6313,17 @@
       "preview": "https://img.youtube.com/vi/f-BAte84wOQ/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/spinosaurus-fishing",
       "freeTags": "North, Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 34.33,
-      "modernLon": -2.72,
-      "estimatedAge": 125,
-      "location": "Unknown (PBDB)",
-      "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "modernLat": 25,
+      "modernLon": 5,
+      "estimatedAge": null,
+      "location": "Spinosaurus - central Sahara (Algeria/Libya border) to ensure land placement at 100 Ma",
+      "confidence": "high",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 20.695497785565262,
-          "lon": 5.7057933876962155,
-          "validationStatus": "corrected_to_land"
+          "lat": 11.384449210292058,
+          "lon": 14.614032551435393,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6391,8 +6391,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 35.233292095205826,
-          "lon": 36.70872787158422,
+          "lat": 33.4597,
+          "lon": 34.2558,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -6417,17 +6417,17 @@
       "preview": "https://img.youtube.com/vi/zHshnmdcBH4/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/riojavenatrix-lacustris",
       "freeTags": "South America, Late Cretaceous, Riojavenatrix lacustris",
-      "modernLat": 42.3,
-      "modernLon": -2.5,
-      "estimatedAge": 0,
-      "location": "Fossil from La Rioja, Spain (CMS tag says S. America but fossil is European)",
-      "confidence": "high",
-      "paleoValidation": "corrected_to_land",
+      "modernLat": 42.05,
+      "modernLon": -2.03,
+      "estimatedAge": 66,
+      "location": "Unknown (PBDB)",
+      "confidence": "medium",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 38.10073414262211,
-          "lon": 10.041719451141574,
-          "validationStatus": "corrected_to_land"
+          "lat": 30.178875045058287,
+          "lon": 16.689318005146063,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -6457,12 +6457,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -40.819627559674146,
-          "lon": -35.42506369894932,
-          "validationStatus": "corrected_to_land"
+          "lat": -40.2051788121029,
+          "lon": -33.556203385497994,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6492,12 +6492,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 45.520793583915264,
-          "lon": 114.25747995178237,
-          "validationStatus": "on_land"
+          "lat": 45.25571473816931,
+          "lon": 113.90944639269985,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6527,12 +6527,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": -36.7852792591061,
-          "lon": -39.94467770561748,
-          "validationStatus": "on_land"
+          "lat": -38.81081066227109,
+          "lon": -37.30801297356054,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -6562,12 +6562,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -34.22523633551603,
-          "lon": -34.864673023711745,
-          "validationStatus": "corrected_to_land"
+          "lat": -41.51552991609709,
+          "lon": -35.485977278885784,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6597,12 +6597,12 @@
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -12.659770277633891,
-          "lon": -27.06388611695784,
-          "validationStatus": "on_land"
+          "lat": -14.375715172845798,
+          "lon": -26.906968052166746,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6632,12 +6632,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -39.92998992792166,
-          "lon": -42.10403418495436,
-          "validationStatus": "corrected_to_land"
+          "lat": -43.94335827858039,
+          "lon": -40.026667999147996,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6667,12 +6667,12 @@
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -15.706714667847972,
-          "lon": -29.852820247138627,
-          "validationStatus": "on_land"
+          "lat": -20.95509616726617,
+          "lon": -29.10239017340377,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6702,12 +6702,12 @@
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -16.71636095087586,
-          "lon": -19.004756495829636,
-          "validationStatus": "on_land"
+          "lat": -17.80288240069926,
+          "lon": -20.38042103512641,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6737,12 +6737,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 51.42800889008399,
-          "lon": -56.5335635884723,
-          "validationStatus": "on_land"
+          "lat": 48.121057158541895,
+          "lon": -55.36410864970408,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6772,12 +6772,12 @@
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -10.980198381784717,
-          "lon": -25.92409077543185,
-          "validationStatus": "on_land"
+          "lat": -14.521046752747287,
+          "lon": -27.540649247312803,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6802,17 +6802,17 @@
       "preview": "https://img.youtube.com/vi/lvXhQpoO-RQ/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/spinosaurus",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 28.95,
-      "modernLon": -7.18,
+      "modernLat": 34.33,
+      "modernLon": -2.72,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 18.834663977346214,
-          "lon": 4.115799248856525,
-          "validationStatus": "on_land"
+          "lat": 21.135993532637052,
+          "lon": 6.970589880935137,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6877,12 +6877,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 48.621030159310784,
-          "lon": -62.082835474987334,
-          "validationStatus": "on_land"
+          "lat": 45.61730271553635,
+          "lon": -64.36574417183647,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7003,12 +7003,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 17.99430372657591,
-          "lon": 11.271554062712747,
-          "validationStatus": "corrected_to_land"
+          "lat": 19.670760644667137,
+          "lon": 9.771842033642228,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -7068,17 +7068,17 @@
       "preview": "https://img.youtube.com/vi/3xgz6djUr9U/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/spinosaurus-swamp-things",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 29.99,
-      "modernLon": 0.3,
+      "modernLat": 28.95,
+      "modernLon": -7.18,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 15.516599797934806,
-          "lon": 7.054332901662036,
-          "validationStatus": "corrected_to_land"
+          "lat": 23.38925693025754,
+          "lon": 1.824314107479018,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -7103,17 +7103,17 @@
       "preview": "https://img.youtube.com/vi/q-YsgSsFTeI/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/spinosaurus-going-fishing",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 34.58,
-      "modernLon": -6.38,
+      "modernLat": 29.99,
+      "modernLon": 0.3,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 30.857838561507403,
-          "lon": 6.201630908221738,
-          "validationStatus": "corrected_to_land"
+          "lat": 21.03812917371837,
+          "lon": 10.29428675933707,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -7129,7 +7129,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "W2-G8svWs58",
-      "lastUpdated": "2026-02-23T11:38:40.454Z",
+      "lastUpdated": "2026-02-25T16:32:19.551Z",
       "createdOn": "2025-05-27T17:04:42.863Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=W2-G8svWs58",
       "backgroundImage": null,
@@ -7171,12 +7171,12 @@
       "estimatedAge": 15,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "15": {
-          "lat": 45.692196063201735,
-          "lon": 15.284275287903355,
-          "validationStatus": "corrected_to_land"
+          "lat": 41.52864194253018,
+          "lon": 11.013742810524121,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -7241,12 +7241,12 @@
       "estimatedAge": 15,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "15": {
-          "lat": -35.64093377535395,
-          "lon": -63.68120892979334,
-          "validationStatus": "on_land"
+          "lat": -31.14807079497645,
+          "lon": -63.902959910740876,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7275,12 +7275,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 51.14711417746891,
-          "lon": -51.97505225392442,
-          "validationStatus": "on_land"
+          "lat": 49.61147509005686,
+          "lon": -53.00016286413276,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7337,12 +7337,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 43.235371658035554,
-          "lon": 133.5663053810302,
-          "validationStatus": "on_land"
+          "lat": 44.42361045760949,
+          "lon": 129.55923366671945,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7371,12 +7371,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 42.27816963331948,
-          "lon": 129.35301615299576,
-          "validationStatus": "corrected_to_land"
+          "lat": 45.227006486407916,
+          "lon": 130.15620636557213,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7405,12 +7405,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 58.885333371448866,
-          "lon": -58.15052713339891,
-          "validationStatus": "on_land"
+          "lat": 58.86433244630771,
+          "lon": -57.79803037218511,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7507,12 +7507,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -35.522350947262645,
-          "lon": -34.76694712748703,
-          "validationStatus": "on_land"
+          "lat": -37.174504155449014,
+          "lon": -35.78149115017957,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7541,12 +7541,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -43.80487820709661,
-          "lon": -36.44014645051837,
-          "validationStatus": "on_land"
+          "lat": -42.53689094971675,
+          "lon": -38.662764134952816,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7575,12 +7575,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 42.112415966466386,
-          "lon": 113.90307805855593,
-          "validationStatus": "on_land"
+          "lat": 41.88991702674833,
+          "lon": 118.22132420704028,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7643,12 +7643,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -38.130498242078936,
-          "lon": 45.28310797393186,
-          "validationStatus": "on_land"
+          "lat": -40.49950459044357,
+          "lon": 40.45059817479146,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7700,17 +7700,17 @@
       "preview": "https://img.youtube.com/vi/VTzfaY2kx0U/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/la-peche-du-spinosaure",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 34.18,
-      "modernLon": 0.1,
+      "modernLat": 26.14,
+      "modernLon": -4.43,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 28.044713267056665,
-          "lon": 15.945824816277238,
-          "validationStatus": "corrected_to_land"
+          "lat": 17.6494,
+          "lon": 4.7205,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7795,12 +7795,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 47.48200417023123,
-          "lon": -51.417694063485285,
-          "validationStatus": "on_land"
+          "lat": 52.31713062823195,
+          "lon": -51.742734828998174,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7829,12 +7829,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 50.98225788187927,
-          "lon": -53.26751931623686,
-          "validationStatus": "on_land"
+          "lat": 49.15049356314058,
+          "lon": -53.64583749894766,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8031,12 +8031,12 @@
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 33.883886032256726,
-          "lon": -35.913079260822244,
-          "validationStatus": "on_land"
+          "lat": 33.700261292444004,
+          "lon": -35.40695226809292,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8065,12 +8065,12 @@
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 31.855522955106757,
-          "lon": -33.09622274714104,
-          "validationStatus": "on_land"
+          "lat": 29.405792386640666,
+          "lon": -33.03283070452252,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8099,12 +8099,12 @@
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 32.84960634605521,
-          "lon": -32.08943477876358,
-          "validationStatus": "on_land"
+          "lat": 32.33419759436339,
+          "lon": -33.076554940543005,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8201,12 +8201,12 @@
       "estimatedAge": 100,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 41.79590234651079,
-          "lon": 20.997065601286288,
-          "validationStatus": "on_land"
+          "lat": 41.589323640992625,
+          "lon": 20.220068219036193,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8337,12 +8337,12 @@
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 33.415987620391604,
-          "lon": -34.70065984160857,
-          "validationStatus": "on_land"
+          "lat": 29.37909364462838,
+          "lon": -36.70427180315859,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8371,12 +8371,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 49.08649820160139,
-          "lon": -62.4416425269398,
-          "validationStatus": "on_land"
+          "lat": 47.51755707096215,
+          "lon": -58.97590111797384,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8405,12 +8405,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 51.57673573443524,
-          "lon": -51.962470036162856,
-          "validationStatus": "on_land"
+          "lat": 50.61838840434376,
+          "lon": -54.82100440684328,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8473,12 +8473,12 @@
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 31.229942249656744,
-          "lon": -36.550180878671554,
-          "validationStatus": "on_land"
+          "lat": 29.524916001871453,
+          "lon": -31.67762130475107,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8647,12 +8647,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 51.1930755995281,
-          "lon": -55.83016078574349,
-          "validationStatus": "on_land"
+          "lat": 48.96654138675981,
+          "lon": -54.088483540283775,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8681,12 +8681,12 @@
       "estimatedAge": 1,
       "location": "south america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": -18.80480287692964,
-          "lon": -58.034865904845525,
-          "validationStatus": "on_land"
+          "lat": -21.58204049539387,
+          "lon": -57.53612910911397,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8911,12 +8911,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 80.40021033851316,
-          "lon": -87.94864687229563,
-          "validationStatus": "on_land"
+          "lat": 78.49922109556958,
+          "lon": -93.25427538669372,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8948,8 +8948,8 @@
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -86.02362626806064,
-          "lon": -167.4819440779391,
+          "lat": -80.85097008332984,
+          "lon": -145.9709356443337,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -8979,12 +8979,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 46.3904,
-          "lon": 107.0724,
-          "validationStatus": "on_land"
+          "lat": 46.06031961800074,
+          "lon": 109.76785595210674,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -9013,12 +9013,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 51.388941873567205,
-          "lon": 110.17452655850222,
-          "validationStatus": "on_land"
+          "lat": 48.85053426788306,
+          "lon": 111.39887581466931,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -9044,15 +9044,15 @@
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex",
       "modernLat": 51.9,
       "modernLon": -113,
-      "estimatedAge": 0,
+      "estimatedAge": null,
       "location": "Default T.rex location - Alberta Canada",
       "confidence": "high",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 58.43294676118611,
-          "lon": -62.93509766331301,
-          "validationStatus": "on_land"
+          "lat": 55.718700507885124,
+          "lon": -60.09639067546427,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -9264,7 +9264,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "-qcZdtwpemA",
-      "lastUpdated": "2026-02-23T11:38:40.483Z",
+      "lastUpdated": "2026-02-25T16:32:19.530Z",
       "createdOn": "2025-05-17T12:23:28.491Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=-qcZdtwpemA",
       "backgroundImage": null,
@@ -9320,7 +9320,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "Hl6Lj2fAuGM",
-      "lastUpdated": "2026-02-23T11:38:40.465Z",
+      "lastUpdated": "2026-02-25T16:32:19.544Z",
       "createdOn": "2025-05-17T11:56:59.847Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Hl6Lj2fAuGM",
       "backgroundImage": null,
@@ -9376,7 +9376,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "t5NIua_Dveo",
-      "lastUpdated": "2026-02-23T11:38:40.482Z",
+      "lastUpdated": "2026-02-25T16:32:19.531Z",
       "createdOn": "2025-05-16T22:15:37.546Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=t5NIua_Dveo",
       "backgroundImage": null,
@@ -9446,12 +9446,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 48.49136081922759,
-          "lon": -53.31398890259448,
-          "validationStatus": "on_land"
+          "lat": 51.865048084740124,
+          "lon": -52.96651379235852,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -9481,12 +9481,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 40.43217232404892,
-          "lon": -63.034103194429505,
-          "validationStatus": "on_land"
+          "lat": 43.958425364254104,
+          "lon": -61.42732141340568,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -9516,12 +9516,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 59.02747714205798,
-          "lon": -55.54823557484706,
-          "validationStatus": "on_land"
+          "lat": 56.70205436405827,
+          "lon": -56.648693697041296,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -9551,12 +9551,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 51.04205614303495,
-          "lon": -66.01203068024643,
-          "validationStatus": "on_land"
+          "lat": 50.35583569380994,
+          "lon": -66.74037570781041,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -9586,12 +9586,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 53.3482013752974,
-          "lon": -66.4319877597066,
-          "validationStatus": "on_land"
+          "lat": 52.77909591622565,
+          "lon": -63.02622937683642,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -9648,12 +9648,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 52.79577683663621,
-          "lon": -50.90814165870157,
-          "validationStatus": "on_land"
+          "lat": 51.58961375219002,
+          "lon": -52.718757244313714,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -9766,12 +9766,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 50.69453642033262,
-          "lon": -50.56148605663577,
-          "validationStatus": "on_land"
+          "lat": 51.752170040773436,
+          "lon": -51.557542584281315,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },

@@ -516,7 +516,7 @@ async function findCoordinates(freeTags, itemId, slug) {
       confidence: "high",
       source: "manual_fix",
       period: null,
-      age: 0,
+      age: null, // Don't override age - let reconstruction use geologicalPeriod
       collisionAttempts: 0,
     };
   }

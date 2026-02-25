@@ -208,29 +208,48 @@ function isPointOnLand(lat, lon, age) {
   return false;
 }
 
-function findNearbyLand(lat, lon, age, attempts = 100, radiusStart = 5) {
+function findNearbyLand(lat, lon, age, maxRadius = 10) {
+  // If already on land, return as-is
   if (isPointOnLand(lat, lon, age)) return { lat, lon };
 
-  // Recherche progessive avec rayon croissant (5° -> 10° -> 20° -> 40°)
-  const radii = [5, 10, 20, 40];
+  // Deterministic search: test a grid of points and find the CLOSEST land point
+  const step = 0.5; // Test every 0.5 degrees
+  let closestLand = null;
+  let closestDistance = Infinity;
 
-  for (const radius of radii) {
-    for (let i = 0; i < Math.min(attempts, 25); i++) {
-      const offsetLat = (Math.random() - 0.5) * radius * 2;
-      const offsetLon = (Math.random() - 0.5) * radius * 2;
-      const testLat = lat + offsetLat;
-      const testLon = lon + offsetLon;
+  // Search in increasing radius until we find land
+  for (let radius = step; radius <= maxRadius; radius += step) {
+    // Test points in a circle at this radius
+    const numPoints = Math.max(8, Math.floor(radius * 8)); // More points for larger radius
 
-      // Validation des coordonnées
-      if (Math.abs(testLat) <= 90 && Math.abs(testLon) <= 180) {
-        if (isPointOnLand(testLat, testLon, age)) {
-          return { lat: testLat, lon: testLon };
+    for (let i = 0; i < numPoints; i++) {
+      const angle = (i / numPoints) * 2 * Math.PI;
+      const testLat = lat + radius * Math.cos(angle);
+      const testLon = lon + radius * Math.sin(angle);
+
+      // Validate coordinates
+      if (Math.abs(testLat) > 90 || Math.abs(testLon) > 180) continue;
+
+      // Check if on land
+      if (isPointOnLand(testLat, testLon, age)) {
+        const distance = Math.sqrt(
+          Math.pow(testLat - lat, 2) + Math.pow(testLon - lon, 2),
+        );
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestLand = { lat: testLat, lon: testLon };
         }
       }
     }
+
+    // If we found land at this radius, return the closest point
+    if (closestLand) {
+      return closestLand;
+    }
   }
 
-  return null;
+  return null; // No land found within maxRadius
 }
 
 // ============================================
@@ -462,7 +481,7 @@ async function reconstructItemForPeriod(item, options = {}) {
   let coords = await reconstructPoint(latitude, longitude, age);
   let validationStatus = "unvalidated";
 
-  // Validation paléo : vérifier que le point reconstruit est sur terre
+  // STEP 1: Validation terre/mer initiale
   if (!isOceanicItem(item)) {
     const onLand = isPointOnLand(coords.lat, coords.lon, age);
 
@@ -491,10 +510,11 @@ async function reconstructItemForPeriod(item, options = {}) {
     // onLand === null → pas de données GeoJSON, reste "unvalidated"
   }
 
-  // Vérifier les collisions avec les items existants
+  // STEP 2: Anti-collision
   const COLLISION_THRESHOLD = 3.0; // 3° de distance minimale
   let finalLat = coords.lat;
   let finalLon = coords.lon;
+  let collisionDetected = false;
 
   for (const existingItem of existingItems) {
     if (existingItem.id === item.id) continue;
@@ -512,6 +532,7 @@ async function reconstructItemForPeriod(item, options = {}) {
       const offsetLon = (Math.random() - 0.5) * 6;
       finalLat = coords.lat + offsetLat;
       finalLon = coords.lon + offsetLon;
+      collisionDetected = true;
 
       if (verbose) {
         console.log(
@@ -519,6 +540,41 @@ async function reconstructItemForPeriod(item, options = {}) {
         );
       }
       break;
+    }
+  }
+
+  // STEP 3: Re-validation après anti-collision (pour items terrestres)
+  if (collisionDetected && !isOceanicItem(item)) {
+    const stillOnLand = isPointOnLand(finalLat, finalLon, age);
+
+    if (stillOnLand === false) {
+      // Anti-collision a replacé dans l'océan → chercher terre proche
+      const landResult = findNearbyLand(finalLat, finalLon, age);
+      if (landResult) {
+        if (verbose) {
+          console.log(
+            `   🔧 Re-correction après collision: ${landResult.lat.toFixed(2)}°, ${landResult.lon.toFixed(2)}°`,
+          );
+        }
+        finalLat = landResult.lat;
+        finalLon = landResult.lon;
+        validationStatus = "corrected_after_collision";
+      } else {
+        // Aucune terre proche trouvée → garder position avant collision
+        if (verbose) {
+          console.log(
+            `   ⚠️  Anti-collision invalide (océan) - conservation position originale`,
+          );
+        }
+        finalLat = coords.lat;
+        finalLon = coords.lon;
+        validationStatus = validationStatus; // Keep previous status
+      }
+    } else if (stillOnLand === true) {
+      // Toujours sur terre après anti-collision
+      if (validationStatus === "on_land" || validationStatus === "corrected_to_land") {
+        validationStatus = "on_land_after_collision";
+      }
     }
   }
 

@@ -238,12 +238,22 @@ async function main() {
     const results = [];
     const startTime = Date.now();
 
+    // Préparer la liste des items existants (pour anti-collision)
+    const idsToReconstruct = new Set(itemsToReconstruct.map((i) => i.id));
+    const existingItemsForCollision =
+      INCREMENTAL_MODE && existingData && existingData.items
+        ? existingData.items.filter((i) => !idsToReconstruct.has(i.id))
+        : [];
+
     for (let i = 0; i < itemsToReconstruct.length; i++) {
+      // Pass ALL existing items + already reconstructed items for collision detection
+      const allItemsForCollision = [...existingItemsForCollision, ...results];
+
       const reconstructed = await reconstructClosestPeriod(
         itemsToReconstruct[i],
         i,
         itemsToReconstruct.length,
-        results, // Passer les items déjà reconstruits pour éviter collisions océaniques
+        allItemsForCollision,
       );
       if (reconstructed) {
         results.push(reconstructed);
