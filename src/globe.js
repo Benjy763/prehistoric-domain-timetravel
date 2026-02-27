@@ -51,6 +51,14 @@ class GlobeManager {
     // Auto-rotation
     this.autoRotate = true;
 
+    // Cluster system
+    this.clusterIndex = null;
+    this.clusterSprites = [];
+    this.lastClusterZoom = -1;
+    this.baseClusterScale = 0.045;
+    this.hoverClusterScale = 0.055;
+    this.clusterZoomAnimating = false;
+
     this.init();
   }
 
@@ -313,12 +321,12 @@ class GlobeManager {
       };
 
       // Hover detection on pinpoints
-      if (!isDragging && this.points.length > 0) {
+      if (!isDragging && (this.points.length > 0 || this.clusterSprites.length > 0)) {
         const rect = this.container.getBoundingClientRect();
         this.mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
         this.mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
         this.raycaster.setFromCamera(this.mouse, this.camera);
-        const intersects = this.raycaster.intersectObjects(this.points);
+        const intersects = this.raycaster.intersectObjects([...this.points, ...this.clusterSprites]);
 
         const newHovered = intersects.length > 0 ? intersects[0].object : null;
         if (newHovered !== this.hoveredPoint) {
@@ -1516,30 +1524,173 @@ class GlobeManager {
   }
 
   clearPoints() {
-    console.log(`🗑️ Nettoyage de ${this.points.length} points`);
     this.points.forEach((point) => {
       this.globe.remove(point);
+      if (point.material?.map) point.material.map.dispose();
+      if (point.material) point.material.dispose();
     });
     this.points = [];
+    this.clearClusters();
+    this.clusterIndex = null;
+    this.lastClusterZoom = -1;
+  }
+
+  cameraZToClusterZoom() {
+    const z = Math.max(2.2, Math.min(10, this.camera.position.z));
+    const t = (z - 2.2) / (10 - 2.2); // linear 0 (close) to 1 (far)
+    // sqrt bias: spend most of the zoom range at low SC zoom (clustered)
+    // only go high (individual pins) when very close to the globe
+    // z=10→0, z=5→6, z=3→11, z=2.5→13, z=2.2→16
+    return Math.max(0, Math.round(16 * (1 - Math.sqrt(t))));
+  }
+
+  initClusterData(items) {
+    // Fallback to direct rendering if Supercluster CDN failed to load
+    if (typeof Supercluster === "undefined") {
+      items.forEach(({ lat, lon, data, isFavorite }) => this.addPoint(lat, lon, data, isFavorite));
+      return;
+    }
+    this.clusterIndex = new Supercluster({ radius: 300, maxZoom: 16, minPoints: 2 });
+    this.clusterIndex.load(items.map((item, i) => ({
+      type: "Feature",
+      geometry: { type: "Point", coordinates: [item.lon, item.lat] },
+      properties: { itemIndex: i, data: item.data, isFavorite: item.isFavorite },
+    })));
+    this._clusterItems = items;
+    this.lastClusterZoom = -1;
+    this.updateClusters();
+  }
+
+  updateClusters() {
+    if (!this.clusterIndex) return;
+    const scZoom = this.cameraZToClusterZoom();
+
+    this.clearClusters();
+    this.points.forEach(p => {
+      this.globe.remove(p);
+      if (p.material?.map) p.material.map.dispose();
+      if (p.material) p.material.dispose();
+    });
+    this.points = [];
+
+    const clusters = this.clusterIndex.getClusters([-180, -85, 180, 85], scZoom);
+    for (const c of clusters) {
+      const [lon, lat] = c.geometry.coordinates;
+      if (c.properties.cluster) {
+        this.addClusterSprite(lat, lon, c.properties.point_count, {
+          _isCluster: true,
+          _clusterId: c.id,
+          _count: c.properties.point_count,
+          _lat: lat, _lon: lon,
+        });
+      } else {
+        const { data, isFavorite } = c.properties;
+        this.addPoint(lat, lon, data, isFavorite);
+      }
+    }
+  }
+
+  addClusterSprite(lat, lon, count, clusterData) {
+    const canvas = document.createElement("canvas");
+    canvas.width = 64; canvas.height = 64;
+    const ctx = canvas.getContext("2d", { alpha: true });
+    ctx.clearRect(0, 0, 64, 64);
+
+    // Glow ring
+    ctx.shadowColor = "#4fc3f7"; ctx.shadowBlur = 10;
+    ctx.beginPath(); ctx.arc(32, 32, 26, 0, Math.PI * 2);
+    ctx.strokeStyle = "rgba(79,195,247,0.5)"; ctx.lineWidth = 2; ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // Dark fill
+    ctx.globalAlpha = 0.85;
+    ctx.beginPath(); ctx.arc(32, 32, 22, 0, Math.PI * 2);
+    ctx.fillStyle = "#0d1117"; ctx.fill();
+
+    // Border color by count
+    const border = count < 10 ? "#4fc3f7" : count < 50 ? "#ffaa00" : "#fd79a8";
+    ctx.globalAlpha = 1;
+    ctx.beginPath(); ctx.arc(32, 32, 22, 0, Math.PI * 2);
+    ctx.strokeStyle = border; ctx.lineWidth = 2.5; ctx.stroke();
+
+    // Count label
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 14px sans-serif";
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillText(count > 999 ? "999+" : String(count), 32, 32);
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.minFilter = THREE.LinearFilter;
+    const mat = new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false, sizeAttenuation: false });
+    const sprite = new THREE.Sprite(mat);
+    sprite.position.copy(this.latLonToVector3(lat, lon, 2.05));
+    sprite.scale.set(this.baseClusterScale, this.baseClusterScale, 1);
+    sprite.userData = clusterData;
+    this.globe.add(sprite);
+    this.clusterSprites.push(sprite);
+    return sprite;
+  }
+
+  clearClusters() {
+    this.clusterSprites.forEach(s => {
+      this.globe.remove(s);
+      if (s.material?.map) s.material.map.dispose();
+      if (s.material) s.material.dispose();
+    });
+    // Reset hovered reference if it pointed to a now-removed cluster sprite
+    if (this.clusterSprites.includes(this.hoveredPoint)) {
+      this.hoveredPoint = null;
+      this.container.style.cursor = "grab";
+    }
+    this.clusterSprites = [];
+  }
+
+  onClusterClick(clusterData) {
+    const atMaxZoom = this.camera.position.z <= 2.25;
+    if (clusterData._count <= 5 || atMaxZoom) {
+      // Show list: small cluster or can't zoom further
+      const leaves = this.clusterIndex.getLeaves(clusterData._clusterId, Infinity);
+      const items = leaves.map(l => l.properties.data);
+      if (window.appController) window.appController.showClusterList(items);
+      return;
+    }
+    this.animateCameraZoom(Math.max(2.2, this.camera.position.z * 0.55));
+  }
+
+  animateCameraZoom(targetZ) {
+    this.clusterZoomAnimating = true;
+    const startZ = this.camera.position.z;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min((now - start) / 400, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      this.camera.position.z = startZ + (targetZ - startZ) * eased;
+      if (t < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        this.camera.position.z = targetZ;
+        this.clusterZoomAnimating = false;
+        this.lastClusterZoom = -1;
+        this.updateClusters();
+      }
+    };
+    requestAnimationFrame(tick);
   }
 
   onMouseClick(event) {
-    // Delegate to external handler if set (placement tool)
-    if (this.clickHandler) {
-      this.clickHandler(event);
-      return;
-    }
+    if (this.clickHandler) { this.clickHandler(event); return; }
 
-    // Calculate mouse position in normalized coordinates
     const rect = this.container.getBoundingClientRect();
     this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
     this.raycaster.setFromCamera(this.mouse, this.camera);
-    const intersects = this.raycaster.intersectObjects(this.points);
+    const intersects = this.raycaster.intersectObjects([...this.points, ...this.clusterSprites]);
 
     if (intersects.length > 0) {
-      this.onPointClick(intersects[0].object.userData);
+      const userData = intersects[0].object.userData;
+      if (userData._isCluster) this.onClusterClick(userData);
+      else this.onPointClick(userData);
     }
   }
 
@@ -1601,8 +1752,17 @@ class GlobeManager {
       this.atmosphere.scale.set(scale, scale, scale);
     }
 
+    // Cluster refresh on zoom change
+    if (this.clusterIndex && !this.clusterZoomAnimating) {
+      const scZoom = this.cameraZToClusterZoom();
+      if (scZoom !== this.lastClusterZoom) {
+        this.lastClusterZoom = scZoom;
+        this.updateClusters();
+      }
+    }
+
     // Smooth scale animation for hovered pinpoint
-    for (const point of this.points) {
+    for (const point of [...this.points, ...this.clusterSprites]) {
       // Hide all icons during loading transition
       if (this.isLoading) {
         if (point.material) {
@@ -1611,10 +1771,10 @@ class GlobeManager {
         continue;
       }
 
-      const target =
-        point === this.hoveredPoint
-          ? this.hoverPointScale
-          : this.basePointScale;
+      const isCluster = !!point.userData._isCluster;
+      const target = point === this.hoveredPoint
+        ? (isCluster ? this.hoverClusterScale : this.hoverPointScale)
+        : (isCluster ? this.baseClusterScale : this.basePointScale);
       const current = point.scale.x;
       if (Math.abs(current - target) > 0.0005) {
         const newScale = current + (target - current) * 0.15;

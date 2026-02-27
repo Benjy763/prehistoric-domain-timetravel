@@ -74,8 +74,7 @@ const GEOLOGICAL_PERIOD_MAP = {
   f44a29ca025a2b23e3c47810ec7621a1: "cambrian",
 };
 
-const MIN_DISTANCE_DEGREES = 1.5; // Distance minimale entre 2 points
-const MAX_ATTEMPTS = 20; // Tentatives maximales anti-collision
+const MIN_DISTANCE_DEGREES = 0.15; // Minimum distance between pins (~17 km) — matches pin visual size at max zoom
 
 // Bounding boxes for continent filtering of PBDB results
 const CONTINENT_BOUNDS = {
@@ -256,31 +255,32 @@ function getRandomPositionInContinent(continent) {
  * @param {boolean} requireLand - Si true, rejeter les positions en mer (validation 0Ma)
  */
 function findNonCollidingPosition(baseLat, baseLon, requireLand = false) {
-  // Essayer la position de base d'abord
+  // Try base position first
   if (!hasCollision(baseLat, baseLon)) {
     if (!requireLand || isPointOnLand(baseLat, baseLon, 0) !== false) {
       return { lat: baseLat, lon: baseLon, attempts: 0 };
     }
   }
 
-  // Spirale avec rayon progressif : max = 0.3 + 20*0.3 = 6.3°
-  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-    const radius = 0.3 + attempt * 0.3;
-    const angle = attempt * 137.5 * (Math.PI / 180); // Golden angle
+  // Expand spiral until a clean spot is found.
+  // Step 0.02° keeps candidates very close to origin.
+  // Safety cap at 2° — beyond that, clustering handles visual density anyway.
+  const MAX_RADIUS_DEGREES = 2.0;
 
+  for (let attempt = 1; ; attempt++) {
+    const radius = 0.02 + attempt * 0.02;
+    if (radius > MAX_RADIUS_DEGREES) break;
+
+    const angle = attempt * 137.5 * (Math.PI / 180); // Golden angle
     const lat = baseLat + radius * Math.sin(angle);
     const lon = baseLon + radius * Math.cos(angle);
 
-    if (!hasCollision(lat, lon)) {
-      if (requireLand && isPointOnLand(lat, lon, 0) === false) {
-        continue; // Skip : position en mer
-      }
-      return { lat, lon, attempts: attempt };
-    }
+    if (requireLand && isPointOnLand(lat, lon, 0) === false) continue;
+    if (!hasCollision(lat, lon)) return { lat, lon, attempts: attempt };
   }
 
-  // Dernier recours : accepter la position de base (collision plutôt que mauvais placement)
-  return { lat: baseLat, lon: baseLon, attempts: MAX_ATTEMPTS };
+  // Only reached in extreme density (hundreds of items on same formation within 2°)
+  return { lat: baseLat, lon: baseLon, attempts: -1 };
 }
 
 /**

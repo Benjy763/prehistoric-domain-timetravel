@@ -550,7 +550,8 @@ class AppController {
       );
     }
 
-    // Ajouter les points au globe
+    // Build resolved items list for clustering
+    const resolvedItems = [];
     filteredContents.forEach((content) => {
       const periodCoords =
         content.periods?.[this.currentTime] ||
@@ -561,10 +562,9 @@ class AppController {
 
       if (lat == null || lon == null) return;
 
-      // Pass isFavorite flag to globe for blue highlight
-      const isFavorite = this.favoritesManager.isFavorite(content.id);
-      this.globeManager.addPoint(lat, lon, content, isFavorite);
+      resolvedItems.push({ lat, lon, data: content, isFavorite: this.favoritesManager.isFavorite(content.id) });
     });
+    this.globeManager.initClusterData(resolvedItems);
   }
 
   /**
@@ -637,6 +637,60 @@ class AppController {
   showContentPopup(contentData) {
     console.log("Displaying content:", contentData);
     this.popupManager.show(contentData);
+  }
+
+  showClusterList(items) {
+    const existing = document.getElementById("clusterListPopup");
+    if (existing) existing.remove();
+
+    const popup = document.createElement("div");
+    popup.id = "clusterListPopup";
+    Object.assign(popup.style, {
+      position: "fixed", top: "50%", left: "50%",
+      transform: "translate(-50%,-50%)",
+      background: "rgba(13,17,23,0.95)",
+      border: "1px solid rgba(79,195,247,0.4)",
+      borderRadius: "12px", padding: "16px",
+      zIndex: "1000", minWidth: "240px", maxWidth: "320px",
+      backdropFilter: "blur(8px)",
+    });
+
+    const header = document.createElement("div");
+    header.style.cssText = "color:#4fc3f7;font-size:12px;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;";
+    header.textContent = `${items.length} contents at this location`;
+    popup.appendChild(header);
+
+    const list = document.createElement("div");
+    list.style.cssText = "max-height:320px;overflow-y:auto;padding-right:4px;";
+    popup.appendChild(list);
+
+    items.forEach(item => {
+      const row = document.createElement("div");
+      row.style.cssText = "padding:8px;cursor:pointer;border-radius:6px;color:#ebebeb;font-size:13px;margin-bottom:4px;";
+      row.textContent = item.name || item.title || "Unnamed";
+      row.onmouseover = () => { row.style.background = "rgba(79,195,247,0.1)"; };
+      row.onmouseout = () => { row.style.background = ""; };
+      row.onclick = () => { popup.remove(); this.showContentPopup(item); };
+      list.appendChild(row);
+    });
+
+    const close = document.createElement("button");
+    close.textContent = "×";
+    close.style.cssText = "position:absolute;top:8px;right:12px;background:none;border:none;color:#ebebeb;font-size:18px;cursor:pointer;";
+    close.onclick = () => popup.remove();
+    popup.appendChild(close);
+
+    setTimeout(() => {
+      const onOutside = (e) => {
+        if (!popup.contains(e.target)) {
+          popup.remove();
+          document.removeEventListener("click", onOutside);
+        }
+      };
+      document.addEventListener("click", onOutside);
+    }, 100);
+
+    document.body.appendChild(popup);
   }
 
   showLoading() {

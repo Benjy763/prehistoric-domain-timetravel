@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "generated": "2026-02-25T16:49:20.158Z",
+    "generated": "2026-02-27T12:15:52.757Z",
     "totalItems": 300,
     "sourceItems": 312,
-    "eligibleItems": 235,
+    "eligibleItems": 300,
     "reconstructedItems": 1,
     "mode": "incremental",
     "periods": [
@@ -152,16 +152,16 @@
       "preview": "https://img.youtube.com/vi/IbXRuTmNJsQ/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/sounds-of-celebration",
       "freeTags": "North America, Pleistocene, Mammuthus columbi",
-      "modernLat": 44.03,
-      "modernLon": -98.48,
+      "modernLat": 44.86,
+      "modernLon": -100.07,
       "estimatedAge": 1,
       "location": "north america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": 45.325830649801844,
-          "lon": -98.89046639913951,
+          "lat": 44.90328152302423,
+          "lon": -98.58292080482144,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -458,16 +458,16 @@
       "preview": "https://img.youtube.com/vi/ylOrTF4V5og/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/eremotherium",
       "freeTags": "South America, Pleistocene, Eremotherium laurillardi",
-      "modernLat": -15.26,
-      "modernLon": -61.48,
+      "modernLat": -15.14,
+      "modernLon": -60.07,
       "estimatedAge": 1,
       "location": "south america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": -14.802814229279456,
-          "lon": -62.271015979328375,
+          "lat": -15.765179954924909,
+          "lon": -56.87006801876075,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -534,8 +534,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": -21.306125067663604,
-          "lon": -56.46714636026036,
+          "lat": -19.294152416322415,
+          "lon": -56.32299364664533,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -560,16 +560,16 @@
       "preview": "https://img.youtube.com/vi/xBXrSoYqcyk/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/doedicurus-battle",
       "freeTags": "South America, Pleistocene, Doedicurus clavicaudus",
-      "modernLat": -15.97,
-      "modernLon": -58.48,
+      "modernLat": -14.94,
+      "modernLon": -59.83,
       "estimatedAge": 1,
       "location": "south america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": -17.59041618177266,
-          "lon": -59.79680572893165,
+          "lat": -15.358908460546289,
+          "lon": -58.184896783381504,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -662,16 +662,16 @@
       "preview": "https://img.youtube.com/vi/yz7bSfKsyso/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/diprotodon-find-water",
       "freeTags": "Australia, Pleistocene, Diprotodon optatum",
-      "modernLat": -33.55,
-      "modernLon": 146.37,
+      "modernLat": -32.73,
+      "modernLon": 144.78,
       "estimatedAge": 1,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": -31.469321006716306,
-          "lon": 148.69360610886955,
+          "lat": -33.57053305543443,
+          "lon": 145.79499625469396,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -764,16 +764,16 @@
       "preview": "https://img.youtube.com/vi/2yCBSbsFii8/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/columbian-mammoth-gets-stuck-in-tar",
       "freeTags": "North America, Pleistocene, Mammuthus columbi",
-      "modernLat": 47.03,
-      "modernLon": -100.54,
+      "modernLat": 45.06,
+      "modernLon": -99.83,
       "estimatedAge": 1,
       "location": "north america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": 49.20162497862901,
-          "lon": -101.00001904045548,
+          "lat": 43.092013462964985,
+          "lon": -99.69889537320995,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -832,17 +832,17 @@
       "preview": "https://img.youtube.com/vi/LoWWf2xrW6I/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/prehistoric-planet-ice-age-spa-time",
       "freeTags": "Asia, Pleistocene, Macaca fuscata",
-      "modernLat": 44.83,
-      "modernLon": 142.51,
+      "modernLat": 42.25,
+      "modernLon": 142.9,
       "estimatedAge": 1,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": 45.977853390593275,
-          "lon": 141.70954660940671,
-          "validationStatus": "corrected_to_land"
+          "lat": 43.0481,
+          "lon": 142.5039,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -1068,16 +1068,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb08d8129b0e5dc8789_6931a97922afffaacaa69580_Patagonia_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/patagonia",
       "freeTags": "South America, Late Cretaceous",
-      "modernLat": -12.97,
-      "modernLon": -60.54,
+      "modernLat": -14.92,
+      "modernLon": -60.18,
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -14.4073,
-          "lon": -25.8533,
+          "lat": -16.3648,
+          "lon": -25.5378,
           "validationStatus": "on_land"
         }
       }
@@ -1103,17 +1103,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb01ebd069f1d0ab0a7_692ae830549666c089395aef_Oxalaia_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/oxalaia",
       "freeTags": "South America, Late Cretaceous, Oxalaia",
-      "modernLat": -17.13,
-      "modernLon": -61.11,
+      "modernLat": -15.2,
+      "modernLon": -59.91,
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -18.5532,
-          "lon": -26.5289,
-          "validationStatus": "on_land"
+          "lat": -14.539453952379255,
+          "lon": -28.232377741913687,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -1138,16 +1138,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf13e05afd44747c6a_692ae73f9fb22197745dd286_Niobrara_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/niobrara",
       "freeTags": "North America, Late Cretaceous, Niobrara Formation",
-      "modernLat": 42.87,
-      "modernLon": -101.11,
+      "modernLat": 45.08,
+      "modernLon": -100.18,
       "estimatedAge": 66,
       "location": "north america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 46.2753,
-          "lon": -51.9679,
+          "lat": 48.1974,
+          "lon": -50.0828,
           "validationStatus": "on_land"
         }
       }
@@ -1271,17 +1271,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eada268bb5c643c0bb4_692ae3c367ce35fbf31e0ff5_Irritator_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/irritator",
       "freeTags": "South America, Early Cretaceous, Irritator",
-      "modernLat": -14.08,
-      "modernLon": -57.46,
+      "modernLat": -14.77,
+      "modernLon": -59.93,
       "estimatedAge": 125,
       "location": "south america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -15.5841,
-          "lon": -22.7797,
-          "validationStatus": "on_land"
+          "lat": -14.849336732687977,
+          "lon": -23.256060026769738,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -1579,16 +1579,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead049e8f6fb4d0f249_691b53c4818838b7ddbd31e5_IMG_6380_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/lokiceratops-looking-curious",
       "freeTags": "North America, Late Cretaceous, Lokiceratops, Triceratops",
-      "modernLat": 49.84,
-      "modernLon": -110.01,
+      "modernLat": 48.89,
+      "modernLon": -110.74,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 55.22035935401169,
-          "lon": -56.83746613199941,
+          "lat": 54.673211423228665,
+          "lon": -56.9256331840303,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -1614,16 +1614,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead0a48e32c27ae1111_691b4f0cf9864600ba384a7a_IMG_6435_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/hunger-or-being-stabbed-by-their-horns",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus, Triceratops",
-      "modernLat": 45.77,
-      "modernLon": -105.55,
+      "modernLat": 46.01,
+      "modernLon": -104.17,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 49.284745921022655,
-          "lon": -56.83311516600183,
+          "lat": 52.63185199978731,
+          "lon": -53.74175116535799,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -1649,16 +1649,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2298b797811d3d7a9_691b526763489e6decb826ed_IMG_6434_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/sometimes-you-become-the-prey",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus, Mosasaurus",
-      "modernLat": 45.06,
-      "modernLon": -102.55,
+      "modernLat": 46.16,
+      "modernLon": -104.11,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 49.049036125520466,
-          "lon": -52.21932345131733,
+          "lat": 47.68797050459092,
+          "lon": -55.26354298001745,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -1684,16 +1684,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf4a48e65990609204_6925ee3d8746535d57c9b4a9_IMG_6433_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/not-today-allo",
       "freeTags": "North America, Late Jurassic, Allosaurus",
-      "modernLat": 40.91,
-      "modernLon": -104.56,
+      "modernLat": 41.88,
+      "modernLon": -106.08,
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 28.40595664663382,
-          "lon": -31.304714528902856,
+          "lat": 30.919131323427727,
+          "lon": -32.426748719857585,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -2034,8 +2034,8 @@
       "preview": "https://img.youtube.com/vi/ynHJbkBbbQo/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/mothra-radiodont",
       "freeTags": "Global Oceans, Cambrian, Radiodont, “Mothra”",
-      "modernLat": 2.73,
-      "modernLon": -157.94,
+      "modernLat": -0.07,
+      "modernLon": -34.32,
       "estimatedAge": 500,
       "location": "global oceans",
       "confidence": "medium",
@@ -2069,17 +2069,17 @@
       "preview": "https://img.youtube.com/vi/ZdPTYamnqQA/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/crinoid-hats",
       "freeTags": "North America, Silurian, Crinoids",
-      "modernLat": 45.92,
-      "modernLon": -97.46,
+      "modernLat": 44.8,
+      "modernLon": -99.91,
       "estimatedAge": 410,
       "location": "north america (continent center)",
       "confidence": "low",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "ocean_no_correction",
       "periods": {
         "410": {
-          "lat": -31.189873384457524,
-          "lon": -74.00995434629829,
-          "validationStatus": "corrected_to_land"
+          "lat": -26.4095,
+          "lon": -83.5072,
+          "validationStatus": "ocean_no_correction"
         }
       }
     },
@@ -2139,16 +2139,16 @@
       "preview": "https://img.youtube.com/vi/WpA23XqUnq0/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/hunted-by-moonlight-dinosauria-series",
       "freeTags": "North America, Early Jurassic, Dilophosaurus",
-      "modernLat": 34.78,
-      "modernLon": -109.55,
+      "modernLat": 35.61,
+      "modernLon": -111.14,
       "estimatedAge": 190,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 28.026069459593636,
-          "lon": -41.75844774168104,
+          "lat": 29.608143193534623,
+          "lon": -40.23997481394612,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -2307,16 +2307,16 @@
       "preview": "https://img.youtube.com/vi/eB9JdjNCiiA/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/tears-of-the-mountain",
       "freeTags": "Asia, Early Cretaceous, Yutyrannus",
-      "modernLat": 41.21,
-      "modernLon": 119.28,
+      "modernLat": 41.33,
+      "modernLon": 120.68,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 47.12519561526872,
-          "lon": 130.91439893278027,
+          "lat": 46.2829471737563,
+          "lon": 131.75477815549124,
           "validationStatus": "corrected_after_collision"
         }
       }
@@ -2342,16 +2342,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea71c30d173d823f207_68ee8f9551ebde00de144d60_66_Million_Years_Ago_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/66-million-years-ago",
       "freeTags": "Asia, Late Cretaceous, Troodontid",
-      "modernLat": 39.03,
-      "modernLon": 101.52,
+      "modernLat": 39.86,
+      "modernLon": 99.93,
       "estimatedAge": 66,
       "location": "asia (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 41.4436,
-          "lon": 113.0067,
+          "lat": 42.0398,
+          "lon": 111.1882,
           "validationStatus": "on_land"
         }
       }
@@ -2382,12 +2382,12 @@
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -42.51582779683392,
-          "lon": -34.93481536235642,
-          "validationStatus": "corrected_after_collision"
+          "lat": -41.96153199366048,
+          "lon": -37.138061592035356,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2412,17 +2412,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb233712eb03a3250c6_68ee8ef40ad73f70ab1939ac_Patagotitan_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/patagotitan",
       "freeTags": "South America, Late Cretaceous, Patagotitan",
-      "modernLat": -44.81,
-      "modernLon": -67.07,
+      "modernLat": -43.84,
+      "modernLon": -68.58,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -42.27242694983032,
-          "lon": -33.76467856745922,
-          "validationStatus": "corrected_after_collision"
+          "lat": -41.5871286224454,
+          "lon": -33.88793187178235,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2446,16 +2446,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea98da5f5591bc7d129_68ee8e8ebcf37dabc1bfc78b_Climbing%2520up%2520the%2520Dune_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/climbing-up-the-dune",
       "freeTags": "Asia, Late Cretaceous, Nemegtonykus, Opisthocoelicaudia",
-      "modernLat": 43.24,
-      "modernLon": 98.86,
+      "modernLat": 43.5,
+      "modernLon": 100.33,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 47.00516091843555,
-          "lon": 106.9579508309391,
+          "lat": 44.04214238443868,
+          "lon": 109.921490191394,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -2558,8 +2558,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 46.59797094883198,
-          "lon": 113.10863083058057,
+          "lat": 47.70720607087264,
+          "lon": 113.52222883880842,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -2593,8 +2593,8 @@
       "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 21.622113716712303,
-          "lon": 112.67363183130773,
+          "lat": 19.261823220264056,
+          "lon": 111.00772957779071,
           "validationStatus": "corrected_after_collision"
         }
       }
@@ -2620,16 +2620,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb0e11828a7a0455648_68ee8c0f66f323e5d86a42ff_One_Wing_Butterfly_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/one-wing-butterfly",
       "freeTags": "South America, Late Cretaceous, Mirasaura",
-      "modernLat": -13.85,
-      "modernLon": -62.77,
+      "modernLat": -15.13,
+      "modernLon": -60.23,
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -17.169300841823826,
-          "lon": -29.837564120749242,
+          "lat": -18.519454410180224,
+          "lon": -25.48199361048514,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -2655,16 +2655,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb72efc18ca8c847828_68ee8b5604c0435e67305c06_Tyrannosaurus_rex_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/tyrannosaurus-rex-2",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex",
-      "modernLat": 48.05,
-      "modernLon": -104.56,
+      "modernLat": 45.88,
+      "modernLon": -104.09,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 53.67224241579284,
-          "lon": -51.28969584287048,
+          "lat": 47.061454785822,
+          "lon": -55.1529446886646,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -2718,16 +2718,16 @@
       "preview": "https://img.youtube.com/vi/vJOF2nqSpiY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/triceratops-lunch-time",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops",
-      "modernLat": 47.17,
-      "modernLon": -106.78,
+      "modernLat": 46.09,
+      "modernLon": -103.84,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 53.12268544412055,
-          "lon": -53.78695987879725,
+          "lat": 47.40211522325609,
+          "lon": -50.88303328350839,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -2753,16 +2753,16 @@
       "preview": "https://img.youtube.com/vi/Ife9NB8oYZY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/tyrannosaurus-rex-bone-bed",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops",
-      "modernLat": 49.46,
-      "modernLon": -102.93,
+      "modernLat": 45.83,
+      "modernLon": -103.92,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 52.89022580378739,
-          "lon": -48.63610261952935,
+          "lat": 47.88908676752228,
+          "lon": -55.14995969509819,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -2788,17 +2788,17 @@
       "preview": "https://img.youtube.com/vi/Kb76y7-YPII/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/spinosaurus-the-gathering",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 29.93,
-      "modernLon": -2.28,
+      "modernLat": 30.96,
+      "modernLon": -3.63,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 18.02219677482907,
-          "lon": 9.393572240457864,
-          "validationStatus": "corrected_after_collision"
+          "lat": 20.847460330420322,
+          "lon": 9.433463507056228,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2823,16 +2823,16 @@
       "preview": "https://img.youtube.com/vi/rGSei36hzpg/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/tyrannosaurus-rex-lazy-morning",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus Rex, T.rex",
-      "modernLat": 44.08,
-      "modernLon": -107.39,
+      "modernLat": 46.26,
+      "modernLon": -103.94,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 48.619326612395454,
-          "lon": -55.48176390789349,
+          "lat": 51.071187261748726,
+          "lon": -53.11153858249247,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -2858,16 +2858,16 @@
       "preview": "https://img.youtube.com/vi/odnzXO8LUjQ/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/a-story-written-in-stone-edmontosaurus",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus & Edmontosaurus",
-      "modernLat": 42.01,
-      "modernLon": -98.61,
+      "modernLat": 45.23,
+      "modernLon": -99.93,
       "estimatedAge": 66,
       "location": "north america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 47.81161058674159,
-          "lon": -49.15782830342133,
+          "lat": 49.39088257884293,
+          "lon": -46.8578948080395,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -2901,8 +2901,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -40.14187711371365,
-          "lon": -37.79838608859548,
+          "lat": -39.99091759870292,
+          "lon": -37.75877273616223,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -2991,17 +2991,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb6ed9199c7f1acb7ed_68dc1febca5bf98ef2fb3c79_tyrannotitanMaster2_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-trip",
       "freeTags": "South America, Early Cretaceous, Tyrannotitan",
-      "modernLat": -44.04,
-      "modernLon": -70.31,
+      "modernLat": -43.93,
+      "modernLon": -68.91,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -43.80858643762691,
-          "lon": -38.22751356237309,
-          "validationStatus": "corrected_to_land"
+          "lat": -41.30228627894793,
+          "lon": -37.08711869498142,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3026,16 +3026,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb7e5b9ab24511c9276_68dc1f911d86c4c33ca8cfef_Two%2520Of%2520Swords%2520A3_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/two-of-swords",
       "freeTags": "North America, Late Cretaceous, Stegoceras",
-      "modernLat": 48.07,
-      "modernLon": -109.07,
+      "modernLat": 49.04,
+      "modernLon": -110.58,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 52.3390758671486,
-          "lon": -57.689253068170835,
+          "lat": 53.2753133861446,
+          "lon": -58.324707549035516,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -3061,17 +3061,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb4466d1424a75724c6_68dc1efed9e240ff911c5d43_Taurus%2520Season%2520A4_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/taurus-season",
       "freeTags": "South America, Late Cretaceous, Carnotaurus",
-      "modernLat": -40.97,
-      "modernLon": -68.09,
+      "modernLat": -43.14,
+      "modernLon": -67.62,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": -40.72730792032553,
-          "lon": -35.11455868492461,
-          "validationStatus": "on_land_after_collision"
+          "lat": -41.188464891629366,
+          "lon": -33.05919908103409,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -3131,16 +3131,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead1744669df8ec3cba_68dc1dad5ee1bddc2bec3e08_LeoSeasonJPG3_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/leo-season",
       "freeTags": "North America, Late Jurassic, Apatosaurus",
-      "modernLat": 39.54,
-      "modernLon": -106.22,
+      "modernLat": 40.44,
+      "modernLon": -106.3,
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 29.936662351037764,
-          "lon": -34.15790385612124,
+          "lat": 30.283615582505576,
+          "lon": -37.44230502467089,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -3166,16 +3166,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb50a4a260388f86398_68dc1d53fc9c3a3fcc282856_GT%2520Master_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-swan-no-96",
       "freeTags": "Asia, Late Cretaceous, Gobiazhdarcho tsogtbaatari, Tsogtopteryx mongoliensis",
-      "modernLat": 37.87,
-      "modernLon": 98.89,
+      "modernLat": 40.06,
+      "modernLon": 100.17,
       "estimatedAge": 66,
       "location": "asia (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 38.901918583193336,
-          "lon": 110.82981197554123,
+          "lat": 43.311571386154114,
+          "lon": 108.96881590522466,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -3209,8 +3209,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 58.52867145558856,
-          "lon": -58.230586043009275,
+          "lat": 55.49608589311332,
+          "lon": -59.97763331494879,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -3236,16 +3236,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea725a291e9f4ac41d2_68dc1c28923ed516b780a82e_DiliphotumorHigh_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/an-oral-tumor-in-dilophosaurus",
       "freeTags": "**North America, Early Jurassic, Dilophosaurus**",
-      "modernLat": 48.43,
-      "modernLon": -98.92,
+      "modernLat": 44.87,
+      "modernLon": -100.23,
       "estimatedAge": 190,
       "location": "north america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 36.2186,
-          "lon": -26.3395,
+          "lat": 33.1124,
+          "lon": -28.7205,
           "validationStatus": "on_land"
         }
       }
@@ -3271,16 +3271,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea87b800aaaecfd2d5c_68dc1b9140c36f91f934d94d_Capricorn%2520SeasonReJPG_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/capricorn-season",
       "freeTags": "Asia, Early Cretaceous, Kinnareemimus",
-      "modernLat": 18.71,
-      "modernLon": 101.71,
+      "modernLat": 16.54,
+      "modernLon": 102.18,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 21.41687425982742,
-          "lon": 112.7367460094908,
+          "lat": 23.735351311953536,
+          "lon": 111.8903930329275,
           "validationStatus": "corrected_after_collision"
         }
       }
@@ -3306,16 +3306,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb7049e8f6fb4d0f475_68dc15e7e78e5c3958089d26_Tyrannosaurus%2520Rex_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/tyrannosaurus-rex",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus Rex, T.rex",
-      "modernLat": 49.71,
-      "modernLon": -106.59,
+      "modernLat": 45.97,
+      "modernLon": -103.74,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 56.248560569215215,
-          "lon": -52.294640785772785,
+          "lat": 52.32116763136931,
+          "lon": -54.981925047687795,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -3376,16 +3376,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea975fe348c59c55380_68dc140b16c8d2ad82084a05_Cryodrakon_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/cryodrakon",
       "freeTags": "Late Cretaceous, North America, Cryodrakon",
-      "modernLat": 50.52,
-      "modernLon": -113.02,
+      "modernLat": 50.78,
+      "modernLon": -111.55,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 56.48241894490192,
-          "lon": -62.29989112014455,
+          "lat": 58.462716124136286,
+          "lon": -56.818109886489935,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -3445,16 +3445,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb8f4658f638a88731a_68dc149b3ea9e4aca3aec6d5_Tyrannotitan_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/tyrannotitan",
       "freeTags": "Early Cretaceous, South America, Tyrannotitan",
-      "modernLat": -41.75,
-      "modernLon": -69.38,
+      "modernLat": -43.71,
+      "modernLon": -69.02,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -41.72732313535703,
-          "lon": -38.48473929990698,
+          "lat": -39.500738900836524,
+          "lon": -33.563946364570235,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -3620,16 +3620,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68d2db4b7d1d1b4ad15453c0_Trex%20Portrait-min.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/t-rex-portrait",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus Rex, T.rex",
-      "modernLat": 46.26,
-      "modernLon": -109.41,
+      "modernLat": 45.71,
+      "modernLon": -104.05,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 48.322238822448796,
-          "lon": -61.379317840613574,
+          "lat": 50.44576014118981,
+          "lon": -53.191213200677474,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -3655,16 +3655,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb66f9ddc9e7d48c552_68d2da8dfaa40ba386d3be78_Torvosaurus%2520Portrait-min.png",
       "pageUrl": "https://www.prehistoricdomain.com/content/torvosaurus",
       "freeTags": "North America, Europe, Late Jurassic, Torvosaurus",
-      "modernLat": 41.63,
-      "modernLon": -107.87,
+      "modernLat": 41.88,
+      "modernLon": -106.49,
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 29.904504177260993,
-          "lon": -37.37441924799354,
+          "lat": 30.572727670528668,
+          "lon": -33.962935862401935,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -3690,16 +3690,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68d2d9b36176b7189139df02_The%20Tyrant%20Lizard%20King_Default%20with%20pattern-min%20(1).avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/t-rex",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus Rex, T.rex",
-      "modernLat": 52.02,
-      "modernLon": -104.27,
+      "modernLat": 46.24,
+      "modernLon": -103.75,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 57.826912874308306,
-          "lon": -48.17543875701102,
+          "lat": 50.55201030243734,
+          "lon": -53.276545240961134,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -3725,17 +3725,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68d2d897383507b6efe0dc40_Spinosaurus_Final.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/spinosaurus-2",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 32.93,
-      "modernLon": -4.35,
+      "modernLat": 30.97,
+      "modernLon": -3.99,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 21.815942587323708,
-          "lon": 5.815742919064501,
-          "validationStatus": "corrected_after_collision"
+          "lat": 20.914739305561614,
+          "lon": 4.369030401976339,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3795,16 +3795,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea72f305a3b6b29eff8_68d2d659b638e4efbf47e21a_Allo%2520With%2520Background.jpeg",
       "pageUrl": "https://www.prehistoricdomain.com/content/allosaurus",
       "freeTags": "North America, Late Jurassic, Allosaurus",
-      "modernLat": 43.03,
-      "modernLon": -108.85,
+      "modernLat": 41.74,
+      "modernLon": -106.15,
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 33.6677795718815,
-          "lon": -35.90379171799338,
+          "lat": 32.65001479802133,
+          "lon": -32.5594357577356,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -3885,17 +3885,17 @@
       "preview": "https://img.youtube.com/vi/-LYzXDTDgaA/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/incredible-lusotitan-mating-ritual",
       "freeTags": "Late Jurassic, Europe, Lusotitan",
-      "modernLat": 38.27,
-      "modernLon": -7.82,
+      "modernLat": 39.24,
+      "modernLon": -9.34,
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "160": {
-          "lat": 24.57743700281787,
-          "lon": 12.795845138898127,
-          "validationStatus": "on_land_after_collision"
+          "lat": 24.267739555556076,
+          "lon": 13.963478058974935,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -3919,16 +3919,16 @@
       "preview": "https://img.youtube.com/vi/8ea3aYlKy9o/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/kostensuchus-atrox",
       "freeTags": "South America, Late Cretaceous, Kostensuchus atrox",
-      "modernLat": -17.99,
-      "modernLon": -58.61,
+      "modernLat": -15.06,
+      "modernLon": -59.73,
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -18.77922525025405,
-          "lon": -24.454266546806664,
+          "lat": -16.565233290395575,
+          "lon": -23.35888100669418,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -3954,16 +3954,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d6953e521f2c5f2e2f09_gaelle-seguillon-gaelle-seguillon-dino-swamp-close-up-print.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/sun-bath",
       "freeTags": "North America, Late Cretaceous, Troodon",
-      "modernLat": 46.96,
-      "modernLon": -112.14,
+      "modernLat": 49.09,
+      "modernLon": -111.03,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 52.641781964784315,
-          "lon": -62.52642323370088,
+          "lat": 53.15845351427133,
+          "lon": -58.6801849597293,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4052,16 +4052,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d23ef6772f7899fae595_gaelle-seguillon-dino-swamp-demo-007-print.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/troodontid-pair-nesting-in-a-ticeratops-skull",
       "freeTags": "North America, Late Cretaceous, Troodon",
-      "modernLat": 50.01,
-      "modernLon": -108.49,
+      "modernLat": 48.95,
+      "modernLon": -111.1,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 52.590984865906634,
-          "lon": -54.40036810186554,
+          "lat": 52.460038038192494,
+          "lon": -58.76111198530509,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4087,16 +4087,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d13d52b78aa1c56846c6_Gaelle_Seguillon_a_spring_night_004_print.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/on-a-spring-night-66-million-years-ago-part-4",
       "freeTags": "Europe, Late Cretaceous, Balaur Bondoc",
-      "modernLat": 49.03,
-      "modernLon": 16.52,
+      "modernLat": 49.86,
+      "modernLon": 14.93,
       "estimatedAge": 66,
       "location": "europe (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 41.5453,
-          "lon": 31.2976,
+          "lat": 42.2904,
+          "lon": 29.8239,
           "validationStatus": "on_land"
         }
       }
@@ -4122,17 +4122,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d0d92f3c4d0c91cf3477_Gaelle-Seguillon_Balaur-bondoc_strange-stars_009_print.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/on-a-spring-night-66-million-years-ago-part-3",
       "freeTags": "Europe, Late Cretaceous, Balaur Bondoc",
-      "modernLat": 52.03,
-      "modernLon": 14.46,
+      "modernLat": 50.06,
+      "modernLon": 15.17,
       "estimatedAge": 66,
       "location": "europe (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 44.4305,
-          "lon": 29.1841,
-          "validationStatus": "on_land"
+          "lat": 41.282602839326366,
+          "lon": 28.863554170112074,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4157,17 +4157,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d0610a093a88388bf411_gaelle-seguillon-gaelle-seguillon-balaur-bondoc-waterfall-print.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/on-a-spring-night-66-million-years-ago-part-2",
       "freeTags": "Europe, Late Cretaceous, Balaur Bondoc",
-      "modernLat": 47.87,
-      "modernLon": 13.89,
+      "modernLat": 50.08,
+      "modernLon": 14.82,
       "estimatedAge": 66,
       "location": "europe (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 33.6516,
-          "lon": 29.0297,
-          "validationStatus": "on_land"
+          "lat": 43.717462354620515,
+          "lon": 32.633192344259356,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4451,8 +4451,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 46.83388602907231,
-          "lon": -64.72706556367926,
+          "lat": 44.64327569522401,
+          "lon": -59.60099975137564,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4477,16 +4477,16 @@
       "preview": "https://img.youtube.com/vi/Sx1fto0547Y/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/albertosaurus-outsmarts-prey-to-win-respect",
       "freeTags": "North America, Late Cretaceous, Albertosaurus, Edmontosaurus",
-      "modernLat": 52.43,
-      "modernLon": -112.1,
+      "modernLat": 51.48,
+      "modernLon": -112.83,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 55.945256948423506,
-          "lon": -61.16932735609516,
+          "lat": 58.948267841873076,
+          "lon": -59.19183948499607,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4511,16 +4511,16 @@
       "preview": "https://img.youtube.com/vi/9kuzY3_HD08/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/baby-pachyrhinosaurus-struggles-to-survive-in-the-wilderness",
       "freeTags": "North America, Late Cretaceous, Pachyrhinosaurus",
-      "modernLat": 51.29,
-      "modernLon": -114.48,
+      "modernLat": 51.55,
+      "modernLon": -113,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 56.680920089005866,
-          "lon": -62.89228767518942,
+          "lat": 59.11983586708839,
+          "lon": -58.9784991347035,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4573,16 +4573,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68a603b674009d3a983b68bf_Laelaps-Charles_Knight-1897.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/leaping-laelaps",
       "freeTags": "North America, Late Cretaceous, Dryptosaurus, Laelaps",
-      "modernLat": 40.72,
-      "modernLon": -101.07,
+      "modernLat": 40.31,
+      "modernLon": -100.63,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 46.972169161007756,
-          "lon": -55.77362977477692,
+          "lat": 44.34970840601355,
+          "lon": -50.4170095300987,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4607,16 +4607,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68a602b909a23d15e4958bc2_Pasta-Brontosaurus.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/brontosaurus",
       "freeTags": "North America, Late Jurassic, Brontosaurus",
-      "modernLat": 37.15,
-      "modernLon": -106.54,
+      "modernLat": 41.91,
+      "modernLon": -105.92,
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 26.090252461025777,
-          "lon": -33.91691726580491,
+          "lat": 32.554124459918405,
+          "lon": -34.05626900368997,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4641,17 +4641,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68a6024265cfc203108d20cc_Wooly_Mammoths.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/wooly-mammoths",
       "freeTags": "North America, Late Pleistocene, Mammoth",
-      "modernLat": 44.09,
-      "modernLon": -95.9,
+      "modernLat": 44.94,
+      "modernLon": -99.73,
       "estimatedAge": 1,
       "location": "north america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": 44.2398,
-          "lon": -94.3401,
-          "validationStatus": "on_land"
+          "lat": 47.39094960942707,
+          "lon": -98.07826983262505,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4675,16 +4675,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68a60192ffa9bc0346c12642_DimetrodonKnight.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/dimetrodon",
       "freeTags": "North America, Permian, Dimetrodon, Edaphosaurus",
-      "modernLat": 33.48,
-      "modernLon": -100.4,
+      "modernLat": 33.6,
+      "modernLon": -98.99,
       "estimatedAge": 280,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "280": {
-          "lat": 5.7624182679649305,
-          "lon": -28.800261286321298,
+          "lat": 1.8856552674184872,
+          "lon": -26.6623995028927,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4709,16 +4709,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68a600955a84e020ae653301_Triceratops_and_Tyrannosaurus_by_Knight.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/t-rex-vs-triceratops",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops",
-      "modernLat": 46.03,
-      "modernLon": -104.01,
+      "modernLat": 46.04,
+      "modernLon": -104.37,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 47.5177298167855,
-          "lon": -55.143827132236304,
+          "lat": 48.40626317230342,
+          "lon": -55.62608863969019,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4800,16 +4800,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6894961704aa5fefbc16c1c0_diplocaulus2-min.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/diplocaulus-are-prowling",
       "freeTags": "North America, Permian, Diplocaulus",
-      "modernLat": 32.79,
-      "modernLon": -97.74,
+      "modernLat": 33.76,
+      "modernLon": -99.26,
       "estimatedAge": 280,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "280": {
-          "lat": 1.717285385105652,
-          "lon": -29.88739328862678,
+          "lat": 5.742015109391262,
+          "lon": -29.549982159984886,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4835,16 +4835,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2c3ca10d6e8b1f480_68b6f0d344f99a75f9a08b4c_agentinosaurus-min.jpeg",
       "pageUrl": "https://www.prehistoricdomain.com/content/sauropods-intimacy",
       "freeTags": "Late Cretaceous, South America, Argentinosaurus",
-      "modernLat": -36.89,
-      "modernLon": -69.6,
+      "modernLat": -39.06,
+      "modernLon": -69.13,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -37.851873071318636,
-          "lon": -34.41106715227833,
+          "lat": -41.62754426927492,
+          "lon": -33.54926429705831,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4870,16 +4870,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/689392b2a0712fa9dcfe45ed_trice%20final-min.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/triceratops-rest-in-the-forest",
       "freeTags": "Late Cretaceous, North America, Triceratops",
-      "modernLat": 43.21,
-      "modernLon": -104.63,
+      "modernLat": 43.07,
+      "modernLon": -104.7,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 44.465061849079,
-          "lon": -53.20882478476001,
+          "lat": 48.98312424904328,
+          "lon": -53.46744288237495,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4905,16 +4905,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/689391fa00845c485017b479_trex-min.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/t-rex-drinking-in-the-valley",
       "freeTags": "Late Cretaceous, North America, Tyrannosaurus Rex, T.rex",
-      "modernLat": 46.03,
-      "modernLon": -104.01,
+      "modernLat": 45.76,
+      "modernLon": -103.74,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 50.24557730812304,
-          "lon": -55.135494467807106,
+          "lat": 47.12101488009114,
+          "lon": -51.02987451760554,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -5555,17 +5555,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eba5031bfbfc228b244_6845bd0c4a1ab9413aed24ea_Sans%2520titre-1.jpeg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/spino/",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 31.82,
-      "modernLon": -1.27,
+      "modernLat": 31.13,
+      "modernLon": -3.73,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 21.123950039896425,
-          "lon": 10.373732740545028,
-          "validationStatus": "corrected_after_collision"
+          "lat": 20.222156089397547,
+          "lon": 8.21055949712418,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -5623,16 +5623,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2aa4b2d7791d86596_6845b9fa8657fd035baa86f7_Quetza.jpeg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/quetza/",
       "freeTags": "North America, Late Cretaceous, Quetzalcoatlus, Acheroraptor",
-      "modernLat": 28.4,
-      "modernLon": -101.71,
+      "modernLat": 29.22,
+      "modernLon": -103.3,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 32.4048,
-          "lon": -57.3752,
+          "lat": 33.5243,
+          "lon": -58.7652,
           "validationStatus": "on_land"
         }
       }
@@ -5691,16 +5691,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea9ab1d2df98415b7aa_6845b5ff153a9f31378a4226_Ichthyosaurus.jpeg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/cretaceous-lagoon/",
       "freeTags": "Early Cretaceous, Ichthyosaurus, Mosasaurus, Plesiosaurus",
-      "modernLat": 52.79,
-      "modernLon": -2.36,
+      "modernLat": 50.76,
+      "modernLon": -1.82,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 44.6627,
-          "lon": 14.7658,
+          "lat": 42.6411,
+          "lon": 15.2929,
           "validationStatus": "on_land"
         }
       }
@@ -5725,16 +5725,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eabab1d2df98415b7f1_6845b2f6fa10c2acc2a37039_Edmon.jpeg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/edmon/",
       "freeTags": "North America, Late Cretaceous, Edmontosaurus",
-      "modernLat": 40.98,
-      "modernLon": -109.45,
+      "modernLat": 45.81,
+      "modernLon": -105.4,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 47.988403886301015,
-          "lon": -64.17231437797282,
+          "lat": 49.767363280852564,
+          "lon": -56.52306811975129,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -5759,16 +5759,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaa7bc291cb41807071_6855adb349b8866681860432_dimetrodon.jpeg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/dimetrodon/",
       "freeTags": "North America, Early Permian, Dimetrodon",
-      "modernLat": 35.77,
-      "modernLon": -99.46,
+      "modernLat": 33.8,
+      "modernLon": -98.75,
       "estimatedAge": 280,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "280": {
-          "lat": 6.6063840028561325,
-          "lon": -28.807996026175893,
+          "lat": 1.5252012796663807,
+          "lon": -27.128895601708287,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -5793,16 +5793,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaa832c81efb7be61f6_68b6f51d4221a824166bea64_Deinonychus.jpeg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/deino/",
       "freeTags": "North America, Early Cretaceous, Deinonychus",
-      "modernLat": 45.45,
-      "modernLon": -113.71,
+      "modernLat": 45.21,
+      "modernLon": -108.32,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 50.926066532019135,
-          "lon": -65.72767560782916,
+          "lat": 49.38768956689071,
+          "lon": -56.59227925204099,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -5827,16 +5827,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6845a9c9153a9f313785061d_Deinocheirus.avif",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/deinocheirus/",
       "freeTags": "Asia, Late Cretaceous, Deinocheirus",
-      "modernLat": 42.63,
-      "modernLon": 101.98,
+      "modernLat": 43.66,
+      "modernLon": 100.63,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 43.0288639742677,
-          "lon": 114.01787929803656,
+          "lat": 43.68741627028536,
+          "lon": 113.90380186756764,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -5861,16 +5861,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2415ffd151005d451_683ddf0eeb0989da514f0c4a_Ptera%2520Concept%2520Art.jpeg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/aviary/",
       "freeTags": "North America, Late Cretaceous, Pteranodon",
-      "modernLat": 36.96,
-      "modernLon": -102.33,
+      "modernLat": 39.15,
+      "modernLon": -101.06,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 41.78193783175053,
-          "lon": -58.37952463393739,
+          "lat": 40.182155999726206,
+          "lon": -53.2854070366663,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -5895,16 +5895,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68618c815cafcdc938ec32d5_PD%20Concept%20Art.avif",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/trex/",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex",
-      "modernLat": 46.03,
-      "modernLon": -104.01,
+      "modernLat": 45.56,
+      "modernLon": -103.91,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 51.55467490837274,
-          "lon": -51.61697793406653,
+          "lat": 49.16731223704551,
+          "lon": -56.36671051200955,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -5930,16 +5930,16 @@
       "preview": "https://img.youtube.com/vi/MSoImbo8Yr8/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/citipati---cgi-short-film",
       "freeTags": "Asia, Late Cretaceous, Citipati",
-      "modernLat": 40.92,
-      "modernLon": 102.54,
+      "modernLat": 40.08,
+      "modernLon": 99.82,
       "estimatedAge": 66,
       "location": "asia (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 42.4849247484233,
-          "lon": 110.68682822165835,
+          "lat": 39.60848183419887,
+          "lon": 112.16351350705837,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -5964,17 +5964,17 @@
       "preview": "https://img.youtube.com/vi/WZzJgGHmAB4/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/even-giant-dinosaurs-have-a-soft-spot",
       "freeTags": "North Africa, Earky Cretaceous, Spinosaurus",
-      "modernLat": 32.05,
-      "modernLon": -6.57,
+      "modernLat": 30.84,
+      "modernLon": -3.53,
       "estimatedAge": 100,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 22.141035370057125,
-          "lon": 5.499974728156947,
-          "validationStatus": "corrected_after_collision"
+          "lat": 21.38021754101873,
+          "lon": 4.916663804751207,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -5998,16 +5998,16 @@
       "preview": "https://img.youtube.com/vi/Sl04mpJhS_8/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/incredible-underwater-dinosaur-hunt",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 27.91,
-      "modernLon": -2.41,
+      "modernLat": 31.14,
+      "modernLon": -3.97,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 15.732831999085922,
-          "lon": 7.505418328317412,
+          "lat": 21.450430347369387,
+          "lon": 7.517008509023757,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6038,12 +6038,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 33.76708670871983,
-          "lon": 31.12500382720661,
-          "validationStatus": "on_land_after_collision"
+          "lat": 33.168099999999995,
+          "lon": 31.8503,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -6068,16 +6068,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68b5d010bc6a5bee68995e49_Gaelle_Seguillon_Therisinosaurus_004_print-min.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/therizinosaurus",
       "freeTags": "Asia, Late Cretaceous, Therizinosaurus",
-      "modernLat": 45.51,
-      "modernLon": 100.01,
+      "modernLat": 43.42,
+      "modernLon": 100.66,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 50.47942692061009,
-          "lon": 109.11984070699654,
+          "lat": 48.43271293631448,
+          "lon": 113.90784304863553,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6138,16 +6138,16 @@
       "preview": "https://img.youtube.com/vi/BoGqMnDosvc/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/natovenator-polydontus",
       "freeTags": "Asia, Late Cretaceous, Natovenator polydontus",
-      "modernLat": 41.36,
-      "modernLon": 98.72,
+      "modernLat": 43.49,
+      "modernLon": 99.83,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 44.92045405491763,
-          "lon": 109.73285445502951,
+          "lat": 45.71558857306263,
+          "lon": 109.17920031353059,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6208,17 +6208,17 @@
       "preview": "https://img.youtube.com/vi/YuHDXTfjbzU/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/microraptor-and-the-nest-guard",
       "freeTags": "Asia, Early Cretaceous, Microraptor, Enantiornithine",
-      "modernLat": 43.52,
-      "modernLon": 119.68,
+      "modernLat": 41.49,
+      "modernLon": 120.23,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 48.453301732984684,
-          "lon": 128.150724954579,
-          "validationStatus": "on_land_after_collision"
+          "lat": 43.64220006880497,
+          "lon": 129.68622079049575,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -6278,16 +6278,16 @@
       "preview": "https://img.youtube.com/vi/ZKsk0EGuQw4/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/permian-dawn",
       "freeTags": "North America, Permian, Dimetrodon, Diplocaulus, Titanoptera, proto-archosauromorph, Xenacanthid shark, Prionosuchus",
-      "modernLat": 34.66,
-      "modernLon": -96.38,
+      "modernLat": 33.82,
+      "modernLon": -99.11,
       "estimatedAge": 280,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "280": {
-          "lat": 2.7244788989000566,
-          "lon": -23.90603379752071,
+          "lat": 6.0035080200277875,
+          "lon": -26.69103616418851,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6321,8 +6321,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 11.384449210292058,
-          "lon": 14.614032551435393,
+          "lat": 12.026078340678177,
+          "lon": 12.071454879724971,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6348,17 +6348,17 @@
       "preview": "https://img.youtube.com/vi/OXRaMYY3RCI/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/quetzalcoatlus-meets-a-young-triceratops",
       "freeTags": "North America, Late Cretaceous, Quetzalcoatlus, Triceratops",
-      "modernLat": 31.4,
-      "modernLon": -103.77,
+      "modernLat": 29.43,
+      "modernLon": -103.06,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 35.7388,
-          "lon": -58.6258,
-          "validationStatus": "on_land"
+          "lat": 31.929870543330235,
+          "lon": -58.6768891879035,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6388,12 +6388,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_to_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 33.4597,
-          "lon": 34.2558,
-          "validationStatus": "corrected_to_land"
+          "lat": 34.93972146746971,
+          "lon": 33.76593968205206,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6425,8 +6425,8 @@
       "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 30.178875045058287,
-          "lon": 16.689318005146063,
+          "lat": 30.427126659661067,
+          "lon": 16.821665691646658,
           "validationStatus": "corrected_after_collision"
         }
       }
@@ -6452,16 +6452,16 @@
       "preview": "https://img.youtube.com/vi/XKSWWUGOuCQ/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/araripesuchus-manzanensis",
       "freeTags": "South America, Late Cretaceous, Araripesuchus manzanensis",
-      "modernLat": -38.71,
-      "modernLon": -66.17,
+      "modernLat": -39.63,
+      "modernLon": -68.71,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -40.2051788121029,
-          "lon": -33.556203385497994,
+          "lat": -37.896680699322616,
+          "lon": -32.67628706962325,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6487,16 +6487,16 @@
       "preview": "https://img.youtube.com/vi/weOl4UCt2J0/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/oviraptor-protecting-its-nest",
       "freeTags": "Asia, Late Cretaceous, Oviraptor",
-      "modernLat": 44.92,
-      "modernLon": 105.36,
+      "modernLat": 44,
+      "modernLon": 102.82,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 45.25571473816931,
-          "lon": 113.90944639269985,
+          "lat": 45.90007127875803,
+          "lon": 112.21031930775283,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6522,17 +6522,17 @@
       "preview": "https://img.youtube.com/vi/exDudUOCzpI/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/chucarosaurus-diripienda",
       "freeTags": "South America, Late Cretaceous, Chucarosaurus diripienda",
-      "modernLat": -38.25,
-      "modernLon": -71.39,
+      "modernLat": -39.4,
+      "modernLon": -68.62,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -38.81081066227109,
-          "lon": -37.30801297356054,
-          "validationStatus": "corrected_after_collision"
+          "lat": -41.372387306965,
+          "lon": -34.38971459771309,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6557,16 +6557,16 @@
       "preview": "https://img.youtube.com/vi/cXgdUYb9V2c/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/patagopelta-cristata",
       "freeTags": "South America, Late cretaceous, Patagopelta cristata",
-      "modernLat": -40.26,
-      "modernLon": -66.02,
+      "modernLat": -39.3,
+      "modernLon": -67.53,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -41.51552991609709,
-          "lon": -35.485977278885784,
+          "lat": -38.16962119683909,
+          "lon": -35.52451728404993,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6592,16 +6592,16 @@
       "preview": "https://img.youtube.com/vi/qSbDzmmyGsE/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/gonkoken-nanoi",
       "freeTags": "South America, Late Cretaceous, Gonkoken nanoi",
-      "modernLat": -11.57,
-      "modernLon": -58.92,
+      "modernLat": -14.75,
+      "modernLon": -60.17,
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -14.375715172845798,
-          "lon": -26.906968052166746,
+          "lat": -13.40864592741019,
+          "lon": -23.735082245151087,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6627,16 +6627,16 @@
       "preview": "https://img.youtube.com/vi/97mxOnrUEOY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/carnotaurus-hunt",
       "freeTags": "South America, Late Cretaceous, Carnotaurus",
-      "modernLat": -47.76,
-      "modernLon": -68.17,
+      "modernLat": -42.92,
+      "modernLon": -67.73,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -43.94335827858039,
-          "lon": -40.026667999147996,
+          "lat": -42.72125919851345,
+          "lon": -36.8756264678303,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6662,16 +6662,16 @@
       "preview": "https://img.youtube.com/vi/qqAAy0vTfr0/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/futalognkosaurus-dukei",
       "freeTags": "South America, Late Cretaceous, Futalognkosaurus dukei",
-      "modernLat": -16.95,
-      "modernLon": -63.38,
+      "modernLat": -15.32,
+      "modernLon": -60.04,
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -20.95509616726617,
-          "lon": -29.10239017340377,
+          "lat": -17.58585043002146,
+          "lon": -27.21146561970316,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6697,16 +6697,16 @@
       "preview": "https://img.youtube.com/vi/g-wEULArBUo/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/failed-ambush",
       "freeTags": "South America, Late Cretaceous, Maip",
-      "modernLat": -15.91,
-      "modernLon": -55.9,
+      "modernLat": -14.78,
+      "modernLon": -59.74,
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -17.80288240069926,
-          "lon": -20.38042103512641,
+          "lat": -13.28116917815221,
+          "lon": -25.028643958032625,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6732,16 +6732,16 @@
       "preview": "https://img.youtube.com/vi/XITWI0-vxqk/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/charlie-s-life---the-t-rex-contest",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex",
-      "modernLat": 46.03,
-      "modernLon": -104.01,
+      "modernLat": 46.46,
+      "modernLon": -103.76,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 48.121057158541895,
-          "lon": -55.36410864970408,
+          "lat": 52.59473194786482,
+          "lon": -51.26081452784876,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6767,16 +6767,16 @@
       "preview": "https://img.youtube.com/vi/HayWXfx33cA/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/flying-with-pterosaurs",
       "freeTags": "South America, Late Cretaceous, Tupuxuara",
-      "modernLat": -11.31,
-      "modernLon": -62.58,
+      "modernLat": -14.98,
+      "modernLon": -60.36,
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -14.521046752747287,
-          "lon": -27.540649247312803,
+          "lat": -14.256951879466348,
+          "lon": -25.246661294156098,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6802,16 +6802,16 @@
       "preview": "https://img.youtube.com/vi/lvXhQpoO-RQ/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/spinosaurus",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 34.33,
-      "modernLon": -2.72,
+      "modernLat": 30.58,
+      "modernLon": -3.84,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 21.135993532637052,
-          "lon": 6.970589880935137,
+          "lat": 21.92933954922836,
+          "lon": 5.5989136599964615,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6837,17 +6837,17 @@
       "preview": "https://img.youtube.com/vi/7LqB_G4l2CM/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/flying-with-pterosaurs-quetzalcoatlus",
       "freeTags": "North America, Late Cretaceous, Quetzalcoatlus",
-      "modernLat": 27.24,
-      "modernLon": -104.34,
+      "modernLat": 29.44,
+      "modernLon": -103.41,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 31.805,
-          "lon": -60.3608,
-          "validationStatus": "on_land"
+          "lat": 35.85548295609406,
+          "lon": -59.00669365175614,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6872,16 +6872,16 @@
       "preview": "https://img.youtube.com/vi/m68SODil6w0/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/tenontosaurus-in-the-woods",
       "freeTags": "North America, Early Cretaceous, Tenontosaurus",
-      "modernLat": 40.55,
-      "modernLon": -112.25,
+      "modernLat": 45.38,
+      "modernLon": -108.2,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 45.61730271553635,
-          "lon": -64.36574417183647,
+          "lat": 50.903153466319935,
+          "lon": -56.99016911637531,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6935,17 +6935,17 @@
       "preview": "https://img.youtube.com/vi/qmFB4phQj8Q/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/early-cretaceous-raptor-journey",
       "freeTags": "North America, Early Cretaceous, Utahraptors",
-      "modernLat": 48.28,
-      "modernLon": -96.09,
+      "modernLat": 45.25,
+      "modernLon": -100.17,
       "estimatedAge": 125,
       "location": "north america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 50.3859,
-          "lon": -44.4853,
-          "validationStatus": "on_land"
+          "lat": 47.82857132233093,
+          "lon": -48.78378992629689,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -6998,16 +6998,16 @@
       "preview": "https://img.youtube.com/vi/cJwNwhVPMz8/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/carcharodontosaurus-the-pack",
       "freeTags": "North Africa, Early Cretaceous, Carcharodontosaurus",
-      "modernLat": 30.62,
-      "modernLon": 4.32,
+      "modernLat": 30.74,
+      "modernLon": 5.72,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 19.670760644667137,
-          "lon": 9.771842033642228,
+          "lat": 16.72479039775593,
+          "lon": 10.64942771565611,
           "validationStatus": "corrected_after_collision"
         }
       }
@@ -7068,17 +7068,17 @@
       "preview": "https://img.youtube.com/vi/3xgz6djUr9U/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/spinosaurus-swamp-things",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 28.95,
-      "modernLon": -7.18,
+      "modernLat": 31.12,
+      "modernLon": -3.54,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 23.38925693025754,
-          "lon": 1.824314107479018,
-          "validationStatus": "corrected_after_collision"
+          "lat": 20.92491780793872,
+          "lon": 7.5386524714448155,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7103,16 +7103,16 @@
       "preview": "https://img.youtube.com/vi/q-YsgSsFTeI/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/spinosaurus-going-fishing",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 29.99,
-      "modernLon": 0.3,
+      "modernLat": 30.91,
+      "modernLon": -4.16,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 21.03812917371837,
-          "lon": 10.29428675933707,
+          "lat": 22.41875168176992,
+          "lon": 4.826249380722085,
           "validationStatus": "corrected_after_collision"
         }
       }
@@ -7166,17 +7166,17 @@
       "preview": "https://img.youtube.com/vi/iFEb36lMYjo/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/megalodon-the-revenge",
       "freeTags": "Ocean, Miocene, Megalodon",
-      "modernLat": 46.33,
-      "modernLon": 10.67,
+      "modernLat": 46.45,
+      "modernLon": 12.08,
       "estimatedAge": 15,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "15": {
-          "lat": 41.52864194253018,
-          "lon": 11.013742810524121,
-          "validationStatus": "corrected_after_collision"
+          "lat": 41.09835196559944,
+          "lon": 11.87697262018876,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7236,16 +7236,16 @@
       "preview": "https://img.youtube.com/vi/MEIiCc4_vjo/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/livyatan-megalodon",
       "freeTags": "Ocean, Miocene, Livyatan, Megalodon",
-      "modernLat": -29.67,
-      "modernLon": -66.7,
+      "modernLat": -28.84,
+      "modernLon": -68.29,
       "estimatedAge": 15,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "15": {
-          "lat": -31.14807079497645,
-          "lon": -63.902959910740876,
+          "lat": -30.794028518603564,
+          "lon": -62.98642178235835,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -7270,16 +7270,16 @@
       "preview": "https://img.youtube.com/vi/XV2c3kvfwxg/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/greatest-standoff-t-rex-vs-triceratops",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops",
-      "modernLat": 46.03,
-      "modernLon": -104.01,
+      "modernLat": 45.87,
+      "modernLon": -104.51,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 49.61147509005686,
-          "lon": -53.00016286413276,
+          "lat": 49.39619365194371,
+          "lon": -54.21394439500291,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -7332,16 +7332,16 @@
       "preview": "https://img.youtube.com/vi/-fyxUxGdrns/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/microraptor-the-flying-dinosaur",
       "freeTags": "East Asia, Early Cretaceous, Microraptor, Sinornithosaurus",
-      "modernLat": 39.37,
-      "modernLon": 119.12,
+      "modernLat": 41.35,
+      "modernLon": 120.15,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 44.42361045760949,
-          "lon": 129.55923366671945,
+          "lat": 46.7544464992882,
+          "lon": 128.91924428691672,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -7366,17 +7366,17 @@
       "preview": "https://img.youtube.com/vi/8-jpuywa6lg/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/sinornithosaurus-fatal-bite",
       "freeTags": "East Asia, Early Cretaceous, Sinornithosaurus",
-      "modernLat": 40.63,
-      "modernLon": 122.39,
+      "modernLat": 41.6,
+      "modernLon": 120.87,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 45.227006486407916,
-          "lon": 130.15620636557213,
-          "validationStatus": "on_land_after_collision"
+          "lat": 43.78831438486551,
+          "lon": 132.23847402991257,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -7400,16 +7400,16 @@
       "preview": "https://img.youtube.com/vi/xO8BjI3L3yg/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/dinosaur-massacre",
       "freeTags": "North America, Late Cretaceous, Centrosaurus, Daspletosaurus",
-      "modernLat": 51.67,
-      "modernLon": -108.95,
+      "modernLat": 50.61,
+      "modernLon": -111.56,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 58.86433244630771,
-          "lon": -57.79803037218511,
+          "lat": 53.02881573906071,
+          "lon": -60.218005080995425,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -7434,16 +7434,16 @@
       "preview": "https://img.youtube.com/vi/54acHHUqObM/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/predator-x-hunts-in-deep-waters",
       "freeTags": "Northern Europe, Jurassic, Predator X, Pliosaurus funkei",
-      "modernLat": 50.92,
-      "modernLon": 17.54,
+      "modernLat": 49.8,
+      "modernLon": 15.09,
       "estimatedAge": 160,
       "location": "europe (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 38.6035,
-          "lon": 38.8637,
+          "lat": 36.9662,
+          "lon": 37.5883,
           "validationStatus": "on_land"
         }
       }
@@ -7468,17 +7468,17 @@
       "preview": "https://img.youtube.com/vi/u8HKr9sG5kQ/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/what-is-the-predator-x",
       "freeTags": "Northern Europe, Jurassic, Predator X, Pliosaurus funkei",
-      "modernLat": 53.43,
-      "modernLon": 16.08,
+      "modernLat": 50.23,
+      "modernLon": 15.07,
       "estimatedAge": 160,
       "location": "europe (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "160": {
-          "lat": 40.5488,
-          "lon": 36.5005,
-          "validationStatus": "on_land"
+          "lat": 37.505909563526096,
+          "lon": 36.39289811041605,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -7502,17 +7502,17 @@
       "preview": "https://img.youtube.com/vi/CpaZkVqQAFA/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/mapusaurus-gang-vs-argentinosaurus",
       "freeTags": "South America, Late Cretaceous, Argentinosaurus, Mapusaurus",
-      "modernLat": -35.48,
-      "modernLon": -67.98,
+      "modernLat": -38.86,
+      "modernLon": -68.89,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": -37.174504155449014,
-          "lon": -35.78149115017957,
-          "validationStatus": "on_land_after_collision"
+          "lat": -42.55619616048599,
+          "lon": -37.492841741150926,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -7536,16 +7536,16 @@
       "preview": "https://img.youtube.com/vi/3QUK8gN1oSY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-biggest-dinosaur-ever-the-argentinosaurus",
       "freeTags": "South America, Late Cretaceous, Argentinosaurus",
-      "modernLat": -40.87,
-      "modernLon": -72.44,
+      "modernLat": -38.84,
+      "modernLon": -69.24,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -42.53689094971675,
-          "lon": -38.662764134952816,
+          "lat": -41.999875154270825,
+          "lon": -33.768277730871866,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -7570,16 +7570,16 @@
       "preview": "https://img.youtube.com/vi/TtOfCaYhjzk/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/an-oviraptor-fights-to-protect-its-nest",
       "freeTags": "Late Cretaceous, East Asia, Oviraptor",
-      "modernLat": 41.01,
-      "modernLon": 104.22,
+      "modernLat": 43.86,
+      "modernLon": 102.75,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 41.88991702674833,
-          "lon": 118.22132420704028,
+          "lat": 45.738597519739486,
+          "lon": 111.64499513082593,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -7604,17 +7604,17 @@
       "preview": "https://img.youtube.com/vi/0iuRGYB9QLQ/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-invisible-enemy-of-the-dinosaurs",
       "freeTags": "North America, Late Cretaceous, Nothronychus",
-      "modernLat": 33.95,
-      "modernLon": -111.37,
+      "modernLat": 36.07,
+      "modernLon": -110.26,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 39.7178,
-          "lon": -65.7346,
-          "validationStatus": "on_land"
+          "lat": 42.89996227434582,
+          "lon": -63.33520940757979,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7638,16 +7638,16 @@
       "preview": "https://img.youtube.com/vi/Qqs8uRBD56A/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/dinosaur-cannibalism",
       "freeTags": "Madagascar, Late Cretaceous, Majungasaurus",
-      "modernLat": -16.87,
-      "modernLon": 48.1,
+      "modernLat": -16.05,
+      "modernLon": 46.51,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -40.49950459044357,
-          "lon": 40.45059817479146,
+          "lat": -37.91817037713828,
+          "lon": 38.574278065990654,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -7700,17 +7700,17 @@
       "preview": "https://img.youtube.com/vi/VTzfaY2kx0U/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/la-peche-du-spinosaure",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 26.14,
-      "modernLon": -4.43,
+      "modernLat": 31.3,
+      "modernLon": -3.82,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 17.6494,
-          "lon": 4.7205,
-          "validationStatus": "on_land"
+          "lat": 21.651637296554135,
+          "lon": 7.5337848131395155,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7790,16 +7790,16 @@
       "preview": "https://img.youtube.com/vi/pY_4ekCHUbA/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/what-did-south-dakota-look-like-65-million-years-ago",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops, Quetzalcoatlus",
-      "modernLat": 46.03,
-      "modernLon": -104.01,
+      "modernLat": 45.8,
+      "modernLon": -103.52,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 52.31713062823195,
-          "lon": -51.742734828998174,
+          "lat": 51.40551864740462,
+          "lon": -53.67453130126387,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -7824,16 +7824,16 @@
       "preview": "https://img.youtube.com/vi/v7iLJnNod-M/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/t-rex-ambush",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Quetzalcoatlus",
-      "modernLat": 46.03,
-      "modernLon": -104.01,
+      "modernLat": 46.3,
+      "modernLon": -103.48,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 49.15049356314058,
-          "lon": -53.64583749894766,
+          "lat": 47.722258788059555,
+          "lon": -50.31454486082958,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8026,16 +8026,16 @@
       "preview": "https://img.youtube.com/vi/sHLsRV_F-NM/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/infant-allosauruses",
       "freeTags": "North America, Late Jurassic, Allosaurus",
-      "modernLat": 41.88,
-      "modernLon": -106.08,
+      "modernLat": 42.28,
+      "modernLon": -106.1,
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 33.700261292444004,
-          "lon": -35.40695226809292,
+          "lat": 32.94806277650681,
+          "lon": -33.70492757946069,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8060,16 +8060,16 @@
       "preview": "https://img.youtube.com/vi/r1yv7Pi78Og/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/diplodocus-herd",
       "freeTags": "North America, Late Jurassic, Diplodocus, Allosaurus",
-      "modernLat": 41.89,
-      "modernLon": -106.29,
+      "modernLat": 41.75,
+      "modernLon": -106.36,
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 29.405792386640666,
-          "lon": -33.03283070452252,
+          "lat": 34.279344167730095,
+          "lon": -37.73079249854345,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8094,16 +8094,16 @@
       "preview": "https://img.youtube.com/vi/i9IjL2RCFoI/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/big-als-mating-call",
       "freeTags": "North America, Late Jurassic, Allosaurus, Stegosaurus",
-      "modernLat": 41.88,
-      "modernLon": -106.08,
+      "modernLat": 41.56,
+      "modernLon": -106.35,
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 32.33419759436339,
-          "lon": -33.076554940543005,
+          "lat": 31.439496064640792,
+          "lon": -36.54738501264458,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8162,17 +8162,17 @@
       "preview": "https://img.youtube.com/vi/7uX5lk5HhzU/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/flying-with-a-dinosaur",
       "freeTags": "South America, Cretaceous, Ornithocheirus",
-      "modernLat": 51.95,
-      "modernLon": 1.04,
+      "modernLat": 50.99,
+      "modernLon": 0.31,
       "estimatedAge": 100,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 43.8822,
-          "lon": 17.6971,
-          "validationStatus": "on_land"
+          "lat": 41.44712676838469,
+          "lon": 16.604316595693398,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8196,17 +8196,17 @@
       "preview": "https://img.youtube.com/vi/wbLhhYgN9ic/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/king-of-the-skies",
       "freeTags": "South America, Cretaceous, Tapejara, Ornithocheirus",
-      "modernLat": 50.03,
-      "modernLon": 1.83,
+      "modernLat": 50.85,
+      "modernLon": 0.24,
       "estimatedAge": 100,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 41.589323640992625,
-          "lon": 20.220068219036193,
-          "validationStatus": "on_land_after_collision"
+          "lat": 40.80427865170288,
+          "lon": 19.60765997259472,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -8230,16 +8230,16 @@
       "preview": "https://img.youtube.com/vi/eg_V1__kaYM/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/sharks-vs-dinosaurs",
       "freeTags": "Europe, Late Jurassic, Cryptoclidus",
-      "modernLat": 52.57,
-      "modernLon": -0.74,
+      "modernLat": 52.17,
+      "modernLon": -0.29,
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 36.1852,
-          "lon": 24.8172,
+          "lat": 35.8864,
+          "lon": 25.29,
           "validationStatus": "on_land"
         }
       }
@@ -8298,16 +8298,16 @@
       "preview": "https://img.youtube.com/vi/_110j8kB_vc/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/placerias-vs-coelophysis-battle-for-triassic-survival",
       "freeTags": "North America, Late Triassic, Placerias, Coelophysis",
-      "modernLat": 37.24,
-      "modernLon": -103.91,
+      "modernLat": 36.17,
+      "modernLon": -106.52,
       "estimatedAge": 210,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "220": {
-          "lat": 8.7923,
-          "lon": -33.6973,
+          "lat": 8.1011,
+          "lon": -35.9681,
           "validationStatus": "on_land"
         }
       }
@@ -8332,16 +8332,16 @@
       "preview": "https://img.youtube.com/vi/-mv_v4ltSrY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/dinosaur-mating-rituals",
       "freeTags": "North America, Late Jurassic, Allosaurus, Diplodocus",
-      "modernLat": 41.88,
-      "modernLon": -106.08,
+      "modernLat": 42.14,
+      "modernLon": -106.46,
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 29.37909364462838,
-          "lon": -36.70427180315859,
+          "lat": 31.034034542863655,
+          "lon": -33.46642052868837,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8366,16 +8366,16 @@
       "preview": "https://img.youtube.com/vi/2YQNbP1WkJY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-dinosaurs-fight-for-survival",
       "freeTags": "North America, Late Cretaceous, Ankylosaurus, Tyrannosaurus rex, T.rex, Utahrapror",
-      "modernLat": 44.43,
-      "modernLon": -109.66,
+      "modernLat": 43.28,
+      "modernLon": -106.89,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 47.51755707096215,
-          "lon": -58.97590111797384,
+          "lat": 49.75081909386538,
+          "lon": -59.4972583533453,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8400,16 +8400,16 @@
       "preview": "https://img.youtube.com/vi/lIo7cG0Mt4s/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/hunting-with-a-t-rex",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Anatotitan",
-      "modernLat": 46.03,
-      "modernLon": -104.01,
+      "modernLat": 46.19,
+      "modernLon": -104.61,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 50.61838840434376,
-          "lon": -54.82100440684328,
+          "lat": 49.58509970771843,
+          "lon": -51.77182075265628,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8434,17 +8434,17 @@
       "preview": "https://img.youtube.com/vi/jzPoUkBNXdU/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-age-of-the-dinosaur-dawns",
       "freeTags": "North America, Late Triassic, Coelophysis, Plateosaurus",
-      "modernLat": 33.32,
-      "modernLon": -105.05,
+      "modernLat": 36.37,
+      "modernLon": -106.28,
       "estimatedAge": 210,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "220": {
-          "lat": 5.0823,
-          "lon": -35.2799,
-          "validationStatus": "on_land"
+          "lat": 5.708403857121518,
+          "lon": -35.863690861697854,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8468,16 +8468,16 @@
       "preview": "https://img.youtube.com/vi/LPjN9FEptus/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-smell-of-prey",
       "freeTags": "North America, Late Jurassic, Allosaurus, Stegosaurus",
-      "modernLat": 41.88,
-      "modernLon": -106.08,
+      "modernLat": 41.41,
+      "modernLon": -105.98,
       "estimatedAge": 150,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 29.524916001871453,
-          "lon": -31.67762130475107,
+          "lat": 31.581540808077758,
+          "lon": -33.382529989280954,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8642,16 +8642,16 @@
       "preview": "https://img.youtube.com/vi/J4ydTuem8Ls/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/t-rex-and-her-babies-hunt-down-a-triceratops",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops",
-      "modernLat": 46.03,
-      "modernLon": -104.01,
+      "modernLat": 45.49,
+      "modernLon": -103.67,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 48.96654138675981,
-          "lon": -54.088483540283775,
+          "lat": 47.67864273310977,
+          "lon": -53.6839381840791,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8676,16 +8676,16 @@
       "preview": "https://img.youtube.com/vi/fjVrfgoXNKA/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/how-terror-birds-from-millions-of-years-ago-fought-for-territory",
       "freeTags": "South America, Early Pleistocene, Phorusrhacids, Terror Bird",
-      "modernLat": -19.76,
-      "modernLon": -60.63,
+      "modernLat": -15.27,
+      "modernLon": -59.73,
       "estimatedAge": 1,
       "location": "south america (continent center)",
       "confidence": "low",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": -21.58204049539387,
-          "lon": -57.53612910911397,
+          "lat": -12.819727194935066,
+          "lon": -59.15999853791436,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8906,17 +8906,17 @@
       "preview": "https://img.youtube.com/vi/eQah4McU2ww/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-pachyrhinosaurs-last-stand",
       "freeTags": "North America, Late Cretaceous, Nanuqsaurus, Pachyrhinosaurus",
-      "modernLat": 68.87,
-      "modernLon": -150,
+      "modernLat": 69.69,
+      "modernLon": -151.59,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_after_collision",
       "periods": {
         "100": {
-          "lat": 78.49922109556958,
-          "lon": -93.25427538669372,
-          "validationStatus": "on_land_after_collision"
+          "lat": 80.13242747938646,
+          "lon": -92.51911735853986,
+          "validationStatus": "corrected_after_collision"
         }
       }
     },
@@ -8974,16 +8974,16 @@
       "preview": "https://img.youtube.com/vi/0856EwWjaCk/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/mononykus-the-desert-specialist",
       "freeTags": "Central Asia, Late Cretaceous, Mononykus",
-      "modernLat": 44.69,
-      "modernLon": 97.13,
+      "modernLat": 43.6,
+      "modernLon": 99.95,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 46.06031961800074,
-          "lon": 109.76785595210674,
+          "lat": 45.41078422024492,
+          "lon": 108.71553551010783,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9008,16 +9008,16 @@
       "preview": "https://img.youtube.com/vi/fCC4ZJJg5Lc/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-deinocheirus-hunts-for-the-perfect-back-scratcher",
       "freeTags": "Central Asia, Late Cretaceous, Deinocheirus",
-      "modernLat": 47.03,
-      "modernLon": 101.54,
+      "modernLat": 43.67,
+      "modernLon": 100.27,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 48.85053426788306,
-          "lon": 111.39887581466931,
+          "lat": 44.15869572778053,
+          "lon": 112.66287589139282,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9050,8 +9050,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 55.718700507885124,
-          "lon": -60.09639067546427,
+          "lat": 57.40067387809927,
+          "lon": -59.206564995413196,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9441,16 +9441,16 @@
       "preview": "https://img.youtube.com/vi/2za5RwplXdI/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-last-tyrant-dinosauria",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Edmontosaurus, Triceratops, Pachycephalosaurus, Struthiomimus, Alamosaurus",
-      "modernLat": 46.03,
-      "modernLon": -104.01,
+      "modernLat": 46.56,
+      "modernLon": -104.5,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 51.865048084740124,
-          "lon": -52.96651379235852,
+          "lat": 51.61422922213285,
+          "lon": -51.07522036929827,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9476,16 +9476,16 @@
       "preview": "https://img.youtube.com/vi/WHzX5T5PjBE/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/sea-and-sky-dinosauria-series",
       "freeTags": "North America, Late Cretaceous, Geosternbergia, Tylosaurus",
-      "modernLat": 38.47,
-      "modernLon": -107.87,
+      "modernLat": 43.3,
+      "modernLon": -103.82,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 43.958425364254104,
-          "lon": -61.42732141340568,
+          "lat": 44.53058701776894,
+          "lon": -54.777186124766075,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9511,16 +9511,16 @@
       "preview": "https://img.youtube.com/vi/tamPoLLiEew/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/a-more-ancient-spring-dinosauria-series",
       "freeTags": "North America, Late Cretaceous, Corythosaurus, Parasaurolophus, Chasmosaurus, Euoplocephalus, Gorgosaurus",
-      "modernLat": 54.18,
-      "modernLon": -110.43,
+      "modernLat": 50.8,
+      "modernLon": -111.34,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 56.70205436405827,
-          "lon": -56.648693697041296,
+          "lat": 56.28502987297068,
+          "lon": -61.00327825233256,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9546,16 +9546,16 @@
       "preview": "https://img.youtube.com/vi/_4SQ2mWxnEc/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/our-frozen-past-dinosauria-series",
       "freeTags": "North America, Late Cretaceous, Troodon, Nanuqsaurus",
-      "modernLat": 47.14,
-      "modernLon": -114.41,
+      "modernLat": 49.15,
+      "modernLon": -110.86,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 50.35583569380994,
-          "lon": -66.74037570781041,
+          "lat": 52.72105675030233,
+          "lon": -61.39052557075343,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9581,16 +9581,16 @@
       "preview": "https://img.youtube.com/vi/uQJWcrjC_OY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/old-buck-dinosauria-series",
       "freeTags": "North America, Late Cretaceous, Styracosaurus",
-      "modernLat": 48.79,
-      "modernLon": -114.9,
+      "modernLat": 50.82,
+      "modernLon": -111.71,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 52.77909591622565,
-          "lon": -63.02622937683642,
+          "lat": 54.5641081746288,
+          "lon": -57.19417217933691,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9643,7 +9643,7 @@
       "preview": "https://img.youtube.com/vi/NkEU6fC_nhY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-prologue---jurassic-world-dominion",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Nasutoceratops, Oviraptor, Giganotosaurus, Pteranodon",
-      "modernLat": 46.03,
+      "modernLat": 45.29,
       "modernLon": -104.01,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
@@ -9651,8 +9651,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 51.58961375219002,
-          "lon": -52.718757244313714,
+          "lat": 49.91346422231012,
+          "lon": -55.332200159094846,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9761,16 +9761,16 @@
       "preview": "https://img.youtube.com/vi/rgv2bvdIv1A/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/surviving-the-age-of-dinosaurs",
       "freeTags": "North America, Late Cretaceous, Late Devonian, Late Jurassic, Tyrannosaurus rex, T.rex, Triceratops, Allosaurus, Deinonychus, Dunkleosteus, arkansaurus",
-      "modernLat": 46.03,
-      "modernLon": -104.01,
+      "modernLat": 46.59,
+      "modernLon": -103.5,
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 51.752170040773436,
-          "lon": -51.557542584281315,
+          "lat": 50.62666959999036,
+          "lon": -51.86113826460455,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9795,17 +9795,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/67b207ab18675f682032a0fd_mammoth.avif",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/mammoth/",
       "freeTags": "North America, Late Pleistocene, Woolly Mammoth, Dire Wolf, Golden Eagle",
-      "modernLat": 40.97,
-      "modernLon": -95.97,
+      "modernLat": 44.68,
+      "modernLon": -100.04,
       "estimatedAge": 1,
       "location": "north america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "2": {
-          "lat": 41.1221,
-          "lon": -94.5186,
-          "validationStatus": "on_land"
+          "lat": 47.50877677521568,
+          "lon": -100.47702537732647,
+          "validationStatus": "on_land_after_collision"
         }
       }
     }
