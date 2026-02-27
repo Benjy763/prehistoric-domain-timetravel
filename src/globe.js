@@ -30,6 +30,7 @@ class GlobeManager {
     // Texture cache for periods
     this.textureCache = new Map();
     this.textureCache_muller = new Map();
+    this.textureCache_cao = new Map();
     this.isPreloading = false;
 
     // Track last loaded time to avoid unnecessary loading animations
@@ -481,39 +482,41 @@ class GlobeManager {
     }
 
     const caoFile = this.caoMapping[periodKey].cao_file;
-    const url = `assets/cao-paleogeography/${caoFile}`;
 
-    console.log(
-      `🌱 Loading Cao emerged lands for ${projectTime} Ma (using ${caoFile})...`,
-    );
+    // Increment loading ID to cancel outdated operations
+    this.currentLoadingId++;
+    const myLoadingId = this.currentLoadingId;
+
+    // Start shader animation
+    this.isLoading = false;
+    this.loadingProgress = 0;
+    this.startLoadingEffect();
+
+    const delay = new Promise(resolve => setTimeout(resolve, 500));
+
+    const loadTex = async () => {
+      if (this.textureCache_cao.has(projectTime)) return this.textureCache_cao.get(projectTime);
+      const url = `assets/cao-paleogeography/${caoFile}`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      const texture = this.generateCaoTexture(data);
+      this.textureCache_cao.set(projectTime, texture);
+      return texture;
+    };
 
     try {
-      const response = await fetch(url);
+      const [_, caoTexture] = await Promise.all([delay, loadTex()]);
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      }
+      if (myLoadingId !== this.currentLoadingId) return false;
 
-      const data = await response.json();
-      console.log(
-        `✅ Cao lands loaded: ${data.features?.length || 0} polygons, ${data.metadata?.land_percent || "?"}% land`,
-      );
-
-      // Generate Cao texture overlay
-      const caoTexture = this.generateCaoTexture(data);
-
-      // Apply as overlay on globe material
-      if (this.globe.material.map) {
-        // Combine base texture with Cao overlay
-        this.applyCaoOverlay(caoTexture);
-      }
-
-      // Track the loaded time for Cao as well
+      this.applyCaoOverlay(caoTexture);
       this.lastLoadedContinentsTime = projectTime;
-
+      this.isLoading = false;
       return true;
     } catch (error) {
       console.error("❌ Error loading Cao lands:", error);
+      this.isLoading = false;
       return false;
     }
   }
@@ -585,16 +588,7 @@ class GlobeManager {
       Math.abs(curr - time) < Math.abs(prev - time) ? curr : prev,
     );
 
-    // Check if this is the SAME period (e.g., switching from Real Land to Our Continents)
-    const isSamePeriod = this.lastLoadedContinentsTime === time;
     this.lastLoadedContinentsTime = time;
-
-    if (isSamePeriod && this.textureCache_muller.has(closestTime)) {
-      console.log(`   ⚡ SAME PERIOD - No loading, instant apply`);
-      const texture = this.textureCache_muller.get(closestTime);
-      this.applyTextureToGlobe(texture);
-      return true;
-    }
 
     // Increment loading ID and store it locally - this cancels all previous loading operations
     this.currentLoadingId++;
@@ -1578,8 +1572,9 @@ class GlobeManager {
 
     // Holographic loading effect
     if (this.isLoading && this.globe.material.uniforms) {
-      // Progress synced to 0.5s delay (500ms / 60fps = 30 frames, 1.0/30 = 0.0333)
-      this.loadingProgress = Math.min(this.loadingProgress + 0.0333, 1.0);
+      // Cap at 0.94 so the shader never visually "completes" before the fetch finishes.
+      // applyTextureToGlobe() will replace the material once the texture is ready.
+      this.loadingProgress = Math.min(this.loadingProgress + 0.0333, 0.94);
       this.globe.material.uniforms.progress.value = this.loadingProgress;
       this.globe.material.uniforms.time.value += 0.016; // ~60fps
     }
