@@ -36,6 +36,10 @@ Le site Webflow contient un CMS de "Contents" : des vidéos, images et expérien
 - Animation de pulsation
 - Taille proportionnelle au zoom
 - Cliquables via raycasting
+- **Clustering** (Supercluster) : les points proches se regroupent en badges numérotés qui se décomposent au zoom in
+  - Badge bleu (<10), orange (<50), rose (≥50)
+  - Cluster ≤5 items ou zoom maximal → popup liste scrollable → clic item → popup contenu
+  - Cluster >5 items → zoom in animé (×0.55) → re-cluster automatique
 
 ### 2.5 Popup de contenu
 - Au clic sur un pinpoint : popup centrée avec backdrop flou
@@ -129,3 +133,4 @@ Comportement voulu : mode observation seule, pas de pinpoints (décision actée)
 - La structure du `content-data.json` (quand le format est correct)
 - L'architecture DRY avec module central `paleo-reconstruction.js`
 - Le mécanisme incrémental (détection de changements)
+- Le clustering frontend (Supercluster) avec décomposition progressive au zoom

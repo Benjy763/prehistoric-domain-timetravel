@@ -5,6 +5,7 @@
 | Composant | Technologie |
 |-----------|------------|
 | Globe 3D | Three.js r128 (vanilla en dev) |
+| Clustering | Supercluster 8.0.1 (CDN jsDelivr) |
 | Frontend | HTML/CSS/JS vanilla, pas de framework |
 | Build | Vite (production uniquement, file hashing pour cache-busting) |
 | CMS | Webflow API v2 |
@@ -192,7 +193,7 @@ Cascade pour obtenir les coordonnées modernes d'un item :
 2. **PBDB multi-espèces** : recherche toutes les espèces des `free-tags` (pas seulement la première), agrège les occurrences, filtre par bounding box du continent attendu, prend la **médiane** des coordonnées filtrées
 3. **Ocean fallback** : si item marin et PBDB échoue → placement océan global
 4. **Continent fallback** : si item terrestre et PBDB échoue → centre géographique du continent
-5. **Anti-collision** : offset en spirale (golden angle) si deux points sont trop proches
+5. **Anti-collision** : offset en spirale golden angle, rayon max 2°, sans limite de tentatives — préfère collision à mauvais placement géographique
 
 ### Format du fichier de corrections manuelles
 
@@ -283,6 +284,7 @@ Pour : changement de modèle, correction de bug dans les scripts, reset après m
 | Sync par défaut | Incrémental | Volume cible 1000-2000 items |
 | Dépendances npm | Aucune pour scripts | Simplicité, Node 18+ natif suffisant |
 | Bundler | Vite (production only) | File hashing pour cache-busting, minification, pas de bundler en dev |
+| Clustering frontend | Supercluster (Mapbox) via CDN | Zones denses (ex: Crétacé Amérique du Nord) → trop de pins superposés sans clustering |
 
 ---
 
@@ -306,7 +308,11 @@ Checklist manuelle :
 - **Globe (index.html)** :
   - Globe s'affiche (étoiles, atmosphère)
   - Pinpoints visibles pour la période sélectionnée
-  - Changement de période → pinpoints se repositionnent
+  - Zones denses → badges cluster avec counts colorés (bleu/orange/rose)
+  - Zoom in → clusters se décomposent progressivement en pins individuels
+  - Clic cluster petit ou zoom max → popup liste → clic item → popup contenu
+  - Clic cluster grand → zoom in animé × 0.55
+  - Changement de période → clusters recalculés correctement
   - Clic pinpoint → popup avec bon contenu
   - Video : player YouTube fonctionne
   - Image/3D : preview + lien "VIEW MORE"

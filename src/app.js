@@ -511,7 +511,7 @@ class AppController {
     if (favoritesFilterActive && newFilterActive) {
       // Les DEUX filtres actifs → afficher favoris OU récents
       const favoriteIds = this.favoritesManager.getAll();
-      const recentIds = this.getRecentItemsForPeriod(this.currentPeriod, 50);
+      const recentIds = this.getRecentItemsForPeriod(this.currentPeriod, 10);
       filteredContents = filteredContents.filter(content =>
         favoriteIds.includes(content.id) || recentIds.has(content.id)
       );
@@ -526,8 +526,8 @@ class AppController {
         `💙 Affichage de ${filteredContents.length} favoris pour la période ${this.currentPeriod}`,
       );
     } else if (newFilterActive) {
-      // Seulement récents (50 derniers de la période)
-      const recentIds = this.getRecentItemsForPeriod(this.currentPeriod, 50);
+      // Seulement récents (10 derniers de la période)
+      const recentIds = this.getRecentItemsForPeriod(this.currentPeriod, 10);
       filteredContents = filteredContents.filter(content => recentIds.has(content.id));
       console.log(
         `⭐ Affichage de ${filteredContents.length} contenus récents pour la période ${this.currentPeriod}`,
