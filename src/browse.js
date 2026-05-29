@@ -251,7 +251,7 @@ class BrowseManager {
     const labels = {
       videos: "Video",
       images: "Image",
-      "3D": "3D Immersion",
+      "3d": "3D Immersion",
       texts: "Behind The Scenes",
     };
     return labels[category] || category;

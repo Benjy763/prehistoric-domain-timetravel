@@ -4,14 +4,15 @@
  */
 
 /**
- * Webflow category IDs mapping
- * NOTE: The "texts" ID is a placeholder - update with real ID from Webflow
+ * Webflow category IDs mapping — single source of truth for the whole pipeline.
+ * IDs come from the Contents collection "top-category" option field (4 options).
+ * Values are lowercase to match the frontend filters and stored data ("3d", not "3D").
  */
 const CATEGORY_IDS = {
-  "417c5eb49ea7a0509255526b460af1e6": "videos",
-  "224a8ccce14158309d6df3052fa7f1e1": "images",
-  "5b8c7d31fc2d72b6c53b7ed1dded31a4": "3D",
-  "PLACEHOLDER_TEXTS_ID": "texts", // TODO: Replace with actual Webflow ID for texts/BTS category
+  "417c5eb49ea7a0509255526b460af1e6": "videos", // Video
+  "3a0cdd4419856a1d01b35ff4681be638": "3d", // Immersion
+  "224a8ccce14158309d6df3052fa7f1e1": "images", // Image
+  "5b90531d7e27d60e0d1f4e226449b55e": "texts", // Behind The Scenes (BTS)
 };
 
 /**

@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "generated": "2026-05-27T11:19:11.534Z",
-    "totalItems": 343,
-    "sourceItems": 357,
-    "eligibleItems": 273,
-    "reconstructedItems": 244,
+    "generated": "2026-05-29T18:27:07.229Z",
+    "totalItems": 348,
+    "sourceItems": 362,
+    "eligibleItems": 249,
+    "reconstructedItems": 249,
     "mode": "full",
     "periods": [
       {
@@ -65,18 +65,193 @@
   },
   "items": [
     {
+      "id": "6a19acd9e4361d0f5f1b21db",
+      "name": "The Guardian of the Pack",
+      "slug": "the-guardian-of-the-pack",
+      "description": "This work portrays a veteran Centrosaurus apertus watching over his herd during their long journey in search of better lands to raise new generations.",
+      "creditsLine": "Created by Machuky Paleoart. Part of the Arturo Nereu AI and information project.",
+      "creatorLink": null,
+      "category": "images",
+      "isNew": true,
+      "displayOnApp": true,
+      "geologicalPeriod": "cretaceous",
+      "contentLink": null,
+      "youtubeId": null,
+      "lastUpdated": "2026-05-29T15:35:46.728Z",
+      "createdOn": "2026-05-29T15:12:25.846Z",
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b2433dd9ce6d2658ffae_105%20sin%20ti%CC%81tulo%20(3)_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b24836aa428b5ce06169_105%20sin%20ti%CC%81tulo%20(3)_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b24836aa428b5ce06169_105%20sin%20ti%CC%81tulo%20(3)_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/the-guardian-of-the-pack",
+      "freeTags": "North America, Late Cretaceous, Centrosaurus apertus",
+      "modernLat": 50.74,
+      "modernLon": -111.51,
+      "estimatedAge": 66,
+      "location": "north america (PBDB)",
+      "confidence": "medium",
+      "paleoValidation": "on_land",
+      "periods": {
+        "100": {
+          "lat": 55.9111,
+          "lon": -59.0191,
+          "validationStatus": "on_land"
+        }
+      }
+    },
+    {
+      "id": "6a19acd9e4361d0f5f1b21d8",
+      "name": "Tiaojishan Formation",
+      "slug": "tiaojishan-formation",
+      "description": "This image portrays China's emblematic Tiaojishan Formation, where convergent evolution gave rise to an ecosystem with flight as its protagonist. Among the featured creatures are Anchiornis, Volaticotherium, Wukongopterus, Darwinopterus and Sinomacrops, among others.",
+      "creditsLine": "Created by Machuky Paleoart. Part of the Arturo Nereu AI and information project.",
+      "creatorLink": null,
+      "category": "images",
+      "isNew": true,
+      "displayOnApp": true,
+      "geologicalPeriod": "jurassic",
+      "contentLink": null,
+      "youtubeId": null,
+      "lastUpdated": "2026-05-29T15:36:29.483Z",
+      "createdOn": "2026-05-29T15:12:25.846Z",
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b27a82028f795789fc1e_114%20sin%20ti%CC%81tulo%20(5)_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b273eeccb22ae3537b06_114%20sin%20ti%CC%81tulo%20(5)_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b273eeccb22ae3537b06_114%20sin%20ti%CC%81tulo%20(5)_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/tiaojishan-formation",
+      "freeTags": "Asia, Late Jurassic, Anchiornis, Darwinopterus, Wukongopterus, Volaticotherium",
+      "modernLat": 40.92,
+      "modernLon": 119.65,
+      "estimatedAge": 150,
+      "location": "asia (PBDB)",
+      "confidence": "medium",
+      "paleoValidation": "on_land",
+      "periods": {
+        "160": {
+          "lat": 54.9619,
+          "lon": 149.4959,
+          "validationStatus": "on_land"
+        }
+      }
+    },
+    {
+      "id": "6a19acd9e4361d0f5f1b21d5",
+      "name": "Pleistocene of Pinar del Río, Cuba",
+      "slug": "pleistocene-of-pinar-del-rio-cuba",
+      "description": "This work depicts a misty morning in a wetland at the Cueva de Pío Domingo site in Pinar del Río province, the type locality for several species of great paleontological importance in Cuba. Frequent flooding washed animal remains into the caves, forming the rich deposits preserved today. Among the species shown are Ornimegalonyx oteroi, Megalocnus rodens, Chelonoidis cubensis, Macrocapromys acevedo, Antigone cubensis, Nesotrochis picapiquensis, Solenodon arredondoi, Neocnus gliriformis and Parocnus browni.",
+      "creditsLine": "Created by Machuky Paleoart.",
+      "creatorLink": null,
+      "category": "images",
+      "isNew": true,
+      "displayOnApp": true,
+      "geologicalPeriod": "quaternary",
+      "contentLink": null,
+      "youtubeId": null,
+      "lastUpdated": "2026-05-29T15:38:23.178Z",
+      "createdOn": "2026-05-29T15:12:25.846Z",
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b2e579b4c8cb5bfab9e6_IMG_20260218_155427_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b2ebc09615aa858bad4a_IMG_20260218_155427_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b2ebc09615aa858bad4a_IMG_20260218_155427_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/pleistocene-of-pinar-del-rio-cuba",
+      "freeTags": "North America, Pleistocene, Ornimegalonyx oteroi, Megalocnus rodens, Chelonoidis cubensis, Parocnus browni",
+      "modernLat": 22.88,
+      "modernLon": -82.64,
+      "estimatedAge": 1,
+      "location": "north america (PBDB)",
+      "confidence": "medium",
+      "paleoValidation": "corrected_to_land",
+      "periods": {
+        "2": {
+          "lat": 23.2844,
+          "lon": -81.67,
+          "validationStatus": "corrected_to_land"
+        }
+      }
+    },
+    {
+      "id": "6a19acd9e4361d0f5f1b21d2",
+      "name": "Las Breas de San Felipe",
+      "slug": "las-breas-de-san-felipe",
+      "description": "This work illustrates Las Breas de San Felipe, a Pleistocene–Holocene tar deposit of major importance for Cuba's paleontological heritage and the largest single-site bird record in the country. In a paleoenvironment of dry plains dotted with isolated lagoons, these tar seeps became deadly traps. Among its jewels are the giant birds Gigantohierax suarezi, Gymnogyps varonai, Ornimegalonyx oteroi, Oscaravis olsoni, Mycteria wetmorei and Ciconia lydekkeri.",
+      "creditsLine": "Created by Machuky Paleoart.",
+      "creatorLink": null,
+      "category": "images",
+      "isNew": true,
+      "displayOnApp": true,
+      "geologicalPeriod": "quaternary",
+      "contentLink": null,
+      "youtubeId": null,
+      "lastUpdated": "2026-05-29T15:39:22.764Z",
+      "createdOn": "2026-05-29T15:12:25.846Z",
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b328da2c4575cbb16e31_80%20sin%20ti%CC%81tulo%20(18)_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b324811bf5688d8e9e68_80%20sin%20ti%CC%81tulo%20(18)_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b324811bf5688d8e9e68_80%20sin%20ti%CC%81tulo%20(18)_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/las-breas-de-san-felipe",
+      "freeTags": "North America, Pleistocene, Gigantohierax suarezi, Gymnogyps varonai, Ornimegalonyx oteroi, Mycteria wetmorei",
+      "modernLat": 22.95,
+      "modernLon": -80.9,
+      "estimatedAge": null,
+      "location": "Las Breas de San Felipe tar seeps - Marti, Matanzas Province, Cuba (PBDB matched La Brea Tar Pits, California)",
+      "confidence": "high",
+      "paleoValidation": "on_land",
+      "periods": {
+        "2": {
+          "lat": 22.8215,
+          "lon": -79.9303,
+          "validationStatus": "on_land"
+        }
+      }
+    },
+    {
+      "id": "6a19acd9e4361d0f5f1b21cf",
+      "name": "Columbus Formation, Matanzas, Cuba",
+      "slug": "columbus-formation-matanzas-cuba",
+      "description": "This work exemplifies the Matanzas Miocene of Cuba: a carbonate platform teeming with fish and crustaceans. Among its records are the sharks Otodus megalodon, Hemipristis serra and Galeocerdo cuvier, alongside the eagle ray Aetomylaeus cubensis and endemic parrotfish.",
+      "creditsLine": "Created by Machuky Paleoart.",
+      "creatorLink": null,
+      "category": "images",
+      "isNew": true,
+      "displayOnApp": true,
+      "geologicalPeriod": "neogene",
+      "contentLink": null,
+      "youtubeId": null,
+      "lastUpdated": "2026-05-29T15:39:39.838Z",
+      "createdOn": "2026-05-29T15:12:25.846Z",
+      "youtubeUrl": null,
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b3354b2dd9612586c7d2_65%20sin%20ti%CC%81tulo2%20(2)_resultat.avif",
+      "galleryImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b339956dcc81cc757019_65%20sin%20ti%CC%81tulo2%20(2)_resultat.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a19b339956dcc81cc757019_65%20sin%20ti%CC%81tulo2%20(2)_resultat.avif",
+      "pageUrl": "https://www.prehistoricdomain.com/content/columbus-formation-matanzas-cuba",
+      "freeTags": "North America, Miocene, Otodus megalodon, Hemipristis serra, Galeocerdo cuvier, Aetomylaeus cubensis",
+      "modernLat": 23,
+      "modernLon": -81.5,
+      "estimatedAge": null,
+      "location": "Columbus Formation - Matanzas, Cuba (PBDB matched North Carolina shark localities)",
+      "confidence": "high",
+      "paleoValidation": "corrected_to_land",
+      "periods": {
+        "15": {
+          "lat": 21.3779,
+          "lon": -74.5713,
+          "validationStatus": "corrected_to_land"
+        }
+      }
+    },
+    {
       "id": "69fdc71cb263c94e9f763e29",
       "name": "Prehistoric Time Travel - Episode 3",
       "slug": "2025-closing-showcase",
       "description": "The final showcase of 2025 from Prehistoric Domain, featuring a year-in-review and a preview of the projects coming to the platform and channel in 2026.",
       "creditsLine": "A Prehistoric Domain original project.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": true,
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "1VCUNr2VFcc",
-      "lastUpdated": "2026-05-10T08:45:17.696Z",
+      "lastUpdated": "2026-05-29T16:24:28.108Z",
       "createdOn": "2026-05-08T11:20:59.971Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=1VCUNr2VFcc",
       "backgroundImage": null,
@@ -148,16 +323,16 @@
       "preview": "https://img.youtube.com/vi/Jwanrn3t-_A/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/pre-history-species-focus-dimetrodon-grandis",
       "freeTags": "North America, Permian, Dimetrodon grandis",
-      "modernLat": 34.08,
-      "modernLon": -98.89,
+      "modernLat": 33.97,
+      "modernLon": -99.2,
       "estimatedAge": 280,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "280": {
-          "lat": 4.7207,
-          "lon": -28.2104,
+          "lat": 4.7577,
+          "lon": -28.4884,
           "validationStatus": "on_land"
         }
       }
@@ -223,12 +398,12 @@
       "estimatedAge": 150,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 28.23709686925212,
-          "lon": -38.89571747182513,
-          "validationStatus": "on_land_after_collision"
+          "lat": 30.0402,
+          "lon": -38.2685,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -378,7 +553,7 @@
       "slug": "how-we-filmed-a-prehistoric-world",
       "description": "The filmmakers behind The Dinosaurs reveal how the series' distinctive visual style was created — from immersive camera moves and cutting-edge VFX to practical builds, featuring the teams at Silverback Films and ILM.",
       "creditsLine": "Created by Silverback Films.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": true,
       "displayOnApp": true,
       "geologicalPeriod": null,
@@ -426,12 +601,12 @@
       "estimatedAge": 190,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 26.250184692229126,
-          "lon": -39.96903246821316,
-          "validationStatus": "on_land_after_collision"
+          "lat": 27.2606,
+          "lon": -41.3342,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -583,12 +758,12 @@
       "creditsLine": "Created by Jehu Quiambao.",
       "creatorLink": null,
       "category": "images",
-      "isNew": true,
+      "isNew": false,
       "displayOnApp": true,
       "geologicalPeriod": "cretaceous",
       "contentLink": null,
       "youtubeId": null,
-      "lastUpdated": "2026-04-12T08:46:54.941Z",
+      "lastUpdated": "2026-05-29T15:43:52.249Z",
       "createdOn": "2026-04-12T08:27:00.150Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69db5bf4e278976269db4d46_Tranquil%20Morning%20(1)_resultat_resultat.avif",
@@ -596,17 +771,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69db5a91905d5517486e6b97_Tranquil%20Morning_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/a-tranquil-morning",
       "freeTags": "North America, Late Cretaceous, Styracosaurus albertensis",
-      "modernLat": 50.86,
-      "modernLon": -111.25,
+      "modernLat": 50.89,
+      "modernLon": -111.89,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 57.00726495383186,
-          "lon": -60.056577999351596,
-          "validationStatus": "on_land_after_collision"
+          "lat": 56.1297,
+          "lon": -59.3409,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -618,12 +793,12 @@
       "creditsLine": "Created by WHY DINOSAURS?",
       "creatorLink": null,
       "category": "texts",
-      "isNew": true,
+      "isNew": false,
       "displayOnApp": true,
       "geologicalPeriod": "cretaceous",
       "contentLink": null,
       "youtubeId": "gfSIU2c9GRU",
-      "lastUpdated": "2026-04-09T15:55:13.919Z",
+      "lastUpdated": "2026-05-29T15:43:52.243Z",
       "createdOn": "2026-04-09T15:49:53.032Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=gfSIU2c9GRU",
       "backgroundImage": null,
@@ -631,17 +806,17 @@
       "preview": null,
       "pageUrl": "https://www.prehistoricdomain.com/content/why-dinosaurs",
       "freeTags": "North America, Cretaceous, Tyrannosaurus rex, Utahraptor ostrommaysorum",
-      "modernLat": 47.42,
-      "modernLon": -106.57,
+      "modernLat": 46.94,
+      "modernLon": -107.16,
       "estimatedAge": 100,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 51.27399880552113,
-          "lon": -57.89464934947853,
-          "validationStatus": "on_land_after_collision"
+          "lat": 51.4146,
+          "lon": -56.3996,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -653,12 +828,12 @@
       "creditsLine": "Created by Paleo Edits. Based on material from Apple TV+'s Prehistoric Planet: Ice Age.",
       "creatorLink": null,
       "category": "videos",
-      "isNew": true,
+      "isNew": false,
       "displayOnApp": true,
       "geologicalPeriod": "quaternary",
       "contentLink": null,
       "youtubeId": "-ky0la-67K0",
-      "lastUpdated": "2026-04-03T17:35:18.456Z",
+      "lastUpdated": "2026-05-29T15:43:52.258Z",
       "createdOn": "2026-04-03T17:30:57.957Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=-ky0la-67K0",
       "backgroundImage": null,
@@ -666,16 +841,16 @@
       "preview": "https://img.youtube.com/vi/-ky0la-67K0/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/ice-age-south-america-fan-edit-no-narration",
       "freeTags": "South America, Pleistocene, Smilodon populator",
-      "modernLat": -21.42,
-      "modernLon": -64.43,
+      "modernLat": -21.53,
+      "modernLon": -64.73,
       "estimatedAge": 1,
       "location": "south america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": -21.8981,
-          "lon": -64.1221,
+          "lat": -22.0043,
+          "lon": -64.4246,
           "validationStatus": "on_land"
         }
       }
@@ -688,12 +863,12 @@
       "creditsLine": "Created by Bill Nguyen.",
       "creatorLink": null,
       "category": "videos",
-      "isNew": true,
+      "isNew": false,
       "displayOnApp": true,
       "geologicalPeriod": "cretaceous",
       "contentLink": null,
       "youtubeId": "tHLm5iQiG8k",
-      "lastUpdated": "2026-04-03T17:35:24.228Z",
+      "lastUpdated": "2026-05-29T15:43:52.305Z",
       "createdOn": "2026-04-03T17:25:37.525Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=tHLm5iQiG8k",
       "backgroundImage": null,
@@ -701,17 +876,17 @@
       "preview": "https://img.youtube.com/vi/tHLm5iQiG8k/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/pre-history-species-focus-giganotosaurus-carolinii",
       "freeTags": "South America, Late Cretaceous, Giganotosaurus carolinii",
-      "modernLat": -39.49,
-      "modernLon": -69.52,
+      "modernLat": -39.63,
+      "modernLon": -69.18,
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -40.824625461920995,
-          "lon": -38.365745300022326,
-          "validationStatus": "on_land_after_collision"
+          "lat": -40.8457,
+          "lon": -35.4465,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -723,12 +898,12 @@
       "creditsLine": "Created by Gandhi Drawing.",
       "creatorLink": null,
       "category": "images",
-      "isNew": true,
+      "isNew": false,
       "displayOnApp": true,
       "geologicalPeriod": "devonian",
       "contentLink": null,
       "youtubeId": null,
-      "lastUpdated": "2026-04-01T12:28:47.867Z",
+      "lastUpdated": "2026-05-29T15:43:52.253Z",
       "createdOn": "2026-04-01T12:18:32.489Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69cd0f6ed77578734932c113_1000098528_resultat.avif",
@@ -736,16 +911,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69cd0f7351f817894d49c4d0_1000098528_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/cleveland-shale",
       "freeTags": "North America, Late Devonian, Dunkleosteus terrelli",
-      "modernLat": 36.86,
-      "modernLon": -117.22,
+      "modernLat": 36.75,
+      "modernLon": -117.52,
       "estimatedAge": 380,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "380": {
-          "lat": -7.5794,
-          "lon": -88.811,
+          "lat": -7.3978,
+          "lon": -89.0046,
           "validationStatus": "on_land"
         }
       }
@@ -758,12 +933,12 @@
       "creditsLine": "Created by Gandhi Drawing.",
       "creatorLink": null,
       "category": "images",
-      "isNew": true,
+      "isNew": false,
       "displayOnApp": true,
       "geologicalPeriod": "quaternary",
       "contentLink": null,
       "youtubeId": null,
-      "lastUpdated": "2026-04-01T12:28:47.848Z",
+      "lastUpdated": "2026-05-29T15:43:52.256Z",
       "createdOn": "2026-04-01T12:18:32.489Z",
       "youtubeUrl": null,
       "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69cd0f629707a24ef1436f4d_1000101012_resultat.avif",
@@ -771,16 +946,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69cd0f5d0e3d7ab238e66fed_1000101012_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/la-brea-tar-pits",
       "freeTags": "North America, Pleistocene, Smilodon fatalis, Canis dirus",
-      "modernLat": 42.91,
-      "modernLon": -112.6,
+      "modernLat": 42.8,
+      "modernLon": -112.9,
       "estimatedAge": 1,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": 43.364,
-          "lon": -111.1603,
+          "lat": 43.2592,
+          "lon": -111.466,
           "validationStatus": "on_land"
         }
       }
@@ -1001,7 +1176,7 @@
       "slug": "composing-the-score-with-lorne-balfe",
       "description": "Composer Lorne Balfe shares how he created the score for The Dinosaurs and how the orchestra brought the sound of this ancient world to life.",
       "creditsLine": "Produced by Silverback Films for Netflix, narrated by Morgan Freeman.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": true,
       "geologicalPeriod": null,
@@ -1079,17 +1254,17 @@
       "preview": "https://img.youtube.com/vi/7Tuil8jB5yY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/t-rex-feeds-her-babies",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex",
-      "modernLat": 46.94,
-      "modernLon": -107.16,
+      "modernLat": 47.57,
+      "modernLon": -107.76,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 50.751636634295515,
-          "lon": -56.65854187018611,
-          "validationStatus": "on_land_after_collision"
+          "lat": 52.1378,
+          "lon": -56.7217,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -1099,7 +1274,7 @@
       "slug": "the-art-and-science-of-dinosaur-sound-design",
       "description": "The team explores dinosaur anatomy and sound physics to recreate what dinosaurs might have sounded like, blending scientific research with creative sound design.",
       "creditsLine": "Produced by Silverback Films for Netflix, narrated by Morgan Freeman.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": true,
       "geologicalPeriod": null,
@@ -1212,16 +1387,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69b2e18785b33a9c36053cb7_spinosaurus_by_elias_paleoart_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/a-spino-mother",
       "freeTags": "North Africa, Late Cretaceous, Spinosaurus aegyptiacus",
-      "modernLat": 31.01,
-      "modernLon": -3.57,
+      "modernLat": 30.9,
+      "modernLon": -3.87,
       "estimatedAge": 66,
       "location": "africa (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 21.7714,
-          "lon": 7.5906,
+          "lat": 21.7791,
+          "lon": 7.2894,
           "validationStatus": "on_land"
         }
       }
@@ -1282,16 +1457,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69b2e1aebe4b82ec4d338593_pteranodon_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/free-fall",
       "freeTags": "North America, Late Cretaceous, Pteranodon",
-      "modernLat": 39.67,
-      "modernLon": -76.06,
+      "modernLat": 39.56,
+      "modernLon": -75.76,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 37.9573,
-          "lon": -28.7591,
+          "lat": 37.7896,
+          "lon": -28.5141,
           "validationStatus": "on_land"
         }
       }
@@ -1357,12 +1532,12 @@
       "estimatedAge": 66,
       "location": "africa (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 3.3703218446720733,
-          "lon": 9.726074782120687,
-          "validationStatus": "on_land_after_collision"
+          "lat": 4.7343,
+          "lon": 12.3935,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -1387,17 +1562,17 @@
       "preview": "https://img.youtube.com/vi/el45j5aM_DA/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/pre-history-breakfast-in-bed",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex",
-      "modernLat": 47.57,
-      "modernLon": -107.76,
+      "modernLat": 48.3,
+      "modernLon": -107.12,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 49.520899812026535,
-          "lon": -55.69450570753316,
-          "validationStatus": "on_land_after_collision"
+          "lat": 52.7024,
+          "lon": -55.6873,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -1422,17 +1597,17 @@
       "preview": "https://img.youtube.com/vi/LEq2nEn7njM/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/pre-history-big-game",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, Edmontosaurus annectens",
-      "modernLat": 47.03,
-      "modernLon": -106.57,
+      "modernLat": 46.92,
+      "modernLon": -107.6,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 51.1293708116149,
-          "lon": -52.85036978503362,
-          "validationStatus": "on_land_after_collision"
+          "lat": 51.4851,
+          "lon": -56.8694,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -1457,17 +1632,17 @@
       "preview": "https://img.youtube.com/vi/cwrGo1LBWlo/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-dinosaurs-spinosaurus-vs-shark",
       "freeTags": "North Africa, Late Cretaceous, Spinosaurus aegyptiacus",
-      "modernLat": 31.04,
-      "modernLon": -4.2,
+      "modernLat": 31.01,
+      "modernLon": -3.57,
       "estimatedAge": 66,
       "location": "africa (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 22.315483956726325,
-          "lon": 4.716133236603209,
-          "validationStatus": "corrected_after_collision"
+          "lat": 21.7714,
+          "lon": 7.5906,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -1492,17 +1667,17 @@
       "preview": "https://img.youtube.com/vi/UIL5JAudx6k/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-dinosaurs-t-rex-vs-ankylosaurus",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, Ankylosaurus magniventris",
-      "modernLat": 48.3,
-      "modernLon": -107.12,
+      "modernLat": 47.23,
+      "modernLon": -108.04,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 55.017619479721276,
-          "lon": -55.012252843442745,
-          "validationStatus": "on_land_after_collision"
+          "lat": 51.8704,
+          "lon": -57.1813,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -1623,12 +1798,12 @@
       "estimatedAge": 1,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": 43.72751392039421,
-          "lon": -112.29246866605644,
-          "validationStatus": "on_land_after_collision"
+          "lat": 43.4049,
+          "lon": -111.7939,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -1903,12 +2078,12 @@
       "estimatedAge": 1,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": -22.25092036120719,
-          "lon": -62.3386963150703,
-          "validationStatus": "on_land_after_collision"
+          "lat": -21.8601,
+          "lon": -64.7637,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -2078,12 +2253,12 @@
       "estimatedAge": 1,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": -35.20092049972287,
-          "lon": -58.53818750876595,
-          "validationStatus": "corrected_after_collision"
+          "lat": -35.8659,
+          "lon": -57.6556,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -2113,12 +2288,12 @@
       "estimatedAge": 1,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "2": {
-          "lat": -31.803426325538346,
-          "lon": -55.530556966289375,
-          "validationStatus": "on_land_after_collision"
+          "lat": -34.4974,
+          "lon": -55.7276,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -2183,12 +2358,12 @@
       "estimatedAge": 1,
       "location": "australia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": -38.524206177342855,
-          "lon": 141.09667959524273,
-          "validationStatus": "on_land_after_collision"
+          "lat": -37.3819,
+          "lon": 140.7748,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -2218,12 +2393,12 @@
       "estimatedAge": 1,
       "location": "australia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": -37.11777308819682,
-          "lon": 142.69692409155346,
-          "validationStatus": "on_land_after_collision"
+          "lat": -37.8753,
+          "lon": 141.2985,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -2323,12 +2498,12 @@
       "estimatedAge": 1,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": 34.52532914454809,
-          "lon": -103.00337058557487,
-          "validationStatus": "on_land_after_collision"
+          "lat": 35.4104,
+          "lon": -100.9711,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -2466,8 +2641,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 46.35344277818077,
-          "lon": 130.69008037152696,
+          "lat": 46.08063140251617,
+          "lon": 131.8021556092309,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -2526,12 +2701,12 @@
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -42.773404332206965,
-          "lon": -35.55856454117292,
-          "validationStatus": "corrected_after_collision"
+          "lat": -42.73998643762691,
+          "lon": -35.03681356237309,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -2556,17 +2731,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb774a93d08f9b506f5_692ae92cdf042459a4c54c7e_Tyrannosaurus_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/tyrannosaurus-rex-3",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex",
-      "modernLat": 46.92,
-      "modernLon": -107.6,
+      "modernLat": 47.1,
+      "modernLon": -106.14,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 51.44865306806808,
-          "lon": -54.15658312330831,
-          "validationStatus": "on_land_after_collision"
+          "lat": 51.3587,
+          "lon": -55.2597,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -2591,17 +2766,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb1e7117fcff54019ef_692ae8d5b5a7f34172bc33ce_Pteranodon_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/pteranodon",
       "freeTags": "North America, Late Cretaceous, Pteranodon",
-      "modernLat": 39.96,
-      "modernLon": -75.59,
+      "modernLat": 39.67,
+      "modernLon": -76.06,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 37.28139502899838,
-          "lon": -29.164458930666804,
-          "validationStatus": "corrected_after_collision"
+          "lat": 37.985674788719855,
+          "lon": -28.790065648146026,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -2701,12 +2876,12 @@
       "estimatedAge": 66,
       "location": "north america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 48.0403448323068,
-          "lon": -51.19074435215081,
-          "validationStatus": "on_land_after_collision"
+          "lat": 48.1259,
+          "lon": -49.5842,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -2771,12 +2946,12 @@
       "estimatedAge": 150,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 44.06170531689285,
-          "lon": 134.67383515433377,
-          "validationStatus": "on_land_after_collision"
+          "lat": 42.4011,
+          "lon": 135.354,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -2869,12 +3044,12 @@
       "estimatedAge": 1,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": 32.271439746755725,
-          "lon": -107.08620862518771,
-          "validationStatus": "on_land_after_collision"
+          "lat": 31.9715,
+          "lon": -104.3738,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -2884,7 +3059,7 @@
       "slug": "jurassic-wild---official-trailer",
       "description": "I'm proud to present to you Jurassic Wild ! Created entirely in Jurassic World Evolution 3, it will be available on the platform in early 2026, with early access for premium members. The concept basically merges Prehistoric Planet with Jurassic World before the events of Jurassic World: Dominion. Dinosaurs are now in the wild on the mainland, and we team can film this new wildlife to tell new stories… Thank you again for your support! Don’t hesitate to subscribe so I can keep the project going. I hope to at least cover the maintenance costs of the website and the server soon, and much more is planned.",
       "creditsLine": "A Prehistoric Domain original project.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -2927,16 +3102,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb613e05afd44747dee_691b55f2e92a0c6600bd6d59_IMG_6365_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/torvosaurus-head",
       "freeTags": "Europe, Late Jurassic, Torvosaurus, Head",
-      "modernLat": 38.85,
-      "modernLon": -9.17,
+      "modernLat": 39.33,
+      "modernLon": -9.04,
       "estimatedAge": 150,
       "location": "europe (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 26.0655,
-          "lon": 13.9653,
+          "lat": 26.4206,
+          "lon": 14.3425,
           "validationStatus": "on_land"
         }
       }
@@ -2967,12 +3142,12 @@
       "estimatedAge": 190,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 30.259072903774474,
-          "lon": -42.24284369643289,
-          "validationStatus": "on_land_after_collision"
+          "lat": 27.4036,
+          "lon": -40.8277,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -3002,12 +3177,12 @@
       "estimatedAge": 100,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -5.593259437957348,
-          "lon": -2.864922498506897,
-          "validationStatus": "on_land_after_collision"
+          "lat": -8.064457514062632,
+          "lon": -2.7900587092621163,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -3032,17 +3207,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb3975b02bc78bdaf51_691b54e6be2cf5938a8a407e_IMG_6381_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/spinosaurus-reconstruction",
       "freeTags": "North Africa, Cretaceous, Spinosaurus, Suchomimus",
-      "modernLat": 31.01,
-      "modernLon": -3.04,
+      "modernLat": 31.04,
+      "modernLon": -4.2,
       "estimatedAge": 100,
       "location": "africa (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 19.909578925661755,
-          "lon": 9.92785692636414,
-          "validationStatus": "corrected_after_collision"
+          "lat": 21.421209554450467,
+          "lon": 7.299240281660994,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -3102,17 +3277,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eacc702b657b2d9cbe0_691b540751fefb89c95faef9_IMG_6359_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/herd-of-horns",
       "freeTags": "North America, Late Cretaceous, Triceratops",
-      "modernLat": 48.05,
-      "modernLon": -107.84,
+      "modernLat": 46.49,
+      "modernLon": -107.5,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 49.66888765482177,
-          "lon": -56.77590134951451,
-          "validationStatus": "on_land_after_collision"
+          "lat": 51.0541,
+          "lon": -56.9686,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -3142,12 +3317,12 @@
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 55.73922805836531,
-          "lon": -59.59708415697357,
-          "validationStatus": "on_land_after_collision"
+          "lat": 54.0428,
+          "lon": -58.8253,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -3172,17 +3347,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ead0a48e32c27ae1115_691b4f15f57bc5c350091feb_IMG_6435_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/hunger-or-being-stabbed-by-their-horns",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus, Triceratops",
-      "modernLat": 47.23,
-      "modernLon": -108.04,
+      "modernLat": 48.07,
+      "modernLon": -106.05,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 50.57131524686664,
-          "lon": -57.28408480839959,
-          "validationStatus": "on_land_after_collision"
+          "lat": 52.2642,
+          "lon": -54.6888,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -3207,17 +3382,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2298b797811d3d7a4_691b526183f4b633a9f495b5_IMG_6434_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/sometimes-you-become-the-prey",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus, Mosasaurus",
-      "modernLat": 47.1,
-      "modernLon": -106.14,
+      "modernLat": 46.49,
+      "modernLon": -106.42,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 51.93029209462959,
-          "lon": -53.74761493993744,
-          "validationStatus": "on_land_after_collision"
+          "lat": 50.8339,
+          "lon": -55.8414,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -3346,7 +3521,7 @@
       "slug": "prehistoric-planet-ice-age",
       "description": "“Prehistoric Planet: Ice Age” is a sweeping new installment of the award-winning natural history series from executive producers Jon Favreau and Mike Gunton, produced by BBC Studios Natural History Unit (“Planet Earth”), and narrated by Golden Globe Award and Olivier Award winner Tom Hiddleston (“Earthsounds”), with an original score by Hans Zimmer, Anže Rozman and Kara Talve from Bleeding Fingers Music. The five-part docuseries, set to premiere globally on November 26, 2025, invites viewers into a dramatic new era of prehistoric life, millions of years after the extinction of the dinosaurs — an era shaped by ice, the intense fight to survive and the rise of a new cast of giants: the iconic megafauna. “Prehistoric Planet: Ice Age” uses the latest scientific research and cutting-edge visual effects to bring this frozen world to life like never before, unveiling the spectacular habitats and inhabitants of ancient Earth for a one-of-a-kind experience. From towering woolly mammoths to elusive snow sloths, terrifying saber-toothed tigers to resilient dwarf elephants (only 3 feet tall), the series reveals the epic struggles and unexpected stories of animals that once ruled the Ice Age. Viewers will journey through vast tundras, barren deserts, expanding grasslands and melting permafrost as these creatures battle for survival in the face of extreme climates, shifting landscapes and the onset of “The Big Freeze,” and ultimately, “The Big Melt.” The series is produced by the world-renowned team at BBC Studios Natural History Unit with support from the photorealistic visual effects of Framestore (“Gravity,” “The Golden Compass”). Theme by Hans Zimmer, with an original score by Zimmer, Anže Rozman and Kara Talve for Bleeding Fingers Music. “Prehistoric Planet: Ice Age” continues the storytelling journey of the acclaimed Apple TV natural history series “Prehistoric Planet,” which transported viewers 66 million years into the past to witness the age of dinosaurs across two seasons. Blending cinematic storytelling with photorealistic visual effects, the series brings ancient worlds to life, offering a firsthand look at some of the most extraordinary creatures ever to walk the Earth. The complete first two seasons of “Prehistoric Planet” are available to stream now on Apple TV.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by Tom Hiddleston.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -3374,7 +3549,7 @@
       "slug": "october-2025-showcase",
       "description": "Celebrate another month of stunning paleoart !\nThe September 2025 Showcase features works by Luke Howell, Draconos Takeji, Paleogdy, Digital Duck, Kiabugboy, Bill Nguyen, David James Armsby, Gobelins Paris.",
       "creditsLine": "A Prehistoric Domain original video.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -3430,7 +3605,7 @@
       "slug": "making-of-hunted-by-moonlight",
       "description": "\"This is the behind-the-scenes video for my \"Hunted by Moonlight\" animated short film. This video covers my creative process from the initial idea, to the finished film, and all the art, science, and hard work in between... also I made a sculpture too.\"",
       "creditsLine": "Created by David James Armsby.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -3529,16 +3704,16 @@
       "preview": "https://img.youtube.com/vi/rVHPlJZ9Y-E/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/more-oncocerida-from-gotland",
       "freeTags": "Global Oceans, Silurian, Oncocerida",
-      "modernLat": 40.66,
-      "modernLon": -84.27,
+      "modernLat": 40.55,
+      "modernLon": -84.57,
       "estimatedAge": 410,
       "location": "global oceans (PBDB)",
       "confidence": "medium",
       "paleoValidation": "corrected_to_land",
       "periods": {
         "410": {
-          "lat": -35.9393,
-          "lon": -75.3689,
+          "lat": -36.4284,
+          "lon": -75.1829,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -3564,8 +3739,8 @@
       "preview": "https://img.youtube.com/vi/ynHJbkBbbQo/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/mothra-radiodont",
       "freeTags": "Global Oceans, Cambrian, Radiodont, “Mothra”",
-      "modernLat": -4.2,
-      "modernLon": -32.63,
+      "modernLat": 4.08,
+      "modernLon": -33.33,
       "estimatedAge": 500,
       "location": "global oceans",
       "confidence": "medium",
@@ -3599,17 +3774,17 @@
       "preview": "https://img.youtube.com/vi/ZdPTYamnqQA/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/crinoid-hats",
       "freeTags": "North America, Silurian, Crinoids",
-      "modernLat": 40.81,
-      "modernLon": -89.7,
+      "modernLat": 40.7,
+      "modernLon": -90.01,
       "estimatedAge": 410,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "410": {
-          "lat": -34.973700504997595,
-          "lon": -73.98392145403109,
-          "validationStatus": "on_land_after_collision"
+          "lat": -34.1463,
+          "lon": -75.4024,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -3634,16 +3809,16 @@
       "preview": "https://img.youtube.com/vi/AtjcmHAW83c/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/oncocerida",
       "freeTags": "North America, Silurian, Octameroceras, Dawsonoceras",
-      "modernLat": 44.09,
-      "modernLon": -80.98,
+      "modernLat": 43.98,
+      "modernLon": -81.28,
       "estimatedAge": 410,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "410": {
-          "lat": -34.399,
-          "lon": -70.8588,
+          "lat": -34.4143,
+          "lon": -71.1517,
           "validationStatus": "on_land"
         }
       }
@@ -3674,12 +3849,12 @@
       "estimatedAge": 190,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 28.652516897730937,
-          "lon": -43.893427096903004,
-          "validationStatus": "on_land_after_collision"
+          "lat": 26.9216,
+          "lon": -41.5405,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -3689,7 +3864,7 @@
       "slug": "nightfall---final-trailer---dinosaur-horror-short-film-2025",
       "description": "From the creators of \"THE HATCHLING\" comes \"NIGHTFALL,\" an all-new dinosaur horror short film that fuses heart-pounding suspense with stunning visual effects, delivering the scale and emotion of a true cinematic experience. Joining the \"PINE RIDGE ANTHOLOGY\", \"Nightfall\" takes place within the world of \"The Hatchling\", following all-new characters and featuring all-new Dinosaurs spanning from the Jurassic to the Cretaceous periods.",
       "creditsLine": "Directed by Anthony Feliciano.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -3732,16 +3907,16 @@
       "preview": "https://img.youtube.com/vi/LDY_8hUSJe0/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/forgotten-bloodlines-agate-official-opening-scene",
       "freeTags": "North America, Early Miocene, Daeodon",
-      "modernLat": 44.81,
-      "modernLon": -119.33,
+      "modernLat": 44.7,
+      "modernLon": -119.63,
       "estimatedAge": 15,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "15": {
-          "lat": 47.0697,
-          "lon": -109.3186,
+          "lat": 46.992,
+          "lon": -109.6513,
           "validationStatus": "on_land"
         }
       }
@@ -3807,12 +3982,12 @@
       "estimatedAge": 125,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 43.63836381677461,
-          "lon": 131.44652813583497,
-          "validationStatus": "corrected_after_collision"
+          "lat": 45.655446609406724,
+          "lon": 132.44384660940673,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -3877,12 +4052,12 @@
       "estimatedAge": 125,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -41.452596841696945,
-          "lon": -36.578077067515736,
-          "validationStatus": "on_land_after_collision"
+          "lat": -42.87765751406263,
+          "lon": -36.44756313073118,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -3915,8 +4090,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -41.142026998101,
-          "lon": -37.303639307909364,
+          "lat": -42.44944595003805,
+          "lon": -34.932634208914806,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -3947,12 +4122,12 @@
       "estimatedAge": 66,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 43.69793882257162,
-          "lon": 110.22414697777072,
-          "validationStatus": "on_land_after_collision"
+          "lat": 45.342,
+          "lon": 110.9249,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -3982,12 +4157,12 @@
       "estimatedAge": 125,
       "location": "asia (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 39.88779420320152,
-          "lon": 111.57567813185548,
-          "validationStatus": "on_land_after_collision"
+          "lat": 42.3371,
+          "lon": 111.5033,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4012,17 +4187,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb0782a34bcfd158ba0_68ee8def9c6987b5a3ad46e8_Paranoia_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/paranoia",
       "freeTags": "North America, Late Cretaceous, Parasaurolophus",
-      "modernLat": 50.88,
-      "modernLon": -111.84,
+      "modernLat": 50.38,
+      "modernLon": -111.34,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 55.285876191435584,
-          "lon": -60.79070000616465,
-          "validationStatus": "on_land_after_collision"
+          "lat": 55.5355,
+          "lon": -59.0397,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4052,12 +4227,12 @@
       "estimatedAge": null,
       "location": "Therizinosaurus - Nemegt Formation, Mongolia (tag says India but fossil is Asian)",
       "confidence": "high",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 46.72459214151998,
-          "lon": 108.63317657683332,
-          "validationStatus": "on_land_after_collision"
+          "lat": 45.6953,
+          "lon": 110.8266,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4122,12 +4297,12 @@
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -14.997354728609663,
-          "lon": -26.846558706675534,
-          "validationStatus": "on_land_after_collision"
+          "lat": -16.3015,
+          "lon": -25.6873,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4152,17 +4327,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb72efc18ca8c847824_68ee8b5df8f7ea9f521172f3_Tyrannosaurus_rex_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/tyrannosaurus-rex-2",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex",
-      "modernLat": 46.48,
-      "modernLon": -107.47,
+      "modernLat": 48.8,
+      "modernLon": -106.86,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 48.51976835463742,
-          "lon": -57.85233042255878,
-          "validationStatus": "on_land_after_collision"
+          "lat": 53.1246,
+          "lon": -55.1594,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4172,7 +4347,7 @@
       "slug": "hunted-by-moonlight-dinosauria-series-animated-teaser",
       "description": "\"Hunted by Moonlight\" is the second film of Dinosauria Volume 2, and the seventh of the Dinosauria Animated Series overall. The finished film is about 11 minutes long and is available to watch right now for all the $5+ Patreon supporters.\nIt will be uploaded publicly on October 24th.",
       "creditsLine": "Created by David James Armsby.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -4215,17 +4390,17 @@
       "preview": "https://img.youtube.com/vi/vJOF2nqSpiY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/triceratops-lunch-time",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops",
-      "modernLat": 48.07,
-      "modernLon": -106.05,
+      "modernLat": 46.73,
+      "modernLon": -108.13,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 51.60868253825241,
-          "lon": -56.232057943265154,
-          "validationStatus": "on_land_after_collision"
+          "lat": 51.4114,
+          "lon": -57.5155,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4250,17 +4425,17 @@
       "preview": "https://img.youtube.com/vi/Ife9NB8oYZY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/tyrannosaurus-rex-bone-bed",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops",
-      "modernLat": 47.85,
-      "modernLon": -108.24,
+      "modernLat": 47.42,
+      "modernLon": -105.73,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 53.766327788549006,
-          "lon": -57.45854488254698,
-          "validationStatus": "on_land_after_collision"
+          "lat": 51.5795,
+          "lon": -54.6786,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4285,17 +4460,17 @@
       "preview": "https://img.youtube.com/vi/Kb76y7-YPII/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/spinosaurus-the-gathering",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 31.4,
-      "modernLon": -4.59,
+      "modernLat": 31.01,
+      "modernLon": -3.04,
       "estimatedAge": 125,
       "location": "africa (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 21.765491793088284,
-          "lon": 6.571364301999747,
-          "validationStatus": "corrected_after_collision"
+          "lat": 21.5819,
+          "lon": 8.0348,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4320,17 +4495,17 @@
       "preview": "https://img.youtube.com/vi/rGSei36hzpg/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/tyrannosaurus-rex-lazy-morning",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus Rex, T.rex",
-      "modernLat": 46.49,
-      "modernLon": -106.42,
+      "modernLat": 48.63,
+      "modernLon": -106.08,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 49.369378368198205,
-          "lon": -54.415148267947664,
-          "validationStatus": "on_land_after_collision"
+          "lat": 52.8029,
+          "lon": -54.4352,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4355,17 +4530,17 @@
       "preview": "https://img.youtube.com/vi/odnzXO8LUjQ/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/a-story-written-in-stone-edmontosaurus",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus & Edmontosaurus",
-      "modernLat": 48.8,
-      "modernLon": -106.86,
+      "modernLat": 47.4,
+      "modernLon": -108.6,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 50.322277343749114,
-          "lon": -56.69242440196139,
-          "validationStatus": "on_land_after_collision"
+          "lat": 52.1463,
+          "lon": -57.6871,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4390,17 +4565,17 @@
       "preview": "https://img.youtube.com/vi/yt1vLRG3x14/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/late-cretaceous-south-america",
       "freeTags": "South America, Late Cretaceous, Argentinosaurus",
-      "modernLat": -39.03,
-      "modernLon": -68.55,
+      "modernLat": -38.68,
+      "modernLon": -69.12,
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -40.77056305743513,
-          "lon": -37.00487450238128,
-          "validationStatus": "on_land_after_collision"
+          "lat": -39.3978,
+          "lon": -35.3431,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -4410,7 +4585,7 @@
       "slug": "september-2025-showcase",
       "description": "Celebrate a month of stunning paleoart !\nThe September 2025 Showcase features works by Cenospire Animation, Tavis Prow, Woobly Works, Samueru, Kmonvish Lawan, Julian Johnson-Mortimer, Gaëlle Seguillon, PaleoGDY, David James Armsby, and the original immersive journey Giants of the Ice Age.",
       "creditsLine": "A Prehistoric Domain original video.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -4493,12 +4668,12 @@
       "estimatedAge": 125,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -42.26078602822457,
-          "lon": -34.127056506355544,
-          "validationStatus": "corrected_after_collision"
+          "lat": -42.8534,
+          "lon": -35.6295,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -4528,12 +4703,12 @@
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 53.56036417247876,
-          "lon": -60.8493254430608,
-          "validationStatus": "on_land_after_collision"
+          "lat": 54.3778,
+          "lon": -58.6514,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4563,12 +4738,12 @@
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -42.95236338516111,
-          "lon": -37.13064432393714,
-          "validationStatus": "corrected_after_collision"
+          "lat": -42.45973238766496,
+          "lon": -35.7510477712879,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -4598,12 +4773,12 @@
       "estimatedAge": 66,
       "location": "africa (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -36.772398773132565,
-          "lon": 42.76149832666597,
-          "validationStatus": "on_land_after_collision"
+          "lat": -37.9069,
+          "lon": 41.3777,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4633,12 +4808,12 @@
       "estimatedAge": 150,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 32.19302513351937,
-          "lon": -39.89060098184231,
-          "validationStatus": "on_land_after_collision"
+          "lat": 30.3552,
+          "lon": -39.1451,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4668,12 +4843,12 @@
       "estimatedAge": 66,
       "location": "asia (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 39.63714187244287,
-          "lon": 113.24322873729069,
-          "validationStatus": "on_land_after_collision"
+          "lat": 42.279,
+          "lon": 110.8554,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4698,16 +4873,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eac415ffd151005d35b_68dc1cd24e2db86e08df8d13_Four%2520Of%2520Wands%2520A3_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/four-of-wands",
       "freeTags": "North America, Late Cretaceous, Struthiomimus",
-      "modernLat": 36.4,
-      "modernLon": -107.8,
+      "modernLat": 36.18,
+      "modernLon": -107.93,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 41.3978,
-          "lon": -61.2331,
+          "lat": 41.2104,
+          "lon": -61.4404,
           "validationStatus": "on_land"
         }
       }
@@ -4741,8 +4916,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 27.085768802046577,
-          "lon": -39.84720829362324,
+          "lat": 26.711812034756477,
+          "lon": -40.68675322909469,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4776,8 +4951,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 20.494735109483003,
-          "lon": 111.41734480565985,
+          "lat": 21.715978899486654,
+          "lon": 112.79768770588274,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -4803,17 +4978,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb7049e8f6fb4d0f479_68dc15e2a28f53a0a98cc0e9_Tyrannosaurus%2520Rex_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/tyrannosaurus-rex",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus Rex, T.rex",
-      "modernLat": 46.73,
-      "modernLon": -108.13,
+      "modernLat": 47.97,
+      "modernLon": -105.46,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 52.73471374324964,
-          "lon": -57.9724156869748,
-          "validationStatus": "on_land_after_collision"
+          "lat": 52.0477,
+          "lon": -54.1268,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4838,16 +5013,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaf3ccfb1e5e0f650a4_68dc1533a410e16ce6307001_Moschops_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/moschops",
       "freeTags": "Africa, Middle Permian, Moschops",
-      "modernLat": -32.91,
-      "modernLon": 22.9,
+      "modernLat": -33.02,
+      "modernLon": 22.6,
       "estimatedAge": 280,
       "location": "africa (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "280": {
-          "lat": -60.882,
-          "lon": -36.0819,
+          "lat": -60.6705,
+          "lon": -36.441,
           "validationStatus": "on_land"
         }
       }
@@ -4873,17 +5048,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea975fe348c59c55384_68dc100d0eb00879eb78ad46_Cryodrakon_resultat.png",
       "pageUrl": "https://www.prehistoricdomain.com/content/cryodrakon",
       "freeTags": "Late Cretaceous, North America, Cryodrakon",
-      "modernLat": 50.45,
-      "modernLon": -111.4,
+      "modernLat": 51.05,
+      "modernLon": -111.64,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 53.90025588870412,
-          "lon": -61.92771953997403,
-          "validationStatus": "on_land_after_collision"
+          "lat": 56.2311,
+          "lon": -58.9811,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4913,12 +5088,12 @@
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 48.7316659278251,
-          "lon": -57.438093859160176,
-          "validationStatus": "on_land_after_collision"
+          "lat": 48.8844,
+          "lon": -57.9525,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -4948,12 +5123,12 @@
       "estimatedAge": 125,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -41.04847465860616,
-          "lon": -32.71725124568787,
-          "validationStatus": "corrected_after_collision"
+          "lat": -42.478722521132795,
+          "lon": -34.35904286469244,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -5083,16 +5258,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaaad553a27dc7520e5_68dc086596efd5baac950cf4_Dimetrodon_resultat.jpeg",
       "pageUrl": "https://www.prehistoricdomain.com/content/dimetrodon-2",
       "freeTags": "North America, Permian, Dimetrodon",
-      "modernLat": 34.39,
-      "modernLon": -99.06,
+      "modernLat": 34.08,
+      "modernLon": -98.89,
       "estimatedAge": 280,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "280": {
-          "lat": 7.275772106916736,
-          "lon": -27.2416743885493,
+          "lat": 4.639012034756477,
+          "lon": -28.203253229094692,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -5118,17 +5293,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68d2db2ee49c91f8f69e9a37_Trex%20Portrait_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/t-rex-portrait",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus Rex, T.rex",
-      "modernLat": 47.42,
-      "modernLon": -105.73,
+      "modernLat": 45.88,
+      "modernLon": -106.48,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 50.63388841466088,
-          "lon": -57.61781045251787,
-          "validationStatus": "on_land_after_collision"
+          "lat": 50.2633,
+          "lon": -56.1872,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -5158,12 +5333,12 @@
       "estimatedAge": 150,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 33.63309014375016,
-          "lon": -35.779655169661226,
-          "validationStatus": "on_land_after_collision"
+          "lat": 31.8136,
+          "lon": -34.7685,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -5188,17 +5363,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68d2d926a6c451e8c58b432c_The%20Tyrant%20Lizard%20King_Default%20with%20pattern_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/t-rex",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus Rex, T.rex",
-      "modernLat": 48.63,
-      "modernLon": -106.08,
+      "modernLat": 47.17,
+      "modernLon": -106.91,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 55.05993130256066,
-          "lon": -55.15674867566325,
-          "validationStatus": "on_land_after_collision"
+          "lat": 51.583,
+          "lon": -56.0279,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -5223,17 +5398,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68d2d894383507b6efe0dbaa_Spinosaurus_Final_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/spinosaurus-2",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 30,
-      "modernLon": -3.67,
+      "modernLat": 31.4,
+      "modernLon": -4.59,
       "estimatedAge": 125,
       "location": "africa (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 21.95614786731727,
-          "lon": 8.079079769875577,
-          "validationStatus": "corrected_after_collision"
+          "lat": 21.9919,
+          "lon": 6.9129,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -5258,17 +5433,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea8320270600e524784_68d2d8242dc940b51f7899bb_Carcha_Final_resultat.png",
       "pageUrl": "https://www.prehistoricdomain.com/content/carcharodontosaurus",
       "freeTags": "North Arica, Cretaceous, Carcharodontosaurus",
-      "modernLat": 29.36,
-      "modernLon": 0.55,
+      "modernLat": 29.25,
+      "modernLon": 0.25,
       "estimatedAge": 100,
       "location": "africa (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 15.583737807773758,
-          "lon": 12.513763395291019,
-          "validationStatus": "corrected_after_collision"
+          "lat": 19.519806781186546,
+          "lon": 9.328293218813451,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -5298,12 +5473,12 @@
       "estimatedAge": 150,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 30.399479401816446,
-          "lon": -34.26335378407638,
-          "validationStatus": "on_land_after_collision"
+          "lat": 27.8487,
+          "lon": -35.0834,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -5313,7 +5488,7 @@
       "slug": "firebird-teaser-trailer",
       "description": "FIREBIRD is an indie animated shortfilm that mixes paleoart and classical music in a tale about the cycles of life. Set in late Cretaceous Patagonia and scored by Stravinski's namesake suite, the story follows a dinosaur who, faced with the arrival of a new era, must decide between accepting its end or adapting to the upcoming changes... The project is currently in production and we will be sharing some news and advancements on Instagram, so stay tuned!",
       "creditsLine": "Created by Feluca.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -5341,7 +5516,7 @@
       "slug": "lusotitan-bringing-one-of-the-biggest-dinosaurs-back-to-life",
       "description": "The BBC’s Walking With Dinosaurs team brought many dinosaurs to life across the series - but perhaps the largest challenge was one of the biggest dinosaurs to ever be found in Europe… Lusotitan. Join the team behind the scenes as they weave cutting edge science, expert VFX, and a very experienced crew pointing their cameras at… nothing. But not everything is as it seems because the team are actually filming shots which (when they are later added) will see dinosaurs dance across the screen. All of this comes together to breathe life into these ancient behemoths and bring their stories to the screen.",
       "creditsLine": "Produced by BBC Studios Science Unit, co-produced with ZDF and France Télévisions for BBC and PBS. Narrated by Bertie Carvel.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -5384,17 +5559,17 @@
       "preview": "https://img.youtube.com/vi/-LYzXDTDgaA/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/incredible-lusotitan-mating-ritual",
       "freeTags": "Late Jurassic, Europe, Lusotitan",
-      "modernLat": 39.35,
-      "modernLon": -9.04,
+      "modernLat": 38.87,
+      "modernLon": -9.17,
       "estimatedAge": 150,
       "location": "europe (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 29.020866705452327,
-          "lon": 11.635362086733995,
-          "validationStatus": "on_land_after_collision"
+          "lat": 26.0825,
+          "lon": 13.977,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -5454,17 +5629,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb3281159f79ee68df2_68c887576859f9f8e2fe3996_68b5d6953e521f2c5f2e2f09_gaelle-seguillon-gaelle-seguillon-dino-swamp-close-up-print_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/sun-bath",
       "freeTags": "North America, Late Cretaceous, Troodon",
-      "modernLat": 51.17,
-      "modernLon": -111.38,
+      "modernLat": 50.51,
+      "modernLon": -111.93,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 56.04851764462906,
-          "lon": -58.26963456131174,
-          "validationStatus": "on_land_after_collision"
+          "lat": 55.7774,
+          "lon": -59.599,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -5517,16 +5692,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68c8879347d708de3994103e_gaelle-seguillon-gaelle-seguillon-nanuqsaurus-mating-display-print-min-p-3200_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/nanuqsaurus-courtship-display",
       "freeTags": "North America, Late Cretaceous, Nanuqsaurus",
-      "modernLat": 69.94,
-      "modernLon": -151.22,
+      "modernLat": 69.83,
+      "modernLon": -151.52,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 79.7527,
-          "lon": -90.4024,
+          "lat": 79.6933,
+          "lon": -91.2622,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -5552,17 +5727,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb787ce485a0871d8b7_68c8879f5c2c53050ea7e2a2_68b5d23ef6772f7899fae595_gaelle-seguillon-dino-swamp-demo-007-print_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/troodontid-pair-nesting-in-a-ticeratops-skull",
       "freeTags": "North America, Late Cretaceous, Troodon",
-      "modernLat": 50.51,
-      "modernLon": -111.93,
+      "modernLat": 50.16,
+      "modernLon": -111.59,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 58.56309368117951,
-          "lon": -57.41279177021005,
-          "validationStatus": "on_land_after_collision"
+          "lat": 55.3769,
+          "lon": -59.4293,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -5627,12 +5802,12 @@
       "estimatedAge": 66,
       "location": "europe (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 33.064443745708246,
-          "lon": 32.433870491261494,
-          "validationStatus": "corrected_after_collision"
+          "lat": 33.544177478867205,
+          "lon": 34.76595713530756,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -5662,12 +5837,12 @@
       "estimatedAge": 66,
       "location": "europe (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 34.15776566132054,
-          "lon": 35.927968875529245,
-          "validationStatus": "corrected_after_collision"
+          "lat": 33.5787,
+          "lon": 34.2627,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -5683,7 +5858,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "mzIEBagCC_0",
-      "lastUpdated": "2026-05-20T09:33:42.323Z",
+      "lastUpdated": "2026-05-29T17:42:08.743Z",
       "createdOn": "2025-08-22T13:21:08.390Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=mzIEBagCC_0",
       "backgroundImage": null,
@@ -5711,7 +5886,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "3BiEsrdVfG0",
-      "lastUpdated": "2026-05-20T09:33:42.366Z",
+      "lastUpdated": "2026-05-29T17:42:08.746Z",
       "createdOn": "2025-08-22T13:19:38.911Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=3BiEsrdVfG0",
       "backgroundImage": null,
@@ -5739,7 +5914,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "sRA5Ak_ajqo",
-      "lastUpdated": "2026-05-20T09:33:42.312Z",
+      "lastUpdated": "2026-05-29T17:42:08.747Z",
       "createdOn": "2025-08-22T13:17:37.159Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=sRA5Ak_ajqo",
       "backgroundImage": null,
@@ -5767,7 +5942,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "dF-NkXYeEF8",
-      "lastUpdated": "2026-05-20T09:33:42.372Z",
+      "lastUpdated": "2026-05-29T17:42:08.744Z",
       "createdOn": "2025-08-22T13:13:50.242Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=dF-NkXYeEF8",
       "backgroundImage": null,
@@ -5795,7 +5970,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "rra42f4jAYo",
-      "lastUpdated": "2026-05-20T09:33:42.159Z",
+      "lastUpdated": "2026-05-29T17:42:08.713Z",
       "createdOn": "2025-08-22T13:13:49.210Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=rra42f4jAYo",
       "backgroundImage": null,
@@ -5851,7 +6026,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "PjryN2F6fF0",
-      "lastUpdated": "2026-05-20T09:33:42.326Z",
+      "lastUpdated": "2026-05-29T17:42:08.749Z",
       "createdOn": "2025-08-22T10:36:46.316Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=PjryN2F6fF0",
       "backgroundImage": null,
@@ -5873,7 +6048,7 @@
       "slug": "making-of-terrible-lizards",
       "description": "This is the behind-the-scenes video for \"Terrible Lizards\" animated short film.",
       "creditsLine": "Created by David James Armsby.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -5944,17 +6119,17 @@
       "preview": "https://img.youtube.com/vi/JTnOFY7V2Vg/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/utahraptors-hunting-in-the-forest",
       "freeTags": "North America, Early Cretaceous, Utahraptor, Gastonia",
-      "modernLat": 38.96,
-      "modernLon": -109.35,
+      "modernLat": 38.85,
+      "modernLon": -109.66,
       "estimatedAge": 125,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 45.32977626516483,
-          "lon": -64.03375439126546,
-          "validationStatus": "on_land_after_collision"
+          "lat": 44.1383,
+          "lon": -62.3415,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -5984,12 +6159,12 @@
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 43.051787681503676,
-          "lon": -64.89725396578329,
-          "validationStatus": "on_land_after_collision"
+          "lat": 41.5678,
+          "lon": -62.0178,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -6019,12 +6194,12 @@
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 59.56783088661359,
-          "lon": -63.052693174272356,
-          "validationStatus": "on_land_after_collision"
+          "lat": 61.6911,
+          "lon": -64.898,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -6082,12 +6257,12 @@
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 39.73697787723174,
-          "lon": -28.285170866137225,
-          "validationStatus": "on_land_after_collision"
+          "lat": 38.4062,
+          "lon": -27.1552,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -6117,12 +6292,12 @@
       "estimatedAge": 150,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 30.941469723632355,
-          "lon": -35.90013712752456,
-          "validationStatus": "on_land_after_collision"
+          "lat": 28.6006,
+          "lon": -34.8452,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -6182,17 +6357,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaaad0fcc53bac9bb66_68c88704bd238c5a7b62b6a0_68a60192ffa9bc0346c12642_DimetrodonKnight_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/dimetrodon",
       "freeTags": "North America, Permian, Dimetrodon, Edaphosaurus",
-      "modernLat": 33.73,
-      "modernLon": -99.61,
+      "modernLat": 34.39,
+      "modernLon": -99.06,
       "estimatedAge": 280,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "280": {
-          "lat": 7.5498426673671455,
-          "lon": -28.867894865708056,
-          "validationStatus": "on_land_after_collision"
+          "lat": 5.059,
+          "lon": -28.1725,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -6217,17 +6392,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb48beb8257b76ff288_68c8871bcced445c79f2e646_68a600955a84e020ae653301_Triceratops_and_Tyrannosaurus_by_Knight_resultat.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/t-rex-vs-triceratops",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops",
-      "modernLat": 47.4,
-      "modernLon": -108.6,
+      "modernLat": 47.65,
+      "modernLon": -106.78,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 51.3114815034139,
-          "lon": -57.0250254887521,
-          "validationStatus": "on_land_after_collision"
+          "lat": 52.014,
+          "lon": -55.6578,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -6313,12 +6488,12 @@
       "estimatedAge": 280,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "280": {
-          "lat": 2.94169343875809,
-          "lon": -26.87745691194707,
-          "validationStatus": "on_land_after_collision"
+          "lat": 4.1998,
+          "lon": -28.7642,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -6343,17 +6518,17 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2c3ca10d6e8b1f480_68b6f0d344f99a75f9a08b4c_agentinosaurus-min.jpeg",
       "pageUrl": "https://www.prehistoricdomain.com/content/sauropods-intimacy",
       "freeTags": "Late Cretaceous, South America, Argentinosaurus",
-      "modernLat": -38.46,
-      "modernLon": -69.38,
+      "modernLat": -39.03,
+      "modernLon": -68.55,
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -37.29046429067722,
-          "lon": -32.718937737260156,
-          "validationStatus": "on_land_after_collision"
+          "lat": -40.2625,
+          "lon": -34.7787,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -6378,16 +6553,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/689392b2a0712fa9dcfe45ed_trice%20final-min.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/triceratops-rest-in-the-forest",
       "freeTags": "Late Cretaceous, North America, Triceratops",
-      "modernLat": 46.6,
-      "modernLon": -105.88,
+      "modernLat": 47.3,
+      "modernLon": -107.25,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 52.18804018532859,
-          "lon": -53.38713348020327,
+          "lat": 51.873189107515536,
+          "lon": -56.245631105660934,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6413,16 +6588,16 @@
       "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/689391fa00845c485017b479_trex-min.avif",
       "pageUrl": "https://www.prehistoricdomain.com/content/t-rex-drinking-in-the-valley",
       "freeTags": "Late Cretaceous, North America, Tyrannosaurus Rex, T.rex",
-      "modernLat": 47.97,
-      "modernLon": -105.46,
+      "modernLat": 47.56,
+      "modernLon": -107.11,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 52.49688268074452,
-          "lon": -54.03747895737776,
+          "lat": 52.09248910751553,
+          "lon": -55.97223110566094,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -6495,7 +6670,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "yvD3X3RcK3Y",
-      "lastUpdated": "2026-05-20T09:33:42.307Z",
+      "lastUpdated": "2026-05-29T17:42:08.799Z",
       "createdOn": "2025-07-13T19:42:08.400Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=yvD3X3RcK3Y",
       "backgroundImage": null,
@@ -6965,7 +7140,7 @@
       "slug": "art-gallery",
       "description": "Explore the art of Julio Lacerda.",
       "creditsLine": "Art gallery - Julio Lacerda",
-      "category": "unknown",
+      "category": "3d",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -7056,25 +7231,25 @@
       "geologicalPeriod": "cretaceous",
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/spino/",
       "youtubeId": null,
-      "lastUpdated": "2026-02-10T15:53:47.912Z",
+      "lastUpdated": "2026-05-29T09:29:54.965Z",
       "createdOn": "2025-06-08T16:37:40.422Z",
       "youtubeUrl": null,
-      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eba5031bfbfc228b244_6845bd0c4a1ab9413aed24ea_Sans%2520titre-1.jpeg",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195c90c6e4b05b34947972_69373eba5031bfbfc228b244_6845bd0c4a1ab9413aed24ea_Sans%2520titre-1.jpg",
       "galleryImage": null,
-      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eba5031bfbfc228b244_6845bd0c4a1ab9413aed24ea_Sans%2520titre-1.jpeg",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195c90c6e4b05b34947972_69373eba5031bfbfc228b244_6845bd0c4a1ab9413aed24ea_Sans%2520titre-1.jpg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/spino/",
       "freeTags": "North Africa, Early Cretaceous, Spinosaurus",
-      "modernLat": 31.73,
-      "modernLon": -3.39,
+      "modernLat": 30,
+      "modernLon": -3.67,
       "estimatedAge": 125,
       "location": "africa (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 21.97710618221046,
-          "lon": 6.907509508140029,
-          "validationStatus": "corrected_after_collision"
+          "lat": 20.8893,
+          "lon": 7.0544,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7091,24 +7266,24 @@
       "geologicalPeriod": "cretaceous",
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/sarco/",
       "youtubeId": null,
-      "lastUpdated": "2026-02-10T15:53:47.983Z",
+      "lastUpdated": "2026-05-29T09:30:10.061Z",
       "createdOn": "2025-06-08T16:31:19.986Z",
       "youtubeUrl": null,
-      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb6c3793250e5d1388e_6846b151b975075fade84559_sarco.jpeg",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195c9f2020a5c89b40a82b_69373eb6c3793250e5d1388e_6846b151b975075fade84559_sarco.jpg",
       "galleryImage": null,
-      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb6c3793250e5d1388e_6846b151b975075fade84559_sarco.jpeg",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195c9f2020a5c89b40a82b_69373eb6c3793250e5d1388e_6846b151b975075fade84559_sarco.jpg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/sarco/",
       "freeTags": "North Africa, Early Cretaceous, Sarcosuchus",
-      "modernLat": 32.38,
-      "modernLon": 10.64,
+      "modernLat": 32.27,
+      "modernLon": 10.33,
       "estimatedAge": 125,
       "location": "africa (PBDB)",
       "confidence": "medium",
       "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 20.7694,
-          "lon": 19.9887,
+          "lat": 20.7632,
+          "lon": 19.6896,
           "validationStatus": "corrected_to_land"
         }
       }
@@ -7126,24 +7301,24 @@
       "geologicalPeriod": "cretaceous",
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/quetza/",
       "youtubeId": null,
-      "lastUpdated": "2026-02-13T21:02:45.649Z",
+      "lastUpdated": "2026-05-29T09:31:18.561Z",
       "createdOn": "2025-06-08T16:23:57.593Z",
       "youtubeUrl": null,
-      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2aa4b2d7791d86596_6845b9fa8657fd035baa86f7_Quetza.jpeg",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195ce1664ebf97772a7973_69373eb2aa4b2d7791d86596_6845b9fa8657fd035baa86f7_Quetza.jpg",
       "galleryImage": null,
-      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2aa4b2d7791d86596_6845b9fa8657fd035baa86f7_Quetza.jpeg",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195ce1664ebf97772a7973_69373eb2aa4b2d7791d86596_6845b9fa8657fd035baa86f7_Quetza.jpg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/quetza/",
       "freeTags": "North America, Late Cretaceous, Quetzalcoatlus, Acheroraptor",
-      "modernLat": 29.51,
-      "modernLon": -102.9,
+      "modernLat": 29.4,
+      "modernLon": -103.2,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 33.7257,
-          "lon": -58.2773,
+          "lat": 33.6793,
+          "lon": -58.6134,
           "validationStatus": "on_land"
         }
       }
@@ -7161,24 +7336,24 @@
       "geologicalPeriod": "neogene",
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/lagoon/",
       "youtubeId": null,
-      "lastUpdated": "2026-02-10T15:53:48.002Z",
+      "lastUpdated": "2026-05-29T09:31:36.647Z",
       "createdOn": "2025-06-08T16:15:44.646Z",
       "youtubeUrl": null,
-      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb549c52c7a3ecbd618_6845b786e04c328c642f125a_meg.jpeg",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195cf43e8e6e444d92f362_69373eb549c52c7a3ecbd618_6845b786e04c328c642f125a_meg.jpg",
       "galleryImage": null,
-      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb549c52c7a3ecbd618_6845b786e04c328c642f125a_meg.jpeg",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195cf43e8e6e444d92f362_69373eb549c52c7a3ecbd618_6845b786e04c328c642f125a_meg.jpg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/lagoon/",
       "freeTags": "Ocean, Miocene, Megalodon",
-      "modernLat": 53.66,
-      "modernLon": -113.2,
+      "modernLat": 53.55,
+      "modernLon": -113.5,
       "estimatedAge": 15,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "15": {
-          "lat": 55.1511,
-          "lon": -100.716,
+          "lat": 55.0753,
+          "lon": -101.057,
           "validationStatus": "on_land"
         }
       }
@@ -7196,24 +7371,24 @@
       "geologicalPeriod": "cretaceous",
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/cretaceous-lagoon/",
       "youtubeId": null,
-      "lastUpdated": "2026-02-10T15:53:47.976Z",
+      "lastUpdated": "2026-05-29T09:31:54.182Z",
       "createdOn": "2025-06-08T16:07:34.434Z",
       "youtubeUrl": null,
-      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea9ab1d2df98415b7aa_6845b5ff153a9f31378a4226_Ichthyosaurus.jpeg",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195d0658d8cf58ac6924a5_69373ea9ab1d2df98415b7aa_6845b5ff153a9f31378a4226_Ichthyosaurus.jpg",
       "galleryImage": null,
-      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373ea9ab1d2df98415b7aa_6845b5ff153a9f31378a4226_Ichthyosaurus.jpeg",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195d0658d8cf58ac6924a5_69373ea9ab1d2df98415b7aa_6845b5ff153a9f31378a4226_Ichthyosaurus.jpg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/cretaceous-lagoon/",
       "freeTags": "Early Cretaceous, Ichthyosaurus, Mosasaurus, Plesiosaurus",
-      "modernLat": 52.47,
-      "modernLon": -1.56,
+      "modernLat": 52.36,
+      "modernLon": -1.86,
       "estimatedAge": 125,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 44.3545,
-          "lon": 15.4573,
+          "lat": 44.24,
+          "lon": 15.2055,
           "validationStatus": "on_land"
         }
       }
@@ -7231,25 +7406,25 @@
       "geologicalPeriod": "cretaceous",
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/edmon/",
       "youtubeId": null,
-      "lastUpdated": "2026-02-10T15:53:47.832Z",
+      "lastUpdated": "2026-05-29T09:28:51.482Z",
       "createdOn": "2025-06-08T15:54:14.057Z",
       "youtubeUrl": null,
-      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eabab1d2df98415b7f1_6845b2f6fa10c2acc2a37039_Edmon.jpeg",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195c4f01bbf3759e193205_69373eabab1d2df98415b7f1_6845b2f6fa10c2acc2a37039_Edmon.jpg",
       "galleryImage": null,
-      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eabab1d2df98415b7f1_6845b2f6fa10c2acc2a37039_Edmon.jpeg",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195c4f01bbf3759e193205_69373eabab1d2df98415b7f1_6845b2f6fa10c2acc2a37039_Edmon.jpg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/edmon/",
       "freeTags": "North America, Late Cretaceous, Edmontosaurus",
-      "modernLat": 51.62,
-      "modernLon": -112.35,
+      "modernLat": 51.51,
+      "modernLon": -112.66,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 55.939369507542914,
-          "lon": -59.58340078139589,
-          "validationStatus": "on_land_after_collision"
+          "lat": 56.8716,
+          "lon": -59.8093,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7266,25 +7441,25 @@
       "geologicalPeriod": "permian",
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/dimetrodon/",
       "youtubeId": null,
-      "lastUpdated": "2026-02-10T15:53:47.891Z",
+      "lastUpdated": "2026-05-29T09:30:59.343Z",
       "createdOn": "2025-06-08T15:46:34.723Z",
       "youtubeUrl": null,
-      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaa7bc291cb41807071_6855adb349b8866681860432_dimetrodon.jpeg",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195ccecf2d3a2813e5fbac_69373eaa7bc291cb41807071_6855adb349b8866681860432_dimetrodon.jpg",
       "galleryImage": null,
-      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaa7bc291cb41807071_6855adb349b8866681860432_dimetrodon.jpeg",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195ccecf2d3a2813e5fbac_69373eaa7bc291cb41807071_6855adb349b8866681860432_dimetrodon.jpg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/dimetrodon/",
       "freeTags": "North America, Early Permian, Dimetrodon",
-      "modernLat": 34.39,
-      "modernLon": -98.7,
+      "modernLat": 33.73,
+      "modernLon": -99.61,
       "estimatedAge": 280,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "280": {
-          "lat": 2.487887674362896,
-          "lon": -26.328058714204342,
-          "validationStatus": "on_land_after_collision"
+          "lat": 4.7271,
+          "lon": -28.9053,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7301,25 +7476,25 @@
       "geologicalPeriod": "cretaceous",
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/deino/",
       "youtubeId": null,
-      "lastUpdated": "2026-02-10T15:53:47.938Z",
+      "lastUpdated": "2026-05-29T09:29:25.052Z",
       "createdOn": "2025-06-08T15:41:57.372Z",
       "youtubeUrl": null,
-      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaa832c81efb7be61f6_68b6f51d4221a824166bea64_Deinonychus.jpeg",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195c71956dcc81cc4f929c_69373eaa832c81efb7be61f6_68b6f51d4221a824166bea64_Deinonychus.jpg",
       "galleryImage": null,
-      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eaa832c81efb7be61f6_68b6f51d4221a824166bea64_Deinonychus.jpeg",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195c71956dcc81cc4f929c_69373eaa832c81efb7be61f6_68b6f51d4221a824166bea64_Deinonychus.jpg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/deino/",
       "freeTags": "North America, Early Cretaceous, Deinonychus",
-      "modernLat": 46.45,
-      "modernLon": -109.38,
+      "modernLat": 46.34,
+      "modernLon": -109.69,
       "estimatedAge": 125,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 48.9879985765755,
-          "lon": -60.06066529658058,
-          "validationStatus": "on_land_after_collision"
+          "lat": 51.3535,
+          "lon": -59.3427,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7336,12 +7511,12 @@
       "geologicalPeriod": "cretaceous",
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/deinocheirus/",
       "youtubeId": null,
-      "lastUpdated": "2026-02-10T15:53:50.604Z",
+      "lastUpdated": "2026-05-29T09:30:31.919Z",
       "createdOn": "2025-06-08T15:16:29.432Z",
       "youtubeUrl": null,
-      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6845a9c9153a9f313785061d_Deinocheirus.avif",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195cb436aa428b5cbb049c_6845a9c9153a9f313785061d_Deinocheirus.jpg",
       "galleryImage": null,
-      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6845a9c9153a9f313785061d_Deinocheirus.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195cb436aa428b5cbb049c_6845a9c9153a9f313785061d_Deinocheirus.jpg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/deinocheirus/",
       "freeTags": "Asia, Late Cretaceous, Deinocheirus",
       "modernLat": 43.71,
@@ -7349,12 +7524,12 @@
       "estimatedAge": 66,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 43.57998929206244,
-          "lon": 111.11087723527268,
-          "validationStatus": "on_land_after_collision"
+          "lat": 45.9376,
+          "lon": 111.0338,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7371,25 +7546,25 @@
       "geologicalPeriod": "cretaceous",
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/aviary/",
       "youtubeId": null,
-      "lastUpdated": "2026-02-10T15:53:50.762Z",
+      "lastUpdated": "2026-05-29T09:32:08.574Z",
       "createdOn": "2025-06-02T17:26:00.823Z",
       "youtubeUrl": null,
-      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2415ffd151005d451_683ddf0eeb0989da514f0c4a_Ptera%2520Concept%2520Art.jpeg",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195d16a0aff33bf2e81ea0_69373eb2415ffd151005d451_683ddf0eeb0989da514f0c4a_Ptera%2520Concept%2520Art.jpg",
       "galleryImage": null,
-      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/69373eb2415ffd151005d451_683ddf0eeb0989da514f0c4a_Ptera%2520Concept%2520Art.jpeg",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195d16a0aff33bf2e81ea0_69373eb2415ffd151005d451_683ddf0eeb0989da514f0c4a_Ptera%2520Concept%2520Art.jpg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/aviary/",
       "freeTags": "North America, Late Cretaceous, Pteranodon",
-      "modernLat": 40,
-      "modernLon": -76.05,
+      "modernLat": 39.96,
+      "modernLon": -75.59,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 37.33283513441574,
-          "lon": -28.57352551266082,
-          "validationStatus": "corrected_after_collision"
+          "lat": 38.1402,
+          "lon": -28.2189,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7406,24 +7581,24 @@
       "geologicalPeriod": "cretaceous",
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/trex/",
       "youtubeId": null,
-      "lastUpdated": "2026-02-10T15:53:50.967Z",
+      "lastUpdated": "2026-05-29T09:29:08.785Z",
       "createdOn": "2025-06-02T17:07:12.843Z",
       "youtubeUrl": null,
-      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68618c815cafcdc938ec32d5_PD%20Concept%20Art.avif",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195c6188301fbc4298d51f_68618c815cafcdc938ec32d5_PD%20Concept%20Art%20(1).jpg",
       "galleryImage": null,
-      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/68618c815cafcdc938ec32d5_PD%20Concept%20Art.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195c6188301fbc4298d51f_68618c815cafcdc938ec32d5_PD%20Concept%20Art%20(1).jpg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/trex/",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex",
-      "modernLat": 48.33,
-      "modernLon": -108.61,
+      "modernLat": 47.29,
+      "modernLon": -107.21,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 51.3738744214129,
-          "lon": -60.234374974954555,
+          "lat": 51.24816890398331,
+          "lon": -55.77246890398332,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -7454,12 +7629,12 @@
       "estimatedAge": 66,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 46.16371239515945,
-          "lon": 110.2387297115187,
-          "validationStatus": "on_land_after_collision"
+          "lat": 46.348,
+          "lon": 111.2034,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7489,12 +7664,12 @@
       "estimatedAge": 100,
       "location": "africa (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 21.878949562260594,
-          "lon": 4.049522332802537,
-          "validationStatus": "on_land_after_collision"
+          "lat": 21.8533,
+          "lon": 6.3472,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7524,12 +7699,12 @@
       "estimatedAge": 125,
       "location": "africa (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 18.598059299720855,
-          "lon": 6.277327600363442,
-          "validationStatus": "on_land_after_collision"
+          "lat": 21.0423,
+          "lon": 7.8818,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7594,12 +7769,12 @@
       "estimatedAge": 66,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 43.44118869113988,
-          "lon": 110.14290879580481,
-          "validationStatus": "on_land_after_collision"
+          "lat": 45.9435,
+          "lon": 111.9014,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7664,12 +7839,12 @@
       "estimatedAge": 66,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 44.35589326175841,
-          "lon": 110.18070037662018,
-          "validationStatus": "on_land_after_collision"
+          "lat": 45.682,
+          "lon": 109.7627,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7772,8 +7947,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 30.762237391587703,
-          "lon": 16.96571877608,
+          "lat": 32.58131208852066,
+          "lon": 16.365318462647476,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -7804,12 +7979,12 @@
       "estimatedAge": 280,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "280": {
-          "lat": 2.1165956354424647,
-          "lon": -26.911193158487702,
-          "validationStatus": "on_land_after_collision"
+          "lat": 4.1026,
+          "lon": -28.384,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7839,12 +8014,12 @@
       "estimatedAge": null,
       "location": "Spinosaurus - central Sahara (Algeria/Libya border) to ensure land placement at 100 Ma",
       "confidence": "high",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 15.0757622316899,
-          "lon": 10.971726477431153,
-          "validationStatus": "on_land_after_collision"
+          "lat": 13.2546,
+          "lon": 12.3691,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7874,12 +8049,12 @@
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 31.639049761987508,
-          "lon": -56.711414334116796,
-          "validationStatus": "on_land_after_collision"
+          "lat": 33.8743,
+          "lon": -58.9236,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -7912,8 +8087,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 34.33620366233529,
-          "lon": 32.50807617823002,
+          "lat": 33.687354049961954,
+          "lon": 33.532265791085194,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -7944,12 +8119,12 @@
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 32.81633317653306,
-          "lon": 15.96768685445797,
-          "validationStatus": "corrected_after_collision"
+          "lat": 32.57965165679413,
+          "lon": 16.682185580739176,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -7974,17 +8149,17 @@
       "preview": "https://img.youtube.com/vi/XKSWWUGOuCQ/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/araripesuchus-manzanensis",
       "freeTags": "South America, Late Cretaceous, Araripesuchus manzanensis",
-      "modernLat": -39.99,
+      "modernLat": -39.74,
       "modernLon": -68.53,
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -38.696872583237514,
-          "lon": -36.831106130506704,
-          "validationStatus": "corrected_after_collision"
+          "lat": -40.9727,
+          "lon": -34.7899,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8014,12 +8189,12 @@
       "estimatedAge": 66,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 45.64740755364482,
-          "lon": 113.34791609093682,
-          "validationStatus": "on_land_after_collision"
+          "lat": 46.7061,
+          "lon": 113.3234,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8049,12 +8224,12 @@
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -40.227302103040586,
-          "lon": -34.33669993900323,
-          "validationStatus": "on_land_after_collision"
+          "lat": -40.5284,
+          "lon": -34.5561,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8084,12 +8259,12 @@
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -41.12656149732376,
-          "lon": -33.13222902676748,
-          "validationStatus": "corrected_after_collision"
+          "lat": -40.8053,
+          "lon": -33.8958,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8122,8 +8297,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -49.351780630101075,
-          "lon": -44.090220895959035,
+          "lat": -51.199453757176904,
+          "lon": -42.47440858452814,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8154,12 +8329,12 @@
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -44.83637358359761,
-          "lon": -38.3698902483432,
-          "validationStatus": "corrected_after_collision"
+          "lat": -42.56938272534278,
+          "lon": -35.289128778877206,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8189,12 +8364,12 @@
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -41.47535617043566,
-          "lon": -35.786852731935525,
-          "validationStatus": "on_land_after_collision"
+          "lat": -39.5763,
+          "lon": -34.6164,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8224,12 +8399,12 @@
       "estimatedAge": 66,
       "location": "south america (continent center)",
       "confidence": "low",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -18.974929621566588,
-          "lon": -27.355486448942482,
-          "validationStatus": "on_land_after_collision"
+          "lat": -16.8125,
+          "lon": -25.1959,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8254,16 +8429,16 @@
       "preview": "https://img.youtube.com/vi/XITWI0-vxqk/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/charlie-s-life---the-t-rex-contest",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex",
-      "modernLat": 45.88,
-      "modernLon": -106.48,
+      "modernLat": 47.3,
+      "modernLon": -107.5,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 51.86094153967511,
-          "lon": -53.7836302975179,
+          "lat": 51.23045019345297,
+          "lon": -56.65997676771647,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8294,12 +8469,12 @@
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -5.885503703044268,
-          "lon": -1.910608788729417,
-          "validationStatus": "on_land_after_collision"
+          "lat": -6.975458709262115,
+          "lon": -3.889157514062631,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -8332,8 +8507,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 20.732039768462162,
-          "lon": 6.0032998558611705,
+          "lat": 21.5926,
+          "lon": 6.9836757553758995,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8364,12 +8539,12 @@
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 36.0043764784013,
-          "lon": -58.509293571690755,
-          "validationStatus": "on_land_after_collision"
+          "lat": 33.285,
+          "lon": -58.5429,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8399,12 +8574,12 @@
       "estimatedAge": 125,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 48.82394357200395,
-          "lon": -59.909263883558154,
-          "validationStatus": "on_land_after_collision"
+          "lat": 51.5577,
+          "lon": -59.6478,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8457,17 +8632,17 @@
       "preview": "https://img.youtube.com/vi/qmFB4phQj8Q/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/early-cretaceous-raptor-journey",
       "freeTags": "North America, Early Cretaceous, Utahraptors",
-      "modernLat": 38.99,
-      "modernLon": -109.99,
+      "modernLat": 38.96,
+      "modernLon": -109.35,
       "estimatedAge": 125,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 45.96556543239586,
-          "lon": -65.39967745957087,
-          "validationStatus": "on_land_after_collision"
+          "lat": 44.1834,
+          "lon": -61.9773,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8520,16 +8695,16 @@
       "preview": "https://img.youtube.com/vi/cJwNwhVPMz8/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/carcharodontosaurus-the-pack",
       "freeTags": "North Africa, Early Cretaceous, Carcharodontosaurus",
-      "modernLat": 29.39,
-      "modernLon": -0.08,
+      "modernLat": 29.36,
+      "modernLon": 0.55,
       "estimatedAge": 125,
       "location": "africa (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 21.16990867299806,
-          "lon": 9.928199512346819,
+          "lat": 19.43401881594302,
+          "lon": 9.63523998971876,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8595,12 +8770,12 @@
       "estimatedAge": 125,
       "location": "africa (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 20.219980772655234,
-          "lon": 6.19529123720727,
-          "validationStatus": "on_land_after_collision"
+          "lat": 20.9532,
+          "lon": 6.4938,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8630,12 +8805,12 @@
       "estimatedAge": 125,
       "location": "africa (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 20.869828255911262,
-          "lon": 10.098793565232427,
-          "validationStatus": "corrected_after_collision"
+          "lat": 21.8924,
+          "lon": 8.3906,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8651,7 +8826,7 @@
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "W2-G8svWs58",
-      "lastUpdated": "2026-05-20T09:33:42.368Z",
+      "lastUpdated": "2026-05-29T17:42:08.792Z",
       "createdOn": "2025-05-27T17:04:42.863Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=W2-G8svWs58",
       "backgroundImage": null,
@@ -8693,12 +8868,12 @@
       "estimatedAge": 15,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "15": {
-          "lat": 54.47346301053994,
-          "lon": -100.39584590077834,
-          "validationStatus": "on_land_after_collision"
+          "lat": 55.2484,
+          "lon": -101.3495,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8763,12 +8938,12 @@
       "estimatedAge": 15,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "15": {
-          "lat": -28.741135682616864,
-          "lon": -67.97440018473341,
-          "validationStatus": "corrected_after_collision"
+          "lat": -30.2579,
+          "lon": -68.4876,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8793,16 +8968,16 @@
       "preview": "https://img.youtube.com/vi/XV2c3kvfwxg/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/greatest-standoff-t-rex-vs-triceratops",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops",
-      "modernLat": 47.45,
-      "modernLon": -107.08,
+      "modernLat": 46.48,
+      "modernLon": -107.47,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 49.31654833009031,
-          "lon": -56.23496064809588,
+          "lat": 51.177031402516164,
+          "lon": -57.27634439076908,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -8813,7 +8988,7 @@
       "slug": "planet-dinosaur-behind-the-scenes",
       "description": "Take a look behind the scenes of Planet Dinosaur with BBC series producer Nigel Paterson and Creative Director of Jellyfish Pictures, Phil Dobree. This is clip is all about how to build a dinosaur from one pixel to finished creature.",
       "creditsLine": "Produced by BBC and Jellyfish Pictures for BBC One, narrated by John Hurt.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -8861,12 +9036,12 @@
       "estimatedAge": 125,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 51.530076769498194,
-          "lon": 132.1863159026192,
-          "validationStatus": "on_land_after_collision"
+          "lat": 49.0336,
+          "lon": 131.2609,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -8891,17 +9066,17 @@
       "preview": "https://img.youtube.com/vi/8-jpuywa6lg/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/sinornithosaurus-fatal-bite",
       "freeTags": "East Asia, Early Cretaceous, Sinornithosaurus",
-      "modernLat": 42.01,
-      "modernLon": 121.36,
+      "modernLat": 42.06,
+      "modernLon": 120.55,
       "estimatedAge": 125,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 49.00842188798349,
-          "lon": 130.99974871436598,
-          "validationStatus": "corrected_after_collision"
+          "lat": 45.6608,
+          "lon": 131.7535757553759,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -8926,17 +9101,17 @@
       "preview": "https://img.youtube.com/vi/xO8BjI3L3yg/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/dinosaur-massacre",
       "freeTags": "North America, Late Cretaceous, Centrosaurus, Daspletosaurus",
-      "modernLat": 50.64,
-      "modernLon": -110.98,
+      "modernLat": 51.18,
+      "modernLon": -111.36,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 53.67462441076518,
-          "lon": -55.54620686071563,
-          "validationStatus": "on_land_after_collision"
+          "lat": 56.2978,
+          "lon": -58.6062,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -8966,12 +9141,12 @@
       "estimatedAge": 160,
       "location": "europe (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 31.789537068090155,
-          "lon": 26.21607733913154,
-          "validationStatus": "on_land_after_collision"
+          "lat": 34.5738,
+          "lon": 27.4599,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -9004,8 +9179,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 33.14850797293928,
-          "lon": 24.70815220243758,
+          "lat": 34.97508910751554,
+          "lon": 27.690468894339062,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9031,17 +9206,17 @@
       "preview": "https://img.youtube.com/vi/CpaZkVqQAFA/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/mapusaurus-gang-vs-argentinosaurus",
       "freeTags": "South America, Late Cretaceous, Argentinosaurus, Mapusaurus",
-      "modernLat": -38.89,
-      "modernLon": -69.74,
+      "modernLat": -38.46,
+      "modernLon": -69.38,
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": -41.88343832037179,
-          "lon": -37.31081986540433,
-          "validationStatus": "on_land_after_collision"
+          "lat": -39.1711,
+          "lon": -35.5979,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -9066,17 +9241,17 @@
       "preview": "https://img.youtube.com/vi/3QUK8gN1oSY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-biggest-dinosaur-ever-the-argentinosaurus",
       "freeTags": "South America, Late Cretaceous, Argentinosaurus",
-      "modernLat": -38.16,
-      "modernLon": -69.09,
+      "modernLat": -38.89,
+      "modernLon": -69.74,
       "estimatedAge": 66,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -36.60206514707059,
-          "lon": -33.38289547675433,
-          "validationStatus": "on_land_after_collision"
+          "lat": -40.0913,
+          "lon": -35.9829,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -9106,12 +9281,12 @@
       "estimatedAge": 66,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 48.28041596376519,
-          "lon": 110.63701039270137,
-          "validationStatus": "on_land_after_collision"
+          "lat": 46.6485,
+          "lon": 112.6688,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -9141,12 +9316,12 @@
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 38.750876126848695,
-          "lon": -60.520782545816914,
-          "validationStatus": "on_land_after_collision"
+          "lat": 40.3632,
+          "lon": -62.4072,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -9176,12 +9351,12 @@
       "estimatedAge": 66,
       "location": "Unknown (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -37.14482787575854,
-          "lon": 38.57111325567638,
-          "validationStatus": "on_land_after_collision"
+          "lat": -37.1467,
+          "lon": 41.5357,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -9239,12 +9414,12 @@
       "estimatedAge": 125,
       "location": "africa (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 21.951968924168,
-          "lon": 5.407039878343814,
-          "validationStatus": "corrected_after_collision"
+          "lat": 21.614364269611265,
+          "lon": 6.6271925412197605,
+          "validationStatus": "on_land_after_collision"
         }
       }
     },
@@ -9254,7 +9429,7 @@
       "slug": "dinosauria-volume-2",
       "description": "Dinosauria Volume 2 will be a follow up to the original Dinosauria Animated Series.",
       "creditsLine": "Created by David James Armsby.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -9282,7 +9457,7 @@
       "slug": "river-of-giants---trailer",
       "description": "Official trailer of River Of Giants.",
       "creditsLine": "Created by Mesozoic Life Project – via Kickstarter",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -9325,16 +9500,16 @@
       "preview": "https://img.youtube.com/vi/pY_4ekCHUbA/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/what-did-south-dakota-look-like-65-million-years-ago",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops, Quetzalcoatlus",
-      "modernLat": 47.3,
-      "modernLon": -107.5,
+      "modernLat": 47.45,
+      "modernLon": -107.08,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 50.393243492304606,
-          "lon": -54.433696740951405,
+          "lat": 52.345063448890414,
+          "lon": -56.391449957229284,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9360,16 +9535,16 @@
       "preview": "https://img.youtube.com/vi/v7iLJnNod-M/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/t-rex-ambush",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Quetzalcoatlus",
-      "modernLat": 47.56,
-      "modernLon": -107.11,
+      "modernLat": 47.67,
+      "modernLon": -107.42,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 53.46992443958396,
-          "lon": -55.43100670514942,
+          "lat": 52.58534289223072,
+          "lon": -56.18348803661911,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9380,7 +9555,7 @@
       "slug": "the-making-of-walking-with-dinosaurs-part-6",
       "description": "Animatronics allow scientists to explore the most likely methods Dinosaurs adopted during mating and birth.",
       "creditsLine": "Produced by BBC Natural History Unit for BBC, narrated by Kenneth Branagh.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -9408,7 +9583,7 @@
       "slug": "the-making-of-walking-with-dinosaurs-part-5",
       "description": "Scientists spent hours watching live animals to explore how a dinosaur may have carried their weight.",
       "creditsLine": "Produced by BBC Natural History Unit for BBC, narrated by Kenneth Branagh.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -9436,7 +9611,7 @@
       "slug": "the-making-of-walking-with-dinosaurs-part-4",
       "description": "Walking with Dinosaurs: The Making Of - footage exploring the way animators transfer physical models into computer generated images.",
       "creditsLine": "Produced by BBC Natural History Unit for BBC, narrated by Kenneth Branagh.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -9464,7 +9639,7 @@
       "slug": "the-making-of-walking-with-dinosaurs-part-3",
       "description": "Animatronics allow scientists to explore the most likely methods Dinosaurs adopted during mating and birth.",
       "creditsLine": "Produced by BBC Natural History Unit for BBC, narrated by Kenneth Branagh.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -9492,7 +9667,7 @@
       "slug": "the-making-of-walking-with-dinosaurs-part-2",
       "description": "Walking with Dinosaurs: The Making of - explores how dinosaur skeletons were used to provide information on what the giant reptiles may have looked like.",
       "creditsLine": "Produced by BBC Natural History Unit for BBC, narrated by Kenneth Branagh.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -9520,7 +9695,7 @@
       "slug": "the-making-of-walking-with-dinosaurs-part-1",
       "description": "Animators and paleontologists work together to rediscover the living animal.",
       "creditsLine": "Produced by BBC Natural History Unit for BBC, narrated by Kenneth Branagh.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -9568,12 +9743,12 @@
       "estimatedAge": 150,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 25.606502007130885,
-          "lon": -35.557872346975316,
-          "validationStatus": "on_land_after_collision"
+          "lat": 28.1053,
+          "lon": -35.5409,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -9603,12 +9778,12 @@
       "estimatedAge": 150,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 29.464453577501644,
-          "lon": -35.84055054428107,
-          "validationStatus": "on_land_after_collision"
+          "lat": 32.1913,
+          "lon": -34.1009,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -9641,8 +9816,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "160": {
-          "lat": 30.231810071744643,
-          "lon": -31.85179023913697,
+          "lat": 27.925812034756476,
+          "lon": -34.71065322909469,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9708,12 +9883,12 @@
       "estimatedAge": 100,
       "location": "south america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 41.39579665133457,
-          "lon": 15.850695876904187,
-          "validationStatus": "on_land_after_collision"
+          "lat": 44.2298,
+          "lon": 17.1682,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -9746,8 +9921,8 @@
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": -10.392130963977584,
-          "lon": -0.9378763413711135,
+          "lat": -7.740532387664951,
+          "lon": -2.8484206465417152,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -9778,12 +9953,12 @@
       "estimatedAge": 150,
       "location": "europe (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 34.939367100463286,
-          "lon": 23.09827522987885,
-          "validationStatus": "on_land_after_collision"
+          "lat": 34.3902,
+          "lon": 24.2458,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -9813,12 +9988,12 @@
       "estimatedAge": 125,
       "location": "europe (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": -54.872793491286,
-          "lon": 150.29092896672026,
-          "validationStatus": "on_land_after_collision"
+          "lat": -53.5121,
+          "lon": 149.4404,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -9883,12 +10058,12 @@
       "estimatedAge": 150,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 25.77634386743463,
-          "lon": -34.70056587486986,
-          "validationStatus": "on_land_after_collision"
+          "lat": 28.7492,
+          "lon": -35.2186,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -9918,12 +10093,12 @@
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 57.4001976653303,
-          "lon": -61.97121109870363,
-          "validationStatus": "on_land_after_collision"
+          "lat": 57.4714,
+          "lon": -60.2519,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -9948,17 +10123,17 @@
       "preview": "https://img.youtube.com/vi/lIo7cG0Mt4s/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/hunting-with-a-t-rex",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Anatotitan",
-      "modernLat": 48,
-      "modernLon": -107.41,
+      "modernLat": 46.64,
+      "modernLon": -106.88,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 51.59983881266896,
-          "lon": -55.711567956471576,
-          "validationStatus": "on_land_after_collision"
+          "lat": 51.0711,
+          "lon": -56.2501,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -9988,12 +10163,12 @@
       "estimatedAge": 210,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "220": {
-          "lat": 9.85561479072059,
-          "lon": -35.98162300164527,
-          "validationStatus": "on_land_after_collision"
+          "lat": 8.415,
+          "lon": -36.1239,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -10023,12 +10198,12 @@
       "estimatedAge": 150,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "160": {
-          "lat": 28.29704875008853,
-          "lon": -32.45862701854146,
-          "validationStatus": "on_land_after_collision"
+          "lat": 27.6805,
+          "lon": -35.3782,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -10038,7 +10213,7 @@
       "slug": "bringing-65-prehistoric-creatures-to-life",
       "description": "Life on Our Planet's visual effects team designed the nature documentary's terror bird, cave lion, mastodon, and dozens of other prehistoric creatures by working with hundreds of scientists over five years. Informed by the fossil record, biomechanics, and more data sources, filmmakers explain how they brought life to scary and stunning CGI animals.",
       "creditsLine": "Produced by Silverback Films and Amblin Television for Netflix, narrated by Morgan Freeman.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10066,7 +10241,7 @@
       "slug": "filming-dinosaurs-in-the-real-world",
       "description": "Life On Our Planet's plateosaurus scene combines digital dinosaurs with real nature footage from England's Lake District. ILM and Silverback Films filmmakers and post-production artists share how they created a realistic dinosaur documentary by using detailed animation and visual effects techniques.",
       "creditsLine": "Produced by Silverback Films and Amblin Television for Netflix, narrated by Morgan Freeman.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10094,7 +10269,7 @@
       "slug": "designing-the-cgi-t-rex",
       "description": "The Life on Our Planet creative team explains how they designed the most realistic T.rex possible for the Steven Spielberg dinosaur documentary. Paleontologist Dr. Tom Fletcher, ILM visual effects supervisor Jonathan Privett, director/producer Adam Silverback, and series producer Dan Tapster all weigh in.",
       "creditsLine": "Produced by Silverback Films and Amblin Television for Netflix, narrated by Morgan Freeman.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": true,
       "geologicalPeriod": null,
@@ -10122,7 +10297,7 @@
       "slug": "the-battle-for-land",
       "description": "The battle to conquer land changed everything. See how the team behind Life on Our Planet planned to bring the story to the screen... using toys.",
       "creditsLine": "Produced by Silverback Films and Amblin Television for Netflix, narrated by Morgan Freeman.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10150,7 +10325,7 @@
       "slug": "walking-with-dinosaurs-official-trailer-2025",
       "description": "The world of dinosaurs brought to life like never before.",
       "creditsLine": "BBC Studios production, in association with ZDF, France Télévisions & The Open University.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": true,
       "geologicalPeriod": null,
@@ -10193,17 +10368,17 @@
       "preview": "https://img.youtube.com/vi/J4ydTuem8Ls/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/t-rex-and-her-babies-hunt-down-a-triceratops",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Triceratops",
-      "modernLat": 47.67,
-      "modernLon": -107.42,
+      "modernLat": 46.09,
+      "modernLon": -107.08,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 54.60364786823732,
-          "lon": -54.08705458636597,
-          "validationStatus": "on_land_after_collision"
+          "lat": 50.5864,
+          "lon": -56.7161,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -10248,7 +10423,7 @@
       "slug": "making-of-the-last-tyrant",
       "description": "This video covers my creative process and ideas behind the art and themes of \"The Last Tyrant\", the fifth film in my Dinosauria Series.",
       "creditsLine": "Created by David James Armsby.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": true,
       "geologicalPeriod": null,
@@ -10276,7 +10451,7 @@
       "slug": "making-of-sea-and-sky",
       "description": "This video covers my creative process and ideas behind the art and themes of \"Sea and Sky\", the fourth film in my Dinosauria Series.",
       "creditsLine": "Created by David James Armsby.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10304,7 +10479,7 @@
       "slug": "making-of-a-more-ancient-spring",
       "description": "This video covers my creative process and ideas behind the art and themes of \"A More Ancient Spring\", the third film in my Dinosauria Series.",
       "creditsLine": "Created by David James Armsby.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10332,7 +10507,7 @@
       "slug": "making-of-our-frozen-past",
       "description": "This video covers the creative process and ideas behind the art and themes of \"Our Frozen Past\", the second film in my Dinosauria Series.",
       "creditsLine": "Created by David James Armsby.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10360,7 +10535,7 @@
       "slug": "making-of-old-buck",
       "description": "This video covers the creative process and ideas behind the art and themes of \"Old Buck\", the first film in my Dinosauria Series.",
       "creditsLine": "Created by David James Armsby.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10388,7 +10563,7 @@
       "slug": "prehistoric-planet-vfx-team",
       "description": "From taking boats to remote beaches to underwater dives and climbing mountains, MPC's data capture team and the NHU trekked locations around the world to tell a prehistoric story like never before.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10416,7 +10591,7 @@
       "slug": "on-location-with-prehistoric-planet",
       "description": "Real landscapes. Remarkable creatures. An extraordinary team. Watch how the creators of Prehistoric Planet brought this one-of-a-kind documentary to life.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10459,17 +10634,17 @@
       "preview": "https://img.youtube.com/vi/eQah4McU2ww/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-pachyrhinosaurs-last-stand",
       "freeTags": "North America, Late Cretaceous, Nanuqsaurus, Pachyrhinosaurus",
-      "modernLat": 69.97,
-      "modernLon": -151.85,
+      "modernLat": 69.94,
+      "modernLon": -151.22,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "corrected_after_collision",
+      "paleoValidation": "corrected_to_land",
       "periods": {
         "100": {
-          "lat": 80.56229173117342,
-          "lon": -94.30200534592605,
-          "validationStatus": "corrected_after_collision"
+          "lat": 79.7527,
+          "lon": -90.4024,
+          "validationStatus": "corrected_to_land"
         }
       }
     },
@@ -10534,12 +10709,12 @@
       "estimatedAge": 66,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 44.283676158718805,
-          "lon": 108.93543946043887,
-          "validationStatus": "on_land_after_collision"
+          "lat": 45.2485,
+          "lon": 110.3906,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -10569,12 +10744,12 @@
       "estimatedAge": 66,
       "location": "asia (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 48.97695975338479,
-          "lon": 109.60345569539402,
-          "validationStatus": "on_land_after_collision"
+          "lat": 46.1946,
+          "lon": 110.3044,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -10604,12 +10779,12 @@
       "estimatedAge": null,
       "location": "Default T.rex location - Alberta Canada",
       "confidence": "high",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 59.95464426282449,
-          "lon": -60.6955182229418,
-          "validationStatus": "on_land_after_collision"
+          "lat": 57.3088,
+          "lon": -59.9443,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -10619,7 +10794,7 @@
       "slug": "flamboyant-flyers",
       "description": "Why would a flying reptile have a large and cumbersome, yet remarkable, head crest?",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10647,7 +10822,7 @@
       "slug": "did-velociraptor-have-feathers",
       "description": "\"It would’ve looked a lot more like a really terrifying turkey.\"",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10675,7 +10850,7 @@
       "slug": "did-dinosaurs-hunt-in-packs",
       "description": "“There is scientific evidence for deadly dinosaurs joining forces.”",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10703,7 +10878,7 @@
       "slug": "armed-for-seduction",
       "description": "A tiny pair of limbs with a big role to play.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10731,7 +10906,7 @@
       "slug": "how-did-ankylosaurs-use-their-tail",
       "description": "Ankylosaurus was an early wielder of weaponized anatomy.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10759,7 +10934,7 @@
       "slug": "what-else-lived-alongside-the-dinosaurs",
       "description": "It took special skills to live alongside dinos.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10787,7 +10962,7 @@
       "slug": "how-good-were-t-rex-senses",
       "description": "Super sight, smell, and hearing helped the T.rex hunt.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10815,13 +10990,13 @@
       "slug": "what-do-we-really-know-about-ammonites",
       "description": "Using the present to inform the past.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "-qcZdtwpemA",
-      "lastUpdated": "2026-05-20T09:33:42.317Z",
+      "lastUpdated": "2026-05-29T17:42:08.810Z",
       "createdOn": "2025-05-17T12:23:28.491Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=-qcZdtwpemA",
       "backgroundImage": null,
@@ -10843,7 +11018,7 @@
       "slug": "how-did-dinosaurs-get-so-big",
       "description": "Prehistoric size had very few limits.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10871,13 +11046,13 @@
       "slug": "how-fast-was-a-mosasaur",
       "description": "Learn more about the secrets of Mosasaurs’ underwater success.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "Hl6Lj2fAuGM",
-      "lastUpdated": "2026-05-20T09:33:42.189Z",
+      "lastUpdated": "2026-05-29T17:42:08.825Z",
       "createdOn": "2025-05-17T11:56:59.847Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=Hl6Lj2fAuGM",
       "backgroundImage": null,
@@ -10899,7 +11074,7 @@
       "slug": "why-did-triceratops-have-a-frill",
       "description": "There were no frills on the frills of Triceratops.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10927,13 +11102,13 @@
       "slug": "paleoart---new-visions-of-ancient-creatures",
       "description": "Paleoartist and scientific illustrator Gabriel Ugueto has a golden rule for his work: Accuracy. In order to resurrect the dinosaurs, Ugueto begins with a single bone and works his way from inside out. He researches whether there are any related animals alive today, or existing fossils that may shed light on how the bone fragment fits into a larger piece, and reconstructs the entire skeletal system. He then sketches in muscle groups, and adds skin and color considering where the animal lived and during what period of time. But his resulting illustrations often don’t match the Jurassic Park-inspired dinosaurs that we’re used to.",
       "creditsLine": "Produced by Science Friday.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
       "contentLink": null,
       "youtubeId": "t5NIua_Dveo",
-      "lastUpdated": "2026-05-20T09:33:42.192Z",
+      "lastUpdated": "2026-05-29T17:42:08.751Z",
       "createdOn": "2025-05-16T22:15:37.546Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=t5NIua_Dveo",
       "backgroundImage": null,
@@ -10955,7 +11130,7 @@
       "slug": "could-t-rex-really-swim",
       "description": "They’re huge, powerful…and full of surprises. Discover an unexpected side to the T.rex.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -10998,16 +11173,16 @@
       "preview": "https://img.youtube.com/vi/2za5RwplXdI/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-last-tyrant-dinosauria",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Edmontosaurus, Triceratops, Pachycephalosaurus, Struthiomimus, Alamosaurus",
-      "modernLat": 48.54,
-      "modernLon": -107.5,
+      "modernLat": 48.04,
+      "modernLon": -107.81,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land_after_collision",
       "periods": {
         "100": {
-          "lat": 54.554421158680725,
-          "lon": -54.47818801835422,
+          "lat": 52.624174788719856,
+          "lon": -56.57156564814602,
           "validationStatus": "on_land_after_collision"
         }
       }
@@ -11038,12 +11213,12 @@
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 45.0825776662382,
-          "lon": -56.02836720802248,
-          "validationStatus": "on_land_after_collision"
+          "lat": 47.2892,
+          "lon": -54.1972,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -11068,17 +11243,17 @@
       "preview": "https://img.youtube.com/vi/tamPoLLiEew/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/a-more-ancient-spring-dinosauria-series",
       "freeTags": "North America, Late Cretaceous, Corythosaurus, Parasaurolophus, Chasmosaurus, Euoplocephalus, Gorgosaurus",
-      "modernLat": 51.2,
-      "modernLon": -111.83,
+      "modernLat": 50.62,
+      "modernLon": -111,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 57.14858373323585,
-          "lon": -60.175000627335955,
-          "validationStatus": "on_land_after_collision"
+          "lat": 55.6946,
+          "lon": -58.5419,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -11103,17 +11278,17 @@
       "preview": "https://img.youtube.com/vi/_4SQ2mWxnEc/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/our-frozen-past-dinosauria-series",
       "freeTags": "North America, Late Cretaceous, Troodon, Nanuqsaurus",
-      "modernLat": 50.16,
-      "modernLon": -111.59,
+      "modernLat": 51.17,
+      "modernLon": -111.02,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 54.98225523942936,
-          "lon": -59.315563804515975,
-          "validationStatus": "on_land_after_collision"
+          "lat": 56.2197,
+          "lon": -58.2486,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -11138,17 +11313,17 @@
       "preview": "https://img.youtube.com/vi/uQJWcrjC_OY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/old-buck-dinosauria-series",
       "freeTags": "North America, Late Cretaceous, Styracosaurus",
-      "modernLat": 51.16,
-      "modernLon": -111.06,
+      "modernLat": 50.78,
+      "modernLon": -112.23,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 53.7164219732237,
-          "lon": -56.33837112782699,
-          "validationStatus": "on_land_after_collision"
+          "lat": 56.0937,
+          "lon": -59.7688,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -11158,7 +11333,7 @@
       "slug": "t-rex-official-trailer",
       "description": "For over a hundred years dinosaurs have inspired and thrilled audiences, commanding blockbuster status in museums and at the box office. But among them towers a king—a tyrant lizard king. With leaps in CGI wizardry and revelations in tyrannosaur paleontology over the past twenty-five years, the time has come to revisit rex in the world's prestigious museum cinemas, from rexling to teen to fightin’ prime. Chronicling a remarkable discovery in the badlands of Hell Creek in the summer of 2023, this immersive giant screen film explores the life and times of the Greatest Of All Tyrants - the GOAT.",
       "creditsLine": "Produced and distributed by Giant Screen Films.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -11201,17 +11376,17 @@
       "preview": "https://img.youtube.com/vi/NkEU6fC_nhY/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/the-prologue---jurassic-world-dominion",
       "freeTags": "North America, Late Cretaceous, Tyrannosaurus rex, T.rex, Nasutoceratops, Oviraptor, Giganotosaurus, Pteranodon",
-      "modernLat": 47.29,
-      "modernLon": -107.21,
+      "modernLat": 46.15,
+      "modernLon": -107.97,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 49.75531047975185,
-          "lon": -58.33590393986482,
-          "validationStatus": "on_land_after_collision"
+          "lat": 50.8246,
+          "lon": -57.6196,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -11221,7 +11396,7 @@
       "slug": "was-pachycephalosaur-really-a-headbutter",
       "description": "Finding the purpose for a dome-headed dinosaur.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -11249,7 +11424,7 @@
       "slug": "were-dinosaurs-good-parents",
       "description": "When it came to dino eggs, parents had to employ a safety-first approach.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -11277,7 +11452,7 @@
       "slug": "video-could-giant-pterosaurs-really-hunt-on-the-ground",
       "description": "Pterosaurs were rare flying reptiles that could both fly through the air and catch prey on land efficiently.",
       "creditsLine": "Produced by BBC Studios for Apple TV+, narrated by David Attenborough.",
-      "category": "unknown",
+      "category": "texts",
       "isNew": false,
       "displayOnApp": false,
       "geologicalPeriod": null,
@@ -11320,17 +11495,17 @@
       "preview": "https://img.youtube.com/vi/rgv2bvdIv1A/maxresdefault.jpg",
       "pageUrl": "https://www.prehistoricdomain.com/content/surviving-the-age-of-dinosaurs",
       "freeTags": "North America, Late Cretaceous, Late Devonian, Late Jurassic, Tyrannosaurus rex, T.rex, Triceratops, Allosaurus, Deinonychus, Dunkleosteus, arkansaurus",
-      "modernLat": 46.15,
-      "modernLon": -107.97,
+      "modernLat": 47.85,
+      "modernLon": -108.24,
       "estimatedAge": 66,
       "location": "north america (PBDB)",
       "confidence": "medium",
-      "paleoValidation": "on_land_after_collision",
+      "paleoValidation": "on_land",
       "periods": {
         "100": {
-          "lat": 52.01181844337653,
-          "lon": -55.110210758211586,
-          "validationStatus": "on_land_after_collision"
+          "lat": 52.5023,
+          "lon": -57.0868,
+          "validationStatus": "on_land"
         }
       }
     },
@@ -11347,24 +11522,24 @@
       "geologicalPeriod": "quaternary",
       "contentLink": "https://tour.prehistoricdomain.com/live/scenes/mammoth/",
       "youtubeId": "nT0PBq9K5hk",
-      "lastUpdated": "2026-02-10T17:32:19.008Z",
+      "lastUpdated": "2026-05-29T09:28:34.675Z",
       "createdOn": "2025-01-31T18:25:43.555Z",
       "youtubeUrl": "https://www.youtube.com/watch?v=nT0PBq9K5hk",
-      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/67b207ab18675f682032a0fd_mammoth.avif",
+      "backgroundImage": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195c3bdebf5ef93c7f284e_67b207ab18675f682032a0fd_mammoth%20(1).jpg",
       "galleryImage": null,
-      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/67b207ab18675f682032a0fd_mammoth.avif",
+      "preview": "https://cdn.prod.website-files.com/62f3cb73f8a08a633ff016e9/6a195c3bdebf5ef93c7f284e_67b207ab18675f682032a0fd_mammoth%20(1).jpg",
       "pageUrl": "https://tour.prehistoricdomain.com/live/scenes/mammoth/",
       "freeTags": "North America, Late Pleistocene, Woolly Mammoth, Dire Wolf, Golden Eagle",
-      "modernLat": 42.62,
-      "modernLon": -87.73,
+      "modernLat": 42.51,
+      "modernLon": -88.03,
       "estimatedAge": 1,
       "location": "north america (PBDB)",
       "confidence": "medium",
       "paleoValidation": "on_land",
       "periods": {
         "2": {
-          "lat": 42.6157,
-          "lon": -86.2156,
+          "lat": 42.5114,
+          "lon": -86.5193,
           "validationStatus": "on_land"
         }
       }

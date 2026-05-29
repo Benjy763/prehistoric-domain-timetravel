@@ -35,6 +35,9 @@ const COORDINATE_FIXES = JSON.parse(
 // Land validation (modern coastlines)
 const { isPointOnLand } = require("./paleo-reconstruction.js");
 
+// Category ID → name map (single source of truth in cms-helpers.js)
+const { CATEGORY_IDS: CATEGORY_MAP } = require("./cms-helpers.js");
+
 const SITE_ID = "609e6b701730a329c6f67850";
 const COLLECTION_ID = "679d148479ad083f33c518a1";
 
@@ -50,13 +53,6 @@ function readToken() {
 }
 
 const WEBFLOW_TOKEN = readToken();
-
-const CATEGORY_MAP = {
-  "417c5eb49ea7a0509255526b460af1e6": "videos",
-  "3a0cdd4419856a1d01b35ff4681be638": "3d",
-  "224a8ccce14158309d6df3052fa7f1e1": "images",
-  "5b90531d7e27d60e0d1f4e226449b55e": "texts",
-};
 
 const GEOLOGICAL_PERIOD_MAP = {
   "9f54dda51296c0490e039fe1533eca66": "today",

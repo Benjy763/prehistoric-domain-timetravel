@@ -533,6 +533,7 @@ async function mergeAllCMSItems(allCMSItems) {
       const refreshedPreview = getPreviewUrl(cmsItem, category);
       mergedItems.push({
         ...existing,
+        category,
         backgroundImage,
         galleryImage,
         preview: refreshedPreview,
@@ -715,6 +716,18 @@ async function main() {
   displaySummary(result);
 
   if (result.total === 0) {
+    // No CMS changes to reconstruct, but still refresh data-derived fields
+    // (category, images, preview) by running the cheap, API-free merge so
+    // pipeline fixes propagate without requiring a full rebuild.
+    if (options.dryRun) {
+      console.log("\n✅ Simulation terminée (--dry-run, aucun changement)\n");
+      process.exit(0);
+    }
+    console.log(
+      "\nℹ️  Aucun changement CMS — rafraîchissement des champs dérivés (category, images, preview)...\n",
+    );
+    await mergeAllCMSItems(allCMSItems);
+    console.log("✅ Champs dérivés à jour.\n");
     process.exit(0);
   }
 

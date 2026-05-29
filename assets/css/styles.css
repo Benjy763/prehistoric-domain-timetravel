@@ -1312,6 +1312,12 @@ body {
   background: rgba(79, 195, 247, 0.08);
 }
 
+.upgrade-btn-icon {
+  display: none;
+  width: 18px;
+  height: 18px;
+}
+
 /* ========================================
    RESPONSIVE
    ======================================== */
@@ -1434,6 +1440,38 @@ body {
 
   .content-popup {
     width: 95vw;
+  }
+
+  /* Compact upgrade CTA: icon-only to fit the 60px collapsed sidebar */
+  .upgrade-overlay {
+    padding: 8px 4px;
+    align-items: flex-start;
+  }
+
+  .upgrade-card {
+    max-width: 100%;
+    width: 100%;
+    padding: 10px 4px;
+  }
+
+  .upgrade-text,
+  .upgrade-btn-label {
+    display: none;
+  }
+
+  .upgrade-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .upgrade-btn-icon {
+    display: block;
   }
 }
 

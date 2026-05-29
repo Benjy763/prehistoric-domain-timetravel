@@ -28,5 +28,15 @@
     "lat": 25.0,
     "lon": 5.0,
     "reason": "Spinosaurus - central Sahara (Algeria/Libya border) to ensure land placement at 100 Ma"
+  },
+  "columbus-formation-matanzas-cuba": {
+    "lat": 23.0,
+    "lon": -81.5,
+    "reason": "Columbus Formation - Matanzas, Cuba (PBDB matched North Carolina shark localities)"
+  },
+  "las-breas-de-san-felipe": {
+    "lat": 22.95,
+    "lon": -80.9,
+    "reason": "Las Breas de San Felipe tar seeps - Marti, Matanzas Province, Cuba (PBDB matched La Brea Tar Pits, California)"
   }
 }

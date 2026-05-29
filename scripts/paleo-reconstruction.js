@@ -367,6 +367,87 @@ async function reconstructPoint(lat, lon, age) {
   }
 }
 
+// Paleo anti-collision spacing — kept in sync with the modern geocoder
+// (import-cms-items.js MIN_DISTANCE_DEGREES) so both passes target the same
+// visual separation (~33 km) and never fight each other.
+const PALEO_MIN_DISTANCE_DEGREES = 0.3;
+
+/**
+ * Deterministic golden-angle spiral search for a paleo position that is at least
+ * PALEO_MIN_DISTANCE_DEGREES away from every already-placed point at this age.
+ * Mirrors findNonCollidingPosition() in import-cms-items.js but is pure: it takes
+ * the occupied points explicitly and never uses randomness, so reconstructions are
+ * reproducible and stay as close as possible to the true GPlates position.
+ *
+ * Land-aware: when isLandOk is provided, only positions that pass it are accepted,
+ * so collision spacing and land validation are solved in a single pass. This avoids
+ * the previous STEP2→STEP3 ping-pong where a separate land snap (findNearbyLand)
+ * re-clustered points onto the same coastline grid cell, ignoring spacing.
+ *
+ * @param {number} baseLat - Reconstructed latitude
+ * @param {number} baseLon - Reconstructed longitude
+ * @param {Array<{lat:number, lon:number}>} occupiedPoints - Other points at this age
+ * @param {(lat:number, lon:number)=>boolean} [isLandOk] - Optional acceptance predicate
+ * @returns {{lat:number, lon:number, collided:boolean}}
+ */
+function findNonCollidingPaleoPosition(
+  baseLat,
+  baseLon,
+  occupiedPoints,
+  isLandOk = null,
+) {
+  const minDistanceTo = (lat, lon) => {
+    let min = Infinity;
+    for (const p of occupiedPoints) {
+      const d = Math.sqrt((lat - p.lat) ** 2 + (lon - p.lon) ** 2);
+      if (d < min) min = d;
+    }
+    return min;
+  };
+  const landOk = (lat, lon) => !isLandOk || isLandOk(lat, lon);
+
+  if (
+    landOk(baseLat, baseLon) &&
+    minDistanceTo(baseLat, baseLon) >= PALEO_MIN_DISTANCE_DEGREES
+  ) {
+    return { lat: baseLat, lon: baseLon, collided: false };
+  }
+
+  const MAX_RADIUS_DEGREES = 2.0;
+  const STEP_DEGREES = 0.04;
+  const maxAttempts = Math.floor((MAX_RADIUS_DEGREES - 0.002) / STEP_DEGREES);
+  let bestCandidate = null;
+  let bestMinDistance = -Infinity;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    const radius = 0.002 + attempt * STEP_DEGREES;
+    if (radius > MAX_RADIUS_DEGREES) break;
+
+    const angle = attempt * 137.5 * (Math.PI / 180); // Golden angle
+    const lat = baseLat + radius * Math.sin(angle);
+    const lon = baseLon + radius * Math.cos(angle);
+
+    if (!landOk(lat, lon)) continue; // Reject sea positions when land is required
+
+    const minDistance = minDistanceTo(lat, lon);
+
+    if (minDistance >= PALEO_MIN_DISTANCE_DEGREES) {
+      return { lat, lon, collided: true };
+    }
+
+    if (minDistance > bestMinDistance) {
+      bestMinDistance = minDistance;
+      bestCandidate = { lat, lon };
+    }
+  }
+
+  // Extreme density: return the least-bad land candidate instead of overlapping.
+  if (bestCandidate) {
+    return { lat: bestCandidate.lat, lon: bestCandidate.lon, collided: true };
+  }
+  return { lat: baseLat, lon: baseLon, collided: true };
+}
+
 /**
  * Reconstruit la position d'un item pour sa période géologique
  * avec gestion intelligente des cas spéciaux
@@ -511,37 +592,36 @@ async function reconstructItemForPeriod(item, options = {}) {
     // onLand === null → pas de données GeoJSON, reste "unvalidated"
   }
 
-  // STEP 2: Anti-collision
-  const COLLISION_THRESHOLD = 3.0; // 3° de distance minimale
-  let finalLat = coords.lat;
-  let finalLon = coords.lon;
-  let collisionDetected = false;
-
+  // STEP 2: Anti-collision (deterministic spiral, ~33 km spacing — matches modern pass)
+  const occupiedPoints = [];
   for (const existingItem of existingItems) {
     if (existingItem.id === item.id) continue;
-
     const periodData = existingItem.periods?.[String(age)];
-    if (!periodData) continue;
-
-    const distance = Math.sqrt(
-      Math.pow(periodData.lat - finalLat, 2) +
-        Math.pow(periodData.lon - finalLon, 2),
-    );
-
-    if (distance < COLLISION_THRESHOLD) {
-      const offsetLat = (Math.random() - 0.5) * 6;
-      const offsetLon = (Math.random() - 0.5) * 6;
-      finalLat = coords.lat + offsetLat;
-      finalLon = coords.lon + offsetLon;
-      collisionDetected = true;
-
-      if (verbose) {
-        console.log(
-          `   ⚠️  Collision détectée avec "${existingItem.slug}" - dispersion appliquée`,
-        );
-      }
-      break;
+    if (periodData) {
+      occupiedPoints.push({ lat: periodData.lat, lon: periodData.lon });
     }
+  }
+
+  // Keep the spiral on land for terrestrial items so spacing and land validation
+  // are resolved together (no separate snap that could re-cluster points).
+  const isLandOk = isOceanicItem(item)
+    ? null
+    : (lat, lon) => isPointOnLand(lat, lon, age) !== false;
+
+  const placed = findNonCollidingPaleoPosition(
+    coords.lat,
+    coords.lon,
+    occupiedPoints,
+    isLandOk,
+  );
+  let finalLat = placed.lat;
+  let finalLon = placed.lon;
+  let collisionDetected = placed.collided;
+
+  if (collisionDetected && verbose) {
+    console.log(
+      `   ⚠️  Collision paléo résolue par spirale → ${finalLat.toFixed(2)}°, ${finalLon.toFixed(2)}°`,
+    );
   }
 
   // STEP 3: Re-validation après anti-collision (pour items terrestres)
