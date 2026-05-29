@@ -1,6 +1,17 @@
 import { defineConfig } from 'vite';
+import { createHash } from 'crypto';
+import { readFileSync } from 'fs';
+
+const contentDataHash = createHash('md5')
+  .update(readFileSync('./assets/data/content-data.json'))
+  .digest('hex')
+  .slice(0, 8);
 
 export default defineConfig({
+  define: {
+    __CONTENT_DATA_HASH__: JSON.stringify(contentDataHash),
+  },
+
   // Base path for deployment
   base: './',
 

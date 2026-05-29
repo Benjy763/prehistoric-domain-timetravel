@@ -37,19 +37,26 @@ class PopupManager {
     this.closeBtn.addEventListener("click", () => this.hide());
 
     // Info button to toggle overlay - using capture phase to intercept before stopPropagation
-    document.addEventListener("click", (e) => {
-      // Check if click is on info button or its children (SVG, span)
-      const infoBtn = e.target.closest("#popupInfoBtn");
-      if (infoBtn && this.popup.classList.contains("active")) {
-        console.log("🔵 Info button clicked!");
-        e.stopPropagation();
-        if (this.infoOverlay) {
-          this.infoOverlay.classList.toggle("active");
-          infoBtn.classList.toggle("active");
-          console.log("Overlay active:", this.infoOverlay.classList.contains("active"));
+    document.addEventListener(
+      "click",
+      (e) => {
+        // Check if click is on info button or its children (SVG, span)
+        const infoBtn = e.target.closest("#popupInfoBtn");
+        if (infoBtn && this.popup.classList.contains("active")) {
+          console.log("🔵 Info button clicked!");
+          e.stopPropagation();
+          if (this.infoOverlay) {
+            this.infoOverlay.classList.toggle("active");
+            infoBtn.classList.toggle("active");
+            console.log(
+              "Overlay active:",
+              this.infoOverlay.classList.contains("active"),
+            );
+          }
         }
-      }
-    }, true); // ← CAPTURE PHASE: intercept before bubbling
+      },
+      true,
+    ); // ← CAPTURE PHASE: intercept before bubbling
 
     // Fermer en cliquant sur le backdrop
     if (this.backdrop) {
@@ -84,7 +91,8 @@ class PopupManager {
     if (this.favoriteBtn) {
       this.favoriteBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        if (!this.currentContent || !window.appController?.favoritesManager) return;
+        if (!this.currentContent || !window.appController?.favoritesManager)
+          return;
 
         window.appController.favoritesManager.toggle(this.currentContent.id);
         this.updateFavoriteButton(this.currentContent.id);
@@ -114,11 +122,15 @@ class PopupManager {
     // This prevents old 3D tour listeners from interfering with new content
     if (this.elements.imageLink) {
       const newImageLink = this.elements.imageLink.cloneNode(true);
-      this.elements.imageLink.parentNode.replaceChild(newImageLink, this.elements.imageLink);
+      this.elements.imageLink.parentNode.replaceChild(
+        newImageLink,
+        this.elements.imageLink,
+      );
       this.elements.imageLink = newImageLink;
       // Re-reference child elements after cloning
       this.elements.image = this.elements.imageLink.querySelector("img");
-      this.elements.playIcon = this.elements.imageLink.querySelector(".popup-play-icon");
+      this.elements.playIcon =
+        this.elements.imageLink.querySelector(".popup-play-icon");
     }
 
     // Remplir les informations
@@ -155,7 +167,10 @@ class PopupManager {
     }
 
     // Déterminer le type de contenu à afficher
-    const is3DTour = content.type === "3d" && content.pageUrl && content.pageUrl.includes("tour.prehistoricdomain.com");
+    const is3DTour =
+      content.type === "3d" &&
+      content.pageUrl &&
+      content.pageUrl.includes("tour.prehistoricdomain.com");
     const isYouTubeVideo = content.type === "videos" && content.youtubeUrl;
     const isImmersiveOnMobile = content.type === "3d" && isMobile();
 
@@ -227,9 +242,8 @@ class PopupManager {
     const webflowPageUrl = content.slug
       ? `https://www.prehistoricdomain.com/content/${content.slug}`
       : null;
-    const linkUrl = is3DTour && webflowPageUrl
-      ? webflowPageUrl
-      : content.pageUrl;
+    const linkUrl =
+      is3DTour && webflowPageUrl ? webflowPageUrl : content.pageUrl;
 
     // Lien vers la page (nouvel onglet)
     if (linkUrl) {
@@ -283,14 +297,17 @@ class PopupManager {
   updateFavoriteButton(contentId) {
     if (!this.favoriteBtn || !window.appController?.favoritesManager) return;
 
-    const isFavorite = window.appController.favoritesManager.isFavorite(contentId);
+    const isFavorite =
+      window.appController.favoritesManager.isFavorite(contentId);
     const emptyIcon = this.favoriteBtn.querySelector(".favorite-icon-empty");
     const filledIcon = this.favoriteBtn.querySelector(".favorite-icon-filled");
 
     if (emptyIcon) emptyIcon.style.display = isFavorite ? "none" : "block";
     if (filledIcon) filledIcon.style.display = isFavorite ? "block" : "none";
 
-    this.favoriteBtn.title = isFavorite ? "Remove from favorites" : "Add to favorites";
+    this.favoriteBtn.title = isFavorite
+      ? "Remove from favorites"
+      : "Add to favorites";
   }
 
   extractYouTubeId(url) {

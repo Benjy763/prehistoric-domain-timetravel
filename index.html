@@ -70,6 +70,27 @@
 
   <!-- Sidebar with filters -->
   <aside class="filters-sidebar">
+    <!-- Skeleton loader (visible while premium status is being resolved) -->
+    <div class="sidebar-skeleton" aria-hidden="true">
+      <div class="skeleton-line skeleton-title"></div>
+      <div class="skeleton-line skeleton-block"></div>
+      <div class="skeleton-line skeleton-block"></div>
+      <div class="skeleton-line skeleton-title"></div>
+      <div class="skeleton-line skeleton-input"></div>
+      <div class="skeleton-line skeleton-title"></div>
+      <div class="skeleton-line skeleton-row"></div>
+      <div class="skeleton-line skeleton-row"></div>
+      <div class="skeleton-line skeleton-row"></div>
+    </div>
+
+    <!-- Upgrade CTA overlay (visible only for free / not-logged-in users) -->
+    <div class="upgrade-overlay" aria-hidden="true">
+      <div class="upgrade-card">
+        <p class="upgrade-text">Unlock layers, search and filters.</p>
+        <button class="upgrade-btn" id="upgradeCTA" type="button">Upgrade</button>
+      </div>
+    </div>
+
     <h2 class="filters-title">Layer Selector</h2>
     <div class="layer-selector">
       <button class="layer-btn active" data-layer="muller2022">
@@ -325,21 +346,23 @@
 
       <div class="info-section">
         <h3>About the point locations</h3>
-        <p>Each point on the globe represents a piece of prehistoric life content (video, image, or immersive experience). The
-          locations show <strong>where fossils may have been found</strong> and are reconstructed back in time following
-          these steps:</p>
+        <p>Each point represents a piece of content (video, image, or immersive experience). Locations show
+          <strong>where fossils of that species were found</strong>, reconstructed back in time in four steps:</p>
         <ul>
-          <li><strong>Modern fossil locations:</strong> Coordinates come from the Paleobiology Database (PBDB), matching
-            species mentioned in each content's tags. These are the actual sites where fossils were found today.</li>
-          <li><strong>Paleogeographic reconstruction:</strong> Using the GPlates API with the Merdith et al. 2021
-            tectonic model, we reposition these modern coordinates back to their ancient locations, moving them along
-            with the continents as they drifted over millions of years.</li>
-          <li><strong>Land validation:</strong> Terrestrial species are verified to be on land at each time period. Note
-            that marine fossils (ancient ocean species) can be found on modern land due to geological uplift
-            (seafloors becoming mountains) or continental drift (oceanic areas moving onto land over geological time).</li>
+          <li><strong>Species identification:</strong> Species names are extracted from each content's tags and looked up
+            in the Paleobiology Database (PBDB) to find fossil occurrence records.</li>
+          <li><strong>Modern anchor point:</strong> The most geographically consistent cluster of PBDB occurrences is
+            used to compute a representative modern coordinate, the actual location where those fossils were
+            excavated.</li>
+          <li><strong>Visual spread:</strong> Multiple contents from the same region are spread apart (minimum ~33 km)
+            so every point remains individually visible. Each period is handled independently, so a Jurassic point
+            never displaces a Cretaceous one.</li>
+          <li><strong>Paleogeographic reconstruction:</strong> The modern coordinate is repositioned back in time using
+            the GPlates API and the Merdith et al. 2021 tectonic model, following the drift of the tectonic plate it
+            sits on.</li>
         </ul>
-        <p class="info-note"><em>All positioning is based on peer-reviewed data: PBDB fossil database +
-            Merdith et al. 2021 plate reconstruction model.</em></p>
+        <p class="info-note"><em>Positioning is based on peer-reviewed data: PBDB fossil database + Merdith et al.
+            2021 plate reconstruction model.</em></p>
         <p class="info-note"><em>Points are only visible in the "Our Continents" view.</em></p>
       </div>
 
@@ -373,7 +396,7 @@
         <p>Icon highlights indicate special status:</p>
         <ul>
           <li><span style="color:#ffaa00;">● Favorites</span> — your saved content</li>
-          <li><span style="color:#02d8cb;">● New content</span> — recently added</li>
+          <li><span style="color:#02d8cb;">● Recent</span> — recently added</li>
         </ul>
       </div>
 

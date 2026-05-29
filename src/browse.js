@@ -69,7 +69,7 @@ class BrowseManager {
     try {
       console.log("📦 Loading contents from content-data.json...");
 
-      const response = await fetch("assets/data/content-data.json");
+      const response = await fetch(`assets/data/content-data.json?v=${__CONTENT_DATA_HASH__}`);
       if (!response.ok) {
         throw new Error(`HTTP error ${response.status}`);
       }

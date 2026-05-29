@@ -258,6 +258,13 @@ class AppController {
     this.audioManager = new AudioManager();
     this.premiumManager = new PremiumManager();
 
+    const upgradeBtn = document.getElementById("upgradeCTA");
+    if (upgradeBtn) {
+      upgradeBtn.addEventListener("click", () =>
+        this.premiumManager.redirectToPlans(),
+      );
+    }
+
     // Rendre le contrôleur accessible globalement
     window.appController = this;
 

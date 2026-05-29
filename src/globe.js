@@ -302,17 +302,28 @@ class GlobeManager {
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
 
+    const getDragFactor = () => {
+      const zoom = Math.max(2.2, Math.min(this.camera.position.z, 10));
+      const normalizedZoom = (zoom - 2.2) / (10 - 2.2);
+      return 0.00015 + 0.03 * Math.pow(normalizedZoom, 1.4);
+    };
+
     this.container.addEventListener("mousedown", (e) => {
       isDragging = true;
+      previousMousePosition = { x: e.clientX, y: e.clientY };
     });
 
     this.container.addEventListener("mousemove", (e) => {
       if (isDragging) {
         const deltaX = e.clientX - previousMousePosition.x;
         const deltaY = e.clientY - previousMousePosition.y;
+        const dragFactor = getDragFactor();
 
-        this.globe.rotation.y += deltaX * 0.005;
-        this.globe.rotation.x += deltaY * 0.005;
+        this.globe.rotation.y += deltaX * dragFactor;
+        this.globe.rotation.x = Math.max(
+          Math.min(this.globe.rotation.x + deltaY * dragFactor, Math.PI / 2),
+          -Math.PI / 2,
+        );
       }
 
       previousMousePosition = {
@@ -321,12 +332,18 @@ class GlobeManager {
       };
 
       // Hover detection on pinpoints
-      if (!isDragging && (this.points.length > 0 || this.clusterSprites.length > 0)) {
+      if (
+        !isDragging &&
+        (this.points.length > 0 || this.clusterSprites.length > 0)
+      ) {
         const rect = this.container.getBoundingClientRect();
         this.mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
         this.mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
         this.raycaster.setFromCamera(this.mouse, this.camera);
-        const intersects = this.raycaster.intersectObjects([...this.points, ...this.clusterSprites]);
+        const intersects = this.raycaster.intersectObjects([
+          ...this.points,
+          ...this.clusterSprites,
+        ]);
 
         const newHovered = intersects.length > 0 ? intersects[0].object : null;
         if (newHovered !== this.hoveredPoint) {
@@ -385,8 +402,12 @@ class GlobeManager {
           const deltaX = e.touches[0].clientX - previousMousePosition.x;
           const deltaY = e.touches[0].clientY - previousMousePosition.y;
           if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) touchMoved = true;
-          this.globe.rotation.y += deltaX * 0.005;
-          this.globe.rotation.x += deltaY * 0.005;
+          const dragFactor = getDragFactor();
+          this.globe.rotation.y += deltaX * dragFactor;
+          this.globe.rotation.x = Math.max(
+            Math.min(this.globe.rotation.x + deltaY * dragFactor, Math.PI / 2),
+            -Math.PI / 2,
+          );
           previousMousePosition = {
             x: e.touches[0].clientX,
             y: e.touches[0].clientY,
@@ -500,10 +521,11 @@ class GlobeManager {
     this.loadingProgress = 0;
     this.startLoadingEffect();
 
-    const delay = new Promise(resolve => setTimeout(resolve, 500));
+    const delay = new Promise((resolve) => setTimeout(resolve, 500));
 
     const loadTex = async () => {
-      if (this.textureCache_cao.has(projectTime)) return this.textureCache_cao.get(projectTime);
+      if (this.textureCache_cao.has(projectTime))
+        return this.textureCache_cao.get(projectTime);
       const url = `assets/cao-paleogeography/${caoFile}`;
       const response = await fetch(url);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -530,7 +552,9 @@ class GlobeManager {
   }
 
   async loadContinents(time) {
-    console.log(`🔵 CLICK ${time} - progress AVANT reset: ${this.loadingProgress}`);
+    console.log(
+      `🔵 CLICK ${time} - progress AVANT reset: ${this.loadingProgress}`,
+    );
 
     // Increment loading ID and store it locally - this cancels all previous loading operations
     this.currentLoadingId++;
@@ -542,11 +566,13 @@ class GlobeManager {
     this.loadingProgress = 0;
     this.startLoadingEffect();
 
-    console.log(`   APRÈS reset: progress=${this.loadingProgress}, isLoading=${this.isLoading}`);
+    console.log(
+      `   APRÈS reset: progress=${this.loadingProgress}, isLoading=${this.isLoading}`,
+    );
     console.log(`   ⏱️ Timer 500ms START`);
 
     // 0.5s delay and texture load in PARALLEL
-    const delay = new Promise(resolve => {
+    const delay = new Promise((resolve) => {
       setTimeout(() => {
         console.log(`   ✅ Timer 500ms DONE (ID ${myLoadingId})`);
         resolve();
@@ -569,7 +595,9 @@ class GlobeManager {
 
       // Only apply if this is still the current loading operation
       if (myLoadingId !== this.currentLoadingId) {
-        console.log(`   🚫 CANCELLED (ID ${myLoadingId}, current is ${this.currentLoadingId})`);
+        console.log(
+          `   🚫 CANCELLED (ID ${myLoadingId}, current is ${this.currentLoadingId})`,
+        );
         return false;
       }
 
@@ -585,7 +613,9 @@ class GlobeManager {
   }
 
   async loadContinentsOnly(time) {
-    console.log(`🔵 CLICK CONTINENTS ONLY ${time} - progress AVANT reset: ${this.loadingProgress}`);
+    console.log(
+      `🔵 CLICK CONTINENTS ONLY ${time} - progress AVANT reset: ${this.loadingProgress}`,
+    );
 
     const availableTimes = [
       2, 6, 14, 22, 33, 45, 53, 76, 90, 100, 105, 126, 140, 152, 160, 169, 195,
@@ -608,11 +638,13 @@ class GlobeManager {
     this.loadingProgress = 0;
     this.startLoadingEffect();
 
-    console.log(`   APRÈS reset: progress=${this.loadingProgress}, isLoading=${this.isLoading}`);
+    console.log(
+      `   APRÈS reset: progress=${this.loadingProgress}, isLoading=${this.isLoading}`,
+    );
     console.log(`   ⏱️ Timer 500ms START`);
 
     // 0.5s delay and texture load in PARALLEL
-    const delay = new Promise(resolve => {
+    const delay = new Promise((resolve) => {
       setTimeout(() => {
         console.log(`   ✅ Timer 500ms DONE (ID ${myLoadingId})`);
         resolve();
@@ -620,7 +652,8 @@ class GlobeManager {
     });
 
     const loadTex = async () => {
-      if (this.textureCache_muller.has(closestTime)) return this.textureCache_muller.get(closestTime);
+      if (this.textureCache_muller.has(closestTime))
+        return this.textureCache_muller.get(closestTime);
       const url = `assets/merdith2021-coastlines/${closestTime}Ma.json`;
       const response = await fetch(url);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -635,7 +668,9 @@ class GlobeManager {
 
       // Only apply if this is still the current loading operation
       if (myLoadingId !== this.currentLoadingId) {
-        console.log(`   🚫 CANCELLED (ID ${myLoadingId}, current is ${this.currentLoadingId})`);
+        console.log(
+          `   🚫 CANCELLED (ID ${myLoadingId}, current is ${this.currentLoadingId})`,
+        );
         return false;
       }
 
@@ -787,6 +822,7 @@ class GlobeManager {
       });
     }
 
+    this.addLandGrain(ctx, width, height);
     console.log("✅ Muller 2022 texture avec coastlines");
 
     const texture = new THREE.CanvasTexture(canvas);
@@ -839,8 +875,10 @@ class GlobeManager {
 
     console.log("✅ Cao texture with merged zones and sharp contours");
 
-    // Stocker pour extraction coastlines (after parchment)
+    // Store clean binarized data for coastline extraction (before grain)
     this.caoImageData = ctx.getImageData(0, 0, width, height);
+    // Apply grain after storing reference so coastline detection isn't affected
+    this.addLandGrain(ctx, width, height);
 
     const texture = new THREE.CanvasTexture(canvas);
     texture.needsUpdate = true;
@@ -1118,13 +1156,37 @@ class GlobeManager {
       color: 0xffffff, // Pure white to preserve texture colors
       map: texture, // Apply continent texture
       transparent: true,
-      opacity: 0.7, // Translucent
+      opacity: 0.9, // subtle translucency as before
     });
 
     this.globe.material = material;
     this.globe.material.needsUpdate = true;
 
     console.log("✅ Texture applied to globe with transparent effect");
+  }
+
+  addLandGrain(ctx, width, height) {
+    // Pre-compute a tiled noise array (512×512) to avoid per-pixel Math.random at 4K
+    const tileSize = 512;
+    const tile = new Int8Array(tileSize * tileSize);
+    for (let i = 0; i < tile.length; i++) {
+      tile[i] = (Math.random() * 36 - 18) | 0; // ±18 grain
+    }
+
+    const imgData = ctx.getImageData(0, 0, width, height);
+    const d = imgData.data;
+    for (let i = 0; i < d.length; i += 4) {
+      if (d[i] > 100) {
+        // land pixel (ocean is ~R10 dark navy)
+        const px = (i / 4) % width;
+        const py = (i / 4 / width) | 0;
+        const n = tile[(py % tileSize) * tileSize + (px % tileSize)];
+        d[i] = Math.max(155, Math.min(240, d[i] + n));
+        d[i + 1] = Math.max(155, Math.min(240, d[i + 1] + n));
+        d[i + 2] = Math.max(145, Math.min(225, d[i + 2] + n));
+      }
+    }
+    ctx.putImageData(imgData, 0, 0);
   }
 
   generateBumpMap(sourceTexture) {
@@ -1540,22 +1602,34 @@ class GlobeManager {
     const t = (z - 2.2) / (10 - 2.2); // linear 0 (close) to 1 (far)
     // sqrt bias: spend most of the zoom range at low SC zoom (clustered)
     // only go high (individual pins) when very close to the globe
-    // z=10→0, z=5→6, z=3→11, z=2.5→13, z=2.2→16
-    return Math.max(0, Math.round(16 * (1 - Math.sqrt(t))));
+    // z=10→0, z=5→10, z=3→14, z=1.8→18
+    return Math.max(0, Math.round(18 * (1 - Math.sqrt(t))));
   }
 
   initClusterData(items) {
     // Fallback to direct rendering if Supercluster CDN failed to load
     if (typeof Supercluster === "undefined") {
-      items.forEach(({ lat, lon, data, isFavorite }) => this.addPoint(lat, lon, data, isFavorite));
+      items.forEach(({ lat, lon, data, isFavorite }) =>
+        this.addPoint(lat, lon, data, isFavorite),
+      );
       return;
     }
-    this.clusterIndex = new Supercluster({ radius: 300, maxZoom: 16, minPoints: 2 });
-    this.clusterIndex.load(items.map((item, i) => ({
-      type: "Feature",
-      geometry: { type: "Point", coordinates: [item.lon, item.lat] },
-      properties: { itemIndex: i, data: item.data, isFavorite: item.isFavorite },
-    })));
+    this.clusterIndex = new Supercluster({
+      radius: 300,
+      maxZoom: 16,
+      minPoints: 2,
+    });
+    this.clusterIndex.load(
+      items.map((item, i) => ({
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [item.lon, item.lat] },
+        properties: {
+          itemIndex: i,
+          data: item.data,
+          isFavorite: item.isFavorite,
+        },
+      })),
+    );
     this._clusterItems = items;
     this.lastClusterZoom = -1;
     this.updateClusters();
@@ -1566,14 +1640,17 @@ class GlobeManager {
     const scZoom = this.cameraZToClusterZoom();
 
     this.clearClusters();
-    this.points.forEach(p => {
+    this.points.forEach((p) => {
       this.globe.remove(p);
       if (p.material?.map) p.material.map.dispose();
       if (p.material) p.material.dispose();
     });
     this.points = [];
 
-    const clusters = this.clusterIndex.getClusters([-180, -85, 180, 85], scZoom);
+    const clusters = this.clusterIndex.getClusters(
+      [-180, -85, 180, 85],
+      scZoom,
+    );
     for (const c of clusters) {
       const [lon, lat] = c.geometry.coordinates;
       if (c.properties.cluster) {
@@ -1581,47 +1658,66 @@ class GlobeManager {
           _isCluster: true,
           _clusterId: c.id,
           _count: c.properties.point_count,
-          _lat: lat, _lon: lon,
+          _lat: lat,
+          _lon: lon,
         });
       } else {
         const { data, isFavorite } = c.properties;
         this.addPoint(lat, lon, data, isFavorite);
       }
     }
+
+    this.spreadClusteredPoints();
   }
 
   addClusterSprite(lat, lon, count, clusterData) {
     const canvas = document.createElement("canvas");
-    canvas.width = 64; canvas.height = 64;
+    canvas.width = 64;
+    canvas.height = 64;
     const ctx = canvas.getContext("2d", { alpha: true });
     ctx.clearRect(0, 0, 64, 64);
 
     // Glow ring
-    ctx.shadowColor = "#4fc3f7"; ctx.shadowBlur = 10;
-    ctx.beginPath(); ctx.arc(32, 32, 26, 0, Math.PI * 2);
-    ctx.strokeStyle = "rgba(79,195,247,0.5)"; ctx.lineWidth = 2; ctx.stroke();
+    ctx.shadowColor = "#4fc3f7";
+    ctx.shadowBlur = 10;
+    ctx.beginPath();
+    ctx.arc(32, 32, 26, 0, Math.PI * 2);
+    ctx.strokeStyle = "rgba(79,195,247,0.5)";
+    ctx.lineWidth = 2;
+    ctx.stroke();
     ctx.shadowBlur = 0;
 
     // Dark fill
     ctx.globalAlpha = 0.85;
-    ctx.beginPath(); ctx.arc(32, 32, 22, 0, Math.PI * 2);
-    ctx.fillStyle = "#0d1117"; ctx.fill();
+    ctx.beginPath();
+    ctx.arc(32, 32, 22, 0, Math.PI * 2);
+    ctx.fillStyle = "#0d1117";
+    ctx.fill();
 
     // Border color by count
     const border = count < 10 ? "#4fc3f7" : count < 50 ? "#ffaa00" : "#fd79a8";
     ctx.globalAlpha = 1;
-    ctx.beginPath(); ctx.arc(32, 32, 22, 0, Math.PI * 2);
-    ctx.strokeStyle = border; ctx.lineWidth = 2.5; ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(32, 32, 22, 0, Math.PI * 2);
+    ctx.strokeStyle = border;
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
 
     // Count label
     ctx.fillStyle = "#ffffff";
     ctx.font = "bold 14px sans-serif";
-    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
     ctx.fillText(count > 999 ? "999+" : String(count), 32, 32);
 
     const texture = new THREE.CanvasTexture(canvas);
     texture.minFilter = THREE.LinearFilter;
-    const mat = new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false, sizeAttenuation: false });
+    const mat = new THREE.SpriteMaterial({
+      map: texture,
+      transparent: true,
+      depthWrite: false,
+      sizeAttenuation: false,
+    });
     const sprite = new THREE.Sprite(mat);
     sprite.position.copy(this.latLonToVector3(lat, lon, 2.05));
     sprite.scale.set(this.baseClusterScale, this.baseClusterScale, 1);
@@ -1632,7 +1728,7 @@ class GlobeManager {
   }
 
   clearClusters() {
-    this.clusterSprites.forEach(s => {
+    this.clusterSprites.forEach((s) => {
       this.globe.remove(s);
       if (s.material?.map) s.material.map.dispose();
       if (s.material) s.material.dispose();
@@ -1645,16 +1741,78 @@ class GlobeManager {
     this.clusterSprites = [];
   }
 
+  getClusterTangentBasis(lat, lon) {
+    const radLat = (lat * Math.PI) / 180;
+    const radLon = (lon * Math.PI) / 180;
+    const east = new THREE.Vector3(
+      Math.sin(radLon),
+      0,
+      Math.cos(radLon),
+    ).normalize();
+    const north = new THREE.Vector3(
+      Math.cos(radLon) * -Math.sin(radLat),
+      Math.cos(radLat),
+      Math.sin(radLon) * -Math.sin(radLat),
+    ).normalize();
+    return { east, north };
+  }
+
+  spreadClusteredPoints() {
+    if (!this.clusterIndex || this.points.length === 0) return;
+
+    const scZoom = this.cameraZToClusterZoom();
+    if (scZoom < 10) return; // only spread points when user has zoomed in enough
+
+    const groupingZoom = Math.max(0, scZoom - 2);
+    const logicalClusters = this.clusterIndex
+      .getClusters([-180, -85, 180, 85], groupingZoom)
+      .filter((c) => c.properties.cluster && c.properties.point_count > 1);
+
+    const pointMap = new Map(
+      this.points.map((point) => [point.userData.id, point]),
+    );
+
+    for (const cluster of logicalClusters) {
+      const leaves = this.clusterIndex.getLeaves(cluster.id, Infinity);
+      const groupPoints = leaves
+        .map((leaf) => pointMap.get(leaf.properties.data?.id))
+        .filter(Boolean);
+
+      if (groupPoints.length <= 1) continue;
+
+      const [lon, lat] = cluster.geometry.coordinates;
+      const { east, north } = this.getClusterTangentBasis(lat, lon);
+      const basePosition = this.latLonToVector3(lat, lon, 2.05);
+      const maxSpread = 0.04 + Math.min(0.05, 0.005 * groupPoints.length);
+      const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+
+      groupPoints.forEach((point, index) => {
+        const radius = maxSpread * Math.sqrt((index + 1) / groupPoints.length);
+        const angle = index * goldenAngle;
+        const offset = east
+          .clone()
+          .multiplyScalar(Math.cos(angle) * radius)
+          .add(north.clone().multiplyScalar(Math.sin(angle) * radius));
+        point.position.copy(
+          basePosition.clone().add(offset).normalize().multiplyScalar(2.05),
+        );
+      });
+    }
+  }
+
   onClusterClick(clusterData) {
     const atMaxZoom = this.camera.position.z <= 2.25;
     if (clusterData._count <= 5 || atMaxZoom) {
       // Show list: small cluster or can't zoom further
-      const leaves = this.clusterIndex.getLeaves(clusterData._clusterId, Infinity);
-      const items = leaves.map(l => l.properties.data);
+      const leaves = this.clusterIndex.getLeaves(
+        clusterData._clusterId,
+        Infinity,
+      );
+      const items = leaves.map((l) => l.properties.data);
       if (window.appController) window.appController.showClusterList(items);
       return;
     }
-    this.animateCameraZoom(Math.max(2.2, this.camera.position.z * 0.55));
+    this.animateCameraZoom(Math.max(2.2, this.camera.position.z * 0.45));
   }
 
   animateCameraZoom(targetZ) {
@@ -1678,14 +1836,20 @@ class GlobeManager {
   }
 
   onMouseClick(event) {
-    if (this.clickHandler) { this.clickHandler(event); return; }
+    if (this.clickHandler) {
+      this.clickHandler(event);
+      return;
+    }
 
     const rect = this.container.getBoundingClientRect();
     this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
     this.raycaster.setFromCamera(this.mouse, this.camera);
-    const intersects = this.raycaster.intersectObjects([...this.points, ...this.clusterSprites]);
+    const intersects = this.raycaster.intersectObjects([
+      ...this.points,
+      ...this.clusterSprites,
+    ]);
 
     if (intersects.length > 0) {
       const userData = intersects[0].object.userData;
@@ -1772,9 +1936,14 @@ class GlobeManager {
       }
 
       const isCluster = !!point.userData._isCluster;
-      const target = point === this.hoveredPoint
-        ? (isCluster ? this.hoverClusterScale : this.hoverPointScale)
-        : (isCluster ? this.baseClusterScale : this.basePointScale);
+      const target =
+        point === this.hoveredPoint
+          ? isCluster
+            ? this.hoverClusterScale
+            : this.hoverPointScale
+          : isCluster
+            ? this.baseClusterScale
+            : this.basePointScale;
       const current = point.scale.x;
       if (Math.abs(current - target) > 0.0005) {
         const newScale = current + (target - current) * 0.15;
@@ -1795,9 +1964,7 @@ class GlobeManager {
       // dotProduct = 1 (facing camera) → opacity = 1
       // dotProduct = 0 (edge) → opacity = 0.3
       // dotProduct = -1 (behind) → opacity = 0.1
-      const opacity = dotProduct > 0
-        ? 1.0
-        : 0.1 + (dotProduct + 1) * 0.2; // 0.1 to 0.3 range
+      const opacity = dotProduct > 0 ? 1.0 : 0.1 + (dotProduct + 1) * 0.2; // 0.1 to 0.3 range
 
       if (point.material) {
         point.material.opacity = opacity;

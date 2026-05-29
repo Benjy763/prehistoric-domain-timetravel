@@ -277,11 +277,12 @@ function buildDerivedFields(item) {
     ? `https://www.youtube.com/watch?v=${youtubeId}`
     : null;
 
-  // Preview: thumbnail YouTube pour vidéos, sinon image de fallback
+  // Preview: thumbnail YouTube pour vidéos, sinon image légère
+  // Prefer gallery-low-quality-image (lighter CDN asset) over the immersive background
   const preview =
     category === "videos" && youtubeId
       ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`
-      : backgroundImage || galleryImage || null;
+      : galleryImage || backgroundImage || null;
 
   // Page URL: contentLink si 3D experience, sinon URL standard du site
   const pageUrl = contentLink

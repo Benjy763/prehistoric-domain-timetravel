@@ -13,7 +13,7 @@ class WebflowAPI {
       console.log(
         "📦 Chargement des données depuis assets/data/content-data.json...",
       );
-      const response = await fetch("assets/data/content-data.json");
+      const response = await fetch(`assets/data/content-data.json?v=${__CONTENT_DATA_HASH__}`);
 
       if (!response.ok) {
         throw new Error(
@@ -62,7 +62,7 @@ class WebflowAPI {
       longitude: item.modernLon,
       periods: item.periods || {},
       preview:
-        item.preview || item.backgroundImage || item.galleryImage || null,
+        item.preview || item.galleryImage || item.backgroundImage || null,
       youtubeUrl: item.youtubeUrl || null,
       pageUrl: item.pageUrl || item.contentLink || null,
       slug: item.slug,

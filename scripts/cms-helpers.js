@@ -35,13 +35,14 @@ function getPreviewUrl(item, category) {
     return `https://img.youtube.com/vi/${item.fieldData["youtube-video-id"]}/maxresdefault.jpg`;
   }
 
-  // For other content: use background or gallery image
-  if (item.fieldData["background"]?.url) {
-    return item.fieldData["background"].url;
-  }
-
+  // For other content: prefer gallery-low-quality-image (lighter CDN asset)
+  // over the immersive background image
   if (item.fieldData["gallery-low-quality-image"]?.url) {
     return item.fieldData["gallery-low-quality-image"].url;
+  }
+
+  if (item.fieldData["background"]?.url) {
+    return item.fieldData["background"].url;
   }
 
   return null;

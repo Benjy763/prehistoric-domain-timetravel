@@ -285,37 +285,65 @@ async function disableFailedItems(token, failedItemIds) {
     `\n⏸️  Désactivation de ${failedItemIds.length} items échoués (display-on-app = false)...\n`,
   );
 
-  // Batch by 100
+  // Helper sleep
+  const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
+
+  // Batch by 100 with retry logic — failures are logged but do NOT throw
   for (let i = 0; i < failedItemIds.length; i += 100) {
     const batch = failedItemIds.slice(i, i + 100);
-
     const updates = batch.map((id) => ({
       id,
       fieldData: { "display-on-app": false },
     }));
 
-    const response = await fetch(
-      `https://api.webflow.com/v2/collections/${COLLECTION_ID}/items`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ items: updates }),
-      },
-    );
+    let attempt = 0;
+    const maxAttempts = 3;
+    let success = false;
 
-    if (!response.ok) {
-      const error = await response.text();
-      throw new Error(
-        `Erreur API (disable): ${response.status} ${response.statusText} - ${error}`,
+    while (attempt < maxAttempts && !success) {
+      attempt += 1;
+      try {
+        const response = await fetch(
+          `https://api.webflow.com/v2/collections/${COLLECTION_ID}/items`,
+          {
+            method: "PATCH",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ items: updates }),
+          },
+        );
+
+        if (!response.ok) {
+          const text = await response.text();
+          console.error(
+            `⚠️  Tentative ${attempt}/${maxAttempts} - Erreur API (disable): ${response.status} ${response.statusText} - ${text}`,
+          );
+          // backoff before retry
+          if (attempt < maxAttempts) await sleep(500 * attempt);
+        } else {
+          success = true;
+        }
+      } catch (err) {
+        console.error(
+          `⚠️  Tentative ${attempt}/${maxAttempts} - Erreur réseau lors du PATCH disable: ${err.message || err}`,
+        );
+        if (attempt < maxAttempts) await sleep(500 * attempt);
+      }
+    }
+
+    if (!success) {
+      console.error(
+        `❌ Échec de la désactivation pour ${batch.length} items après ${maxAttempts} tentatives. Le pipeline continue.`,
       );
     }
   }
 
-  console.log(`✅ ${failedItemIds.length} items désactivés\n`);
+  console.log(
+    `✅ Tentatives de désactivation effectuées pour ${failedItemIds.length} items (voir logs pour erreurs)\n`,
+  );
 }
 
 /**
@@ -467,9 +495,14 @@ async function mergeAllCMSItems(allCMSItems) {
   console.log("\n🔄 Fusion de TOUS les items CMS dans content-data.json...\n");
 
   // 1. Load current content-data.json (contains eligible items with paleo coords)
-  const contentDataPath = path.join(__dirname, "../assets/data/content-data.json");
+  const contentDataPath = path.join(
+    __dirname,
+    "../assets/data/content-data.json",
+  );
   const contentData = loadExistingContentData();
-  const eligibleItemsMap = new Map(contentData.items.map(item => [item.id, item]));
+  const eligibleItemsMap = new Map(
+    contentData.items.map((item) => [item.id, item]),
+  );
 
   // 2. Use already-fetched CMS items (passed as parameter)
 
@@ -489,8 +522,21 @@ async function mergeAllCMSItems(allCMSItems) {
     const isEligible = hasFreeTags && displayOnApp;
 
     if (eligibleItemsMap.has(itemId)) {
-      // Eligible item with full paleo data → keep it
-      mergedItems.push(eligibleItemsMap.get(itemId));
+      // Eligible item with full paleo data → keep it, but refresh display fields
+      // that derive from CMS image assets so priority changes propagate without
+      // requiring a full rebuild.
+      const existing = eligibleItemsMap.get(itemId);
+      const backgroundImage = cmsItem.fieldData["background"]?.url || null;
+      const galleryImage =
+        cmsItem.fieldData["gallery-low-quality-image"]?.url || null;
+      const category = getCategoryName(cmsItem.fieldData["top-category"]);
+      const refreshedPreview = getPreviewUrl(cmsItem, category);
+      mergedItems.push({
+        ...existing,
+        backgroundImage,
+        galleryImage,
+        preview: refreshedPreview,
+      });
     } else {
       // Non-eligible item → add basic metadata only
       const category = getCategoryName(cmsItem.fieldData["top-category"]);
@@ -514,7 +560,8 @@ async function mergeAllCMSItems(allCMSItems) {
           ? `https://www.youtube.com/watch?v=${cmsItem.fieldData["youtube-video-id"]}`
           : null,
         backgroundImage: cmsItem.fieldData["background"]?.url || null,
-        galleryImage: cmsItem.fieldData["gallery-low-quality-image"]?.url || null,
+        galleryImage:
+          cmsItem.fieldData["gallery-low-quality-image"]?.url || null,
         preview,
         pageUrl: `https://www.prehistoricdomain.com/content/${cmsItem.fieldData.slug}`,
         freeTags: freeTags,
@@ -525,7 +572,7 @@ async function mergeAllCMSItems(allCMSItems) {
         location: null,
         confidence: null,
         paleoValidation: null,
-        periods: {}
+        periods: {},
       });
     }
   }
@@ -538,16 +585,20 @@ async function mergeAllCMSItems(allCMSItems) {
       totalItems: mergedItems.length,
       sourceItems: allCMSItems.length,
       eligibleItems: eligibleItemsMap.size,
-      generated: new Date().toISOString()
+      generated: new Date().toISOString(),
     },
-    items: mergedItems
+    items: mergedItems,
   };
 
   fs.writeFileSync(contentDataPath, JSON.stringify(updatedData, null, 2));
 
   console.log(`✅ ${mergedItems.length} items au total dans content-data.json`);
-  console.log(`   ├─ ${eligibleItemsMap.size} items éligibles (avec coords paléo)`);
-  console.log(`   └─ ${mergedItems.length - eligibleItemsMap.size} items non-éligibles (métadonnées uniquement)\n`);
+  console.log(
+    `   ├─ ${eligibleItemsMap.size} items éligibles (avec coords paléo)`,
+  );
+  console.log(
+    `   └─ ${mergedItems.length - eligibleItemsMap.size} items non-éligibles (métadonnées uniquement)\n`,
+  );
 }
 
 async function main() {
@@ -719,13 +770,15 @@ async function main() {
     let slugsToProcess = options.slugs;
     if (useIncremental && !options.slugs) {
       const changedSlugs = [
-        ...result.newItems.map(item => item.fieldData.slug),
-        ...result.updatedItems.map(item => item.fieldData.slug),
-        ...result.readyToDisplay.map(item => item.fieldData.slug),
+        ...result.newItems.map((item) => item.fieldData.slug),
+        ...result.updatedItems.map((item) => item.fieldData.slug),
+        ...result.readyToDisplay.map((item) => item.fieldData.slug),
       ];
       slugsToProcess = changedSlugs.length > 0 ? changedSlugs : null;
       if (slugsToProcess) {
-        console.log(`   🎯 Traitement ciblé: ${slugsToProcess.length} slug(s)\n`);
+        console.log(
+          `   🎯 Traitement ciblé: ${slugsToProcess.length} slug(s)\n`,
+        );
       }
     }
 
