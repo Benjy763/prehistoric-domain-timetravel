@@ -265,6 +265,13 @@ class AppController {
       );
     }
 
+    const upgradeBtnPeriods = document.getElementById("upgradeCTAPeriods");
+    if (upgradeBtnPeriods) {
+      upgradeBtnPeriods.addEventListener("click", () =>
+        this.premiumManager.redirectToPlans(),
+      );
+    }
+
     // Rendre le contrôleur accessible globalement
     window.appController = this;
 
@@ -327,10 +334,15 @@ class AppController {
   }
 
   setupEventListeners() {
-    // Boutons de sélection de période
+    // Boutons de sélection de période (premium, sauf "Today" et "Quaternary")
+    const FREE_PERIODS = ["today", "quaternary"];
     this.periodButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
-        this.onPeriodChange(btn);
+        if (FREE_PERIODS.includes(btn.dataset.period)) {
+          this.onPeriodChange(btn);
+        } else {
+          this.premiumManager.gate(() => this.onPeriodChange(btn));
+        }
       });
     });
 

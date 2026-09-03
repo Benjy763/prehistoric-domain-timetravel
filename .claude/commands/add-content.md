@@ -125,15 +125,27 @@ Attendre validation. L'utilisateur peut :
 - Corriger des champs specifiques ("free-tags: changer X en Y", "FR name: corriger Z")
 - Supprimer un item ("retirer 2")
 
-#### Etape 7 — Creation des drafts bilingues via MCP Webflow
+#### Etape 7 — Creation des drafts via MCP Webflow
+
+⚠️ **Locale FR indisponible actuellement** (verifie 2026-09-01, voir
+`memory/cms-fields.md`) — `data_sites_tool > get_site` renvoie
+`locales.secondary: []` sur le site. Tant que la locale secondaire FR n'est
+pas reactivee cote Webflow (Site Settings → Localization), la creation
+bilingue en un seul appel echoue systematiquement
+(`Too many locales requested` / `Invalid locale`). **Creer en EN
+uniquement** et signaler a Benjamin qu'il n'y a pas de version FR — ne PAS
+tenter `cmsLocaleIds: [EN, FR]` ni un `update_collection_items` avec
+`cmsLocaleId` FR (404 garanti). Avant de commencer cette etape, relancer
+`data_sites_tool > get_site` pour verifier si la locale FR est revenue ;
+si oui, ce gotcha bilingue redevient valide tel qu'il etait documente
+avant (creation bilingue en un seul appel, cf. historique du fichier).
 
 Appeler `create_collection_items` sur la collection `679d148479ad083f33c518a1`.
 
-**Etape 7a — Creer l'item EN + FR en un seul appel :**
+**Creer l'item EN uniquement :**
 
-Creer en mode **isDraft: true, isArchived: false**.
-Ajouter **les deux locales** : `cmsLocaleIds: ["653ad75ae882f528b344a8f1", "680fa104090846c25c1b32c9"]`
-Cela cree l'item avec les deux versions (EN et FR, meme contenu initial).
+Creer en mode **isDraft: true, isArchived: false**, sans `cmsLocaleIds`
+(locale primaire EN par defaut).
 
 Ne PAS remplir `geological-period` (infere automatiquement par le pipeline sync).
 
@@ -175,28 +187,22 @@ Ne PAS remplir `geological-period` (infere automatiquement par le pipeline sync)
 }
 ```
 
-**Etape 7b — Mettre a jour la version FR :**
+**Etape 7b — Version FR : indisponible pour l'instant**
 
-Appeler `update_collection_items` avec le `cmsLocaleId` FR pour chaque item cree :
-```json
-{
-  "id": "ITEM_ID (retourne par l'etape 7a)",
-  "cmsLocaleId": "680fa104090846c25c1b32c9",
-  "fieldData": {
-    "name": "titre FR",
-    "description": "description FR",
-    "credits-line": "credits FR"
-  }
-}
-```
-
-Seuls `name`, `description` et `credits-line` sont traduits. Les autres champs (slug, free-tags, duration, artists, project, etc.) restent identiques.
+Tant que `locales.secondary` est vide sur le site, ne PAS appeler
+`update_collection_items` avec un `cmsLocaleId` FR (404 garanti). Garder
+les traductions generees a l'etape 4 dans le recap presente a Benjamin
+(colonne FR du tableau), a titre indicatif — elles pourront etre appliquees
+manuellement ou reprises automatiquement une fois la locale FR reactivee
+cote Webflow.
 
 #### Etape 8 — Recap final
-Tableau des items crees avec leur slug Webflow et statut EN/FR.
+Tableau des items crees avec leur slug Webflow et statut (EN uniquement
+pour l'instant, cf. etape 7b).
 
 Message de cloture :
-> Drafts crees (EN + FR). Prochaines etapes :
+> Drafts crees (EN). Pas de version FR (localisation indisponible sur le
+> site, voir etape 7). Prochaines etapes :
 > 1. Review dans Webflow CMS (ajouter images HD/LQ si type image, completer duration si manquante)
-> 2. Publier les drafts (EN et FR separement)
+> 2. Publier le draft
 > 3. `npm run sync` pour mettre a jour le globe

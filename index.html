@@ -12,6 +12,18 @@
 <body>
   <!-- Header with period selector -->
   <header class="period-selector">
+    <!-- Skeleton loader (visible while premium status is being resolved) -->
+    <div class="periods-skeleton" aria-hidden="true">
+      <div class="skeleton-line skeleton-period"></div>
+      <div class="skeleton-line skeleton-period"></div>
+      <div class="skeleton-line skeleton-period"></div>
+      <div class="skeleton-line skeleton-period"></div>
+      <div class="skeleton-line skeleton-period"></div>
+      <div class="skeleton-line skeleton-period"></div>
+      <div class="skeleton-line skeleton-period"></div>
+      <div class="skeleton-line skeleton-period"></div>
+    </div>
+
     <nav class="periods">
       <button class="period-btn" data-period="cambrian" data-time="500">
         <span class="period-name">CAMBRIAN</span>
@@ -66,6 +78,20 @@
         <span class="period-time">- 0 Ma</span>
       </button>
     </nav>
+
+    <!-- Upgrade CTA overlay (visible only for free / not-logged-in users) -->
+    <div class="upgrade-overlay upgrade-overlay-periods" aria-hidden="true">
+      <div class="upgrade-card">
+        <p class="upgrade-text">Unlock time travel across all eras.</p>
+        <button class="upgrade-btn" id="upgradeCTAPeriods" type="button" title="Become Explorer">
+          <svg class="upgrade-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+          </svg>
+          <span class="upgrade-btn-label">Become Explorer</span>
+        </button>
+      </div>
+    </div>
   </header>
 
   <!-- Sidebar with filters -->

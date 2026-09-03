@@ -7,7 +7,7 @@ Interactive 3D globe displaying prehistoric life across geological time periods.
 - **3D Globe Navigation** - Explore Earth through 13 geological periods (Cambrian to Today)
 - **Paleogeographic Reconstruction** - Continental positions calculated using GPlates MERDITH2021 model
 - **Smart Content Placement** - Automated geocoding via PBDB (Paleobiology Database)
-- **Search & Browse** - Explore 300+ videos, images, and 3D immersive experiences
+- **Search & Browse** - Explore 300+ videos, paleo docs, images, and 3D immersive experiences
 - **Webflow CMS Integration** - Automated content sync and bilingual support (EN/FR)
 
 ## 🚀 Quick Start

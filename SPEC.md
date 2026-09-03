@@ -11,6 +11,7 @@ Le site Webflow contient un CMS de "Contents" : des vidéos, images et expérien
 ## 2. Fonctionnalités
 
 ### 2.1 Globe 3D interactif
+
 - Sphère Three.js avec fond étoilé et atmosphère
 - Rotation manuelle (drag), zoom (scroll)
 - Affichage des contours continentaux selon la période sélectionnée
@@ -19,18 +20,21 @@ Le site Webflow contient un CMS de "Contents" : des vidéos, images et expérien
   - **"Real Land"** (Cao 2017) : terres émergées réelles de l'époque — mode d'observation sans pinpoints
 
 ### 2.2 Sélecteur de périodes
+
 - Barre horizontale en haut : 13 périodes du Cambrien (500 Ma) à Aujourd'hui
 - Au changement de période : rechargement de la texture du globe + repositionnement des pinpoints
 - Périodes : Today, Quaternary, Neogene, Paleogene, Cretaceous, Jurassic, Triassic, Permian, Carboniferous, Devonian, Silurian, Ordovician, Cambrian
 
 ### 2.3 Filtres par type de contenu
-- Sidebar gauche avec 4 filtres : Videos, Images, 3D, Recent
+
+- Sidebar gauche avec 4 filtres : Videos, Images, 3D, Recent ; les contenus "paleo docs" restent dans la famille Videos
 - Recent affiche les 50 derniers items publiés de la période géologique sélectionnée (basé sur `createdOn`)
 - Chaque filtre a un badge coloré (indicateur visuel dans la sidebar)
 - Toggle on/off pour masquer/afficher les types
 - Désactivés en mode "Real Land"
 
 ### 2.4 Pinpoints (marqueurs)
+
 - Sprites Three.js positionnés sur le globe selon les coordonnées paléogéographiques
 - Code couleur : jaune (favoris), blanc (défaut)
 - Animation de pulsation
@@ -42,6 +46,7 @@ Le site Webflow contient un CMS de "Contents" : des vidéos, images et expérien
   - Cluster >5 items → zoom in animé (×0.55) → re-cluster automatique
 
 ### 2.5 Popup de contenu
+
 - Au clic sur un pinpoint : popup centrée avec backdrop flou
 - Contenu affiché :
   - **Video** : iframe YouTube embedded
@@ -53,12 +58,14 @@ Le site Webflow contient un CMS de "Contents" : des vidéos, images et expérien
 - Fermeture : clic backdrop, bouton X, touche Escape
 
 ### 2.6 Favoris
+
 - Stockage local (localStorage) des items favoris par utilisateur
 - Icône cœur dans la popup pour ajouter/retirer des favoris
 - Filtre "Favorites" dans la sidebar pour afficher uniquement les favoris
 - Persistance entre sessions
 
 ### 2.7 Page Browse — Catalogue de recherche
+
 - Page dédiée (`browse.html`) affichant TOUS les contenus CMS (éligibles + non-éligibles)
 - Interface de recherche centrée initialement :
   - Titre "Find Your Way" centré verticalement
@@ -74,13 +81,14 @@ Le site Webflow contient un CMS de "Contents" : des vidéos, images et expérien
   - Adaptatif (mobile)
 - Cards avec :
   - Image preview (16:9) avec hover scale + border
-  - Badge de type (Video, Image, 3D Immersion, Behind The Scenes)
+  - Badge de type (Video, Image, 3D Immersion, Behind The Scenes ; les contenus paleo docs restent étiquetés Video)
   - Titre du contenu
   - Clic → ouvre la page Webflow du content
 - Auto-détection de catégorie pour les items "unknown" (basée sur présence de youtubeId ou images)
 - Affichage de tous les résultats d'un coup (pas de pagination)
 
 ### 2.8 Outil de placement manuel (à implémenter)
+
 - Page web dédiée (`placement.html`) réutilisant le globe existant
 - Affiche le globe à la période de l'item avec la carte Merdith
 - Montre le pinpoint actuel (position calculée) en surbrillance
@@ -93,9 +101,11 @@ Le site Webflow contient un CMS de "Contents" : des vidéos, images et expérien
 ## 3. Données CMS
 
 ### Source : Webflow CMS
+
 Collection "Contents" (~288 items actuellement, cible 1000-2000) avec les champs clés :
+
 - `name`, `slug`, `description`, `credits-line`
-- `category` : video / image / 3D / text
+- `category` : video / image / 3D / text (avec sous-catégorie vidéo "paleo docs")
 - `geological-period` : période géologique (ex: cretaceous)
 - `free-tags` : texte libre "Continent, Période, Espèce1, Espèce2..." — **optionnel** : si vide, l'item n'est pas affiché sur le globe
 - `youtube-id`, `background-image`, `gallery-image`
@@ -103,22 +113,27 @@ Collection "Contents" (~288 items actuellement, cible 1000-2000) avec les champs
 - `content-link` : lien vers le contenu (immersion 3D, etc.)
 
 ### Règle d'éligibilité
-Un item est affiché sur le globe si `free-tags` non vide ET catégorie ≠ Behind The Scenes (texts). Le pipeline sync auto-active `display-on-app` pour les items éligibles.
+
+Un item est affiché sur le globe si `free-tags` non vide ET catégorie ≠ Behind The Scenes (texts) ET catégorie ≠ paleo docs. Le pipeline sync auto-active `display-on-app` pour les items éligibles.
 
 ---
 
 ## 4. Limites connues
 
 ### 4.1 GPlates API — limite 410 Ma
+
 Les périodes Cambrien (500 Ma) et Ordovicien (450 Ma) utilisent les données du Silurien (410 Ma) car l'API GPlates MERDITH2021 ne reconstruit pas au-delà.
 
 ### 4.2 Précision du placement
+
 PBDB donne des coordonnées approximatives (site de fouille, pas position exacte de l'animal). Certains items multi-continents ou mal tagués nécessitent des corrections manuelles via `manual-coordinate-fixes.json`.
 
 ### 4.3 Points océaniques
+
 GPlates renvoie `999.99` pour les points en plein océan (pas de plaque tectonique). Le pipeline gère ce cas mais le résultat peut être imprécis pour les items marins.
 
 ### 4.4 Mode "Real Land" sans pinpoints
+
 Comportement voulu : mode observation seule, pas de pinpoints (décision actée).
 
 ---

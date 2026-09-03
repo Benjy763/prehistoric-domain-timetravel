@@ -15,10 +15,13 @@
 const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
-const { getCategoryName, getPreviewUrl } = require("./cms-helpers.js");
+const {
+  getCategoryName,
+  getPreviewUrl,
+  isNonGlobeCategory,
+} = require("./cms-helpers.js");
 
 const COLLECTION_ID = "679d148479ad083f33c518a1";
-const BTS_CATEGORY_ID = "5b90531d7e27d60e0d1f4e226449b55e"; // texts / Behind The Scenes
 
 function readToken() {
   if (process.env.WEBFLOW_TOKEN) return process.env.WEBFLOW_TOKEN;
@@ -100,31 +103,39 @@ function findNewItems(cmsItems, options = {}) {
     const isArchived = !!item.isArchived;
     const isDraft = !!item.isDraft;
 
-    // Active items: have free-tags AND display-on-app AND not archived/draft
-    if (hasFreeTags && displayOnApp && !isArchived && !isDraft) {
+    const isNonGlobeContent = isNonGlobeCategory(
+      item.fieldData["top-category"],
+    );
+
+    // Active items: have free-tags AND display-on-app AND are globe-eligible
+    if (
+      hasFreeTags &&
+      displayOnApp &&
+      !isNonGlobeContent &&
+      !isArchived &&
+      !isDraft
+    ) {
       cmsActiveIds.add(item.id);
     }
 
-    const isBTS = item.fieldData["top-category"] === BTS_CATEGORY_ID;
-
-    // Brand new eligible items (not BTS, have free-tags)
+    // Brand new eligible items (not BTS/paleo docs, have free-tags)
     // → will be auto-activated display-on-app by the pipeline
     if (
       !existingIds.has(item.id) &&
       hasFreeTags &&
-      !isBTS &&
+      !isNonGlobeContent &&
       !isArchived &&
       !isDraft
     ) {
       newItems.push(item);
     }
 
-    // Items not yet eligible: BTS with free-tags, or non-BTS without free-tags (info only)
+    // Items not yet eligible: non-globe content with free-tags, or items without free-tags (info only)
     else if (
       !existingIds.has(item.id) &&
       !isArchived &&
       !isDraft &&
-      (isBTS || !hasFreeTags)
+      (isNonGlobeContent || !hasFreeTags)
     ) {
       readyToDisplay.push(item);
     }
@@ -134,6 +145,7 @@ function findNewItems(cmsItems, options = {}) {
       existingIds.has(item.id) &&
       hasFreeTags &&
       displayOnApp &&
+      !isNonGlobeContent &&
       !isArchived &&
       !isDraft
     ) {
@@ -508,6 +520,7 @@ async function mergeAllCMSItems(allCMSItems) {
 
   // 3. Build merged items array
   const mergedItems = [];
+  let eligibleCount = 0;
 
   for (const cmsItem of allCMSItems) {
     // Skip archived and draft items entirely
@@ -519,12 +532,18 @@ async function mergeAllCMSItems(allCMSItems) {
     const freeTags = cmsItem.fieldData["free-tags"] || "";
     const hasFreeTags = freeTags.trim().length > 0;
     const displayOnApp = !!cmsItem.fieldData["display-on-app"];
-    const isEligible = hasFreeTags && displayOnApp;
+    const isNonGlobeContent = isNonGlobeCategory(
+      cmsItem.fieldData["top-category"],
+    );
+    const isEligible = hasFreeTags && displayOnApp && !isNonGlobeContent;
 
-    if (eligibleItemsMap.has(itemId)) {
-      // Eligible item with full paleo data → keep it, but refresh display fields
-      // that derive from CMS image assets so priority changes propagate without
-      // requiring a full rebuild.
+    if (isEligible && eligibleItemsMap.has(itemId)) {
+      // Still eligible today AND we already have paleo data for it → keep it,
+      // but refresh display fields that derive from CMS image assets so
+      // priority changes propagate without requiring a full rebuild.
+      // Re-checking isEligible here (not just presence in the old map) is what
+      // demotes an item whose category/free-tags/display-on-app changed since
+      // the last run — otherwise it would keep stale paleo coords forever.
       const existing = eligibleItemsMap.get(itemId);
       const backgroundImage = cmsItem.fieldData["background"]?.url || null;
       const galleryImage =
@@ -538,6 +557,7 @@ async function mergeAllCMSItems(allCMSItems) {
         galleryImage,
         preview: refreshedPreview,
       });
+      eligibleCount++;
     } else {
       // Non-eligible item → add basic metadata only
       const category = getCategoryName(cmsItem.fieldData["top-category"]);
@@ -585,7 +605,7 @@ async function mergeAllCMSItems(allCMSItems) {
       ...contentData.metadata,
       totalItems: mergedItems.length,
       sourceItems: allCMSItems.length,
-      eligibleItems: eligibleItemsMap.size,
+      eligibleItems: eligibleCount,
       generated: new Date().toISOString(),
     },
     items: mergedItems,
@@ -595,10 +615,10 @@ async function mergeAllCMSItems(allCMSItems) {
 
   console.log(`✅ ${mergedItems.length} items au total dans content-data.json`);
   console.log(
-    `   ├─ ${eligibleItemsMap.size} items éligibles (avec coords paléo)`,
+    `   ├─ ${eligibleCount} items éligibles (avec coords paléo)`,
   );
   console.log(
-    `   └─ ${mergedItems.length - eligibleItemsMap.size} items non-éligibles (métadonnées uniquement)\n`,
+    `   └─ ${mergedItems.length - eligibleCount} items non-éligibles (métadonnées uniquement)\n`,
   );
 }
 

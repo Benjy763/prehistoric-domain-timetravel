@@ -15,6 +15,7 @@
     "validate:tags:errors": "node scripts/validate-free-tags.js --only-errors",
     "placement": "node scripts/placement-server.js",
     "deploy:prep": "npm run sync:all && npm run build",
+    "deploy:pages": "node scripts/deploy-pages.js",
     "help": "bash scripts/help.sh"
   },
   "keywords": [

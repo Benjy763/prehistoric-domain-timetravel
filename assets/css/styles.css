@@ -1214,6 +1214,28 @@ body {
   display: none;
 }
 
+/* ---- Period selector (header) — same pending/loading treatment ---- */
+.periods-skeleton {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 0 40px;
+}
+
+.is-loading-premium .periods-skeleton {
+  display: flex;
+}
+
+.is-loading-premium .periods {
+  display: none;
+}
+
+.skeleton-period {
+  height: 32px;
+  width: 70px;
+  flex-shrink: 0;
+}
+
 .skeleton-line {
   background: linear-gradient(
     90deg,
@@ -1316,6 +1338,40 @@ body {
   display: none;
   width: 18px;
   height: 18px;
+}
+
+/* ---- FREE state: Time Travel lockdown (all periods except Today) ---- */
+.is-free-user .period-btn:not([data-period="today"]):not([data-period="quaternary"]) {
+  opacity: 0.18;
+  pointer-events: none;
+  filter: grayscale(1);
+  user-select: none;
+}
+
+/* Header bar is horizontal/70px tall — overlay must let Today/Quaternary stay
+   clickable underneath, so only the card itself (not the wrapper) captures
+   clicks. Needs .is-free-user prefix to out-specificity the generic
+   ".is-free-user .upgrade-overlay { pointer-events: auto }" rule above. */
+.upgrade-overlay-periods,
+.is-free-user .upgrade-overlay-periods {
+  pointer-events: none;
+}
+
+.upgrade-overlay-periods .upgrade-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: none;
+  padding: 8px 18px;
+}
+
+.upgrade-overlay-periods .upgrade-text {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.upgrade-overlay-periods .upgrade-btn {
+  white-space: nowrap;
 }
 
 /* ========================================
@@ -1442,36 +1498,11 @@ body {
     width: 95vw;
   }
 
-  /* Compact upgrade CTA: icon-only to fit the 60px collapsed sidebar */
-  .upgrade-overlay {
-    padding: 8px 4px;
-    align-items: flex-start;
-  }
-
-  .upgrade-card {
-    max-width: 100%;
-    width: 100%;
-    padding: 10px 4px;
-  }
-
-  .upgrade-text,
-  .upgrade-btn-label {
+  /* Not enough room on mobile for the floating "Become Explorer" CTA
+     without covering locked content — keep the grayed-out lockdown but
+     drop the overlay card entirely on both the sidebar and the periods bar. */
+  .is-free-user .upgrade-overlay {
     display: none;
-  }
-
-  .upgrade-btn {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    margin: 0 auto;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .upgrade-btn-icon {
-    display: block;
   }
 }
 

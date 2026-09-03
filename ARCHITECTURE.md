@@ -2,18 +2,18 @@
 
 ## 1. Stack technique
 
-| Composant | Technologie |
-|-----------|------------|
-| Globe 3D | Three.js r128 (vanilla en dev) |
-| Clustering | Supercluster 8.0.1 (CDN jsDelivr) |
-| Frontend | HTML/CSS/JS vanilla, pas de framework |
-| Build | Vite (production uniquement, file hashing pour cache-busting) |
-| CMS | Webflow API v2 |
-| Scripts | Node.js natif (0 dépendances npm, fetch natif Node 18+) |
-| Géocodage | PBDB API (paleobiodb.org) |
-| Reconstruction | GPlates API MERDITH2021 (gws.gplates.org, limite 410 Ma) |
-| Hébergement | Statique (Hostinger) |
-| Intégration | iframe dans Webflow (prehistoricdomain.com) |
+| Composant      | Technologie                                                   |
+| -------------- | ------------------------------------------------------------- |
+| Globe 3D       | Three.js r128 (vanilla en dev)                                |
+| Clustering     | Supercluster 8.0.1 (CDN jsDelivr)                             |
+| Frontend       | HTML/CSS/JS vanilla, pas de framework                         |
+| Build          | Vite (production uniquement, file hashing pour cache-busting) |
+| CMS            | Webflow API v2                                                |
+| Scripts        | Node.js natif (0 dépendances npm, fetch natif Node 18+)       |
+| Géocodage      | PBDB API (paleobiodb.org)                                     |
+| Reconstruction | GPlates API MERDITH2021 (gws.gplates.org, limite 410 Ma)      |
+| Hébergement    | Statique (Hostinger)                                          |
+| Intégration    | iframe dans Webflow (prehistoricdomain.com)                   |
 
 ---
 
@@ -94,11 +94,11 @@ WEBFLOW CMS
 
 ### APIs externes
 
-| API | Usage | Auth | Limite |
-|-----|-------|------|--------|
-| **Webflow API v2** | Lecture du CMS | Token (env var) | Rate limited |
-| **PBDB** (paleobiodb.org) | Localisation fossiles par espèce | Aucune | Publique |
-| **GPlates** (gws.gplates.org) | Reconstruction paléogéographique | Aucune | 410 Ma max |
+| API                           | Usage                            | Auth            | Limite       |
+| ----------------------------- | -------------------------------- | --------------- | ------------ |
+| **Webflow API v2**            | Lecture du CMS                   | Token (env var) | Rate limited |
+| **PBDB** (paleobiodb.org)     | Localisation fossiles par espèce | Aucune          | Publique     |
+| **GPlates** (gws.gplates.org) | Reconstruction paléogéographique | Aucune          | 410 Ma max   |
 
 ---
 
@@ -111,31 +111,34 @@ WEBFLOW CMS
     "totalItems": 160,
     "model": "MERDITH2021"
   },
-  "items": [{
-    "id": "abc123",
-    "name": "T-Rex Hunt",
-    "slug": "t-rex-hunt",
-    "category": "videos",
-    "geologicalPeriod": "cretaceous",
-    "createdOn": "2026-01-15T10:30:00.000Z",
-    "lastUpdated": "2026-01-20T14:22:00.000Z",
-    "modernLat": 51.9,
-    "modernLon": -113.0,
-    "paleoValidation": "on_land",
-    "periods": {
-      "100": { "lat": 48.2, "lon": -110.5, "validationStatus": "on_land" }
-    },
-    "youtubeUrl": "...",
-    "preview": "...",
-    "pageUrl": "...",
-    "displayOnApp": true
-  }]
+  "items": [
+    {
+      "id": "abc123",
+      "name": "T-Rex Hunt",
+      "slug": "t-rex-hunt",
+      "category": "videos",
+      "geologicalPeriod": "cretaceous",
+      "createdOn": "2026-01-15T10:30:00.000Z",
+      "lastUpdated": "2026-01-20T14:22:00.000Z",
+      "modernLat": 51.9,
+      "modernLon": -113.0,
+      "paleoValidation": "on_land",
+      "periods": {
+        "100": { "lat": 48.2, "lon": -110.5, "validationStatus": "on_land" }
+      },
+      "youtubeUrl": "...",
+      "preview": "...",
+      "pageUrl": "...",
+      "displayOnApp": true
+    }
+  ]
 }
 ```
 
 **Convention clés de période** : nombre en string (`"100"`), jamais `"100Ma"`.
 
 **Dates de publication** :
+
 - `createdOn` : date de création immuable de l'item dans le CMS (utilisée pour le filtre "Recent")
 - `lastUpdated` : dernière modification de l'item (peut changer lors d'éditions mineures)
 - Le filtre "Recent" affiche les 50 derniers items de la période géologique sélectionnée, triés par `createdOn` décroissant
@@ -145,11 +148,13 @@ WEBFLOW CMS
 ## 5. Pages frontend
 
 ### index.html — Globe 3D principal
+
 - Application Three.js interactive avec sélecteur de périodes, filtres et popup de contenu
 - Charge `content-data.json` pour afficher uniquement les items éligibles (avec coords paléo)
 - Intégré en iframe dans prehistoricdomain.com
 
 ### browse.html — Catalogue de recherche
+
 - Page de recherche affichant TOUS les contenus CMS (éligibles + non-éligibles)
 - Architecture :
   - **BrowseManager** : gestion du chargement, recherche et affichage
@@ -169,6 +174,7 @@ WEBFLOW CMS
   - Thumbnails YouTube pour les vidéos (hqdefault.jpg avec fallback sddefault.jpg)
 
 ### placement.html — Outil de placement manuel
+
 - Interface de correction manuelle des coordonnées
 - Affiche le globe à la période de l'item avec position actuelle
 - Permet de cliquer pour définir de nouvelles coordonnées
@@ -177,11 +183,12 @@ WEBFLOW CMS
 ### Module cms-helpers.js
 
 Module CommonJS partagé pour éviter la duplication de code entre scripts :
+
 - `CATEGORY_IDS` : mapping des IDs Webflow vers noms de catégories (videos, images, 3D, texts)
-- `getCategoryName(categoryId)` : conversion ID → nom de catégorie
+- `getCategoryName(categoryId, item)` : conversion ID → nom de catégorie, avec fallback vidéo pour des sous-catégories comme "paleo docs"
 - `getPreviewUrl(item, category)` : extraction de l'URL preview (YouTube thumbnail, background image, gallery image)
 
-**Note** : L'ID de la catégorie "texts" (Behind The Scenes) est actuellement un placeholder (`PLACEHOLDER_TEXTS_ID`) et doit être remplacé par le vrai ID Webflow via MCP.
+**Note** : L'ID de la catégorie "texts" (Behind The Scenes) est actuellement un placeholder (`PLACEHOLDER_TEXTS_ID`) et doit être remplacé par le vrai ID Webflow via MCP. Les contenus "paleo docs" sont traités comme des contenus vidéo dans l'UI, mais ils sont volontairement exclus du globe comme les contenus BTS.
 
 ---
 
@@ -198,6 +205,7 @@ Cascade pour obtenir les coordonnées modernes d'un item :
 ### Format du fichier de corrections manuelles
 
 `scripts/manual-coordinate-fixes.json` :
+
 ```json
 {
   "mon-slug": {
@@ -213,9 +221,11 @@ Cascade pour obtenir les coordonnées modernes d'un item :
 ## 6. Stratégie de synchronisation
 
 ### Incrémental (défaut)
+
 ```bash
 node scripts/sync-contents.js
 ```
+
 1. Récupère tous les items CMS (Webflow API, paginé)
 2. Compare `lastUpdated` CMS vs `metadata.generated` local
 3. Identifie : nouveaux (éligibles), modifiés, supprimés/désactivés
@@ -225,16 +235,19 @@ node scripts/sync-contents.js
 7. Coordonnées manuelles toujours réappliquées
 
 ### Ciblé
+
 ```bash
 node scripts/sync-contents.js --slugs=item1,item2
 ```
 
 ### Simulation (dry-run)
+
 ```bash
 node scripts/sync-contents.js --dry-run
 ```
 
 ### Rebuild complet
+
 ```bash
 # 1. Backup d'abord
 cp assets/data/content-data.json assets/data/content-data.backup.json
@@ -242,6 +255,7 @@ cp assets/data/content-data.json assets/data/content-data.backup.json
 # 2. Rebuild
 node scripts/sync-contents.js --all
 ```
+
 Pour : changement de modèle, correction de bug dans les scripts, reset après modifications massives.
 
 ---
@@ -249,6 +263,7 @@ Pour : changement de modèle, correction de bug dans les scripts, reset après m
 ## 7. Data workflow opérationnel
 
 ### Ajouter un contenu
+
 1. Via `/add-content` (Claude Code) : crée le draft bilingue EN+FR dans Webflow
 2. Publier le draft dans Webflow (EN et FR séparément)
 3. `node scripts/sync-contents.js` (le sync auto-active `display-on-app` pour les items éligibles)
@@ -256,34 +271,36 @@ Pour : changement de modèle, correction de bug dans les scripts, reset après m
 5. Test visuel local : `npm run dev`
 
 ### Modifier un contenu
+
 - Métadonnées : modifier dans Webflow → sync ciblé
 - Position (free-tags) : modifier → rebuild complet recommandé → corriger via `manual-coordinate-fixes.json` si besoin
 
 ### Supprimer un contenu
+
 - Désactiver `display-on-app` dans Webflow + sync
 - Ou supprimer dans Webflow + rebuild
 
 ### Dépannage
 
-| Symptôme | Vérifier |
-|----------|----------|
-| Pinpoint invisible | `display-on-app`, `free-tags` non vide, item dans JSON, clé période correcte, coordonnées non null |
-| Pinpoint mal placé | free-tags (continent), modernLat/modernLon, ajouter fix manuel |
-| Script plante | Connectivité APIs, token Webflow (`test-webflow-token.js`), test ciblé `--slugs=x --dry-run` |
-| Free-tags invalides | `node scripts/validate-free-tags.js --only-errors` |
+| Symptôme            | Vérifier                                                                                           |
+| ------------------- | -------------------------------------------------------------------------------------------------- |
+| Pinpoint invisible  | `display-on-app`, `free-tags` non vide, item dans JSON, clé période correcte, coordonnées non null |
+| Pinpoint mal placé  | free-tags (continent), modernLat/modernLon, ajouter fix manuel                                     |
+| Script plante       | Connectivité APIs, token Webflow (`test-webflow-token.js`), test ciblé `--slugs=x --dry-run`       |
+| Free-tags invalides | `node scripts/validate-free-tags.js --only-errors`                                                 |
 
 ---
 
 ## 8. Décisions techniques
 
-| Décision | Choix | Raison |
-|----------|-------|--------|
-| Modèle géologique | MERDITH2021 | Plus récent, couvre 0-1000 Ma |
-| Format clé période | `"100"` (string) | Compatible parseInt du frontend |
-| Mode "Real Land" | Sans pinpoints | Observation seule (décidé) |
-| Sync par défaut | Incrémental | Volume cible 1000-2000 items |
-| Dépendances npm | Aucune pour scripts | Simplicité, Node 18+ natif suffisant |
-| Bundler | Vite (production only) | File hashing pour cache-busting, minification, pas de bundler en dev |
+| Décision            | Choix                         | Raison                                                                                |
+| ------------------- | ----------------------------- | ------------------------------------------------------------------------------------- |
+| Modèle géologique   | MERDITH2021                   | Plus récent, couvre 0-1000 Ma                                                         |
+| Format clé période  | `"100"` (string)              | Compatible parseInt du frontend                                                       |
+| Mode "Real Land"    | Sans pinpoints                | Observation seule (décidé)                                                            |
+| Sync par défaut     | Incrémental                   | Volume cible 1000-2000 items                                                          |
+| Dépendances npm     | Aucune pour scripts           | Simplicité, Node 18+ natif suffisant                                                  |
+| Bundler             | Vite (production only)        | File hashing pour cache-busting, minification, pas de bundler en dev                  |
 | Clustering frontend | Supercluster (Mapbox) via CDN | Zones denses (ex: Crétacé Amérique du Nord) → trop de pins superposés sans clustering |
 
 ---
@@ -291,6 +308,7 @@ Pour : changement de modèle, correction de bug dans les scripts, reset après m
 ## 9. Tests
 
 ### Pipeline
+
 ```bash
 node scripts/test-webflow-token.js          # Token Webflow
 node scripts/sync-contents.js --dry-run     # Simulation
@@ -300,11 +318,13 @@ node scripts/validate-free-tags.js --only-errors  # Qualité free-tags
 ```
 
 ### Frontend
+
 ```bash
 npm run dev  # → http://localhost:8000 (Vite dev server)
 ```
 
 Checklist manuelle :
+
 - **Globe (index.html)** :
   - Globe s'affiche (étoiles, atmosphère)
   - Pinpoints visibles pour la période sélectionnée
@@ -328,6 +348,7 @@ Checklist manuelle :
   - Responsive : 4/3/2 colonnes selon viewport
 
 ### Idempotence du sync
+
 ```bash
 # 1. Sync complet de référence
 node scripts/sync-contents.js --all
@@ -343,9 +364,11 @@ diff assets/data/content-data.backup.json assets/data/content-data.json
 ```
 
 ### Outil de placement manuel
+
 ```bash
 npm run placement  # → http://localhost:8080/placement.html
 ```
+
 - Le globe affiche la carte de la bonne période pour l'item courant
 - Le pinpoint actuel est visible (vert = on_land, orange = à corriger, bleu = fixé)
 - Clic sur le globe → les coordonnées lat/lon s'affichent
@@ -358,17 +381,17 @@ npm run placement  # → http://localhost:8080/placement.html
 
 ## 10. Référence rapide des commandes
 
-| Commande | Usage | Durée |
-|----------|-------|-------|
-| `node scripts/sync-contents.js` | Sync incrémental (défaut) | ~5-15s |
-| `node scripts/sync-contents.js --all` | Rebuild complet | variable |
-| `node scripts/sync-contents.js --slugs=a,b` | Import ciblé | ~5s |
-| `node scripts/sync-contents.js --dry-run` | Simulation | ~10s |
-| `node scripts/validate-content-data.js` | Valider le JSON | ~1s |
-| `node scripts/validate-free-tags.js` | Qualité free-tags | ~5s |
-| `node scripts/test-webflow-token.js` | Test token Webflow | ~2s |
-| `node scripts/placement-server.js` | Outil de placement interactif | - |
-| `python3 -m http.server 8000` | Serveur local | - |
+| Commande                                    | Usage                         | Durée    |
+| ------------------------------------------- | ----------------------------- | -------- |
+| `node scripts/sync-contents.js`             | Sync incrémental (défaut)     | ~5-15s   |
+| `node scripts/sync-contents.js --all`       | Rebuild complet               | variable |
+| `node scripts/sync-contents.js --slugs=a,b` | Import ciblé                  | ~5s      |
+| `node scripts/sync-contents.js --dry-run`   | Simulation                    | ~10s     |
+| `node scripts/validate-content-data.js`     | Valider le JSON               | ~1s      |
+| `node scripts/validate-free-tags.js`        | Qualité free-tags             | ~5s      |
+| `node scripts/test-webflow-token.js`        | Test token Webflow            | ~2s      |
+| `node scripts/placement-server.js`          | Outil de placement interactif | -        |
+| `python3 -m http.server 8000`               | Serveur local                 | -        |
 
 ---
 
@@ -395,6 +418,7 @@ npm run deploy:prep
 ### Structure du build
 
 Le dossier `dist/` contient :
+
 - `index.html` avec références hashées automatiques
 - `assets/js/[name].[hash].js` — JS minifié avec Terser
 - `assets/css/[name].[hash].css` — CSS minifié
@@ -409,11 +433,13 @@ Les fichiers sont hashés automatiquement (`app.a1b2c3d4.js`), ce qui force le n
 ### Déploiement sur Hostinger
 
 Voir [DEPLOY.md](./DEPLOY.md) pour le guide complet :
+
 1. Préparer le build : `npm run deploy:prep`
 2. Uploader le contenu de `dist/` vers `public_html/` via FTP/SFTP
 3. Vérifier l'URL en production
 
 **Checklist de déploiement** :
+
 - [ ] `npm run sync:all` exécuté avec succès
 - [ ] `npm run build` sans erreur
 - [ ] Dossier `dist/` généré
