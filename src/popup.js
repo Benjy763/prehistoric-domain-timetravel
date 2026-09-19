@@ -170,7 +170,7 @@ class PopupManager {
     const is3DTour =
       content.type === "3d" &&
       content.pageUrl &&
-      content.pageUrl.includes("tour.prehistoricdomain.com");
+      content.pageUrl.includes("prehistoric-domain-vr.pages.dev");
     const isYouTubeVideo = content.type === "videos" && content.youtubeUrl;
     const isImmersiveOnMobile = content.type === "3d" && isMobile();
 
