@@ -65,6 +65,7 @@ class WebflowAPI {
         item.preview || item.galleryImage || item.backgroundImage || null,
       youtubeUrl: item.youtubeUrl || null,
       pageUrl: item.pageUrl || item.contentLink || null,
+      sitePageUrl: item.sitePageUrl || null,
       slug: item.slug,
       displayOnApp: !!item.displayOnApp,
       freeTags: item.freeTags || "",

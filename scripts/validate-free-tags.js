@@ -3,59 +3,14 @@
 /**
  * PREHISTORIC DOMAIN - Validate Free Tags
  *
- * Valide les free-tags de tous les items CMS
+ * Valide les free-tags de tous les contenus du site
  * Détecte les erreurs courantes et propose des corrections
  */
 
 const fs = require("fs");
 const path = require("path");
 
-const COLLECTION_ID = "679d148479ad083f33c518a1";
-
-function readToken() {
-  if (process.env.WEBFLOW_TOKEN) return process.env.WEBFLOW_TOKEN;
-
-  const mcpPath = path.resolve(__dirname, "../.vscode/mcp.json");
-  if (!fs.existsSync(mcpPath)) return null;
-
-  const raw = fs.readFileSync(mcpPath, "utf8");
-  const match = raw.match(/"WEBFLOW_TOKEN"\s*:\s*"([^"]+)"/);
-  return match ? match[1] : null;
-}
-
-async function fetchAllItems(token) {
-  let allItems = [];
-  let offset = 0;
-  let hasMore = true;
-
-  console.log("📥 Récupération des items depuis le CMS...\n");
-
-  while (hasMore) {
-    const response = await fetch(
-      `https://api.webflow.com/v2/collections/${COLLECTION_ID}/items?offset=${offset}&limit=100`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          accept: "application/json",
-        },
-      },
-    );
-
-    if (!response.ok) {
-      throw new Error(`Erreur API: ${response.status} ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    const items = data.items || [];
-    allItems = allItems.concat(items);
-
-    hasMore = items.length === 100;
-    offset += 100;
-  }
-
-  console.log(`✅ ${allItems.length} items récupérés\n`);
-  return allItems;
-}
+const { fetchSourceItems } = require("./cms-helpers.js");
 
 const VALID_CONTINENTS = [
   "north america",
@@ -332,17 +287,10 @@ async function main() {
     onlyErrors: args.includes("--only-errors"),
   };
 
-  const token = readToken();
-
-  if (!token) {
-    console.error("\n❌ WEBFLOW_TOKEN manquant.\n");
-    process.exit(1);
-  }
-
   console.log("\n🔍 PREHISTORIC DOMAIN - Validation des Free-Tags\n");
 
   // Récupérer items
-  const items = await fetchAllItems(token);
+  const items = await fetchSourceItems();
 
   // Analyser
   const results = analyzeItems(items);

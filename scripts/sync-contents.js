@@ -16,57 +16,12 @@ const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
 const {
+  fetchSourceItems,
+  siteUrl,
   getCategoryName,
   getPreviewUrl,
   isNonGlobeCategory,
 } = require("./cms-helpers.js");
-
-const COLLECTION_ID = "679d148479ad083f33c518a1";
-
-function readToken() {
-  if (process.env.WEBFLOW_TOKEN) return process.env.WEBFLOW_TOKEN;
-
-  const mcpPath = path.resolve(__dirname, "../.vscode/mcp.json");
-  if (!fs.existsSync(mcpPath)) return null;
-
-  const raw = fs.readFileSync(mcpPath, "utf8");
-  const match = raw.match(/"WEBFLOW_TOKEN"\s*:\s*"([^"]+)"/);
-  return match ? match[1] : null;
-}
-
-async function fetchAllItems(token) {
-  let allItems = [];
-  let offset = 0;
-  let hasMore = true;
-
-  console.log("📥 Récupération des items depuis le CMS...\n");
-
-  while (hasMore) {
-    const response = await fetch(
-      `https://api.webflow.com/v2/collections/${COLLECTION_ID}/items?offset=${offset}&limit=100`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          accept: "application/json",
-        },
-      },
-    );
-
-    if (!response.ok) {
-      throw new Error(`Erreur API: ${response.status} ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    const items = data.items || [];
-    allItems = allItems.concat(items);
-
-    hasMore = items.length === 100;
-    offset += 100;
-  }
-
-  console.log(`✅ ${allItems.length} items trouvés au total\n`);
-  return allItems;
-}
 
 function loadExistingContentData() {
   const contentDataPath = path.join(
@@ -149,26 +104,20 @@ function findNewItems(cmsItems, options = {}) {
       !isArchived &&
       !isDraft
     ) {
+      // A globe position depends only on the tag line: re-geocode an item only
+      // when its tags changed (every item was re-imported into the site's
+      // database in 2026-10, so its update date alone says nothing).
       const existingItem = existingData.items.find((i) => i.id === item.id);
-      const cmsUpdated = new Date(item.lastUpdated);
-
-      // Compare with item's lastUpdated in content-data,
-      // or the global generation date as fallback
-      let lastProcessed;
-      if (existingItem && existingItem.lastUpdated) {
-        lastProcessed = new Date(existingItem.lastUpdated);
-      } else {
-        lastProcessed = new Date(existingData.metadata.generated);
-      }
-
-      if (cmsUpdated > lastProcessed) {
+      const normalize = (tags) => (tags || "").toLowerCase().replace(/\s+/g, "");
+      if (!existingItem || normalize(existingItem.freeTags) !== normalize(freeTags)) {
         updatedItems.push(item);
       }
     }
 
-    // Items disabled in CMS (display-on-app = false, archived, or draft)
+    // Items on the globe but disabled in the source (display-on-app = false, archived, or draft)
     else if (
       existingIds.has(item.id) &&
+      Object.keys(existingData.items.find((i) => i.id === item.id)?.periods || {}).length > 0 &&
       (!displayOnApp || isArchived || isDraft)
     ) {
       toDisable.push(item);
@@ -182,9 +131,10 @@ function findNewItems(cmsItems, options = {}) {
     }
   }
 
-  // 3. Detect items in content-data but disabled in CMS
+  // 3. Detect items on the globe (with coordinates) but no longer active in the source
   for (const existingItem of existingData.items) {
-    if (cmsAllIds.has(existingItem.id) && !cmsActiveIds.has(existingItem.id)) {
+    const onGlobe = Object.keys(existingItem.periods || {}).length > 0;
+    if (onGlobe && cmsAllIds.has(existingItem.id) && !cmsActiveIds.has(existingItem.id)) {
       // Skip if already in toDisable
       if (!toDisable.find((i) => i.id === existingItem.id)) {
         toDisable.push(existingItem);
@@ -287,123 +237,7 @@ function displaySummary(result) {
   console.log();
 }
 
-/**
- * Disable items that failed geocoding (set display-on-app = false).
- */
-async function disableFailedItems(token, failedItemIds) {
-  if (failedItemIds.length === 0) return;
-
-  console.log(
-    `\n⏸️  Désactivation de ${failedItemIds.length} items échoués (display-on-app = false)...\n`,
-  );
-
-  // Helper sleep
-  const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
-
-  // Batch by 100 with retry logic — failures are logged but do NOT throw
-  for (let i = 0; i < failedItemIds.length; i += 100) {
-    const batch = failedItemIds.slice(i, i + 100);
-    const updates = batch.map((id) => ({
-      id,
-      fieldData: { "display-on-app": false },
-    }));
-
-    let attempt = 0;
-    const maxAttempts = 3;
-    let success = false;
-
-    while (attempt < maxAttempts && !success) {
-      attempt += 1;
-      try {
-        const response = await fetch(
-          `https://api.webflow.com/v2/collections/${COLLECTION_ID}/items`,
-          {
-            method: "PATCH",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ items: updates }),
-          },
-        );
-
-        if (!response.ok) {
-          const text = await response.text();
-          console.error(
-            `⚠️  Tentative ${attempt}/${maxAttempts} - Erreur API (disable): ${response.status} ${response.statusText} - ${text}`,
-          );
-          // backoff before retry
-          if (attempt < maxAttempts) await sleep(500 * attempt);
-        } else {
-          success = true;
-        }
-      } catch (err) {
-        console.error(
-          `⚠️  Tentative ${attempt}/${maxAttempts} - Erreur réseau lors du PATCH disable: ${err.message || err}`,
-        );
-        if (attempt < maxAttempts) await sleep(500 * attempt);
-      }
-    }
-
-    if (!success) {
-      console.error(
-        `❌ Échec de la désactivation pour ${batch.length} items après ${maxAttempts} tentatives. Le pipeline continue.`,
-      );
-    }
-  }
-
-  console.log(
-    `✅ Tentatives de désactivation effectuées pour ${failedItemIds.length} items (voir logs pour erreurs)\n`,
-  );
-}
-
-/**
- * Auto-activate display-on-app for eligible new items (not BTS).
- * Non-blocking: logs errors but does not throw.
- */
-async function updateDisplayOnApp(token, items) {
-  console.log(
-    `\n🔛 Auto-activation display-on-app pour ${items.length} item(s) éligible(s)...\n`,
-  );
-
-  let activatedCount = 0;
-
-  for (let i = 0; i < items.length; i += 100) {
-    const batch = items.slice(i, i + 100);
-    const updates = batch.map((item) => ({
-      id: item.id,
-      fieldData: { "display-on-app": true },
-    }));
-
-    const response = await fetch(
-      `https://api.webflow.com/v2/collections/${COLLECTION_ID}/items`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ items: updates }),
-      },
-    );
-
-    if (response.ok) {
-      activatedCount += batch.length;
-    } else {
-      const error = await response.text();
-      console.error(
-        `⚠️  Erreur auto-activation: ${response.status} - ${error}`,
-      );
-    }
-  }
-
-  console.log(`✅ ${activatedCount}/${items.length} item(s) activé(s)\n`);
-}
-
 async function runPipeline(
-  token,
   incremental = false,
   limit = null,
   slugs = null,
@@ -423,7 +257,7 @@ async function runPipeline(
     execSync(geocodeCmd, { stdio: "inherit" });
     console.log("\n✅ Géocodage terminé\n");
 
-    // Step 2: Disable failed items
+    // Step 2: Report failed items
     const geocodingResultsFile = path.join(__dirname, "../geocoded-items.json");
     if (fs.existsSync(geocodingResultsFile)) {
       const geocodingResults = JSON.parse(
@@ -441,8 +275,8 @@ async function runPipeline(
           );
         });
 
-        const failedIds = failedItems.map((item) => item.id);
-        await disableFailedItems(token, failedIds);
+        // The site stays the source of truth: failed items are only reported
+        // (fix their tags or add a manual fix), never written back.
       } else {
         console.log("\n✅ Aucun item n'a échoué\n");
       }
@@ -550,12 +384,19 @@ async function mergeAllCMSItems(allCMSItems) {
         cmsItem.fieldData["gallery-low-quality-image"]?.url || null;
       const category = getCategoryName(cmsItem.fieldData["top-category"]);
       const refreshedPreview = getPreviewUrl(cmsItem, category);
+      const sitePageUrl = `${siteUrl()}/content/${cmsItem.fieldData.slug}`;
       mergedItems.push({
         ...existing,
         category,
         backgroundImage,
         galleryImage,
         preview: refreshedPreview,
+        // Links follow the site the data comes from (staging, then production)
+        pageUrl: existing.contentLink ? existing.pageUrl : sitePageUrl,
+        sitePageUrl,
+        // Tags as in the source: an item that could not be re-geocoded (no
+        // precise period) is reported once, not re-processed at every sync
+        freeTags,
       });
       eligibleCount++;
     } else {
@@ -584,7 +425,8 @@ async function mergeAllCMSItems(allCMSItems) {
         galleryImage:
           cmsItem.fieldData["gallery-low-quality-image"]?.url || null,
         preview,
-        pageUrl: `https://www.prehistoricdomain.com/content/${cmsItem.fieldData.slug}`,
+        pageUrl: `${siteUrl()}/content/${cmsItem.fieldData.slug}`,
+        sitePageUrl: `${siteUrl()}/content/${cmsItem.fieldData.slug}`,
         freeTags: freeTags,
         // NO paleo coords for non-eligible items
         modernLat: null,
@@ -646,13 +488,6 @@ async function main() {
       .map((s) => s.trim());
   }
 
-  const token = readToken();
-
-  if (!token) {
-    console.error("\n❌ WEBFLOW_TOKEN manquant.\n");
-    process.exit(1);
-  }
-
   console.log("\n🌍 PREHISTORIC DOMAIN - Sync Contents\n");
 
   if (options.all) {
@@ -676,8 +511,8 @@ async function main() {
     console.log(`   Slugs: ${options.slugs.join(", ")}\n`);
   }
 
-  // 1. Fetch all CMS items
-  const allCMSItems = await fetchAllItems(token);
+  // 1. Fetch all content items from the site
+  const allCMSItems = await fetchSourceItems();
   let allItems = allCMSItems;
 
   // Filter by slugs if specified (for pipeline processing)
@@ -761,16 +596,6 @@ async function main() {
     process.exit(0);
   }
 
-  // 5. Auto-activate display-on-app for eligible items (not BTS)
-  if (result.newItems.length > 0) {
-    const itemsToActivate = result.newItems.filter(
-      (item) => !item.fieldData["display-on-app"],
-    );
-    if (itemsToActivate.length > 0) {
-      await updateDisplayOnApp(token, itemsToActivate);
-    }
-  }
-
   // 6. Run pipeline
   // Incremental if only a few new/modified items
   // Full if --all or many changes (> 50% of items)
@@ -815,7 +640,7 @@ async function main() {
       }
     }
 
-    await runPipeline(token, useIncremental, options.limit, slugsToProcess);
+    await runPipeline(useIncremental, options.limit, slugsToProcess);
   }
 
   // 7. Clean up content-data.json (removed or disabled items)

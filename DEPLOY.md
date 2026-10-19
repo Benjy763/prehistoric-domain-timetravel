@@ -1,6 +1,8 @@
 # Guide de Déploiement
 
-Ce guide explique comment builder et déployer le globe sur Hostinger.
+Ce guide explique comment builder et déployer le globe.
+
+> **Depuis le 2026-10-19** : les contenus viennent du site (`/api/globe`, variable `PD_CONTENT_SOURCE`), plus de Webflow, et le globe est servi par **Cloudflare Pages** (`prehistoric-domain-timetravel.pages.dev`), intégré en iframe dans la page `/time-travel` du site. Déroulé : `npm run sync`, `npm run validate`, `npm run build`, puis `npm run deploy:pages -- prehistoric-domain-timetravel` (wrangler connecté), **uniquement après l'accord explicite de Benjamin**. La procédure Hostinger ci-dessous ne sert plus qu'à l'ancienne copie du site Webflow, jusqu'à la bascule.
 
 ## Prérequis
 
@@ -10,7 +12,7 @@ Ce guide explique comment builder et déployer le globe sur Hostinger.
 
 ## Préparation du Build
 
-### 1. Synchroniser les données Webflow
+### 1. Synchroniser les données
 
 Avant de builder, assurez-vous que `content-data.json` est à jour :
 
@@ -19,7 +21,7 @@ npm run sync:all
 ```
 
 Cette commande :
-- Récupère tous les contenus du CMS Webflow
+- Récupère tous les contenus du site (`/api/globe`)
 - Géocode les positions via PBDB
 - Reconstruit les coordonnées paléo via GPlates
 - Génère `assets/data/content-data.json`

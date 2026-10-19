@@ -8,12 +8,12 @@
 | Clustering     | Supercluster 8.0.1 (CDN jsDelivr)                             |
 | Frontend       | HTML/CSS/JS vanilla, pas de framework                         |
 | Build          | Vite (production uniquement, file hashing pour cache-busting) |
-| CMS            | Webflow API v2                                                |
+| Source         | Site Prehistoric Domain, route `/api/globe` (base du site) ; Webflow abandonné le 2026-10-19 |
 | Scripts        | Node.js natif (0 dépendances npm, fetch natif Node 18+)       |
 | Géocodage      | PBDB API (paleobiodb.org)                                     |
 | Reconstruction | GPlates API MERDITH2021 (gws.gplates.org, limite 410 Ma)      |
-| Hébergement    | Statique (Hostinger)                                          |
-| Intégration    | iframe dans Webflow (prehistoricdomain.com)                   |
+| Hébergement    | Cloudflare Pages (`prehistoric-domain-timetravel.pages.dev`) ; ancienne copie sur Hostinger pour le site Webflow |
+| Intégration    | iframe dans le site (page `/time-travel`)                     |
 
 ---
 
@@ -40,7 +40,6 @@
 │   ├── reconstruct-paleogeography.js          → Reconstruction (complète ou --incremental)
 │   ├── validate-content-data.js → Validation structure JSON
 │   ├── validate-free-tags.js    → Validation qualité free-tags
-│   ├── test-webflow-token.js    → Test connexion Webflow
 │   ├── fetch-merdith2021.py     → Téléchargement coastlines (one-shot, archivé)
 │   ├── placement-server.js      → Serveur HTTP pour l'outil de placement
 │   ├── help.sh                  → Aide rapide (npm run help)
@@ -60,7 +59,7 @@
 ## 3. Pipeline de données
 
 ```
-WEBFLOW CMS
+SITE PRÉHISTORIC DOMAIN (/api/globe, forme des anciens items Webflow)
     │
     ▼
 ┌──────────────────────────────────────────────────┐
@@ -96,7 +95,7 @@ WEBFLOW CMS
 
 | API                           | Usage                            | Auth            | Limite       |
 | ----------------------------- | -------------------------------- | --------------- | ------------ |
-| **Webflow API v2**            | Lecture du CMS                   | Token (env var) | Rate limited |
+| **Site PD** (`/api/globe`)    | Lecture des contenus             | Aucune (public) | Cache 10 min |
 | **PBDB** (paleobiodb.org)     | Localisation fossiles par espèce | Aucune          | Publique     |
 | **GPlates** (gws.gplates.org) | Reconstruction paléogéographique | Aucune          | 410 Ma max   |
 
@@ -167,7 +166,7 @@ WEBFLOW CMS
   - Loader affiché pendant l'animation première recherche, puis 150ms pour recherches suivantes
   - Auto-détection de catégorie pour items "unknown" (basée sur youtubeId, galleryImage, backgroundImage)
   - Affichage de tous les résultats à la fois (pas de pagination)
-  - Cards cliquables → ouverture de la page Webflow du content (noopener,noreferrer)
+  - Cards cliquables → ouverture de la page du contenu sur le site (noopener,noreferrer)
 - Champs d'images Webflow utilisés :
   - `background` (slug Webflow, pas "background-image")
   - `gallery-low-quality-image` (slug Webflow, pas "gallery-image")
@@ -226,10 +225,10 @@ Cascade pour obtenir les coordonnées modernes d'un item :
 node scripts/sync-contents.js
 ```
 
-1. Récupère tous les items CMS (Webflow API, paginé)
-2. Compare `lastUpdated` CMS vs `metadata.generated` local
-3. Identifie : nouveaux (éligibles), modifiés, supprimés/désactivés
-4. Auto-active `display-on-app` pour les nouveaux items éligibles (pas BTS)
+1. Récupère tous les contenus du site (`PD_CONTENT_SOURCE`, par défaut la préproduction ; la production après la bascule)
+2. Garde l'identifiant déjà connu de chaque contenu (par slug) : favoris et corrections manuelles restent valables
+3. Identifie : nouveaux, modifiés (**ligne de tags changée**), supprimés/désactivés
+4. Rien n'est réécrit dans la source : un contenu en échec de géocodage est seulement signalé
 5. Ne géocode + reconstruit que les items changés
 6. Merge dans `content-data.json` existant
 7. Coordonnées manuelles toujours réappliquées
@@ -264,21 +263,20 @@ Pour : changement de modèle, correction de bug dans les scripts, reset après m
 
 ### Ajouter un contenu
 
-1. Via `/add-content` (Claude Code) : crée le draft bilingue EN+FR dans Webflow
-2. Publier le draft dans Webflow (EN et FR séparément)
-3. `node scripts/sync-contents.js` (le sync auto-active `display-on-app` pour les items éligibles)
+1. Le contenu s'ajoute dans le site (dépôt `pd-web-dinodeck`, skill `pd-ajout-contenu`)
+2. Attendre jusqu'à 10 minutes (cache de `/api/globe`)
+3. `node scripts/sync-contents.js`
 4. `node scripts/validate-content-data.js`
 5. Test visuel local : `npm run dev`
 
 ### Modifier un contenu
 
-- Métadonnées : modifier dans Webflow → sync ciblé
-- Position (free-tags) : modifier → rebuild complet recommandé → corriger via `manual-coordinate-fixes.json` si besoin
+- Métadonnées : modifier dans le site → sync (les champs d'affichage sont rafraîchis à chaque sync)
+- Position (tags) : modifier dans le site → sync (l'item est regéocodé) → corriger via `manual-coordinate-fixes.json` si besoin
 
 ### Supprimer un contenu
 
-- Désactiver `display-on-app` dans Webflow + sync
-- Ou supprimer dans Webflow + rebuild
+- Désactiver `displayOnApp` ou supprimer le contenu dans le site, puis sync
 
 ### Dépannage
 
@@ -286,7 +284,7 @@ Pour : changement de modèle, correction de bug dans les scripts, reset après m
 | ------------------- | -------------------------------------------------------------------------------------------------- |
 | Pinpoint invisible  | `display-on-app`, `free-tags` non vide, item dans JSON, clé période correcte, coordonnées non null |
 | Pinpoint mal placé  | free-tags (continent), modernLat/modernLon, ajouter fix manuel                                     |
-| Script plante       | Connectivité APIs, token Webflow (`test-webflow-token.js`), test ciblé `--slugs=x --dry-run`       |
+| Script plante       | Connectivité APIs, source (`curl $PD_CONTENT_SOURCE`), test ciblé `--slugs=x --dry-run`            |
 | Free-tags invalides | `node scripts/validate-free-tags.js --only-errors`                                                 |
 
 ---
@@ -310,7 +308,6 @@ Pour : changement de modèle, correction de bug dans les scripts, reset après m
 ### Pipeline
 
 ```bash
-node scripts/test-webflow-token.js          # Token Webflow
 node scripts/sync-contents.js --dry-run     # Simulation
 node scripts/sync-contents.js --slugs=x     # Test ciblé
 node scripts/validate-content-data.js       # Structure JSON
@@ -389,7 +386,6 @@ npm run placement  # → http://localhost:8080/placement.html
 | `node scripts/sync-contents.js --dry-run`   | Simulation                    | ~10s     |
 | `node scripts/validate-content-data.js`     | Valider le JSON               | ~1s      |
 | `node scripts/validate-free-tags.js`        | Qualité free-tags             | ~5s      |
-| `node scripts/test-webflow-token.js`        | Test token Webflow            | ~2s      |
 | `node scripts/placement-server.js`          | Outil de placement interactif | -        |
 | `python3 -m http.server 8000`               | Serveur local                 | -        |
 
@@ -430,18 +426,18 @@ Le dossier `dist/` contient :
 
 Les fichiers sont hashés automatiquement (`app.a1b2c3d4.js`), ce qui force le navigateur à télécharger les nouvelles versions sans intervention manuelle.
 
-### Déploiement sur Hostinger
+### Déploiement sur Cloudflare Pages
 
-Voir [DEPLOY.md](./DEPLOY.md) pour le guide complet :
+Voir [DEPLOY.md](./DEPLOY.md) :
 
-1. Préparer le build : `npm run deploy:prep`
-2. Uploader le contenu de `dist/` vers `public_html/` via FTP/SFTP
-3. Vérifier l'URL en production
+1. `npm run sync` puis `npm run build`
+2. `npm run deploy:pages -- prehistoric-domain-timetravel`, **uniquement après l'accord explicite de Benjamin**
+3. Vérifier `https://prehistoric-domain-timetravel.pages.dev` et la page `/time-travel` du site
 
 **Checklist de déploiement** :
 
 - [ ] `npm run sync:all` exécuté avec succès
 - [ ] `npm run build` sans erreur
 - [ ] Dossier `dist/` généré
-- [ ] Upload complet sur Hostinger
+- [ ] Déploiement Cloudflare Pages fait (avec accord)
 - [ ] Test fonctionnel (filtres, recherche, popup, favoris)

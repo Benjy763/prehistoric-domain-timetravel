@@ -288,7 +288,7 @@ function buildDerivedFields(item) {
   const pageUrl = contentLink
     ? contentLink
     : slug
-      ? `https://www.prehistoricdomain.com/content/${slug}`
+      ? `${require("./cms-helpers.js").siteUrl()}/content/${slug}`
       : null;
 
   return { youtubeUrl, preview, pageUrl };

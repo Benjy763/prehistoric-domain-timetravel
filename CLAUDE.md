@@ -1,17 +1,17 @@
 # Prehistoric Domain — Time Travel Globe
 
 Globe 3D interactif (Three.js) intégré en iframe dans prehistoricdomain.com.
-Les contenus du CMS Webflow sont projetés comme pinpoints sur un globe navigable dans le temps.
+Les contenus du site (base de Prehistoric Domain, route `/api/globe`) sont projetés comme pinpoints sur un globe navigable dans le temps. Webflow n'est plus la source depuis le 2026-10-19.
 
 ## Stack
 
 - **Frontend** : HTML/CSS/JS vanilla, Three.js r128
 - **Build** : Vite (production uniquement : minification + file hashing)
-- **CMS** : Webflow API v2 (site ID: `609e6b701730a329c6f67850`, collection "Contents": `679d148479ad083f33c518a1`)
+- **Source** : `/api/globe` du site (dépôt `pd-web-dinodeck`), même forme que les anciens items Webflow ; adresse dans `PD_CONTENT_SOURCE` (par défaut la préproduction `https://prehistoricdomain-staging.com/api/globe`, la production après la bascule)
 - **Scripts** : Node.js natif (0 dépendances npm), `fetch` natif (Node 18+)
 - **APIs** : PBDB (géocodage fossiles), GPlates MERDITH2021 (reconstruction paléo, limite 410 Ma)
-- **Hébergement** : statique sur Hostinger, intégré via iframe dans Webflow
-- **MCP** : Webflow MCP configuré dans `.vscode/mcp.json`
+- **Hébergement** : Cloudflare Pages (`prehistoric-domain-timetravel.pages.dev`), intégré en iframe dans le site (page `/time-travel`)
+- **Déploiement** : jamais sans l'accord explicite de Benjamin
 
 ## Structure
 
@@ -39,7 +39,7 @@ browse.html    → Page recherche/catalogue de tous les contenus
 - **Langue** : code, commentaires et JSDoc en anglais ; docs en français
 - **Développement** : pas de bundler, chargement via `<script>` dans index.html
 - **Production** : Vite pour minification et file hashing (cache-busting)
-- **Données** : le frontend charge `assets/data/content-data.json` (statique), jamais l'API Webflow directement
+- **Données** : le frontend charge `assets/data/content-data.json` (statique), jamais la source directement. Un contenu n'est regéocodé que si sa ligne de tags change
 - **Format des clés de période** : `"100"` (nombre en string, jamais `"100Ma"`)
 - **Éligibilité globe** : `free-tags` non vide ET `display-on-app: true` ET catégorie ≠ BTS (texts) ET catégorie ≠ paleo docs. Les contenus "paleo docs" restent dans la famille "videos" pour l'UI mais ne sont jamais projetés sur le globe
 - **Page Browse** : affiche TOUS les items CMS (éligibles + non-éligibles) pour recherche/navigation
@@ -89,4 +89,4 @@ browse.html    → Page recherche/catalogue de tous les contenus
 | `TASKS.md`         | Plan d'exécution actif                           |
 | `TASKS_ARCHIVE.md` | Tâches terminées                                 |
 | `ARCHITECTURE.md`  | Architecture technique, data workflow, décisions |
-| `DEPLOY.md`        | Guide de build et déploiement sur Hostinger      |
+| `DEPLOY.md`        | Guide de build et déploiement (Cloudflare Pages) |

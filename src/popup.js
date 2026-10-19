@@ -183,7 +183,8 @@ class PopupManager {
     if (isYouTubeVideo) {
       const videoId = this.extractYouTubeId(content.youtubeUrl);
       if (videoId && this.elements.video) {
-        this.elements.video.src = `https://www.youtube.com/embed/${videoId}`;
+        // Privacy-enhanced mode: no YouTube cookies (pd-web privacy policy)
+        this.elements.video.src = `https://www.youtube-nocookie.com/embed/${videoId}`;
         this.elements.video.style.display = "block";
         if (this.elements.imageLink) {
           this.elements.imageLink.style.display = "none";
@@ -237,13 +238,12 @@ class PopupManager {
     }
 
     // For 3D items, determine the appropriate link
-    // If it's a 3D tour shown in iframe, link to Webflow page
-    // Otherwise, use the pageUrl
-    const webflowPageUrl = content.slug
-      ? `https://www.prehistoricdomain.com/content/${content.slug}`
-      : null;
-    const linkUrl =
-      is3DTour && webflowPageUrl ? webflowPageUrl : content.pageUrl;
+    // If it's a 3D tour shown in iframe, link to the content page of the site
+    // the data comes from (sitePageUrl, set by the sync); otherwise pageUrl
+    const sitePageUrl =
+      content.sitePageUrl ||
+      (content.slug ? `https://www.prehistoricdomain.com/content/${content.slug}` : null);
+    const linkUrl = is3DTour && sitePageUrl ? sitePageUrl : content.pageUrl;
 
     // Lien vers la page (nouvel onglet)
     if (linkUrl) {

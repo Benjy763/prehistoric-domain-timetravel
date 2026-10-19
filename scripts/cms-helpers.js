@@ -1,7 +1,18 @@
 /**
- * CMS Helpers - Shared utilities for Webflow CMS data processing
+ * CMS Helpers - Shared utilities for content data processing
  * CommonJS module for use in Node.js scripts
+ *
+ * Content source: the Prehistoric Domain site (pd-web, route /api/globe),
+ * which replaced the Webflow CMS. It returns items in the same shape as the
+ * former Webflow "Contents" collection, so the pipeline below is unchanged.
  */
+
+const fs = require("fs");
+const path = require("path");
+
+// Staging until the switch to production (pd-web phase 9), then
+// https://www.prehistoricdomain.com/api/globe
+const DEFAULT_SOURCE_URL = "https://prehistoricdomain-staging.com/api/globe";
 
 /**
  * Webflow category IDs mapping — single source of truth for the whole pipeline.
@@ -69,7 +80,50 @@ function isNonGlobeCategory(categoryId) {
   return NON_GLOBE_CATEGORY_IDS.has(categoryId);
 }
 
+/**
+ * Base URL of the site whose contents are read: content links on the globe
+ * point back to it (staging until the switch, then production).
+ * @returns {string} e.g. "https://prehistoricdomain-staging.com"
+ */
+function siteUrl() {
+  return new URL(process.env.PD_CONTENT_SOURCE || DEFAULT_SOURCE_URL).origin;
+}
+
+/**
+ * Fetch every content item from the site.
+ * Item ids are kept stable by slug: an item already in content-data.json keeps
+ * its former id (Webflow era), so favorites and manual fixes keep working.
+ * @returns {Promise<Object[]>} Items shaped like the former Webflow items
+ */
+async function fetchSourceItems({ log = true } = {}) {
+  const url = process.env.PD_CONTENT_SOURCE || DEFAULT_SOURCE_URL;
+  if (log) console.log(`📥 Récupération des contenus depuis ${url}...`);
+
+  const response = await fetch(url, { headers: { accept: "application/json" } });
+  if (!response.ok) {
+    throw new Error(`Source error: ${response.status} ${response.statusText}`);
+  }
+  const { items = [] } = await response.json();
+
+  const contentDataPath = path.join(__dirname, "../assets/data/content-data.json");
+  const knownIds = new Map();
+  if (fs.existsSync(contentDataPath)) {
+    for (const item of JSON.parse(fs.readFileSync(contentDataPath, "utf8")).items || []) {
+      if (item.slug) knownIds.set(item.slug, item.id);
+    }
+  }
+  const stable = items.map((item) => ({
+    ...item,
+    id: knownIds.get(item.fieldData.slug) || item.id,
+  }));
+
+  if (log) console.log(`✅ ${stable.length} contenus trouvés\n`);
+  return stable;
+}
+
 module.exports = {
+  fetchSourceItems,
+  siteUrl,
   CATEGORY_IDS,
   NON_GLOBE_CATEGORY_IDS,
   getCategoryName,

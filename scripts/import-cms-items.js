@@ -35,24 +35,13 @@ const COORDINATE_FIXES = JSON.parse(
 // Land validation (modern coastlines)
 const { isPointOnLand } = require("./paleo-reconstruction.js");
 
-// Category ID → name map (single source of truth in cms-helpers.js)
-const { CATEGORY_IDS: CATEGORY_MAP } = require("./cms-helpers.js");
+// Category ID → name map and content source (single source of truth in cms-helpers.js)
+const {
+  CATEGORY_IDS: CATEGORY_MAP,
+  fetchSourceItems,
+} = require("./cms-helpers.js");
 
-const SITE_ID = "609e6b701730a329c6f67850";
-const COLLECTION_ID = "679d148479ad083f33c518a1";
 
-function readToken() {
-  if (process.env.WEBFLOW_TOKEN) return process.env.WEBFLOW_TOKEN;
-
-  const mcpPath = path.resolve(__dirname, "../.vscode/mcp.json");
-  if (!fs.existsSync(mcpPath)) return null;
-
-  const raw = fs.readFileSync(mcpPath, "utf8");
-  const match = raw.match(/"WEBFLOW_TOKEN"\s*:\s*"([^"]+)"/);
-  return match ? match[1] : null;
-}
-
-const WEBFLOW_TOKEN = readToken();
 
 const GEOLOGICAL_PERIOD_MAP = {
   "9f54dda51296c0490e039fe1533eca66": "today",
@@ -1022,50 +1011,9 @@ function buildGeocodedResult(r, pos) {
 
 
 /**
- * Récupère tous les items de la collection
+ * Récupère tous les contenus depuis le site (remplace l'API Webflow)
  */
-async function fetchAllItems({ log = true } = {}) {
-  let allItems = [];
-  let offset = 0;
-  let hasMore = true;
-
-  if (log) {
-    console.log("📥 Récupération des items depuis le CMS...");
-  }
-
-  while (hasMore) {
-    const response = await fetch(
-      `https://api.webflow.com/v2/collections/${COLLECTION_ID}/items?offset=${offset}&limit=100`,
-      {
-        headers: {
-          Authorization: `Bearer ${WEBFLOW_TOKEN}`,
-          accept: "application/json",
-        },
-      },
-    );
-
-    if (!response.ok) {
-      throw new Error(`Erreur API: ${response.status} ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    const items = data.items || [];
-    allItems = allItems.concat(items);
-
-    if (log) {
-      console.log(`   Chargé ${allItems.length} items...`);
-    }
-
-    hasMore = items.length === 100;
-    offset += 100;
-  }
-
-  if (log) {
-    console.log(`\n✅ ${allItems.length} items trouvés au total\n`);
-  }
-
-  return allItems;
-}
+const fetchAllItems = fetchSourceItems;
 
 async function geocodeItems(
   allItems,
