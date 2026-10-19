@@ -48,7 +48,9 @@ function deploy(projectName) {
   // project-creation prompt) is visible directly to whoever runs this.
   execFileSync(
     "wrangler",
-    ["pages", "deploy", DIST_DIR, `--project-name=${projectName}`],
+    // --branch=main: always the production deployment (pages.dev), whatever
+    // the local git branch (wrangler would otherwise create a preview)
+    ["pages", "deploy", DIST_DIR, `--project-name=${projectName}`, "--branch=main"],
     { stdio: "inherit" },
   );
 }
