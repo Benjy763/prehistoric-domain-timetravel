@@ -82,11 +82,31 @@ body {
   align-items: center;
   gap: 0;
   padding: 0 40px;
+  /* Never wider than the header: what does not fit scrolls horizontally
+     (touch, drag with the mouse, wheel) instead of being cut off */
+  max-width: 100%;
+  min-width: 0;
   overflow-x: auto;
   overflow-y: hidden;
   position: relative;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  cursor: grab;
+  touch-action: pan-x;
+}
+
+.periods.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/* Centered when everything fits, scrollable from the first period otherwise */
+.periods > .period-btn:first-child {
+  margin-left: auto;
+}
+
+.periods > .period-btn:last-child {
+  margin-right: auto;
 }
 
 .periods::-webkit-scrollbar {

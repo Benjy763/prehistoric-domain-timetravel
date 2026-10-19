@@ -333,7 +333,78 @@ class AppController {
     }
   }
 
+  /**
+   * Period header: horizontal scroll when the periods do not fit, by touch,
+   * mouse drag or mouse wheel. A drag never triggers a period click.
+   */
+  setupPeriodScroll() {
+    const bar = document.querySelector(".periods");
+    if (!bar) return;
+
+    // Start with the active period (Today, at the far right) in view
+    const active = bar.querySelector(".period-btn.active");
+    if (active) {
+      bar.scrollLeft = active.offsetLeft - (bar.clientWidth - active.offsetWidth) / 2;
+    }
+
+    let startX = 0;
+    let startScroll = 0;
+    let pointerId = null;
+    let dragged = false;
+
+    bar.addEventListener("pointerdown", (event) => {
+      if (event.pointerType !== "mouse" || event.button !== 0) return;
+      pointerId = event.pointerId;
+      startX = event.clientX;
+      startScroll = bar.scrollLeft;
+      dragged = false;
+    });
+    bar.addEventListener("pointermove", (event) => {
+      if (event.pointerId !== pointerId) return;
+      const dx = event.clientX - startX;
+      if (!dragged && Math.abs(dx) > 5) {
+        dragged = true;
+        bar.classList.add("is-dragging");
+        bar.setPointerCapture(pointerId);
+      }
+      if (dragged) bar.scrollLeft = startScroll - dx;
+    });
+    const end = () => {
+      pointerId = null;
+      bar.classList.remove("is-dragging");
+    };
+    bar.addEventListener("pointerup", end);
+    bar.addEventListener("pointercancel", end);
+    // Swallow the click that ends a drag
+    bar.addEventListener(
+      "click",
+      (event) => {
+        if (dragged) {
+          event.stopPropagation();
+          event.preventDefault();
+          dragged = false;
+        }
+      },
+      true,
+    );
+
+    // Vertical wheel scrolls the bar horizontally when it overflows
+    bar.addEventListener(
+      "wheel",
+      (event) => {
+        if (bar.scrollWidth <= bar.clientWidth) return;
+        if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
+          bar.scrollLeft += event.deltaY;
+          event.preventDefault();
+        }
+      },
+      { passive: false },
+    );
+  }
+
   setupEventListeners() {
+    this.setupPeriodScroll();
+
     // Boutons de sélection de période (premium, sauf "Today" et "Quaternary")
     const FREE_PERIODS = ["today", "quaternary"];
     this.periodButtons.forEach((btn) => {
@@ -431,6 +502,8 @@ class AppController {
     // Mettre à jour l'UI
     this.periodButtons.forEach((b) => b.classList.remove("active"));
     button.classList.add("active");
+    // Keep the chosen period visible in a scrolled header
+    button.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
 
     // Récupérer les données de la période
     this.currentPeriod = button.dataset.period;
