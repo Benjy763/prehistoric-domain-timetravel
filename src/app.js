@@ -239,7 +239,6 @@ class AppController {
     this.popupManager = null;
     this.webflowAPI = null;
     this.audioManager = null;
-    this.premiumManager = null;
 
     this.periodButtons = document.querySelectorAll(".period-btn");
     this.loadingOverlay = document.getElementById("loadingOverlay");
@@ -256,21 +255,6 @@ class AppController {
     this.popupManager = new PopupManager();
     this.webflowAPI = new WebflowAPI();
     this.audioManager = new AudioManager();
-    this.premiumManager = new PremiumManager();
-
-    const upgradeBtn = document.getElementById("upgradeCTA");
-    if (upgradeBtn) {
-      upgradeBtn.addEventListener("click", () =>
-        this.premiumManager.redirectToPlans(),
-      );
-    }
-
-    const upgradeBtnPeriods = document.getElementById("upgradeCTAPeriods");
-    if (upgradeBtnPeriods) {
-      upgradeBtnPeriods.addEventListener("click", () =>
-        this.premiumManager.redirectToPlans(),
-      );
-    }
 
     // Rendre le contrôleur accessible globalement
     window.appController = this;
@@ -405,24 +389,15 @@ class AppController {
   setupEventListeners() {
     this.setupPeriodScroll();
 
-    // Boutons de sélection de période (premium, sauf "Today" et "Quaternary")
-    const FREE_PERIODS = ["today", "quaternary"];
+    // Period buttons: every period is open to everyone (Memberstack paywall removed, 2026-10-20)
     this.periodButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        if (FREE_PERIODS.includes(btn.dataset.period)) {
-          this.onPeriodChange(btn);
-        } else {
-          this.premiumManager.gate(() => this.onPeriodChange(btn));
-        }
-      });
+      btn.addEventListener("click", () => this.onPeriodChange(btn));
     });
 
-    // Boutons de sélection de couche (premium)
+    // Layer buttons
     const layerButtons = document.querySelectorAll(".layer-btn");
     layerButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        this.premiumManager.gate(() => this.onLayerChange(btn));
-      });
+      btn.addEventListener("click", () => this.onLayerChange(btn));
     });
 
     // Bouton auto-rotation toggle

@@ -10,5 +10,4 @@ import "./filters.js";
 import "./favorites.js";
 import "./popup.js";
 import "./webflow-api.js";
-import "./premium.js";
 import "./app.js";
