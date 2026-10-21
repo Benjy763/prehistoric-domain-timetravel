@@ -5,9 +5,12 @@
 
 class FiltersManager {
   constructor() {
-    // Note: "favorites" and "new" are NOT active by default - user must enable them
     this.activeFilters = new Set(["videos", "images", "3d"]);
-    this.filterElements = document.querySelectorAll(".filter-item");
+    // Content types only ("My creations" has its own handler in app.js)
+    this.filterElements = document.querySelectorAll(".filter-item[data-filter]");
+    // Which globe: the artists' work ("artists") or the Academy apprentices' pieces
+    this.globe = "artists";
+    this.globeButtons = document.querySelectorAll(".globe-choice-btn");
     this.searchQuery = "";
     this.searchDebounceTimer = null;
 
@@ -17,7 +20,41 @@ class FiltersManager {
   init() {
     this.filterElements.forEach((element) => {
       element.addEventListener("click", () => this.toggleFilter(element));
+      element.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          this.toggleFilter(element);
+        }
+      });
     });
+
+    this.globeButtons.forEach((button) => {
+      button.addEventListener("click", () => this.setGlobe(button.dataset.globe));
+    });
+    // ?layer=apprentices opens straight on the apprentices' globe (Academy course player)
+    if (new URLSearchParams(window.location.search).get("layer") === "apprentices") {
+      this.setGlobe("apprentices");
+    }
+
+    // "?" next to the globe choice: a short explanation, closed by Escape or a click elsewhere
+    const helpBtn = document.getElementById("globeHelpBtn");
+    const help = document.getElementById("globeHelp");
+    if (helpBtn && help) {
+      const setHelp = (open) => {
+        help.hidden = !open;
+        helpBtn.setAttribute("aria-expanded", String(open));
+      };
+      helpBtn.addEventListener("click", () => setHelp(help.hidden));
+      document.addEventListener("click", (e) => {
+        if (!help.hidden && !help.contains(e.target) && e.target !== helpBtn) setHelp(false);
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !help.hidden) {
+          setHelp(false);
+          helpBtn.focus();
+        }
+      });
+    }
 
     // Search input initialization
     this.searchInput = document.getElementById("searchInput");
@@ -46,10 +83,25 @@ class FiltersManager {
       this.activeFilters.add(filterType);
       element.classList.add("active");
     }
+    element.setAttribute("aria-checked", String(this.activeFilters.has(filterType)));
 
     // Notifier le contrôleur de l'application
     if (window.appController) {
       window.appController.onFiltersChanged(this.activeFilters);
+    }
+  }
+
+  setGlobe(globe) {
+    if (globe === this.globe) return;
+    this.globe = globe;
+    this.globeButtons.forEach((button) => {
+      const selected = button.dataset.globe === globe;
+      button.classList.toggle("active", selected);
+      button.setAttribute("aria-pressed", String(selected));
+    });
+
+    if (window.appController) {
+      window.appController.onGlobeChanged();
     }
   }
 
@@ -64,12 +116,8 @@ class FiltersManager {
   reset() {
     this.activeFilters = new Set(["videos", "images", "3d"]);
     this.filterElements.forEach((element) => {
-      const isSwitch = element.classList.contains("filter-switch");
-      if (isSwitch) {
-        element.classList.remove("active");
-      } else {
-        element.classList.add("active");
-      }
+      element.classList.add("active");
+      element.setAttribute("aria-checked", "true");
     });
     this.clearSearch();
   }

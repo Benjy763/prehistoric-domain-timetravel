@@ -27,7 +27,7 @@ class PopupManager {
       artist: document.getElementById("popupArtist"),
       tags: document.getElementById("popupTags"),
       tagsList: document.querySelector("#popupTags .popup-tags-list"),
-      link: document.getElementById("popupLink"),
+      credit: document.getElementById("popupCredit"),
     };
 
     this.init();
@@ -103,6 +103,12 @@ class PopupManager {
   show(content) {
     // Store current content
     this.currentContent = content;
+    // Back to the default frame until the picture says its shape
+    this.popup.style.width = "";
+    this.popup.style.height = "";
+    this.popup.classList.toggle("is-picture", content.type === "images");
+    // A YouTube video shows its own title in the top left: the name goes lower
+    this.popup.classList.toggle("is-video", content.type === "videos" && Boolean(content.youtubeUrl));
 
     // Update favorite button state
     this.updateFavoriteButton(content.id);
@@ -139,7 +145,10 @@ class PopupManager {
       content.description || "Pas de description disponible";
 
     // Artiste
-    this.elements.artist.innerHTML = `${content.artist || "Inconnu"}`;
+    this.elements.artist.textContent = content.artist || "";
+    const name = window.artistNameOf?.(content);
+    this.elements.credit.textContent = name ? `by ${name}` : "";
+    this.elements.credit.hidden = !name;
 
     // Free Tags
     if (content.freeTags && content.freeTags.trim()) {
@@ -200,8 +209,10 @@ class PopupManager {
       }
 
       if (content.preview && this.elements.image) {
-        this.elements.image.src = content.preview;
-        this.elements.image.alt = content.title;
+        const image = this.elements.image;
+        image.onload = null;
+        image.src = content.preview;
+        image.alt = content.title;
       }
 
       // Afficher l'icône play pour le contenu 3D
@@ -237,33 +248,43 @@ class PopupManager {
       }
     }
 
-    // For 3D items, determine the appropriate link
-    // If it's a 3D tour shown in iframe, link to the content page of the site
-    // the data comes from (sitePageUrl, set by the sync); otherwise pageUrl
-    const sitePageUrl =
-      content.sitePageUrl ||
-      (content.slug ? `https://www.prehistoricdomain.com/content/${content.slug}` : null);
-    const linkUrl = is3DTour && sitePageUrl ? sitePageUrl : content.pageUrl;
-
-    // Lien vers la page (nouvel onglet)
-    if (linkUrl) {
-      this.elements.link.href = linkUrl;
-      this.elements.link.target = "_blank";
-      this.elements.link.rel = "noopener noreferrer";
-      // Only set imageLink if not showing iframe
-      if (this.elements.imageLink && !is3DTour && !isYouTubeVideo) {
-        this.elements.imageLink.href = linkUrl;
-        this.elements.imageLink.target = "_blank";
-        this.elements.imageLink.rel = "noopener noreferrer";
-      }
+    // A picture: the window opens straight at the picture's own shape (nothing
+    // cropped, no resize once open), as soon as its size is known
+    if (content.type === "images" && content.preview) {
+      this.openWhenSized(content.preview);
+      return;
     }
+    this.open();
+  }
 
-    // Afficher la popup
+  open() {
     this.popup.classList.add("active");
     this.backdrop.classList.add("active");
   }
 
+  /** Reads the picture's size first (a cached file answers at once), then opens. */
+  openWhenSized(src) {
+    const shown = this.currentContent;
+    let opened = false;
+    const go = (width, height) => {
+      // Too late, or another piece was chosen meanwhile
+      if (opened || this.currentContent !== shown) return;
+      opened = true;
+      if (width && height) this.fitTo(width, height);
+      this.open();
+    };
+    this.backdrop.classList.add("active");
+    const probe = new Image();
+    probe.onload = () => go(probe.naturalWidth, probe.naturalHeight);
+    probe.onerror = () => go(0, 0);
+    probe.src = src;
+    // A slow network: open in the default frame rather than wait
+    setTimeout(() => go(0, 0), 1200);
+  }
+
   hide() {
+    // A picture still being measured must not open after closing
+    this.currentContent = null;
     this.popup.classList.remove("active");
     this.backdrop.classList.remove("active");
 
@@ -292,6 +313,20 @@ class PopupManager {
     if (this.elements.playIcon) {
       this.elements.playIcon.style.display = "none";
     }
+  }
+
+  /**
+   * Fits the window to a picture: as large as the screen allows, with the
+   * picture's own proportions (portrait, landscape or square).
+   */
+  fitTo(width, height) {
+    if (!width || !height) return;
+    const ratio = width / height;
+    const maxWidth = Math.min(window.innerWidth * 0.92, 1100);
+    const maxHeight = window.innerHeight * 0.8;
+    const fitted = Math.min(maxWidth, maxHeight * ratio);
+    this.popup.style.width = `${Math.round(fitted)}px`;
+    this.popup.style.height = `${Math.round(fitted / ratio)}px`;
   }
 
   updateFavoriteButton(contentId) {

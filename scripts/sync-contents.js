@@ -337,6 +337,28 @@ async function runPipeline(
  * - Eligible items: keep full data with paleo coords (from pipeline)
  * - Non-eligible items: add basic metadata only (no coords)
  */
+/**
+ * Fields of the Academy (site, lot H): the grade of the artist (expert,
+ * confirmed, apprentice) for the globe layers, the artist's name shown above
+ * the pin ("Apprentice" for a learner), the owner key for "My creations",
+ * and the source ("academy" for a learner's end-of-course piece, whose page
+ * is its course).
+ */
+function academyFields(cmsItem) {
+  const data = cmsItem.fieldData;
+  const fields = {
+    grade: data["artist-grade"] || null,
+    artistName: data["artist-name"] || null,
+    owner: data.owner || null,
+    source: data.source || "site",
+  };
+  if (data.source === "academy" && data["content-link"]) {
+    const pageUrl = `${siteUrl()}${data["content-link"]}`;
+    return { ...fields, pageUrl, sitePageUrl: pageUrl };
+  }
+  return fields;
+}
+
 async function mergeAllCMSItems(allCMSItems) {
   console.log("\n🔄 Fusion de TOUS les items CMS dans content-data.json...\n");
 
@@ -397,6 +419,7 @@ async function mergeAllCMSItems(allCMSItems) {
         // Tags as in the source: an item that could not be re-geocoded (no
         // precise period) is reported once, not re-processed at every sync
         freeTags,
+        ...academyFields(cmsItem),
       });
       eligibleCount++;
     } else {
@@ -436,6 +459,7 @@ async function mergeAllCMSItems(allCMSItems) {
         confidence: null,
         paleoValidation: null,
         periods: {},
+        ...academyFields(cmsItem),
       });
     }
   }

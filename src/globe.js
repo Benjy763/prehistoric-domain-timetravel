@@ -1372,6 +1372,29 @@ class GlobeManager {
     return closed;
   }
 
+  /**
+   * Turns the globe, smoothly, so that a place faces the viewer (camera on
+   * the +z axis): a turn around y brings its longitude in front, a tilt
+   * around x its latitude.
+   */
+  focusOn(lat, lon) {
+    const targetY = Math.PI / 2 - ((lon + 180) * Math.PI) / 180;
+    const targetX = Math.max(-Math.PI / 2, Math.min((lat * Math.PI) / 180, Math.PI / 2));
+    const startY = this.globe.rotation.y;
+    const startX = this.globe.rotation.x;
+    // Shortest way round
+    const turn = ((((targetY - startY) % (2 * Math.PI)) + 3 * Math.PI) % (2 * Math.PI)) - Math.PI;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min((now - start) / 1200, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      this.globe.rotation.y = startY + turn * eased;
+      this.globe.rotation.x = startX + (targetX - startX) * eased;
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
   latLonToVector3(lat, lon, radius) {
     const phi = (90 - lat) * (Math.PI / 180);
     const theta = (lon + 180) * (Math.PI / 180);
@@ -1383,182 +1406,45 @@ class GlobeManager {
     return new THREE.Vector3(x, y, z);
   }
 
-  // Helper: Draw circular background with subtle glow
-  drawRoundedBorder(ctx, cx, cy, size, radius, borderColor = "#ebebeb") {
-    const circleRadius = size / 2;
-
-    // Save context state
-    ctx.save();
-
-    // Subtle glow effect (reduced from 12 to 4)
-    ctx.shadowColor = borderColor;
-    ctx.shadowBlur = 4;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 0;
-
-    // Dark fill circle with opacity
-    ctx.globalAlpha = 0.75;
+  /** The globe's single pin, drawn at the centre of a 64 px canvas. */
+  drawPin(ctx, color) {
+    const glow = ctx.createRadialGradient(32, 32, 8, 32, 32, 30);
+    glow.addColorStop(0, "rgba(230, 218, 199, 0.35)");
+    glow.addColorStop(1, "rgba(230, 218, 199, 0)");
+    ctx.fillStyle = glow;
     ctx.beginPath();
-    ctx.arc(cx, cy, circleRadius, 0, Math.PI * 2);
-    ctx.fillStyle = "#0d1117";
+    ctx.arc(32, 32, 30, 0, Math.PI * 2);
     ctx.fill();
 
-    // Border with subtle glow
-    ctx.globalAlpha = 0.82;
-    ctx.strokeStyle = borderColor;
-    ctx.lineWidth = 2.5;
+    ctx.fillStyle = "rgba(14, 17, 24, 0.9)";
+    ctx.beginPath();
+    ctx.arc(32, 32, 15, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 3.5;
+    ctx.beginPath();
+    ctx.arc(32, 32, 15, 0, Math.PI * 2);
     ctx.stroke();
 
-    // Restore context state
-    ctx.restore();
-  }
-
-  // Large white icon helpers with rounded border
-  // fillColor param for favorite highlight (default white, or green for favorites)
-  // borderColor param for outline (default white, or green for favorites)
-  drawVideoIcon(ctx, cx, cy, fillColor = "#ebebeb", borderColor = "#ebebeb") {
-    // Rounded border
-    this.drawRoundedBorder(ctx, cx, cy, 44, 8, borderColor);
-    // Play triangle (white or green if favorite)
-    ctx.fillStyle = fillColor;
+    ctx.fillStyle = color;
     ctx.beginPath();
-    ctx.moveTo(cx - 10, cy - 12);
-    ctx.lineTo(cx - 10, cy + 12);
-    ctx.lineTo(cx + 12, cy);
-    ctx.closePath();
-    ctx.fill();
-  }
-
-  drawImageIcon(ctx, cx, cy, fillColor = "#ebebeb", borderColor = "#ebebeb") {
-    // Rounded border
-    this.drawRoundedBorder(ctx, cx, cy, 44, 8, borderColor);
-    // Picture frame icon (white or green if favorite)
-    ctx.strokeStyle = fillColor;
-    ctx.lineWidth = 3;
-    ctx.strokeRect(cx - 12, cy - 9, 24, 18);
-    // Mountain peak
-    ctx.fillStyle = fillColor;
-    ctx.beginPath();
-    ctx.moveTo(cx - 10, cy + 7);
-    ctx.lineTo(cx - 3, cy - 4);
-    ctx.lineTo(cx + 4, cy + 7);
-    ctx.closePath();
-    ctx.fill();
-    // Sun
-    ctx.beginPath();
-    ctx.arc(cx + 6, cy - 4, 3, 0, Math.PI * 2);
-    ctx.fill();
-  }
-
-  draw3DIcon(ctx, cx, cy, fillColor = "#ebebeb", borderColor = "#ebebeb") {
-    // Rounded border
-    this.drawRoundedBorder(ctx, cx, cy, 44, 8, borderColor);
-    // Cube icon (white or green if favorite)
-    ctx.strokeStyle = fillColor;
-    ctx.lineWidth = 3;
-    // Front face
-    ctx.strokeRect(cx - 10, cy - 4, 14, 14);
-    // Back face offset
-    ctx.strokeRect(cx - 4, cy - 10, 14, 14);
-    // Connect corners
-    ctx.beginPath();
-    ctx.moveTo(cx - 10, cy - 4);
-    ctx.lineTo(cx - 4, cy - 10);
-    ctx.moveTo(cx + 4, cy - 4);
-    ctx.lineTo(cx + 10, cy - 10);
-    ctx.moveTo(cx - 10, cy + 10);
-    ctx.lineTo(cx - 4, cy + 4);
-    ctx.stroke();
-  }
-
-  drawNewIcon(ctx, cx, cy, fillColor = "#ebebeb", borderColor = "#ebebeb") {
-    // Rounded border
-    this.drawRoundedBorder(ctx, cx, cy, 44, 8, borderColor);
-    // Star icon (white or green if favorite)
-    ctx.fillStyle = fillColor;
-    ctx.beginPath();
-    for (let i = 0; i < 10; i++) {
-      const angle = (i * Math.PI) / 5 - Math.PI / 2;
-      const r = i % 2 === 0 ? 14 : 6;
-      const x = cx + r * Math.cos(angle);
-      const y = cy + r * Math.sin(angle);
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.closePath();
+    ctx.arc(32, 32, 5.5, 0, Math.PI * 2);
     ctx.fill();
   }
 
   addPoint(lat, lon, data, isFavorite = false) {
     const position = this.latLonToVector3(lat, lon, 2.05);
 
-    // Couleur selon le type de contenu (vérifier type ou category)
     const contentType = data.type || data.category;
 
-    let pointColor;
-    // Color based on content type
-    switch (contentType) {
-      case "videos":
-      case "video":
-        pointColor = 0x6c5ce7; // Violet pour vidéos
-        break;
-      case "images":
-      case "image":
-        pointColor = 0xfdcb6e; // Jaune pour images
-        break;
-      case "3d":
-        pointColor = 0xfd79a8; // Rose pour 3D
-        break;
-      case "texts":
-      case "text":
-        pointColor = 0x58a6ff; // Bleu pour textes/articles
-        break;
-      default:
-        pointColor = 0xf9f9f9; // Blanc par défaut
-        break;
-    }
-
-    // Créer texture pinpoint avec ring + highlight
+    // One pin for every kind of content (the kinds are filtered on the left):
+    // a sand ring on fossil black, a centre dot, a soft halo; ochre for favourites
     const canvas = document.createElement("canvas");
     canvas.width = 64;
     canvas.height = 64;
     const ctx = canvas.getContext("2d", { alpha: true });
-
-    const hexColor = "#" + pointColor.toString(16).padStart(6, "0");
-
-    // Clear background (transparent)
-    ctx.clearRect(0, 0, 64, 64);
-
-    // Icon fill color: yellow (#ffaa00) if favorite, white otherwise
-    let iconFillColor = "#ebebeb";
-    let iconBorderColor = "#ebebeb";
-
-    if (isFavorite) {
-      iconFillColor = "#ffaa00"; // Yellow for favorites
-      iconBorderColor = "#ffaa00";
-    }
-
-    // Draw icon based on content type (not isNew state)
-    switch (contentType) {
-      case "videos":
-      case "video":
-        this.drawVideoIcon(ctx, 32, 32, iconFillColor, iconBorderColor);
-        break;
-      case "images":
-      case "image":
-        this.drawImageIcon(ctx, 32, 32, iconFillColor, iconBorderColor);
-        break;
-      case "3d":
-        this.draw3DIcon(ctx, 32, 32, iconFillColor, iconBorderColor);
-        break;
-      default:
-        // Fallback: simple circle with highlight color
-        ctx.fillStyle = iconFillColor;
-        ctx.beginPath();
-        ctx.arc(32, 32, 10, 0, Math.PI * 2);
-        ctx.fill();
-        break;
-    }
+    this.drawPin(ctx, isFavorite ? "#b69c68" : "#e6dac7");
 
     const texture = new THREE.CanvasTexture(canvas);
     texture.minFilter = THREE.LinearFilter;
@@ -1585,12 +1471,15 @@ class GlobeManager {
     return sprite;
   }
 
+  /** Takes a pin off the globe. */
+  removePoint(point) {
+    this.globe.remove(point);
+    if (point.material?.map) point.material.map.dispose();
+    if (point.material) point.material.dispose();
+  }
+
   clearPoints() {
-    this.points.forEach((point) => {
-      this.globe.remove(point);
-      if (point.material?.map) point.material.map.dispose();
-      if (point.material) point.material.dispose();
-    });
+    this.points.forEach((point) => this.removePoint(point));
     this.points = [];
     this.clearClusters();
     this.clusterIndex = null;
@@ -1640,31 +1529,47 @@ class GlobeManager {
     const scZoom = this.cameraZToClusterZoom();
 
     this.clearClusters();
-    this.points.forEach((p) => {
-      this.globe.remove(p);
-      if (p.material?.map) p.material.map.dispose();
-      if (p.material) p.material.dispose();
-    });
+    this.points.forEach((p) => this.removePoint(p));
     this.points = [];
 
     const clusters = this.clusterIndex.getClusters(
       [-180, -85, 180, 85],
       scZoom,
     );
-    for (const c of clusters) {
+    // Clusters that would overlap on screen (many pieces of one course, at
+    // one place) become a single one, with the sum of their pieces
+    const mergeDegrees = 10 / Math.pow(2, scZoom / 4);
+    const groups = [];
+    for (const c of clusters.filter((c) => c.properties.cluster)) {
       const [lon, lat] = c.geometry.coordinates;
-      if (c.properties.cluster) {
-        this.addClusterSprite(lat, lon, c.properties.point_count, {
-          _isCluster: true,
-          _clusterId: c.id,
-          _count: c.properties.point_count,
-          _lat: lat,
-          _lon: lon,
-        });
+      const near = groups.find(
+        (g) =>
+          Math.hypot((g.lon - lon) * Math.cos((lat * Math.PI) / 180), g.lat - lat) < mergeDegrees,
+      );
+      const count = c.properties.point_count;
+      if (near) {
+        const total = near.count + count;
+        near.lat = (near.lat * near.count + lat * count) / total;
+        near.lon = (near.lon * near.count + lon * count) / total;
+        near.count = total;
+        near.ids.push(c.id);
       } else {
-        const { data, isFavorite } = c.properties;
-        this.addPoint(lat, lon, data, isFavorite);
+        groups.push({ lat, lon, count, ids: [c.id] });
       }
+    }
+    for (const g of groups) {
+      this.addClusterSprite(g.lat, g.lon, g.count, {
+        _isCluster: true,
+        _clusterIds: g.ids,
+        _count: g.count,
+        _lat: g.lat,
+        _lon: g.lon,
+      });
+    }
+    for (const c of clusters.filter((c) => !c.properties.cluster)) {
+      const [lon, lat] = c.geometry.coordinates;
+      const { data, isFavorite } = c.properties;
+      this.addPoint(lat, lon, data, isFavorite);
     }
 
     this.spreadClusteredPoints();
@@ -1678,11 +1583,11 @@ class GlobeManager {
     ctx.clearRect(0, 0, 64, 64);
 
     // Glow ring
-    ctx.shadowColor = "#4fc3f7";
+    ctx.shadowColor = "#45c2c2";
     ctx.shadowBlur = 10;
     ctx.beginPath();
     ctx.arc(32, 32, 26, 0, Math.PI * 2);
-    ctx.strokeStyle = "rgba(79,195,247,0.5)";
+    ctx.strokeStyle = "rgba(69,194,194,0.5)";
     ctx.lineWidth = 2;
     ctx.stroke();
     ctx.shadowBlur = 0;
@@ -1691,11 +1596,11 @@ class GlobeManager {
     ctx.globalAlpha = 0.85;
     ctx.beginPath();
     ctx.arc(32, 32, 22, 0, Math.PI * 2);
-    ctx.fillStyle = "#0d1117";
+    ctx.fillStyle = "#0e1118";
     ctx.fill();
 
-    // Border color by count
-    const border = count < 10 ? "#4fc3f7" : count < 50 ? "#ffaa00" : "#fd79a8";
+    // Border color by count, in the site charter: teal, sand, ochre
+    const border = count < 10 ? "#45c2c2" : count < 50 ? "#e6dac7" : "#b69c68";
     ctx.globalAlpha = 1;
     ctx.beginPath();
     ctx.arc(32, 32, 22, 0, Math.PI * 2);
@@ -1704,8 +1609,8 @@ class GlobeManager {
     ctx.stroke();
 
     // Count label
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 14px sans-serif";
+    ctx.fillStyle = "#ebebeb";
+    ctx.font = "bold 14px Montserrat, sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText(count > 999 ? "999+" : String(count), 32, 32);
@@ -1804,9 +1709,8 @@ class GlobeManager {
     const atMaxZoom = this.camera.position.z <= 2.25;
     if (clusterData._count <= 5 || atMaxZoom) {
       // Show list: small cluster or can't zoom further
-      const leaves = this.clusterIndex.getLeaves(
-        clusterData._clusterId,
-        Infinity,
+      const leaves = clusterData._clusterIds.flatMap((id) =>
+        this.clusterIndex.getLeaves(id, Infinity),
       );
       const items = leaves.map((l) => l.properties.data);
       if (window.appController) window.appController.showClusterList(items);
@@ -1975,4 +1879,17 @@ class GlobeManager {
   }
 }
 
+/**
+ * The artist's name shown in a content's window: from the site, else read from
+ * the credits line ("Created by Jane Doe."). Learners appear as "Apprentice".
+ */
+function artistNameOf(data) {
+  if (data.artistName) return data.artistName;
+  if (data.grade === "apprentice") return "Apprentice";
+  // Only the name: the credits line may go on ("Created by X. Based on material from…")
+  const match = /^(?:created|made) by (.+?)(?:\.\s|\.?$)/i.exec((data.artist || "").trim());
+  return match ? match[1] : null;
+}
+
 window.GlobeManager = GlobeManager;
+window.artistNameOf = artistNameOf;

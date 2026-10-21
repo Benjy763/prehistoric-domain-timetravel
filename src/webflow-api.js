@@ -71,6 +71,11 @@ class WebflowAPI {
       freeTags: item.freeTags || "",
       location: item.location || "",
       createdOn: item.createdOn || null,
+      // Academy: the artist's grade (apprentice pieces have their own globe)
+      // and the anonymous owner key ("Your globe")
+      grade: item.grade || null,
+      artistName: item.artistName || null,
+      owner: item.owner || null,
     };
   }
 

@@ -162,6 +162,9 @@ class AudioManager {
     if (this.volumeControl) {
       this.volumeControl.classList.toggle("active", this.isEnabled);
     }
+    // Show the muted speaker as soon as the sound is off
+    this.updateVolumeIcon();
+    this.volumeBtn?.setAttribute("aria-pressed", String(this.isEnabled));
 
     if (this.isEnabled) {
       await this.fadeIn();
@@ -227,9 +230,16 @@ class AudioManager {
   }
 }
 
+// Pins shown at once on the globe, the most recent first (the pager moves to
+// older ones); the visitor can switch to 100
+const PIN_PAGE_SIZES = [50, 100];
+
 class AppController {
   constructor() {
     this.currentPeriod = "today";
+    // Pins are shown a page at a time, the most recent first
+    this.pinPage = 0;
+    this.pinPageSize = PIN_PAGE_SIZES[0];
     this.currentTime = 0; // Ma (millions d'années)
 
     // Initialiser les managers
@@ -252,6 +262,15 @@ class AppController {
     // Initialiser les managers
     this.filtersManager = new FiltersManager();
     this.favoritesManager = new FavoritesManager();
+    // "My creations" (site, Academy): the signed-in member's owner keys come
+    // as ?owners= (always) and ?mine= (opens straight on their creations)
+    const query = new URLSearchParams(window.location.search);
+    const keys = (name) => (query.get(name) || "").split(",").filter(Boolean);
+    this.myOwners = new Set([...keys("owners"), ...keys("mine")]);
+    this.myCreationsOnly = keys("mine").length > 0;
+    // Opened on the member's creations: the globe turns to the newest one
+    this.focusPending = this.myCreationsOnly;
+    this.startPeriod = query.get("period");
     this.popupManager = new PopupManager();
     this.webflowAPI = new WebflowAPI();
     this.audioManager = new AudioManager();
@@ -274,9 +293,21 @@ class AppController {
       // Définir la couche par défaut pour "today"
       this.globeManager.currentLayer = "muller2022";
       this.setupEventListeners();
+      this.setupCreationsSwitch();
       // Mettre à jour l'UI des boutons après l'init
       this.updateLayerUI();
-      this.updateGlobe();
+      // ?period= (end of an Academy course): open on the course's period
+      const startButton = this.startPeriod
+        ? document.querySelector(`.period-btn[data-period="${CSS.escape(this.startPeriod)}"]`)
+        : null;
+      if (startButton) {
+        this.onPeriodChange(startButton);
+        // Bring it into view once the header is laid out (the smooth scroll
+        // of onPeriodChange can run too early on first load)
+        setTimeout(() => startButton.scrollIntoView({ block: "nearest", inline: "center" }), 600);
+      } else {
+        this.updateGlobe();
+      }
 
       // Start preloading other periods in background after initial load
       setTimeout(() => {
@@ -388,6 +419,7 @@ class AppController {
 
   setupEventListeners() {
     this.setupPeriodScroll();
+    this.setupPinPager();
 
     // Period buttons: every period is open to everyone (Memberstack paywall removed, 2026-10-20)
     this.periodButtons.forEach((btn) => {
@@ -483,6 +515,7 @@ class AppController {
     // Récupérer les données de la période
     this.currentPeriod = button.dataset.period;
     this.currentTime = parseInt(button.dataset.time);
+    this.pinPage = 0;
 
     // Auto-switch vers Merdith pour Cambrian, Ordovician (pas de données Cao) ET Today
     if (this.currentTime >= 450 || this.currentTime === 0) {
@@ -560,50 +593,24 @@ class AppController {
     // Ne pas afficher les points en Real Land view
     if (this.globeManager.currentLayer === "cao2017") {
       console.log("⚪ Points hidden in Real Land view");
+      document.getElementById("pinPager")?.setAttribute("hidden", "");
       return;
     }
 
-    // Récupérer les filtres actifs
     const activeFilters = this.filtersManager.getActiveFilters();
-    const favoritesFilterActive = activeFilters.includes("favorites");
-    const newFilterActive = activeFilters.includes("new");
+    const apprenticeGlobe = this.filtersManager.globe === "apprentices";
 
-    // Filtrer les contenus
-    let filteredContents = this.webflowAPI.filterByPeriodAndType(
-      this.currentPeriod,
-      activeFilters.filter(f => f !== "favorites" && f !== "new"), // Remove exclusive filters from type filters
+    let filteredContents = this.webflowAPI.filterByPeriodAndType(this.currentPeriod, activeFilters);
+
+    // The apprentices' globe is apart, never mixed with the artists' work;
+    // "My creations" keeps the member's own pieces, on either globe
+    filteredContents = filteredContents.filter((content) => {
+      if (this.myCreationsOnly && !this.myOwners.has(content.owner)) return false;
+      return apprenticeGlobe ? content.grade === "apprentice" : content.grade !== "apprentice";
+    });
+    console.log(
+      `Affichage de ${filteredContents.length} contenus pour la période ${this.currentPeriod}`,
     );
-
-    // Appliquer les filtres exclusifs (favorites et/ou recent)
-    if (favoritesFilterActive && newFilterActive) {
-      // Les DEUX filtres actifs → afficher favoris OU récents
-      const favoriteIds = this.favoritesManager.getAll();
-      const recentIds = this.getRecentItemsForPeriod(this.currentPeriod, 10);
-      filteredContents = filteredContents.filter(content =>
-        favoriteIds.includes(content.id) || recentIds.has(content.id)
-      );
-      console.log(
-        `💙⭐ Affichage de ${filteredContents.length} favoris ou récents pour la période ${this.currentPeriod}`,
-      );
-    } else if (favoritesFilterActive) {
-      // Seulement favoris
-      const favoriteIds = this.favoritesManager.getAll();
-      filteredContents = filteredContents.filter(content => favoriteIds.includes(content.id));
-      console.log(
-        `💙 Affichage de ${filteredContents.length} favoris pour la période ${this.currentPeriod}`,
-      );
-    } else if (newFilterActive) {
-      // Seulement récents (10 derniers de la période)
-      const recentIds = this.getRecentItemsForPeriod(this.currentPeriod, 10);
-      filteredContents = filteredContents.filter(content => recentIds.has(content.id));
-      console.log(
-        `⭐ Affichage de ${filteredContents.length} contenus récents pour la période ${this.currentPeriod}`,
-      );
-    } else {
-      console.log(
-        `Affichage de ${filteredContents.length} contenus pour la période ${this.currentPeriod}`,
-      );
-    }
 
     // Appliquer le filtre recherche
     const searchQuery = this.filtersManager.getSearchQuery();
@@ -631,50 +638,147 @@ class AppController {
 
       resolvedItems.push({ lat, lon, data: content, isFavorite: this.favoritesManager.isFavorite(content.id) });
     });
-    this.globeManager.initClusterData(resolvedItems);
+    const shown = this.paginatePins(resolvedItems);
+    this.globeManager.initClusterData(shown);
+    if (this.focusPending && shown.length > 0) {
+      this.focusPending = false;
+      this.globeManager.focusOn(shown[0].lat, shown[0].lon);
+    }
   }
 
   /**
-   * Get the most recent items for a given period
-   * @param {string} period - Geological period name (e.g., "quaternary")
-   * @param {number} limit - Max number of items (default 50)
-   * @returns {Set<string>} Set of item IDs
+   * Keep one page of pins, the most recent first, so the globe never gets
+   * crowded however much the collection grows; updates the pager
+   * @param {Array} items - Resolved pins
+   * @returns {Array} The pins of the current page
    */
-  getRecentItemsForPeriod(period, limit = 50) {
-    // DEBUG: Verify PERIOD_TO_AGE_MAP is loaded
-    if (!window.PERIOD_TO_AGE_MAP) {
-      console.error("⚠️ window.PERIOD_TO_AGE_MAP not loaded! Check constants.js import.");
-      return new Set();
+  paginatePins(items) {
+    const size = this.pinPageSize;
+    const total = items.length;
+    const pages = Math.max(1, Math.ceil(total / size));
+    this.pinPage = Math.min(this.pinPage, pages - 1);
+    const start = this.pinPage * size;
+    const end = Math.min(start + size, total);
+
+    const pager = document.getElementById("pinPager");
+    if (pager) {
+      // Always shown, so the page size stays choosable in every period
+      pager.hidden = false;
+      // "Latest" is dropped on phones (.pin-pager-latest), where room is short
+      document.getElementById("pinPagerLabel").innerHTML =
+        total === 0
+          ? this.myCreationsOnly
+            ? "None of yours here"
+            : "No pieces here"
+          : `${this.pinPage === 0 ? `<span class="pin-pager-latest">Latest </span>${end}` : `${start + 1}–${end}`} of ${total}`;
+      document.getElementById("pinPagerNewer").disabled = this.pinPage === 0;
+      document.getElementById("pinPagerOlder").disabled = this.pinPage === pages - 1;
     }
 
-    const ageKey = window.PERIOD_TO_AGE_MAP[period];
+    const time = (item) => (item.data.createdOn ? new Date(item.data.createdOn).getTime() : 0);
+    return items.sort((a, b) => time(b) - time(a)).slice(start, end);
+  }
 
-    if (!ageKey) {
-      console.warn(`Unknown period: ${period}`);
-      return new Set();
+  /** "My creations": only for a member who has some keys; off shows everyone's work. */
+  setupCreationsSwitch() {
+    const toggle = document.getElementById("creationsSwitch");
+    if (!toggle) return;
+    if (this.myOwners.size === 0) {
+      toggle.hidden = true;
+      return;
     }
-
-    // Filter items for this geological period
-    const periodItems = this.webflowAPI.getAllContents().filter(item => {
-      if (!item.periods || !item.displayOnApp) return false;
-      return item.periods.hasOwnProperty(ageKey);
+    const render = () => {
+      toggle.classList.toggle("active", this.myCreationsOnly);
+      toggle.setAttribute("aria-checked", String(this.myCreationsOnly));
+    };
+    this.renderCreationsSwitch = render;
+    const flip = () => {
+      this.myCreationsOnly = !this.myCreationsOnly;
+      this.pinPage = 0;
+      render();
+      this.updatePoints();
+    };
+    toggle.addEventListener("click", flip);
+    toggle.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        flip();
+      }
     });
+    render();
+    // Opened on the member's creations (end of a course): say so, next to the switch
+    if (this.myCreationsOnly) this.showCreationsHint(toggle);
+  }
 
-    // Sort by createdOn descending (most recent first)
-    // Handle invalid dates explicitly
-    const sorted = periodItems.sort((a, b) => {
-      const dateA = a.createdOn ? new Date(a.createdOn) : new Date(0);
-      const dateB = b.createdOn ? new Date(b.createdOn) : new Date(0);
+  /**
+   * A bubble next to "My creations", sliding in with a pulse on the switch,
+   * so the member sees that only their pieces are shown; it goes after a few
+   * seconds, on a click anywhere, or when the switch changes.
+   */
+  showCreationsHint(toggle) {
+    const hint = document.createElement("div");
+    hint.className = "creations-hint";
+    hint.setAttribute("role", "status");
+    hint.innerHTML =
+      '<strong>Only your creations</strong><span>Turn off "My creations" to see everyone\'s work.</span>';
+    document.body.appendChild(hint);
+    const place = () => {
+      const box = toggle.getBoundingClientRect();
+      hint.style.left = `${box.right + 14}px`;
+      hint.style.top = `${box.top + box.height / 2}px`;
+    };
+    place();
+    toggle.classList.add("is-pulsing");
+    requestAnimationFrame(() => hint.classList.add("is-shown"));
+    let gone = false;
+    const close = () => {
+      if (gone) return;
+      gone = true;
+      toggle.classList.remove("is-pulsing");
+      hint.classList.remove("is-shown");
+      window.removeEventListener("resize", place);
+      setTimeout(() => hint.remove(), 400);
+    };
+    window.addEventListener("resize", place);
+    setTimeout(close, 7000);
+    setTimeout(() => document.addEventListener("pointerdown", close, { once: true }), 300);
+    toggle.addEventListener("click", close, { once: true });
+  }
 
-      // Fallback to epoch (0) for invalid dates
-      const timeA = isNaN(dateA.getTime()) ? 0 : dateA.getTime();
-      const timeB = isNaN(dateB.getTime()) ? 0 : dateB.getTime();
+  /**
+   * Another globe chosen: back to everyone's work ("My creations" opened from
+   * a course would otherwise leave the artists' globe empty for a learner)
+   */
+  onGlobeChanged() {
+    if (this.myCreationsOnly) {
+      this.myCreationsOnly = false;
+      this.renderCreationsSwitch?.();
+    }
+    this.pinPage = 0;
+    this.updatePoints();
+  }
 
-      return timeB - timeA;
+  setupPinPager() {
+    const step = (delta) => {
+      this.pinPage = Math.max(0, this.pinPage + delta);
+      this.updatePoints();
+    };
+    document.getElementById("pinPagerNewer")?.addEventListener("click", () => step(-1));
+    document.getElementById("pinPagerOlder")?.addEventListener("click", () => step(1));
+
+    const sizeButtons = document.querySelectorAll(".pin-pager-size-btn");
+    sizeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        this.pinPageSize = Number(button.dataset.size);
+        this.pinPage = 0;
+        sizeButtons.forEach((other) => {
+          const selected = other === button;
+          other.classList.toggle("active", selected);
+          other.setAttribute("aria-pressed", String(selected));
+        });
+        this.updatePoints();
+      });
     });
-
-    // Return top N item IDs as a Set
-    return new Set(sorted.slice(0, limit).map(item => item.id));
   }
 
   matchesSearch(item, searchQuery) {
@@ -698,6 +802,7 @@ class AppController {
 
   onFiltersChanged(activeFilters) {
     console.log("Active filters:", activeFilters);
+    this.pinPage = 0;
     this.updatePoints();
   }
 
@@ -712,38 +817,31 @@ class AppController {
 
     const popup = document.createElement("div");
     popup.id = "clusterListPopup";
-    Object.assign(popup.style, {
-      position: "fixed", top: "50%", left: "50%",
-      transform: "translate(-50%,-50%)",
-      background: "rgba(13,17,23,0.95)",
-      border: "1px solid rgba(79,195,247,0.4)",
-      borderRadius: "12px", padding: "16px",
-      zIndex: "1000", minWidth: "240px", maxWidth: "320px",
-      backdropFilter: "blur(8px)",
-    });
+    popup.className = "cluster-list";
 
     const header = document.createElement("div");
-    header.style.cssText = "color:#4fc3f7;font-size:12px;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;";
+    header.className = "cluster-list-title";
     header.textContent = `${items.length} contents at this location`;
     popup.appendChild(header);
 
     const list = document.createElement("div");
-    list.style.cssText = "max-height:320px;overflow-y:auto;padding-right:4px;";
+    list.className = "cluster-list-items";
     popup.appendChild(list);
 
     items.forEach(item => {
-      const row = document.createElement("div");
-      row.style.cssText = "padding:8px;cursor:pointer;border-radius:6px;color:#ebebeb;font-size:13px;margin-bottom:4px;";
+      const row = document.createElement("button");
+      row.type = "button";
+      row.className = "cluster-list-item";
       row.textContent = item.name || item.title || "Unnamed";
-      row.onmouseover = () => { row.style.background = "rgba(79,195,247,0.1)"; };
-      row.onmouseout = () => { row.style.background = ""; };
       row.onclick = () => { popup.remove(); this.showContentPopup(item); };
       list.appendChild(row);
     });
 
     const close = document.createElement("button");
+    close.type = "button";
+    close.className = "cluster-list-close";
+    close.setAttribute("aria-label", "Close");
     close.textContent = "×";
-    close.style.cssText = "position:absolute;top:8px;right:12px;background:none;border:none;color:#ebebeb;font-size:18px;cursor:pointer;";
     close.onclick = () => popup.remove();
     popup.appendChild(close);
 

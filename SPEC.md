@@ -30,18 +30,29 @@ Le site Webflow contient un CMS de "Contents" : des vidéos, images et expérien
 - Sidebar gauche avec 4 filtres : Videos, Images, 3D, Recent ; les contenus "paleo docs" restent dans la famille Videos
 - Recent affiche les 50 derniers items publiés de la période géologique sélectionnée (basé sur `createdOn`)
 - Chaque filtre a un badge coloré (indicateur visuel dans la sidebar)
-- Toggle on/off pour masquer/afficher les types
+- Toggle on/off pour masquer/afficher les types (utilisables au clavier : Entrée ou Espace)
+- Interrupteur Experts only : seulement les pièces des experts, sur le globe des artistes
+
+### 2.3 bis Globe des artistes et globe des apprentis
+
+- Sélecteur « Artists · Apprentices » en haut du globe, visible par tous, sur ordinateur et téléphone
+- Artists (par défaut) : les œuvres des artistes, sans les pièces d'élèves
+- Apprentices : seulement les pièces d'élèves de l'Academy, déposées à la fin d'un cours au lieu et à la période du cours
+- Les deux couches ne se mêlent jamais ; avec `?mine=` (« Your globe »), le globe montre toutes les pièces du membre
+- Un « ? » à côté du sélecteur explique à quoi servent les deux globes
+- Au plus 50 points à la fois (ou 100, au choix), les plus récents d'abord ; une barre sur le globe passe aux 50 suivants, plus anciens, cran par cran ; toujours affichée, flèches désactivées quand il n'y a pas plus ancien
+- Sur ordinateur, la pagination est juste sous le sélecteur ; sur téléphone, sélecteur puis pagination en bas à gauche du globe ; barre latérale réduite à Our Continents, aux trois types de contenu et à l'aide (Real Land, recherche et interrupteurs sur ordinateur seulement)
 - Désactivés en mode "Real Land"
 
 ### 2.4 Pinpoints (marqueurs)
 
 - Sprites Three.js positionnés sur le globe selon les coordonnées paléogéographiques
-- Code couleur : jaune (favoris), blanc (défaut)
+- Code couleur : ocre (favoris), blanc cendre (défaut)
 - Animation de pulsation
 - Taille proportionnelle au zoom
 - Cliquables via raycasting
 - **Clustering** (Supercluster) : les points proches se regroupent en badges numérotés qui se décomposent au zoom in
-  - Badge bleu (<10), orange (<50), rose (≥50)
+  - Badge cerclé de bleu-vert (<10), sable (<50), ocre (≥50), couleurs de la charte du site
   - Cluster ≤5 items ou zoom maximal → popup liste scrollable → clic item → popup contenu
   - Cluster >5 items → zoom in animé (×0.55) → re-cluster automatique
 

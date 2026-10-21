@@ -119,7 +119,7 @@
 
     <h2 class="filters-title">Content Filters</h2>
     <div class="filter-list">
-      <div class="filter-item active" data-filter="3d">
+      <div class="filter-item active" data-filter="3d" role="switch" aria-checked="true" tabindex="0">
         <span class="filter-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
@@ -133,7 +133,7 @@
         <span class="filter-name">Immersive</span>
         <span class="filter-badge">●</span>
       </div>
-      <div class="filter-item active" data-filter="videos">
+      <div class="filter-item active" data-filter="videos" role="switch" aria-checked="true" tabindex="0">
         <span class="filter-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
@@ -143,7 +143,7 @@
         <span class="filter-name">Videos</span>
         <span class="filter-badge">●</span>
       </div>
-      <div class="filter-item active" data-filter="images">
+      <div class="filter-item active" data-filter="images" role="switch" aria-checked="true" tabindex="0">
         <span class="filter-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
@@ -155,19 +155,21 @@
         <span class="filter-name">Images</span>
         <span class="filter-badge">●</span>
       </div>
-      <div class="filter-item filter-switch" data-filter="new">
-        <div class="filter-switch-track">
-          <div class="filter-switch-thumb"></div>
-        </div>
-        <span class="filter-name">Recent</span>
-      </div>
-      <div class="filter-item filter-switch" data-filter="favorites">
-        <div class="filter-switch-track">
-          <div class="filter-switch-thumb"></div>
-        </div>
-        <span class="filter-name">Favorites</span>
+      <!-- Whose work (shown to a signed-in member only, ?owners= / ?mine=): everyone's, or only theirs -->
+      <div class="filter-item creations-switch" id="creationsSwitch" role="switch" aria-checked="false" tabindex="0"
+        title="Show only my creations">
+        <span class="filter-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path>
+          </svg>
+        </span>
+        <span class="filter-name">My creations</span>
+        <span class="filter-badge">●</span>
       </div>
     </div>
+
 
     <!-- Info Button -->
     <div class="info-button-container">
@@ -189,7 +191,7 @@
 
   <!-- Volume control with play/pause -->
   <div class="volume-control active" id="volumeControl">
-    <button class="volume-btn" id="volumeBtn" title="Adjust volume">
+    <button class="volume-btn" id="volumeBtn" title="Sound on or off" aria-label="Sound on or off" aria-pressed="true">
       <svg class="volume-icon-high" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
         stroke-width="2">
         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -215,7 +217,7 @@
   </div>
 
   <!-- Auto-rotation toggle -->
-  <button class="auto-rotate-btn active" id="autoRotateBtn" title="Toggle auto-rotation">
+  <button class="auto-rotate-btn active" id="autoRotateBtn" title="Toggle auto-rotation" aria-label="Toggle auto-rotation">
     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M23 4v6h-6"></path>
       <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
@@ -228,6 +230,31 @@
   <!-- Main globe area -->
   <main class="globe-container">
     <div id="globe-canvas"></div>
+
+    <!-- Globe choice: the artists' work or the Academy apprentices' pieces -->
+    <div class="globe-choice-bar">
+      <div class="globe-choice" role="group" aria-label="Globe">
+        <button type="button" class="globe-choice-btn active" data-globe="artists" aria-pressed="true">Artists</button>
+        <button type="button" class="globe-choice-btn" data-globe="apprentices" aria-pressed="false">Apprentices</button>
+      </div>
+      <button type="button" class="globe-help-btn" id="globeHelpBtn" aria-label="What are these two globes?"
+        aria-expanded="false" aria-controls="globeHelp">?</button>
+      <div class="globe-help" id="globeHelp" hidden>
+        <p><strong>Artists</strong>: the work of Prehistoric Domain's artists, placed where and when their animals lived.</p>
+        <p><strong>Apprentices</strong>: pieces made by Academy students at the end of a course, pinned at the course's place and period. The two globes never mix.</p>
+      </div>
+    </div>
+
+    <!-- Pages of pins: the most recent first, a page at a time -->
+    <nav class="pin-pager" id="pinPager" aria-label="Pins" hidden>
+      <div class="pin-pager-size" role="group" aria-label="Pins per page">
+        <button type="button" class="pin-pager-size-btn active" data-size="50" aria-pressed="true">50</button>
+        <button type="button" class="pin-pager-size-btn" data-size="100" aria-pressed="false">100</button>
+      </div>
+      <button type="button" class="pin-pager-btn" id="pinPagerNewer" aria-label="More recent pins">&lsaquo;</button>
+      <span class="pin-pager-label" id="pinPagerLabel" aria-live="polite"></span>
+      <button type="button" class="pin-pager-btn" id="pinPagerOlder" aria-label="Older pins">&rsaquo;</button>
+    </nav>
 
     <!-- Loading indicator -->
     <div class="loading-overlay hidden" id="loadingOverlay">
@@ -247,7 +274,9 @@
 
     <!-- Visual content (image/video) -->
     <div class="popup-content">
-      <a href="#" id="popupImageLink" style="display: none;">
+      <!-- Who made it, always in view in the top left corner -->
+      <span class="popup-credit" id="popupCredit" hidden></span>
+      <a id="popupImageLink" style="display: none;">
         <img src="" alt="Preview" class="popup-image" id="popupImage">
         <div class="popup-play-icon" id="popupPlayIcon" style="display: none;">
           <svg width="80" height="80" viewBox="0 0 80 80">
@@ -282,9 +311,6 @@
       <div class="popup-tags" id="popupTags" style="display: none;">
         <div class="popup-tags-list"></div>
       </div>
-      <a href="#" class="popup-link buttons-item" id="popupLink">
-        VIEW MORE
-      </a>
     </div>
 
     <!-- Info button -->
@@ -319,73 +345,53 @@
   <div id="layerInfoModal" class="info-modal hidden">
     <div class="info-modal-content">
       <button class="info-modal-close" id="closeLayerInfo">&times;</button>
-      <h2>Understanding the Globe Views</h2>
+      <h2>How the globe works</h2>
 
-      <p class="info-preamble">This interactive globe combines <strong>scientific data</strong> with an <strong>accessible and immersive experience</strong>, letting you explore prehistoric life across time and space.</p>
-
-      <p class="info-disclaimer" style="background: rgba(255, 193, 7, 0.1); padding: 12px; border-left: 3px solid #ffc107; margin: 16px 0; border-radius: 4px;">
-        <strong>⚠️ Note on location accuracy:</strong> While we use scientific databases and peer-reviewed models, some adjustments are made to ensure all points display correctly on the globe. The locations are <strong>approximate representations</strong> based on available fossil data and may not reflect exact prehistoric positions.
-      </p>
+      <p class="info-preamble">Travel through time and explore prehistoric life where it lived. Pick a period at the top, turn the globe, and open a point to see the work behind it.</p>
 
       <div class="info-section">
-        <h3>About the point locations</h3>
-        <p>Each point represents a piece of content (video, image, or immersive experience). Locations show
-          <strong>where fossils of that species were found</strong>, reconstructed back in time in four steps:</p>
-        <ul>
-          <li><strong>Species identification:</strong> Species names are extracted from each content's tags and looked up
-            in the Paleobiology Database (PBDB) to find fossil occurrence records.</li>
-          <li><strong>Modern anchor point:</strong> The most geographically consistent cluster of PBDB occurrences is
-            used to compute a representative modern coordinate, the actual location where those fossils were
-            excavated.</li>
-          <li><strong>Visual spread:</strong> Multiple contents from the same region are spread apart (minimum ~33 km)
-            so every point remains individually visible. Each period is handled independently, so a Jurassic point
-            never displaces a Cretaceous one.</li>
-          <li><strong>Paleogeographic reconstruction:</strong> The modern coordinate is repositioned back in time using
-            the GPlates API and the Merdith et al. 2021 tectonic model, following the drift of the tectonic plate it
-            sits on.</li>
-        </ul>
-        <p class="info-note"><em>Positioning is based on peer-reviewed data: PBDB fossil database + Merdith et al.
-            2021 plate reconstruction model.</em></p>
-        <p class="info-note"><em>Points are only visible in the "Our Continents" view.</em></p>
+        <h3>Two globes: Artists and Apprentices</h3>
+        <p>The Artists and Apprentices switch on the globe chooses what you see. <strong>Artists</strong> shows the work of Prehistoric Domain's artists. <strong>Apprentices</strong> shows the pieces made by Academy students at the end of a course, pinned at the course's place and period. The two never mix.</p>
       </div>
 
       <div class="info-section">
-        <h3>Our Continents View</h3>
-        <p>This view shows the outlines of <strong>today's continents</strong> repositioned to where they were located
-          in the past. It helps you recognize familiar landmasses (Africa, South America, etc.) in their ancient
-          positions.</p>
-        <p class="info-note"><em>Merdith et al. 2021 plate tectonic reconstruction, extending back to 1 billion years
-            ago.</em></p>
+        <h3>The latest first, 50 at a time</h3>
+        <p>For each period, the globe shows the <strong>50 latest pieces</strong>, so it never gets crowded. The arrows next to the count step to older ones, 50 by 50. Choose 100 to see more at once.</p>
       </div>
 
       <div class="info-section">
-        <h3>Real Land View</h3>
-        <p>This view shows the <strong>actual emerged landmasses</strong> as they existed during each period &mdash; the
-          real
-          ancient coastlines based on geological evidence. Sea levels were different, so the shapes differ
-          significantly from modern continents.</p>
-        <p class="info-note"><em>Cao et al. 2017 paleogeographic reconstruction &mdash; available from Permian (~280 Ma)
-            to Neogene (~6 Ma).</em></p>
-      </div>
-
-      <div class="info-section">
-        <h3>Point icons and colors</h3>
-        <p>Each point displays an icon based on its content type:</p>
+        <h3>Filters</h3>
         <ul>
-          <li><strong>Videos</strong> — Play triangle icon</li>
-          <li><strong>Images</strong> — Picture frame with landscape icon</li>
-          <li><strong>Immersive Experiences</strong> — Cube icon</li>
-        </ul>
-        <p>Icon highlights indicate special status:</p>
-        <ul>
-          <li><span style="color:#ffaa00;">● Favorites</span> — your saved content</li>
-          <li><span style="color:#02d8cb;">● Recent</span> — recently added</li>
+          <li><strong>Content types</strong>: show or hide Immersive (cube icon), Videos (play icon) and Images (picture icon).</li>
+          <li><strong>My creations</strong>, once you are signed in: show only your own pieces, on either globe.</li>
+          <li><strong>On a computer</strong>, you can also search the contents.</li>
         </ul>
       </div>
 
       <div class="info-section">
-        <h3>Time Periods</h3>
-        <p>Each period button shows the approximate <strong>midpoint</strong> of that geological era. The globe reconstruction uses the closest available data slice from Cao et al. (2017).</p>
+        <h3>Our Continents and Real Land</h3>
+        <p><strong>Our Continents</strong> shows today's continents moved back to where they were at the time, so you can recognize Africa or South America in their ancient places. Points are shown in this view (Merdith et al. 2021 model).</p>
+        <p><strong>Real Land</strong>, on a computer, shows the land that was actually above the sea at the time, without points (Cao et al. 2017, from the Permian to the Neogene).</p>
+      </div>
+
+      <div class="info-section">
+        <h3>Where the points are</h3>
+        <p>Each point is placed <strong>where fossils of its species were found</strong>, then moved back in time with the drift of the tectonic plates. Species come from each piece's tags and are looked up in the Paleobiology Database (PBDB); points too close to each other are spread apart so each one stays visible.</p>
+        <p class="info-disclaimer"><strong>Approximate places.</strong> Positions rely on scientific data and peer-reviewed models, with small adjustments so every point shows correctly. They are not exact prehistoric locations.</p>
+      </div>
+
+      <div class="info-section">
+        <h3>Points and colors</h3>
+        <ul>
+          <li>Every piece has the same pin; your <span style="color: var(--pd-ochre);">favorites</span> (the heart in a piece's window) are in ochre. To see only one kind of content, use the filters on the left.</li>
+          <li>Close points gather in a numbered circle that opens as you zoom in.</li>
+          <li>The speaker button at the top right turns the ambient sound on or off.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>Time periods</h3>
+        <p>Each period shows the approximate <strong>middle</strong> of that geological era.</p>
       </div>
 
       <p class="info-footer"><em>Data: Merdith et al. (2021), Cao et al. (2017), PBDB, GPlates Project</em></p>
