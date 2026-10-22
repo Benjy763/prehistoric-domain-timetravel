@@ -148,7 +148,7 @@ SITE PRÉHISTORIC DOMAIN (/api/globe, forme des anciens items Webflow)
 
 Chaque item porte, depuis la source (`/api/globe` du site) :
 
-- `grade` : `expert`, `confirmed`, `apprentice` ou rien (productions) ;
+- `grade` : `professional` (ex-`expert`, renommé le 2026-10-22), `confirmed`, `apprentice` ou rien (productions) ; le globe ne lit que `apprentice` ;
 - `artistName` : le nom de l'artiste, affiché en haut à gauche de la fenêtre d'un contenu (plus bas sur une vidéo YouTube, sous son titre) (« Apprentice » pour une pièce d'élève, jamais son nom ; à défaut, il est lu dans la ligne de crédits « Created by … ») ;
 - `owner` : la page d'artiste, ou l'empreinte du compte pour une pièce d'élève (jamais son identifiant ni son nom) ;
 - `source` : `academy` pour une pièce de fin de cours de l'Academy (sa page est la page du cours), sinon `site`.

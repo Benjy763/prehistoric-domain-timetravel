@@ -31,7 +31,7 @@ Le site Webflow contient un CMS de "Contents" : des vidéos, images et expérien
 - Recent affiche les 50 derniers items publiés de la période géologique sélectionnée (basé sur `createdOn`)
 - Chaque filtre a un badge coloré (indicateur visuel dans la sidebar)
 - Toggle on/off pour masquer/afficher les types (utilisables au clavier : Entrée ou Espace)
-- Interrupteur Experts only : seulement les pièces des experts, sur le globe des artistes
+- ~~Interrupteur Experts only~~ : retiré le 2026-10-21 ; le grade Expert est devenu Professional le 2026-10-22
 
 ### 2.3 bis Globe des artistes et globe des apprentis
 
