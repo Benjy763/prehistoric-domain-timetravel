@@ -84,8 +84,7 @@ jobs:
         run: |
           aws s3 cp "$DATA_FILE" "s3://pd-website-media/$CONTENT_KEY" \
             --endpoint-url "$R2_ENDPOINT" \
-            --content-type application/json \
-            --cache-control "public, max-age=60"
+            --content-type application/json
 
       - name: Report
         run: node scripts/send-sync-report.js "$PREVIOUS_FILE" "$DATA_FILE"

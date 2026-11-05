@@ -6,7 +6,10 @@
 export async function fetchContentData() {
   if (__CONTENT_DATA_URL__) {
     try {
-      const response = await fetch(__CONTENT_DATA_URL__);
+      // The media domain caches everything for a year: a new address each minute
+      // shows a new file within a minute, while visitors share the cached copy
+      const minute = Math.floor(Date.now() / 60000);
+      const response = await fetch(`${__CONTENT_DATA_URL__}?v=${minute}`);
       if (response.ok) {
         return response;
       }
