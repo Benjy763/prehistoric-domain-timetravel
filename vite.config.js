@@ -10,6 +10,8 @@ const contentDataHash = createHash('md5')
 export default defineConfig({
   define: {
     __CONTENT_DATA_HASH__: JSON.stringify(contentDataHash),
+    // Empty for main: only the built-in file (see scripts/deploy-pages.js)
+    __CONTENT_DATA_URL__: JSON.stringify(process.env.GLOBE_CONTENT_DATA_URL || ''),
   },
 
   // Base path for deployment

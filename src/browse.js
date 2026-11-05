@@ -3,6 +3,8 @@
  * Search and display all CMS contents (eligible + non-eligible)
  */
 
+import { fetchContentData } from "./content-data.js";
+
 class BrowseManager {
   constructor() {
     this.allContents = [];
@@ -69,7 +71,7 @@ class BrowseManager {
     try {
       console.log("📦 Loading contents from content-data.json...");
 
-      const response = await fetch(`assets/data/content-data.json?v=${__CONTENT_DATA_HASH__}`);
+      const response = await fetchContentData();
       if (!response.ok) {
         throw new Error(`HTTP error ${response.status}`);
       }

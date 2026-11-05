@@ -11,7 +11,8 @@ Les contenus du site (base de Prehistoric Domain, route `/api/globe`) sont proje
 - **Scripts** : Node.js natif (0 dépendances npm), `fetch` natif (Node 18+)
 - **APIs** : PBDB (géocodage fossiles), GPlates MERDITH2021 (reconstruction paléo, limite 410 Ma)
 - **Hébergement** : Cloudflare Pages (`prehistoric-domain-timetravel.pages.dev`), intégré en iframe dans le site (page `/time-travel`)
-- **Déploiement** : jamais sans l'accord explicite de Benjamin
+- **Données** : `staging` et `beta` lisent `content-data.json` sur R2 (`media.prehistoricdomain.com/globe/<environnement>/`), remplacé par le robot `.github/workflows/sync-globe.yml`, lancé par le site après chaque publication et chaque jour ; aucun déploiement pour des données. Le robot tourne depuis `main` du dépôt : une correction de `scripts/manual-coordinate-fixes.json` doit y arriver, puis le relancer avec `slugs`
+- **Déploiement du code** : jamais sans l'accord explicite de Benjamin ; `npm run deploy:pages -- prehistoric-domain-timetravel staging` (ou `beta`). `main` est le globe du site Webflow : figé jusqu'à la bascule, il demande `main --production`
 
 ## Structure
 

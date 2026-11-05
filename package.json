@@ -10,6 +10,7 @@
     "sync": "node scripts/sync-contents.js",
     "sync:all": "node scripts/sync-contents.js --all",
     "sync:dry": "node scripts/sync-contents.js --dry-run",
+    "test": "node --test \"scripts/*.test.js\"",
     "validate": "node scripts/validate-content-data.js",
     "validate:tags": "node scripts/validate-free-tags.js",
     "validate:tags:errors": "node scripts/validate-free-tags.js --only-errors",

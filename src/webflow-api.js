@@ -3,6 +3,8 @@
  * Intégration avec Webflow CMS API
  */
 
+import { fetchContentData } from "./content-data.js";
+
 class WebflowAPI {
   constructor() {
     this.contents = [];
@@ -13,7 +15,7 @@ class WebflowAPI {
       console.log(
         "📦 Chargement des données depuis assets/data/content-data.json...",
       );
-      const response = await fetch(`assets/data/content-data.json?v=${__CONTENT_DATA_HASH__}`);
+      const response = await fetchContentData();
 
       if (!response.ok) {
         throw new Error(

@@ -2,7 +2,9 @@
 
 Ce guide explique comment builder et déployer le globe.
 
-> **Depuis le 2026-10-19** : les contenus viennent du site (`/api/globe`, variable `PD_CONTENT_SOURCE`), plus de Webflow, et le globe est servi par **Cloudflare Pages** (`prehistoric-domain-timetravel.pages.dev`), intégré en iframe dans la page `/time-travel` du site. Déroulé : `npm run sync`, `npm run validate`, `npm run build`, puis `npm run deploy:pages -- prehistoric-domain-timetravel` (wrangler connecté), **uniquement après l'accord explicite de Benjamin**. La procédure Hostinger ci-dessous ne sert plus qu'à l'ancienne copie du site Webflow, jusqu'à la bascule.
+> **Depuis le 2026-10-19** : les contenus viennent du site (`/api/globe`, variable `PD_CONTENT_SOURCE`), plus de Webflow, et le globe est servi par **Cloudflare Pages** (`prehistoric-domain-timetravel.pages.dev`), intégré en iframe dans la page `/time-travel` du site. 
+
+> **Depuis le 2026-11-05** : les données de `staging` et `beta` sont mises à jour par le robot `sync-globe.yml`, sans déploiement. Pour le code seulement : `npm run deploy:pages -- prehistoric-domain-timetravel staging` (ou `beta`), qui construit puis publie, **uniquement après l'accord explicite de Benjamin**. `main` est le globe affiché par Webflow : il demande `main --production` et reste figé jusqu'à la bascule. La procédure Hostinger ci-dessous ne sert plus qu'à l'ancienne copie du site Webflow, jusqu'à la bascule.
 
 ## Prérequis
 

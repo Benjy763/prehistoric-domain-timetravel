@@ -1,0 +1,95 @@
+# Keeps the contents file of an environment up to date: started by the site when
+# a piece is published or removed, and once a day. The code of the globe is never
+# deployed here. Webflow's globe (main on Cloudflare Pages) has no such file.
+name: Sync globe
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to update
+        required: true
+        type: choice
+        options: [staging, beta]
+      slugs:
+        description: Recompute only these contents, comma-separated (after a manual fix)
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+# One run at a time per environment; requests made meanwhile become one next run
+concurrency:
+  group: sync-globe-${{ inputs.environment }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      ENVIRONMENT: ${{ inputs.environment }}
+      SLUGS: ${{ inputs.slugs }}
+      DATA_FILE: assets/data/content-data.json
+      PREVIOUS_FILE: previous-content-data.json
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      REPORT_TO: ${{ secrets.GLOBE_REPORT_TO }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Choose the environment
+        run: |
+          case "$ENVIRONMENT" in
+            staging) echo "PD_CONTENT_SOURCE=https://prehistoricdomain-staging.com/api/globe" >> "$GITHUB_ENV" ;;
+            beta) echo "PD_CONTENT_SOURCE=https://beta.prehistoricdomain.com/api/globe" >> "$GITHUB_ENV" ;;
+          esac
+          echo "CONTENT_KEY=globe/$ENVIRONMENT/content-data.json" >> "$GITHUB_ENV"
+
+      # Starting from the published file keeps what is already computed. The very
+      # first run has none and starts from the file in this repository.
+      - name: Get the published file
+        run: |
+          status=$(curl -sS -o downloaded.json -w '%{http_code}' "https://media.prehistoricdomain.com/$CONTENT_KEY?run=$GITHUB_RUN_ID")
+          case "$status" in
+            200) mv downloaded.json "$DATA_FILE" ;;
+            404) echo "No published file yet: starting from the repository's." ;;
+            *) echo "Unexpected HTTP $status"; exit 1 ;;
+          esac
+          cp "$DATA_FILE" "$PREVIOUS_FILE"
+
+      - name: Sync from the site
+        run: |
+          if [ -n "$SLUGS" ]; then
+            node scripts/sync-contents.js "--slugs=$SLUGS"
+          else
+            node scripts/sync-contents.js
+          fi
+
+      - name: Check before publishing
+        run: |
+          node scripts/validate-content-data.js
+          node scripts/check-before-publish.js "$PREVIOUS_FILE" "$DATA_FILE"
+
+      - name: Publish the file
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+        run: |
+          aws s3 cp "$DATA_FILE" "s3://pd-website-media/$CONTENT_KEY" \
+            --endpoint-url "$R2_ENDPOINT" \
+            --content-type application/json \
+            --cache-control "public, max-age=60"
+
+      - name: Report
+        run: node scripts/send-sync-report.js "$PREVIOUS_FILE" "$DATA_FILE"
+
+      - name: Report the failure
+        if: failure()
+        run: node scripts/send-sync-report.js --failed
