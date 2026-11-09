@@ -1,5 +1,6 @@
 # Keeps the contents file of an environment up to date: started by the site when
-# a piece is published or removed, and once a day. The code of the globe is never
+# a piece is published or removed, and once a day; the private production (beta)
+# is also refreshed every hour, without a token on the site's side. The code of the globe is never
 # deployed here. Webflow's globe (main on Cloudflare Pages) has no such file.
 name: Sync globe
 
@@ -15,13 +16,15 @@ on:
         description: Recompute only these contents, comma-separated (after a manual fix)
         required: false
         type: string
+  schedule:
+    - cron: "23 * * * *"
 
 permissions:
   contents: read
 
 # One run at a time per environment; requests made meanwhile become one next run
 concurrency:
-  group: sync-globe-${{ inputs.environment }}
+  group: sync-globe-${{ inputs.environment || 'beta' }}
   cancel-in-progress: false
 
 jobs:
@@ -29,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
-      ENVIRONMENT: ${{ inputs.environment }}
+      ENVIRONMENT: ${{ inputs.environment || 'beta' }}
       SLUGS: ${{ inputs.slugs }}
       DATA_FILE: assets/data/content-data.json
       PREVIOUS_FILE: previous-content-data.json
