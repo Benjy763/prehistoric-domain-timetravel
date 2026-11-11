@@ -399,7 +399,7 @@ function isOceanicItem(item) {
 }
 
 // The same words as the placement of a piece (import-cms-items.js, isMarine)
-const MARINE_TAGS = /ocean|sea|marine|reef|pelagic|offshore|lagoon/;
+const MARINE_TAGS = /\b(oceans?|seas?|marine|reefs?|pelagic|offshore|lagoons?)\b/;
 
 /**
  * A sea creature placed from its fossils (location "global oceans (PBDB)", or marine
@@ -564,6 +564,12 @@ async function reconstructItemForPeriod(item, options = {}) {
     return null;
   }
 
+  // Any sea creature ends in the sea of the map shown, whatever case placed it
+  const toSea = (lat, lon) =>
+    isOceanicItem(item) || isMarineItem(item)
+      ? (findNearbySea(lat, lon, age) ?? { lat, lon })
+      : { lat, lon };
+
   // CAS 1: Items océaniques globaux
   // L'API GPlates ne peut pas reconstruire les positions océaniques
   // On utilise des positions océaniques prédéfinies pour chaque période avec rotation
@@ -576,11 +582,7 @@ async function reconstructItemForPeriod(item, options = {}) {
           `   ⚠️  Pas de position océanique définie pour ${age} Ma - position moderne conservée`,
         );
       }
-      return {
-        age,
-        lat: latitude,
-        lon: longitude,
-      };
+      return { age, ...toSea(latitude, longitude) };
     }
 
     // Vérifier quelles positions sont déjà utilisées pour cette période
@@ -614,8 +616,7 @@ async function reconstructItemForPeriod(item, options = {}) {
       // Ajouter un petit offset pour éviter collision exacte
       return {
         age,
-        lat: oceanicPos.lat + (Math.random() * 10 - 5),
-        lon: oceanicPos.lon + (Math.random() * 10 - 5),
+        ...toSea(oceanicPos.lat + (Math.random() * 10 - 5), oceanicPos.lon + (Math.random() * 10 - 5)),
       };
     }
 
@@ -626,11 +627,7 @@ async function reconstructItemForPeriod(item, options = {}) {
       console.log(`   📍 Position: ${oceanicPos.lat}°, ${oceanicPos.lon}°`);
     }
 
-    return {
-      age,
-      lat: oceanicPos.lat,
-      lon: oceanicPos.lon,
-    };
+    return { age, ...toSea(oceanicPos.lat, oceanicPos.lon) };
   }
 
   // CAS 2: Périodes au-delà de la limite API (>410 Ma)
@@ -641,11 +638,7 @@ async function reconstructItemForPeriod(item, options = {}) {
         `   ⚠️  Période ${age} Ma au-delà limite API (${GPLATES_MAX_AGE} Ma) - position moderne conservée`,
       );
     }
-    return {
-      age,
-      lat: latitude,
-      lon: longitude,
-    };
+    return { age, ...toSea(latitude, longitude) };
   }
 
   // CAS 3: Reconstruction normale via API

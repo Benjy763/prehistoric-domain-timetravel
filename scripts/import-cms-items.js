@@ -853,7 +853,7 @@ async function findRawCoordinates(freeTags, itemId, slug) {
   const normalizedTags = normalizeCommonNames(freeTags || "");
   let { continent, species, period, age } = parseFreeTags(normalizedTags);
   const tagsLower = (freeTags || "").toLowerCase();
-  const isMarine = /ocean|sea|marine|reef|pelagic|offshore|lagoon/.test(
+  const isMarine = /\b(oceans?|seas?|marine|reefs?|pelagic|offshore|lagoons?)\b/.test(
     tagsLower,
   );
 
