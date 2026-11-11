@@ -197,6 +197,52 @@ function pointInPolygon(point, polygon) {
   return pointInRing(point, polygon[0]);
 }
 
+/**
+ * The map the globe shows (today's continents at their place of the time, Merdith 2021
+ * coastlines, as src/globe.js draws them): a sea creature must land in its sea, not in a
+ * sea of the time that lies over a continent on this map (2026-11-11, the mosasaur).
+ */
+const COASTLINES_DIR = path.join(__dirname, "../assets/merdith2021-coastlines");
+const COASTLINE_CACHE = new Map();
+
+function loadCoastlines(age) {
+  let ages = COASTLINE_CACHE.get("ages");
+  if (!ages) {
+    ages = fs.existsSync(COASTLINES_DIR)
+      ? fs
+          .readdirSync(COASTLINES_DIR)
+          .map((name) => Number.parseInt(name, 10))
+          .filter((n) => Number.isFinite(n))
+      : [];
+    COASTLINE_CACHE.set("ages", ages);
+  }
+  if (ages.length === 0) return null;
+  const nearest = ages.reduce((a, b) => (Math.abs(b - age) < Math.abs(a - age) ? b : a));
+  const key = `map-${nearest}`;
+  if (COASTLINE_CACHE.has(key)) return COASTLINE_CACHE.get(key);
+  try {
+    const geo = JSON.parse(fs.readFileSync(path.join(COASTLINES_DIR, `${nearest}Ma.json`), "utf8"));
+    const polygons = [];
+    for (const feature of geo.features || []) {
+      const geom = feature.geometry;
+      if (geom?.type === "Polygon") polygons.push(geom.coordinates);
+      else if (geom?.type === "MultiPolygon") polygons.push(...geom.coordinates);
+    }
+    COASTLINE_CACHE.set(key, polygons);
+    return polygons;
+  } catch {
+    COASTLINE_CACHE.set(key, null);
+    return null;
+  }
+}
+
+/** On a continent of the map shown; null without the map of that age. */
+function isPointOnContinent(lat, lon, age) {
+  const polygons = loadCoastlines(age);
+  if (!polygons) return null;
+  return polygons.some((polygon) => pointInPolygon([lon, lat], polygon));
+}
+
 function isPointOnLand(lat, lon, age) {
   const polygons = loadLandGeoJSON(age);
   if (!polygons) return null;
@@ -208,8 +254,9 @@ function isPointOnLand(lat, lon, age) {
   return false;
 }
 
-/** The closest point in the sea at that age, for a sea creature reconstructed on land. */
-function findNearbySea(lat, lon, age, maxRadius = 10) {
+/** The closest point in the sea of the map shown, for a sea creature placed on a continent. */
+function findNearbySea(lat, lon, age, maxRadius = 25) {
+  const isPointOnLand = isPointOnContinent;
   if (isPointOnLand(lat, lon, age) === false) return { lat, lon };
   const step = 0.5;
   for (let radius = step; radius <= maxRadius; radius += step) {
@@ -229,7 +276,14 @@ function findNearbySea(lat, lon, age, maxRadius = 10) {
         }
       }
     }
-    if (closest) return closest;
+    if (closest) {
+      // A little out to sea, so the pin does not sit on the coastline
+      const offshore = {
+        lat: lat + ((closest.lat - lat) / radius) * (radius + 1.5),
+        lon: lon + ((closest.lon - lon) / radius) * (radius + 1.5),
+      };
+      return isPointOnLand(offshore.lat, offshore.lon, age) === false ? offshore : closest;
+    }
   }
   return null;
 }
@@ -604,8 +658,8 @@ async function reconstructItemForPeriod(item, options = {}) {
 
   // STEP 1: Validation terre/mer initiale
   if (isMarineItem(item)) {
-    // A sea creature on land at its time: to the closest sea
-    if (isPointOnLand(coords.lat, coords.lon, age) === true) {
+    // A sea creature on a continent of the map shown: to the closest sea
+    if (isPointOnContinent(coords.lat, coords.lon, age) === true) {
       const seaResult = findNearbySea(coords.lat, coords.lon, age);
       if (seaResult) {
         if (verbose) {
@@ -662,7 +716,7 @@ async function reconstructItemForPeriod(item, options = {}) {
   const isLandOk = isOceanicItem(item)
     ? null
     : isMarineItem(item)
-      ? (lat, lon) => isPointOnLand(lat, lon, age) !== true
+      ? (lat, lon) => isPointOnContinent(lat, lon, age) !== true
       : (lat, lon) => isPointOnLand(lat, lon, age) !== false;
 
   const placed = findNonCollidingPaleoPosition(
@@ -780,6 +834,7 @@ module.exports = {
   isPointOnLand,
   findNearbyLand,
   findNearbySea,
+  isPointOnContinent,
   getNearestAvailableAge,
   AVAILABLE_GEOJSON_AGES,
 
