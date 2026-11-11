@@ -1444,7 +1444,7 @@ class GlobeManager {
     canvas.width = 64;
     canvas.height = 64;
     const ctx = canvas.getContext("2d", { alpha: true });
-    this.drawPin(ctx, isFavorite ? "#b69c68" : "#e6dac7");
+    this.drawPin(ctx, isFavorite ? "#d9a441" : "#e6dac7");
 
     const texture = new THREE.CanvasTexture(canvas);
     texture.minFilter = THREE.LinearFilter;
@@ -1600,7 +1600,7 @@ class GlobeManager {
     ctx.fill();
 
     // Border color by count, in the site charter: teal, sand, ochre
-    const border = count < 10 ? "#45c2c2" : count < 50 ? "#e6dac7" : "#b69c68";
+    const border = count < 10 ? "#45c2c2" : count < 50 ? "#e6dac7" : "#d9a441";
     ctx.globalAlpha = 1;
     ctx.beginPath();
     ctx.arc(32, 32, 22, 0, Math.PI * 2);

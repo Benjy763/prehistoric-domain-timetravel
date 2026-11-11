@@ -268,6 +268,8 @@ class AppController {
     const keys = (name) => (query.get(name) || "").split(",").filter(Boolean);
     this.myOwners = new Set([...keys("owners"), ...keys("mine")]);
     this.myCreationsOnly = keys("mine").length > 0;
+    // "Favorites": only the member's favorites (the site's, through the parent page)
+    this.favoritesOnly = false;
     // Opened on the member's creations: the globe turns to the newest one
     this.focusPending = this.myCreationsOnly;
     this.startPeriod = query.get("period");
@@ -280,6 +282,8 @@ class AppController {
 
     // Listen to favorites changes and refresh points
     this.favoritesManager.onChange(() => {
+      this.renderFavoritesSwitch?.();
+      this.popupManager.refreshFavorite?.();
       this.updatePoints();
     });
 
@@ -294,6 +298,7 @@ class AppController {
       this.globeManager.currentLayer = "muller2022";
       this.setupEventListeners();
       this.setupCreationsSwitch();
+      this.setupFavoritesSwitch();
       // Mettre à jour l'UI des boutons après l'init
       this.updateLayerUI();
       // ?period= (end of an Academy course): open on the course's period
@@ -606,6 +611,7 @@ class AppController {
     // "My creations" keeps the member's own pieces, on either globe
     filteredContents = filteredContents.filter((content) => {
       if (this.myCreationsOnly && !this.myOwners.has(content.owner)) return false;
+      if (this.favoritesOnly && !this.favoritesManager.isFavorite(content.slug)) return false;
       return apprenticeGlobe ? content.grade === "apprentice" : content.grade !== "apprentice";
     });
     console.log(
@@ -636,7 +642,7 @@ class AppController {
 
       if (lat == null || lon == null) return;
 
-      resolvedItems.push({ lat, lon, data: content, isFavorite: this.favoritesManager.isFavorite(content.id) });
+      resolvedItems.push({ lat, lon, data: content, isFavorite: this.favoritesManager.isFavorite(content.slug) });
     });
     const shown = this.paginatePins(resolvedItems);
     this.globeManager.initClusterData(shown);
@@ -667,9 +673,11 @@ class AppController {
       // "Latest" is dropped on phones (.pin-pager-latest), where room is short
       document.getElementById("pinPagerLabel").innerHTML =
         total === 0
-          ? this.myCreationsOnly
-            ? "None of yours here"
-            : "No pieces here"
+          ? this.favoritesOnly
+            ? "No favorites here"
+            : this.myCreationsOnly
+              ? "None of yours here"
+              : "No pieces here"
           : `${this.pinPage === 0 ? `<span class="pin-pager-latest">Latest </span>${end}` : `${start + 1}–${end}`} of ${total}`;
       document.getElementById("pinPagerNewer").disabled = this.pinPage === 0;
       document.getElementById("pinPagerOlder").disabled = this.pinPage === pages - 1;
@@ -708,6 +716,37 @@ class AppController {
     render();
     // Opened on the member's creations (end of a course): say so, next to the switch
     if (this.myCreationsOnly) this.showCreationsHint(toggle);
+  }
+
+  /**
+   * "Favorites": shown once the site says a member is signed in (the globe has no
+   * session of its own); on, only the member's favorites are shown.
+   */
+  setupFavoritesSwitch() {
+    const toggle = document.getElementById("favoritesSwitch");
+    if (!toggle) return;
+    const render = () => {
+      const available = this.favoritesManager.isAvailable();
+      toggle.hidden = !available;
+      if (!available) this.favoritesOnly = false;
+      toggle.classList.toggle("active", this.favoritesOnly);
+      toggle.setAttribute("aria-checked", String(this.favoritesOnly));
+    };
+    this.renderFavoritesSwitch = render;
+    const flip = () => {
+      this.favoritesOnly = !this.favoritesOnly;
+      this.pinPage = 0;
+      render();
+      this.updatePoints();
+    };
+    toggle.addEventListener("click", flip);
+    toggle.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        flip();
+      }
+    });
+    render();
   }
 
   /**

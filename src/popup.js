@@ -28,6 +28,7 @@ class PopupManager {
       tags: document.getElementById("popupTags"),
       tagsList: document.querySelector("#popupTags .popup-tags-list"),
       credit: document.getElementById("popupCredit"),
+      view: document.getElementById("popupViewLink"),
     };
 
     this.init();
@@ -94,8 +95,8 @@ class PopupManager {
         if (!this.currentContent || !window.appController?.favoritesManager)
           return;
 
-        window.appController.favoritesManager.toggle(this.currentContent.id);
-        this.updateFavoriteButton(this.currentContent.id);
+        window.appController.favoritesManager.toggle(this.currentContent.slug);
+        this.updateFavoriteButton(this.currentContent.slug);
       });
     }
   }
@@ -111,7 +112,7 @@ class PopupManager {
     this.popup.classList.toggle("is-video", content.type === "videos" && Boolean(content.youtubeUrl));
 
     // Update favorite button state
-    this.updateFavoriteButton(content.id);
+    this.updateFavoriteButton(content.slug);
 
     // Pause ambient audio with fade when opening video/3D content
     const isVideoOr3D = content.type === "videos" || content.type === "3d";
@@ -149,6 +150,22 @@ class PopupManager {
     const name = window.artistNameOf?.(content);
     this.elements.credit.textContent = name ? `by ${name}` : "";
     this.elements.credit.hidden = !name;
+    // The artist's page on the site, for an artist's piece (an apprentice's key starts with m-)
+    const site = this.siteOrigin(content);
+    const artistPage =
+      site && content.owner && !content.owner.startsWith("m-")
+        ? `${site}/artist/${encodeURIComponent(content.owner)}`
+        : null;
+    if (artistPage) {
+      this.elements.credit.setAttribute("href", artistPage);
+    } else {
+      this.elements.credit.removeAttribute("href");
+    }
+    // The piece's own page on the site
+    if (this.elements.view) {
+      this.elements.view.hidden = !content.sitePageUrl;
+      if (content.sitePageUrl) this.elements.view.href = content.sitePageUrl;
+    }
 
     // Free Tags
     if (content.freeTags && content.freeTags.trim()) {
@@ -329,11 +346,32 @@ class PopupManager {
     this.popup.style.height = `${Math.round(fitted / ratio)}px`;
   }
 
-  updateFavoriteButton(contentId) {
+  /** The site's address, from the piece's page on it. */
+  siteOrigin(content) {
+    try {
+      return content.sitePageUrl ? new URL(content.sitePageUrl).origin : null;
+    } catch {
+      return null;
+    }
+  }
+
+  /** Called when the favorites change (the site answered): the heart follows. */
+  refreshFavorite() {
+    if (this.currentContent) this.updateFavoriteButton(this.currentContent.slug);
+  }
+
+  updateFavoriteButton(slug) {
     if (!this.favoriteBtn || !window.appController?.favoritesManager) return;
 
-    const isFavorite =
-      window.appController.favoritesManager.isFavorite(contentId);
+    const manager = window.appController.favoritesManager;
+    // No heart for a visitor: favorites belong to a member's account
+    this.favoriteBtn.hidden = !manager.isAvailable();
+    const isFavorite = manager.isFavorite(slug);
+    this.favoriteBtn.setAttribute("aria-pressed", String(isFavorite));
+    this.favoriteBtn.setAttribute(
+      "aria-label",
+      isFavorite ? "Remove from favorites" : "Add to favorites",
+    );
     const emptyIcon = this.favoriteBtn.querySelector(".favorite-icon-empty");
     const filledIcon = this.favoriteBtn.querySelector(".favorite-icon-filled");
 

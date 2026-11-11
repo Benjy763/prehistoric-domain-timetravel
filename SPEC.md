@@ -70,10 +70,10 @@ Le site Webflow contient un CMS de "Contents" : des vidéos, images et expérien
 
 ### 2.6 Favoris
 
-- Stockage local (localStorage) des items favoris par utilisateur
-- Icône cœur dans la popup pour ajouter/retirer des favoris
+- Les favoris sont ceux du compte sur le site (2026-11-11) : le globe les lit et les change par la page du site qui l'affiche
+- Icône cœur dans la popup pour ajouter/retirer des favoris, pour un membre connecté seulement
 - Filtre "Favorites" dans la sidebar pour afficher uniquement les favoris
-- Persistance entre sessions
+- Hors du site (globe ouvert seul), stockage local dans le navigateur
 
 ### 2.7 Page Browse — Catalogue de recherche
 

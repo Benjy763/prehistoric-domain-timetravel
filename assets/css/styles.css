@@ -47,7 +47,7 @@
   --pd-teal: #45c2c2; /* active or selected, focus, badges */
   --pd-ash: #ebebeb; /* text and buttons */
   --pd-sand: #e6dac7; /* titles */
-  --pd-ochre: #b69c68; /* labels, details */
+  --pd-ochre: #d9a441; /* labels, details */
   --pd-line: #3a4150; /* borders */
   --font-alt: "Quicksand", "Montserrat", sans-serif;
 
@@ -970,6 +970,20 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   pointer-events: none;
+  text-decoration: none;
+}
+
+/* An artist's piece: the name opens their page on the site */
+.popup-credit[href] {
+  pointer-events: auto;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.popup-credit[href]:hover,
+.popup-credit[href]:focus-visible {
+  border-color: var(--pd-teal);
+  outline: none;
 }
 
 .content-popup.is-video .popup-credit {
@@ -1177,13 +1191,14 @@ body {
   line-height: 1;
 }
 
-/* Favorite button */
+/* Favorite button: a round heart, left of the info button */
 .popup-favorite-btn {
   position: absolute;
   bottom: 50px; /* Aligned with info button */
-  right: 140px; /* Positioned to the left of info button */
-  min-height: 42px;
-  padding: 10px 22px;
+  right: 132px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   border: 1px solid var(--button-line);
@@ -1964,4 +1979,115 @@ body {
   border-left: 3px solid var(--pd-ochre);
   border-radius: 10px;
   background: rgba(182, 156, 104, 0.1);
+}
+
+.popup-favorite-btn[hidden],
+.popup-view-btn[hidden] {
+  display: none;
+}
+
+.popup-favorite-btn[aria-pressed="true"] {
+  border-color: var(--pd-ochre);
+}
+
+/* The piece's page on the site, left of the heart (or of the info button for a visitor) */
+.popup-view-btn {
+  position: absolute;
+  bottom: 50px;
+  right: 186px;
+  z-index: 100;
+  min-height: 42px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--pd-teal);
+  border-radius: 9999px;
+  background: var(--pd-teal);
+  color: var(--pd-fossil);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.popup-view-btn:hover {
+  background: #5fd0d0;
+}
+
+.popup-favorite-btn[hidden] ~ .popup-view-btn,
+.content-popup:has(.popup-favorite-btn[hidden]) .popup-view-btn {
+  right: 132px;
+}
+
+@media (max-width: 480px) {
+  .popup-view-btn span {
+    display: none;
+  }
+  .popup-view-btn {
+    padding: 10px 12px;
+  }
+}
+
+/* ===== Room for "Favorites" in the panel (2026-11-11) ===== */
+
+/* A smaller layer choice: the line under each name moves to its tooltip */
+.layer-selector {
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.layer-btn {
+  padding: 0.45rem 0.6rem;
+}
+
+.layer-name {
+  margin-bottom: 0;
+}
+
+.layer-desc {
+  display: none;
+}
+
+.favorites-switch[hidden] {
+  display: none;
+}
+
+.favorites-switch.active .filter-icon {
+  color: var(--pd-ochre);
+}
+
+/* "How does this work?" out of the panel, in the bottom right corner of the page */
+.info-button-container {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 50;
+  margin: 0;
+}
+
+.main-info-btn {
+  padding: 10px 16px;
+  font-size: 13px;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+@media (max-width: 768px) {
+  .info-button-container {
+    right: 12px;
+    bottom: 12px;
+    margin: 0;
+  }
+
+  /* A round "?" on a phone */
+  .main-info-btn {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+  }
 }

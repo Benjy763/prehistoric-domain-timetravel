@@ -156,7 +156,9 @@ Chaque item porte, depuis la source (`/api/globe` du site) :
 Ces champs sont recopiés par `academyFields` dans `sync-contents.js`. Dans le globe :
 
 - sélecteur **Artists · Apprentices**, visible par tous : le globe commun (les œuvres des artistes, sans aucune pièce d'élève) ou le globe des apprentis (seulement les pièces d'élèves de l'Academy). Les deux ne se mêlent jamais ; le choix est `FiltersManager.globe` ;
-- interrupteur **My creations** (colonne de gauche, membre connecté seulement) : seulement les contenus dont `owner` est une clé du membre, sur le globe choisi. Recent, Favorites et Experts only ont été retirés le 2026-10-21 (le cœur des favoris reste dans la fenêtre d'un contenu, les favoris restent en ocre).
+- interrupteur **My creations** (colonne de gauche, membre connecté seulement) : seulement les contenus dont `owner` est une clé du membre, sur le globe choisi. Recent et Experts only ont été retirés le 2026-10-21.
+- interrupteur **Favorites** (2026-11-11, membre connecté seulement) : seulement les favoris du membre, qui sont ceux du site. Dans l'iframe du site, `favorites.js` les demande à la page parente (`pd:favorites:get`, réponse `pd:favorites` avec `signedIn` et `slugs`) et les change par elle (`pd:favorites:set`), avec le slug pour clé ; seuls les messages de `window.parent` sont lus. Hors du site, ils restent dans le navigateur. Le cœur de la fenêtre d'un contenu n'apparaît qu'à un membre connecté ; les favoris restent en ocre.
+- fenêtre d'un contenu : le nom de l'artiste mène à sa page sur le site (`/artist/<owner>`, pas pour un apprenti), « View the piece » à la page de l'œuvre (`sitePageUrl`), dans la fenêtre du site (`target="_top"`). « How does this work? » est un bouton à part, en bas à droite de la page.
 
 Paramètres d'adresse, transmis par la page Time Travel du site :
 
