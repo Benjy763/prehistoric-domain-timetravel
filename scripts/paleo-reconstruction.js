@@ -208,6 +208,32 @@ function isPointOnLand(lat, lon, age) {
   return false;
 }
 
+/** The closest point in the sea at that age, for a sea creature reconstructed on land. */
+function findNearbySea(lat, lon, age, maxRadius = 10) {
+  if (isPointOnLand(lat, lon, age) === false) return { lat, lon };
+  const step = 0.5;
+  for (let radius = step; radius <= maxRadius; radius += step) {
+    const numPoints = Math.max(8, Math.floor(radius * 8));
+    let closest = null;
+    let closestDistance = Infinity;
+    for (let i = 0; i < numPoints; i++) {
+      const angle = (i / numPoints) * 2 * Math.PI;
+      const testLat = lat + radius * Math.cos(angle);
+      const testLon = lon + radius * Math.sin(angle);
+      if (Math.abs(testLat) > 90 || Math.abs(testLon) > 180) continue;
+      if (isPointOnLand(testLat, testLon, age) === false) {
+        const distance = Math.hypot(testLat - lat, testLon - lon);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closest = { lat: testLat, lon: testLon };
+        }
+      }
+    }
+    if (closest) return closest;
+  }
+  return null;
+}
+
 function findNearbyLand(lat, lon, age, maxRadius = 10) {
   // If already on land, return as-is
   if (isPointOnLand(lat, lon, age)) return { lat, lon };
@@ -316,6 +342,19 @@ function getPeriodAge(geologicalPeriod) {
  */
 function isOceanicItem(item) {
   return item.location === "global oceans";
+}
+
+// The same words as the placement of a piece (import-cms-items.js, isMarine)
+const MARINE_TAGS = /ocean|sea|marine|reef|pelagic|offshore|lagoon/;
+
+/**
+ * A sea creature placed from its fossils (location "global oceans (PBDB)", or marine
+ * tags): reconstructed like the others, then kept in the sea at its time (2026-11-11).
+ */
+function isMarineItem(item) {
+  if (isOceanicItem(item)) return false;
+  const tags = (item.freeTags || item["free-tags"] || "").toLowerCase();
+  return /^global oceans/.test(item.location || "") || MARINE_TAGS.test(tags);
 }
 
 /**
@@ -564,7 +603,23 @@ async function reconstructItemForPeriod(item, options = {}) {
   let validationStatus = "unvalidated";
 
   // STEP 1: Validation terre/mer initiale
-  if (!isOceanicItem(item)) {
+  if (isMarineItem(item)) {
+    // A sea creature on land at its time: to the closest sea
+    if (isPointOnLand(coords.lat, coords.lon, age) === true) {
+      const seaResult = findNearbySea(coords.lat, coords.lon, age);
+      if (seaResult) {
+        if (verbose) {
+          console.log(
+            `   🌊 Point marin corrigé vers la mer proche: ${seaResult.lat.toFixed(2)}°, ${seaResult.lon.toFixed(2)}°`,
+          );
+        }
+        coords = seaResult;
+        validationStatus = "corrected_to_sea";
+      }
+    } else {
+      validationStatus = "in_sea";
+    }
+  } else if (!isOceanicItem(item)) {
     const onLand = isPointOnLand(coords.lat, coords.lon, age);
 
     if (onLand === true) {
@@ -606,7 +661,9 @@ async function reconstructItemForPeriod(item, options = {}) {
   // are resolved together (no separate snap that could re-cluster points).
   const isLandOk = isOceanicItem(item)
     ? null
-    : (lat, lon) => isPointOnLand(lat, lon, age) !== false;
+    : isMarineItem(item)
+      ? (lat, lon) => isPointOnLand(lat, lon, age) !== true
+      : (lat, lon) => isPointOnLand(lat, lon, age) !== false;
 
   const placed = findNonCollidingPaleoPosition(
     coords.lat,
@@ -625,7 +682,7 @@ async function reconstructItemForPeriod(item, options = {}) {
   }
 
   // STEP 3: Re-validation après anti-collision (pour items terrestres)
-  if (collisionDetected && !isOceanicItem(item)) {
+  if (collisionDetected && !isOceanicItem(item) && !isMarineItem(item)) {
     const stillOnLand = isPointOnLand(finalLat, finalLon, age);
 
     if (stillOnLand === false) {
@@ -715,12 +772,14 @@ module.exports = {
   // Utility functions
   getPeriodAge,
   isOceanicItem,
+  isMarineItem,
   exceedsAPILimit,
   buildDerivedFields,
 
   // Land validation
   isPointOnLand,
   findNearbyLand,
+  findNearbySea,
   getNearestAvailableAge,
   AVAILABLE_GEOJSON_AGES,
 
