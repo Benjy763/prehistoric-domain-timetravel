@@ -71,6 +71,15 @@ class FiltersManager {
         this.clearSearch();
       });
     }
+
+    // Opened from a Paleodeck card (?q=Stegosaurus): the search starts filled, so the
+    // globe shows the artworks of that animal only (2026-11-12)
+    const startSearch = new URLSearchParams(window.location.search).get("q");
+    if (startSearch) {
+      this.searchQuery = startSearch.trim().toLowerCase();
+      if (this.searchInput) this.searchInput.value = startSearch;
+      if (this.searchClearBtn) this.searchClearBtn.style.display = "flex";
+    }
   }
 
   toggleFilter(element) {
